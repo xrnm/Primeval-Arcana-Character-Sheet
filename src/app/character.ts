@@ -1,0 +1,18 @@
+export interface Character {
+  name: string,
+  level: number,
+  class: string,
+  race: string,
+  age: number,
+  sex: string,
+  profession: string,
+  hit_dice: number,
+  hit_dice_bonus: number,
+  current_hp: number,
+  total_hp: number,
+  armor_class: number,
+  melee_th_base: number,
+  melee_th_bonus: number,
+  missile_th_base: number,
+  missile_th_bonus: number,
+}

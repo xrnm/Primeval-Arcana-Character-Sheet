@@ -1,0 +1,62 @@
+<mat-card id="show-char">
+  <h1>{{character.name}} - Level {{character.level}} {{character.race}} {{character.class}}</h1>
+  <mat-card-content>
+    <div class="three-across">
+      <mat-card>
+        <mat-list>
+          <h2>Stats</h2>
+          <mat-list-item><span>Age:</span> {{character.age}} </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span>Sex:</span> {{character.sex}} </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span>Profession:</span> {{character.profession}} </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </mat-card>
+      <mat-card>
+        <mat-list>
+          <h2>Stats</h2>
+          <mat-list-item><span>Age:</span> {{character.age}} </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span>Sex:</span> {{character.sex}} </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span>Profession:</span> {{character.profession}} </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </mat-card>
+      <mat-card>
+        <mat-list>
+          <h2>Stats</h2>
+          <mat-list-item><span>Age:</span> {{character.age}} </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span>Sex:</span> {{character.sex}} </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span>Profession:</span> {{character.profession}} </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </mat-card>
+    </div>
+    <div class="five-across">
+      <mat-card>
+        <h4>Hit Dice</h4>
+        <strong>{{character.hit_dice}}d6 + {{character.hit_dice_bonus}}</strong>
+      </mat-card>
+      <mat-card>
+        <h4>Hit Points</h4>
+        <strong>{{character.current_hp}}/{{character.total_hp}}</strong>
+      </mat-card>
+      <mat-card>
+        <h4>Armor Class</h4>
+        <strong>{{character.armor_class}}</strong>
+      </mat-card>
+      <mat-card>
+        <h4>Melee to-hit</h4>
+        <strong>{{character.melee_th_base}}d6 + {{character.melee_th_bonus}}</strong>
+      </mat-card>
+      <mat-card>
+        <h4>Missile To-hit</h4>
+        <strong>{{character.missile_th_base}}d6 + {{character.missile_th_bonus}}</strong>
+      </mat-card>
+    </div>
+  </mat-card-content>
+</mat-card>
