@@ -20,6 +20,8 @@ export interface Character {
   current_hp: number,
   total_hp: number,
   armor_class: number,
+  helmet: boolean,
+  shield: boolean,
   melee_th_base: number,
   melee_th_bonus: number,
   missile_th_base: number,

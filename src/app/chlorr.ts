@@ -22,6 +22,8 @@ export const CHLORR: Character = {
   current_hp: 6,
   total_hp: 7,
   armor_class: 7,
+  helmet: true,
+  shield: false,
   melee_th_base: 1,
   melee_th_bonus: 1,
   missile_th_base: 1,

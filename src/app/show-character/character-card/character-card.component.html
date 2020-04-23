@@ -48,6 +48,8 @@
       <mat-card>
         <h4>Armor Class</h4>
         <strong>{{character.armor_class}}</strong>
+        <span *ngIf="character.helmet"><br /> Helmet</span>
+        <span *ngIf="character.shield"><br /> Shield</span>
       </mat-card>
       <mat-card>
         <h4>Melee to-hit</h4>
