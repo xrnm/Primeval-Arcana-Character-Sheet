@@ -7,7 +7,7 @@ import {Character} from "../../character";
   styleUrls: ['./character-card.component.sass']
 })
 export class CharacterCardComponent implements OnInit {
-  @Input character: Character;
+  @Input() character: Character;
   constructor() { }
 
   ngOnInit(): void {
