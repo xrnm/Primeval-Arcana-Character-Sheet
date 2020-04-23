@@ -5,9 +5,20 @@
       <mat-card>
         <mat-list>
           <h2>Stats</h2>
-          <mat-list-item><span>Age:</span> {{character.age}} </mat-list-item>
+          <mat-list-item><span>Age: </span> {{character.age}} </mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span>Sex:</span> {{character.sex}} </mat-list-item>
+          <mat-list-item><span>Sex: </span> {{character.sex}} </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span>Race: </span> {{character.race}} </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </mat-card>
+      <mat-card>
+        <mat-list>
+          <h2>Background</h2>
+          <mat-list-item><span>Alignment:</span> {{character.alignment}} </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span>Land of Origin:</span> {{character.origin}} </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item><span>Profession:</span> {{character.profession}} </mat-list-item>
           <mat-divider></mat-divider>
@@ -15,23 +26,12 @@
       </mat-card>
       <mat-card>
         <mat-list>
-          <h2>Stats</h2>
-          <mat-list-item><span>Age:</span> {{character.age}} </mat-list-item>
+          <h2>Appearance</h2>
+          <mat-list-item><span>Height / Weight:</span> {{character.height}}'' / {{character.weight}}lbs </mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span>Sex:</span> {{character.sex}} </mat-list-item>
+          <mat-list-item><span>Hair:</span> {{character.hair_length}} {{character.hair_style}} {{character.hair_color}}</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span>Profession:</span> {{character.profession}} </mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
-      </mat-card>
-      <mat-card>
-        <mat-list>
-          <h2>Stats</h2>
-          <mat-list-item><span>Age:</span> {{character.age}} </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item><span>Sex:</span> {{character.sex}} </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item><span>Profession:</span> {{character.profession}} </mat-list-item>
+          <mat-list-item><span>Eyes / Skin:</span> {{character.eye_color}} Eyes and {{character.skin_color}} Skin</mat-list-item>
           <mat-divider></mat-divider>
         </mat-list>
       </mat-card>
