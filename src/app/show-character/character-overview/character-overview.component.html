@@ -1,7 +1,8 @@
-<mat-card id="show-char">
-  <h1>{{character.name}} - Level {{character.level}} {{character.race}} {{character.class}}</h1>
-  <mat-card-content>
-    <div class="three-across">
+<div class="show-character-card">
+  <h1 class="section-title">{{character.name}}</h1>
+  <h2 class="section-subtitle"> Level {{character.level}} {{character.race}} {{character.class}}</h2>
+  <mat-grid-list cols="3" rowHeight="2:1" id="overview">
+    <mat-grid-tile>
       <mat-card>
         <mat-list>
           <h2>Stats</h2>
@@ -13,6 +14,8 @@
           <mat-divider></mat-divider>
         </mat-list>
       </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
       <mat-card>
         <mat-list>
           <h2>Background</h2>
@@ -24,41 +27,59 @@
           <mat-divider></mat-divider>
         </mat-list>
       </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
       <mat-card>
         <mat-list>
           <h2>Appearance</h2>
-          <mat-list-item><span>Height / Weight:</span> {{character.height}}'' / {{character.weight}}lbs </mat-list-item>
+          <mat-list-item><span>Height / Weight:</span> {{character.height}}'' / {{character.weight}}lbs
+          </mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span>Hair:</span> {{character.hair_length}} {{character.hair_style}} {{character.hair_color}}</mat-list-item>
+          <mat-list-item>
+            <span>Hair:</span> {{character.hair_length}} {{character.hair_style}} {{character.hair_color}}
+          </mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span>Eyes / Skin:</span> {{character.eye_color}} Eyes and {{character.skin_color}} Skin</mat-list-item>
+          <mat-list-item><span>Eyes / Skin:</span> {{character.eye_color}} Eyes and {{character.skin_color}} Skin
+          </mat-list-item>
           <mat-divider></mat-divider>
         </mat-list>
       </mat-card>
-    </div>
-    <div class="five-across">
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <h2 class="section-subtitle">Attributes</h2>
+  <mat-grid-list id="attributes" cols="5" rowHeight="2:1">
+    <mat-grid-tile>
       <mat-card>
         <h4>Hit Dice</h4>
         <strong>{{character.hit_dice}}d6 + {{character.hit_dice_bonus}}</strong>
       </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
       <mat-card>
         <h4>Hit Points</h4>
         <strong>{{character.current_hp}}/{{character.total_hp}}</strong>
       </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
       <mat-card>
         <h4>Armor Class</h4>
         <strong>{{character.armor_class}}</strong>
-        <span *ngIf="character.helmet"><br /> Helmet</span>
-        <span *ngIf="character.shield"><br /> Shield</span>
+        <span *ngIf="character.helmet"><br/> Helmet</span>
+        <span *ngIf="character.shield"><br/> Shield</span>
       </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
       <mat-card>
         <h4>Melee to-hit</h4>
         <strong>{{character.melee_th_base}}d6 + {{character.melee_th_bonus}}</strong>
       </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
       <mat-card>
         <h4>Missile To-hit</h4>
         <strong>{{character.missile_th_base}}d6 + {{character.missile_th_bonus}}</strong>
       </mat-card>
-    </div>
-  </mat-card-content>
-</mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

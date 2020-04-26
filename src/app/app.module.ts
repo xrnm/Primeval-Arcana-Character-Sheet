@@ -6,15 +6,17 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import {MatCard, MatCardModule} from "@angular/material/card";
-import { CharacterCardComponent } from './show-character/character-card/character-card.component';
 import { ShowCharacterComponent } from './show-character/show-character.component';
 import {MatListModule} from "@angular/material/list";
+import { MatGridListModule} from "@angular/material/grid-list";
+import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+import { CharacterOverviewComponent } from './show-character/character-overview/character-overview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CharacterCardComponent,
-    ShowCharacterComponent
+    ShowCharacterComponent,
+    CharacterOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,8 @@ import {MatListModule} from "@angular/material/list";
     BrowserAnimationsModule,
     MatToolbarModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
