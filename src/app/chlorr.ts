@@ -1,6 +1,11 @@
 import {Character} from "./character";
+import {Purse} from "./purse";
+import {Item} from "./item";
 
 export let CHLORR: Character = new Character({
+  armor: [], known_languages: [], slug_items: [], weapons: [], load(): number {
+    return 1;
+  },
   name: 'Chlorr',
   level: 1,
   class: 'Fighter',
@@ -46,9 +51,25 @@ export let CHLORR: Character = new Character({
   },
   experience: [
     {
-    class: 'Fighter',
-    next_level_xp: 2000,
-    bonus_xp: 0,
-    current_xp: 350,
-  }]
+      class: 'Fighter',
+      next_level_xp: 2000,
+      bonus_xp: 0,
+      current_xp: 350,
+    },
+    {
+      class: '',
+      next_level_xp: 0,
+      bonus_xp: 0,
+      current_xp: 0,
+    }],
+  purse: new Purse({
+    platinum: 11,
+    gold: 8,
+    silver: 3,
+    copper: 9,
+    gems: [new Item({name: 'Opal', quantity:1, value:11000, description: 'hi', weight: 3}), new Item({name: 'Ruby', quantity:1, value:120000, description: 'hi', weight: 3})],
+  }),
+  magic_items:[
+    new Item({name: "Sword of fuck you", weight: 2})
+  ]
 });

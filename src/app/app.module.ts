@@ -14,6 +14,7 @@ import { CharacterOverviewComponent } from './show-character/character-overview/
 import { CharacterAttributesComponent } from './show-character/character-attributes/character-attributes.component';
 import { CharacterInventoryComponent } from './show-character/character-inventory/character-inventory.component';
 import { CharacterExperienceComponent } from './show-character/character-experience/character-experience.component';
+import { CharacterPurseComponent } from './show-character/character-purse/character-purse.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CharacterExperienceComponent } from './show-character/character-experie
     CharacterOverviewComponent,
     CharacterAttributesComponent,
     CharacterInventoryComponent,
-    CharacterExperienceComponent
+    CharacterExperienceComponent,
+    CharacterPurseComponent
   ],
   imports: [
     BrowserModule,

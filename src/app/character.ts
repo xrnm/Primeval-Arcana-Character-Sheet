@@ -1,4 +1,8 @@
 import {Loadable} from "./loadable";
+import {Container} from "./container";
+import {Item} from "./item";
+import {Purse} from "./purse";
+import {ExperienceBlock} from "./experience-block";
 
 export class Character implements Loadable{
   name: string;
@@ -44,12 +48,13 @@ export class Character implements Loadable{
     dragon_breath: number,
     spell: number
   };
-  experience: [{
-      class: string,
-      next_level_xp: number,
-      bonus_xp: number,
-      current_xp: number
-    }];
+  experience: ExperienceBlock[];
+  purse: Purse;
+  magic_items: Item[];
+  known_languages: String[];
+  weapons: Item[];
+  armor: Item[];
+  slug_items: Container[];
 
   public constructor(init?:Partial<Character>) {
     Object.assign(this, init);
