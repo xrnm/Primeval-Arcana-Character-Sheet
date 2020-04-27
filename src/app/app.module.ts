@@ -11,12 +11,18 @@ import {MatListModule} from "@angular/material/list";
 import { MatGridListModule} from "@angular/material/grid-list";
 import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 import { CharacterOverviewComponent } from './show-character/character-overview/character-overview.component';
+import { CharacterAttributesComponent } from './show-character/character-attributes/character-attributes.component';
+import { CharacterInventoryComponent } from './show-character/character-inventory/character-inventory.component';
+import { CharacterExperienceComponent } from './show-character/character-experience/character-experience.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShowCharacterComponent,
-    CharacterOverviewComponent
+    CharacterOverviewComponent,
+    CharacterAttributesComponent,
+    CharacterInventoryComponent,
+    CharacterExperienceComponent
   ],
   imports: [
     BrowserModule,

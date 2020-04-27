@@ -1,6 +1,6 @@
-import { Character} from "./character";
+import {Character} from "./character";
 
-export const CHLORR: Character = {
+export let CHLORR: Character = new Character({
   name: 'Chlorr',
   level: 1,
   class: 'Fighter',
@@ -28,4 +28,27 @@ export const CHLORR: Character = {
   melee_th_bonus: 1,
   missile_th_base: 1,
   missile_th_bonus: 1,
-};
+  attributes: {
+    strength: 10,
+    intelligence: 9,
+    wisdom: 10,
+    dexterity: 15,
+    constitution: 10,
+    charisma: 10,
+  },
+  saving_throws: {
+    system_shock: 9,
+    poison: 12,
+    paralysis: 13,
+    petrification: 14,
+    dragon_breath: 15,
+    spell: 16
+  },
+  experience: [
+    {
+    class: 'Fighter',
+    next_level_xp: 2000,
+    bonus_xp: 0,
+    current_xp: 350,
+  }]
+});

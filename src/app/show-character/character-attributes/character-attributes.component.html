@@ -1,0 +1,84 @@
+<div class="character-attributes number-card">
+  <h2 class="section-subtitle"> Attributes </h2>
+  <mat-grid-list id="attributes" cols="6" rowHeight="2:1">
+    <mat-grid-tile>
+      <mat-card ng-class="character.class === 'fighter' ? 'prime' : ''">
+        <h4>Strength</h4>
+        <strong>{{character.attributes.strength}}</strong>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <h4>Intelligence</h4>
+        <strong>{{character.attributes.intelligence}}</strong>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <h4>Wisdom</h4>
+        <strong>{{character.attributes.wisdom}}</strong>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <h4>Dexterity</h4>
+        <strong>{{character.attributes.dexterity}}</strong>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <h4>Constitution</h4>
+        <strong>{{character.attributes.constitution}}</strong>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <h4>Charisma</h4>
+        <strong>{{character.attributes.charisma}}</strong>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div class="character-attributes number-card">
+  <h2 class="section-subtitle"> Saving Throws </h2>
+  <mat-grid-list id="saving-throws" cols="6" rowHeight="2:1">
+    <mat-grid-tile>
+      <mat-card>
+        <h4>System Shock</h4>
+        <strong>{{character.saving_throws.system_shock}}</strong>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <h4>Death Ray / Poison</h4>
+        <strong>{{character.saving_throws.poison}}</strong>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <h4>Wand / Paralysis / Polymorph</h4>
+        <strong>{{character.saving_throws.paralysis}}</strong>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <h4>Petrification / Turn to stone</h4>
+        <strong>{{character.saving_throws.petrification}}</strong>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <h4>Dragon Breath / Area of Effect</h4>
+        <strong>{{character.saving_throws.dragon_breath}}</strong>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <h4>Spell / Rod / Stave</h4>
+        <strong>{{character.saving_throws.spell}}</strong>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+
