@@ -1,42 +1,36 @@
-<h2 class="section-subtitle">Purse</h2>
-<mat-grid-list cols="3" rowHeight="2:1" id="purse">
-  <mat-grid-tile>
-    <mat-card>
-      <mat-list>
-        <h2>Coins</h2>
-        <mat-list-item><span>Platinum: </span> {{character.purse.platinum}} </mat-list-item>
+<h2 class="section-subtitle">Coinage and Valuables</h2>
+<div id="purse" class="container">
+  <mat-card>
+    <mat-list>
+      <h2>Coins</h2>
+      <mat-list-item><span>Platinum: </span> {{character.purse.platinum}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Gold: </span> {{character.purse.gold}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Silver: </span> {{character.purse.silver}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Copper: </span> {{character.purse.copper}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Total: </span> {{character.purse.getTotal()}}</mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-card>
+  <mat-card>
+    <mat-list>
+      <h2>Gems & Valuables</h2>
+      <div *ngFor="let gem of character.purse.gems">
+        <mat-list-item>{{gem.inventoryString()}}</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item><span>Gold: </span> {{character.purse.gold}} </mat-list-item>
+      </div>
+    </mat-list>
+  </mat-card>
+  <mat-card>
+    <mat-list>
+      <h2>Magic Items</h2>
+      <div *ngFor="let item of character.magic_items">
+        <mat-list-item>{{item.inventoryString()}}</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item><span>Silver: </span> {{character.purse.silver}} </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span>Copper: </span> {{character.purse.copper}} </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span>Total: </span> {{character.purse.getTotal()}} GP </mat-list-item>
-        <mat-divider></mat-divider>
-      </mat-list>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card>
-      <mat-list>
-        <h2>Gems & Valuables</h2>
-        <div *ngFor="let gem of character.purse.gems">
-          <mat-list-item>{{gem.quantity}} {{gem.name}}  </mat-list-item>
-          <mat-divider></mat-divider>
-        </div>
-      </mat-list>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card>
-      <mat-list>
-        <h2>Magic Items</h2>
-        <div *ngFor="let item of character.magic_items">
-          <mat-list-item>{{item.name}}</mat-list-item>
-          <mat-divider></mat-divider>
-        </div>
-      </mat-list>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+      </div>
+    </mat-list>
+  </mat-card>
+</div>

@@ -54,14 +54,32 @@ export class Character implements Loadable{
   known_languages: String[];
   weapons: Item[];
   armor: Item[];
-  slug_items: Container[];
+  slung_items: Container[];
 
-  public constructor(init?:Partial<Character>) {
+  constructor(init?:Partial<Character>) {
     Object.assign(this, init);
   }
 
 
   load(){
-    return 1
+    return this.weapons.concat(this.armor)
+      .reduce((acc,item)=>{return acc+item.weight},0) +
+      this.slung_items.reduce((acc,container)=>{return acc + container.load()},0)
   }
+
+  maximumLoad(){
+    return this.attributes.strength * 150
+  }
+
+  primeAbility(){
+    switch(this.class){
+      case 'Fighter':
+        return 'strength';
+      case "Magic User":
+        return "intelligence";
+      case "Cleric":
+        return "wisdom";
+    }
+  }
+
 }

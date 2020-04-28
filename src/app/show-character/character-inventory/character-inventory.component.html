@@ -1,1 +1,39 @@
-<p>character-inventory works!</p>
+<h2 class="section-subtitle">Inventory - {{character.load()}} / {{character.maximumLoad()}}</h2>
+<div class="container" id="inventory">
+  <mat-card>
+    <mat-list>
+      <h2>Weapons:</h2>
+      <div *ngFor="let weapon of character.weapons">
+        <mat-list-item>{{weapon.inventoryString()}}</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </mat-card>
+  <mat-card>
+    <mat-list>
+      <h2>Armor:</h2>
+      <div *ngFor="let armor of character.armor">
+        <mat-list-item>{{armor.inventoryString()}}</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </mat-card>
+  <mat-card>
+    <mat-list>
+      <h2>Slung Items:</h2>
+      <div *ngFor="let si of character.slung_items">
+        <mat-list-item>{{si.inventoryString()}}</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </mat-card>
+  <mat-card *ngFor="let si of character.slung_items">
+    <h2>{{si.inventoryString()}}</h2>
+    <mat-list>
+      <div *ngFor="let item of si.contents">
+        <mat-list-item>{{item.inventoryString()}}</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </mat-card>
+</div>

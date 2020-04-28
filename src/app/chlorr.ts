@@ -1,11 +1,9 @@
 import {Character} from "./character";
 import {Purse} from "./purse";
 import {Item} from "./item";
+import {Container} from "./container";
 
 export let CHLORR: Character = new Character({
-  armor: [], known_languages: [], slug_items: [], weapons: [], load(): number {
-    return 1;
-  },
   name: 'Chlorr',
   level: 1,
   class: 'Fighter',
@@ -67,9 +65,15 @@ export let CHLORR: Character = new Character({
     gold: 8,
     silver: 3,
     copper: 9,
-    gems: [new Item({name: 'Opal', quantity:1, value:11000, description: 'hi', weight: 3}), new Item({name: 'Ruby', quantity:1, value:120000, description: 'hi', weight: 3})],
+    gems: [new Item({name: 'Opal', quantity:3, value:11000, description: 'hi', weight: 3}), new Item({name: 'Ruby', quantity:1, value:120000, description: 'hi', weight: 3})],
   }),
   magic_items:[
     new Item({name: "Sword of fuck you", weight: 2})
-  ]
+  ],
+  known_languages: ['Common', 'Dwarfish', 'Elven'],
+  weapons: [new Item({name: 'Long Bow', weight: 60}), new Item({name:'Dagger', weight: 20})],
+  armor: [new Item({name: 'Plate Mail', weight: 550}), new Item({name:'Helmet', weight: 50})],
+  slung_items: [new Container({name: 'Backpack', weight: 75, slots: 10,
+  contents: [new Item({name: 'Cheese', weight: 50}), new Item({quantity: 5, name:'Torches', weight: 20})]
+  }, ), new Container({name: 'Quiver', weight: 10, slots: 1, contents: [new Item({quantity: 20, name: 'Arrows', weight:2})]})]
 });

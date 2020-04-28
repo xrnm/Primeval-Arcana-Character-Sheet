@@ -1,10 +1,21 @@
 import {Loadable} from "./loadable";
+import {Item} from "./item";
 
 export class Container implements Loadable{
   slots: number = 0;
-  contents: []; //TODO: Item array
+  contents: Item[] = [];
+  name: string;
+  weight: number;
   load(){
-    return 1
+    return this.contents.reduce((weight,item, index)=>{return weight + item.totalWeight()}, this.weight)
   }
-  constructor(){}
+
+  inventoryString(){
+    return `${this.name} (${this.load()})`
+  }
+
+  constructor(init?:Partial<Container>) {
+    Object.assign(this, init);
+  }
+
 }

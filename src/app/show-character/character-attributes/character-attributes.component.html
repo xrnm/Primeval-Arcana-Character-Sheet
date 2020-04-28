@@ -2,19 +2,19 @@
   <h2 class="section-subtitle"> Attributes </h2>
   <mat-grid-list id="attributes" cols="6" rowHeight="2:1">
     <mat-grid-tile>
-      <mat-card ng-class="character.class === 'fighter' ? 'prime' : ''">
+      <mat-card ngClass="{{character.primeAbility() === 'strength' ? 'prime' : ''}}">
         <h4>Strength</h4>
         <strong>{{character.attributes.strength}}</strong>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile>
-      <mat-card>
+      <mat-card ngClass="{{character.primeAbility() === 'intelligence' ? 'prime' : ''}}">
         <h4>Intelligence</h4>
         <strong>{{character.attributes.intelligence}}</strong>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile>
-      <mat-card>
+      <mat-card ngClass="{{character.primeAbility() === 'wisdom' ? 'prime' : ''}}">
         <h4>Wisdom</h4>
         <strong>{{character.attributes.wisdom}}</strong>
       </mat-card>

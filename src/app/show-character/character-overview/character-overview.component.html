@@ -25,6 +25,10 @@
           <mat-divider></mat-divider>
           <mat-list-item><span>Profession:</span> {{character.profession}} </mat-list-item>
           <mat-divider></mat-divider>
+          <mat-list-item><span>Speaks:</span>
+            {{character.known_languages.concat(',')}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
         </mat-list>
       </mat-card>
     </mat-grid-tile>
