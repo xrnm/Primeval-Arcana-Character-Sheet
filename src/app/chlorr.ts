@@ -90,12 +90,21 @@ export let CHLORR: Game = new Game({
         weight: 10,
         slots: 1,
         contents: [new Item({quantity: 20, name: 'Arrows', weight: 2})]
-      })],
+      }),
+        new Container({
+          name: 'Quiver',
+          weight: 10,
+          slots: 1,
+          contents: [new Item({quantity: 20, name: 'Arrows', weight: 2})]
+        })],
       appearance: 'Chlorr is bald and her face is full of scars.',
       clothing: "Chlorr is wearing plate and some pink fuzzy boots",
       quests: "Helping Le Brom with his sick cows by clearing out the Picard Mill"
     }),
     sessions: [],
-    notes: [{name:'Places of Interest', content: 'Coldwater is a cool town with cool stuff okay?'}, {name:'People of Interest', content: 'Coldwater is a cool town with cool stuff okay?'}]
+    notes: [{
+      name: 'Places of Interest',
+      content: 'Coldwater is a cool town with cool stuff okay?'
+    }, {name: 'People of Interest', content: 'Coldwater is a cool town with cool stuff okay?'}]
   })
 ;

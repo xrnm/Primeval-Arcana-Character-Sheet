@@ -55,7 +55,7 @@
     <mat-grid-tile>
       <mat-card>
         <h4>Hit Dice</h4>
-        <strong>{{character.hit_dice}}d6 + {{character.hit_dice_bonus}}</strong>
+        <strong>{{character.hit_dice}} + {{character.hit_dice_bonus}}</strong>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile>
@@ -75,13 +75,13 @@
     <mat-grid-tile>
       <mat-card>
         <h4>Melee to-hit</h4>
-        <strong>{{character.melee_th_base}}d6 + {{character.melee_th_bonus}}</strong>
+        <strong>+{{character.melee_th_base + character.melee_th_bonus}}</strong>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile>
       <mat-card>
         <h4>Missile To-hit</h4>
-        <strong>{{character.missile_th_base}}d6 + {{character.missile_th_bonus}}</strong>
+        <strong>+{{character.missile_th_base + character.missile_th_bonus}}</strong>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>

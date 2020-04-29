@@ -6,6 +6,7 @@ export class Container implements Loadable{
   contents: Item[] = [];
   name: string;
   weight: number;
+
   load(){
     return this.contents.reduce((weight,item, index)=>{return weight + item.totalWeight()}, this.weight)
   }

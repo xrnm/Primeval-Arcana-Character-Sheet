@@ -64,7 +64,6 @@ export class Character implements Loadable{
     Object.assign(this, init);
   }
 
-
   load(){
     return this.weapons.concat(this.armor)
       .reduce((acc,item)=>{return acc+item.weight},0) +
