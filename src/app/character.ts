@@ -4,6 +4,7 @@ import {Item} from "./item";
 import {Purse} from "./purse";
 import {ExperienceBlock} from "./experience-block";
 
+
 export class Character implements Loadable{
   name: string;
   level: number;
@@ -55,6 +56,9 @@ export class Character implements Loadable{
   weapons: Item[];
   armor: Item[];
   slung_items: Container[];
+  appearance: string;
+  clothing: string;
+  quests: string;
 
   constructor(init?:Partial<Character>) {
     Object.assign(this, init);

@@ -1,0 +1,14 @@
+<div class="container">
+  <h2 class="section-subtitle">Notes</h2>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let note of notes">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{note.name}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <input type="text" [(ngModel)]="note.name" />
+      <textarea [(ngModel)]="note.content">{{note.content}}</textarea>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

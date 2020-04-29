@@ -1,0 +1,15 @@
+<div class="container" id="character-notes">
+  <mat-card>
+    <h2 class="section-subtitle">Character Appearance & Notes</h2>
+    <textarea [(ngModel)]="character.appearance">{{character.appearance}}</textarea>
+  </mat-card>
+  <mat-card>
+    <h2 class="section-subtitle">Personal Effects & Clothing</h2>
+    <textarea [(ngModel)]="character.clothing">{{character.clothing}}</textarea>
+
+  </mat-card>
+  <mat-card>
+    <h2 class="section-subtitle">Active Jobs and Quests</h2>
+    <textarea [(ngModel)]="character.quests">{{character.quests}}</textarea>
+  </mat-card>
+</div>

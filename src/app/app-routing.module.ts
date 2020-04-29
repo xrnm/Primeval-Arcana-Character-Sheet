@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ShowCharacterComponent} from "./show-character/show-character.component";
-import {NotesComponent} from "./notes/notes.component";
+import { AdventureLogComponent } from "./adventure-log/adventure-log.component";
 
 
 const routes: Routes = [
   {path: '', redirectTo: 'character', pathMatch: "full"},
   {path: 'character', component: ShowCharacterComponent},
-  {path: 'notes', component: NotesComponent}
+  {path: 'adventure-log', component: AdventureLogComponent}
   ];
 
 @NgModule({
