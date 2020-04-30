@@ -20,6 +20,7 @@ import { CharacterPurseComponent } from './show-character/character-purse/charac
 import { CharacterNotesComponent } from './show-character/character-notes/character-notes.component';
 import { AdventureLogComponent } from './adventure-log/adventure-log.component';
 import { NotesComponent } from './adventure-log/notes/notes.component';
+import { CharacterDerivedAttributesComponent } from './show-character/character-derived-attributes/character-derived-attributes.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { NotesComponent } from './adventure-log/notes/notes.component';
     CharacterPurseComponent,
     CharacterNotesComponent,
     AdventureLogComponent,
-    NotesComponent
+    NotesComponent,
+    CharacterDerivedAttributesComponent,
   ],
   imports: [
     BrowserModule,

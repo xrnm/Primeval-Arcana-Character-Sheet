@@ -1,0 +1,18 @@
+<div id="derived-attributes" class="container">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>Derived Attributes</mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>Precision Thrown Weight: <strong>{{character.precisionThrownWeight()}}cn</strong></mat-list-item>
+      <mat-list-item>Precision Thrown Distance <strong>{{character.precisionThrownDistance()}} feet</strong></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Maximum Deadlift / Push / Pull: <strong>{{character.maximumLift()}}cn</strong></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Continuous Travel: <strong>{{character.continuousTravel()}} hours</strong></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Hold Breath: <strong>{{character.holdBreath()}} seconds</strong></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Continuous Maximum Effort: <strong>{{character.continuousMaximumEffort()}} minutes</strong></mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-expansion-panel>
+</div>

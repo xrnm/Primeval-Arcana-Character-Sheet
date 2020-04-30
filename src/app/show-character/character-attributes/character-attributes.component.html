@@ -1,84 +1,61 @@
-<div class="character-attributes number-card">
   <h2 class="section-subtitle"> Abilities </h2>
-  <mat-grid-list id="attributes" cols="6" rowHeight="2:1">
-    <mat-grid-tile>
+  <div id="abilities" class="container">
       <mat-card ngClass="{{character.primeAbility() === 'strength' ? 'prime' : ''}}">
         <h4>Strength</h4>
-        <strong>{{character.attributes.strength}}</strong>
+        <strong>{{character.abilities.strength}}<span *ngIf="character.primeAbility() == 'strength'"> + {{character.level}}</span></strong>
+        <p class="prime-text" *ngIf="character.primeAbility() == 'strength'">Prime</p>
       </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
       <mat-card ngClass="{{character.primeAbility() === 'intelligence' ? 'prime' : ''}}">
         <h4>Intelligence</h4>
-        <strong>{{character.attributes.intelligence}}</strong>
+        <strong>{{character.abilities.intelligence}}<span *ngIf="character.primeAbility() == 'intelligence'"> + {{character.level}}</span></strong>
+        <p class="prime-text" *ngIf="character.primeAbility() == 'intelligence'">Prime</p>
       </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
       <mat-card ngClass="{{character.primeAbility() === 'wisdom' ? 'prime' : ''}}">
         <h4>Wisdom</h4>
-        <strong>{{character.attributes.wisdom}}</strong>
+        <strong>{{character.abilities.wisdom}}<span *ngIf="character.primeAbility() == 'wisdom'"> + {{character.level}}</span></strong>
+        <p class="prime-text" *ngIf="character.primeAbility() == 'wisdom'">Prime</p>
       </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
       <mat-card>
         <h4>Dexterity</h4>
-        <strong>{{character.attributes.dexterity}}</strong>
+        <strong>{{character.abilities.dexterity}}</strong>
       </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
       <mat-card>
         <h4>Constitution</h4>
-        <strong>{{character.attributes.constitution}}</strong>
+        <strong>{{character.abilities.constitution}}</strong>
       </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
       <mat-card>
         <h4>Charisma</h4>
-        <strong>{{character.attributes.charisma}}</strong>
+        <strong>{{character.abilities.charisma}}</strong>
       </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
-<div class="character-attributes number-card">
+  </div>
+<div class="character-attributes">
   <h2 class="section-subtitle"> Saving Throws </h2>
-  <mat-grid-list id="saving-throws" cols="6" rowHeight="2:1">
-    <mat-grid-tile>
+  <div id="saving-throws" class="container">
       <mat-card>
         <h4>System Shock</h4>
         <strong>{{character.saving_throws.system_shock}}</strong>
       </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
       <mat-card>
         <h4>Death Ray / Poison</h4>
         <strong>{{character.saving_throws.poison}}</strong>
       </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
       <mat-card>
         <h4>Wand / Paralysis / Polymorph</h4>
         <strong>{{character.saving_throws.paralysis}}</strong>
       </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
       <mat-card>
         <h4>Petrification / Turn to stone</h4>
         <strong>{{character.saving_throws.petrification}}</strong>
       </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
       <mat-card>
         <h4>Dragon Breath / Area of Effect</h4>
         <strong>{{character.saving_throws.dragon_breath}}</strong>
       </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
       <mat-card>
         <h4>Spell / Rod / Stave</h4>
         <strong>{{character.saving_throws.spell}}</strong>
       </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+  </div>
 </div>
 
 

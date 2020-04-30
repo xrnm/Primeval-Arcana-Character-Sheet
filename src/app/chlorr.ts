@@ -3,7 +3,6 @@ import {Purse} from "./purse";
 import {Item} from "./item";
 import {Container} from "./container";
 import {Game} from "./game";
-import {Note} from "./note";
 
 export let CHLORR: Game = new Game({
     character: new Character({
@@ -23,18 +22,13 @@ export let CHLORR: Game = new Game({
       hair_style: 'Straight',
       hair_length: 'Bald',
       skin_color: 'Golden',
-      hit_dice: 1,
-      hit_dice_bonus: 1,
+      base_movement: 60,
       current_hp: 6,
       total_hp: 7,
       armor_class: 7,
       helmet: true,
       shield: false,
-      melee_th_base: 1,
-      melee_th_bonus: 1,
-      missile_th_base: 1,
-      missile_th_bonus: 1,
-      attributes: {
+      abilities: {
         strength: 10,
         intelligence: 9,
         wisdom: 10,
@@ -65,7 +59,7 @@ export let CHLORR: Game = new Game({
         }],
       purse: new Purse({
         platinum: 11,
-        gold: 8,
+        gold: 150,
         silver: 3,
         copper: 9,
         gems: [new Item({name: 'Opal', quantity: 3, value: 11000, description: 'hi', weight: 3}), new Item({

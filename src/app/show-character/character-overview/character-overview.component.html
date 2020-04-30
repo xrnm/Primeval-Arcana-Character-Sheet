@@ -1,88 +1,86 @@
-<div class="show-character-card">
-  <h1 class="section-title">{{character.name}}</h1>
-  <h2 class="section-subtitle"> Level {{character.level}} {{character.race}} {{character.class}}</h2>
-  <mat-grid-list cols="3" rowHeight="2:1" id="overview">
-    <mat-grid-tile>
-      <mat-card>
-        <mat-list>
-          <h2>Stats</h2>
-          <mat-list-item><span>Age: </span> {{character.age}} </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item><span>Sex: </span> {{character.sex}} </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item><span>Race: </span> {{character.race}} </mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>
-        <mat-list>
-          <h2>Background</h2>
-          <mat-list-item><span>Alignment:</span> {{character.alignment}} </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item><span>Land of Origin:</span> {{character.origin}} </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item><span>Profession:</span> {{character.profession}} </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item><span>Speaks:</span>
-            {{character.known_languages.concat(',')}}
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>
-        <mat-list>
-          <h2>Appearance</h2>
-          <mat-list-item><span>Height / Weight:</span> {{character.height}}'' / {{character.weight}}lbs
-          </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>
-            <span>Hair:</span> {{character.hair_length}} {{character.hair_style}} {{character.hair_color}}
-          </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item><span>Eyes / Skin:</span> {{character.eye_color}} Eyes and {{character.skin_color}} Skin
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-
-  <mat-grid-list id="overview-stats" cols="5" rowHeight="2:1">
-    <mat-grid-tile>
-      <mat-card>
-        <h4>Hit Dice</h4>
-        <strong>{{character.hit_dice}} + {{character.hit_dice_bonus}}</strong>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>
-        <h4>Hit Points</h4>
-        <strong>{{character.current_hp}}/{{character.total_hp}}</strong>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>
-        <h4>Armor Class</h4>
-        <strong>{{character.armor_class}}</strong>
-        <span *ngIf="character.helmet"><br/> Helmet</span>
-        <span *ngIf="character.shield"><br/> Shield</span>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>
-        <h4>Melee to-hit</h4>
-        <strong>+{{character.melee_th_base + character.melee_th_bonus}}</strong>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>
-        <h4>Missile To-hit</h4>
-        <strong>+{{character.missile_th_base + character.missile_th_bonus}}</strong>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+<h1 class="section-title">{{character.name}}</h1>
+<h2 class="section-subtitle"> Level {{character.level}} {{character.race}} {{character.class}}</h2>
+<div id="overview" class="container">
+  <mat-card>
+    <mat-list>
+      <h2>Stats</h2>
+      <mat-list-item><span>Age: </span> {{character.age}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Sex: </span> {{character.sex}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Race: </span> {{character.race}} </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-card>
+  <mat-card>
+    <mat-list>
+      <h2>Background</h2>
+      <mat-list-item><span>Alignment:</span> {{character.alignment}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Land of Origin:</span> {{character.origin}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Profession:</span> {{character.profession}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Speaks:</span>
+        {{character.known_languages.concat(',')}}
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-card>
+  <mat-card>
+    <mat-list>
+      <h2>Attributes</h2>
+      <mat-list-item><span>Height / Weight:</span> {{character.height}}'' / {{character.weight}}lbs
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <span>Hair:</span> {{character.hair_length}} {{character.hair_style}} {{character.hair_color}}
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Eyes:</span> {{character.eye_color}} Eyes</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Skin:{{character.skin_color}} Skin</mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-card>
+  <mat-card id="movement">
+    <h2>Movement</h2>
+    <mat-list>
+      <mat-list-item>Base Movement: {{character.base_movement}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Movement Rating: {{character.movementRating()}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Pace: {{character.movementRating() / 6}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>2x Pace: {{character.movementRating() / 3}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>3x Pace: {{character.movementRating() / 2}}</mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-card>
 </div>
+<div id="overview-stats" class="container">
+  <mat-card>
+    <h4>Hit Dice</h4>
+    <strong>{{character.hitDice().base}} <span *ngIf="character.hitDice().bonus != 0">+ {{character.hitDice().bonus}}</span></strong>
+  </mat-card>
+  <mat-card>
+    <h4>Hit Points</h4>
+    <strong>{{character.current_hp}}/{{character.total_hp}}</strong>
+  </mat-card>
+  <mat-card>
+    <h4>Armor Class</h4>
+    <strong>{{character.armor_class}}</strong>
+    <span *ngIf="character.helmet"><br/> Helmet</span>
+    <span *ngIf="character.shield"><br/> Shield</span>
+  </mat-card>
+  <mat-card>
+    <h4>Melee To-hit</h4>
+    <strong>+{{character.meleeToHit()}}</strong>
+  </mat-card>
+  <mat-card>
+    <h4>Missile To-hit</h4>
+    <strong>+{{character.missileToHit()}}</strong>
+  </mat-card>
+</div>
+
