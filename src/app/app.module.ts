@@ -21,6 +21,9 @@ import { CharacterNotesComponent } from './show-character/character-notes/charac
 import { AdventureLogComponent } from './adventure-log/adventure-log.component';
 import { NotesComponent } from './adventure-log/notes/notes.component';
 import { CharacterDerivedAttributesComponent } from './show-character/character-derived-attributes/character-derived-attributes.component';
+import { MatProgressBarModule} from "@angular/material/progress-bar";
+import { MatIconModule} from "@angular/material/icon";
+import { MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -46,7 +49,10 @@ import { CharacterDerivedAttributesComponent } from './show-character/character-
     MatCardModule,
     MatListModule,
     MatGridListModule,
-    FormsModule
+    FormsModule,
+    MatProgressBarModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

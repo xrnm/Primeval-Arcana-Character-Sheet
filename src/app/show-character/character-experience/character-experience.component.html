@@ -5,12 +5,14 @@
       <h2>Experience Block {{i + 1}}</h2>
       <mat-list-item><span>Class: </span> {{experience.class}} </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Next Level XP: </span> {{experience.next_level_xp}} </mat-list-item>
-      <mat-divider></mat-divider>
       <mat-list-item><span>Bonus %: </span> {{experience.bonus_xp}} </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Current XP </span> {{experience.current_xp}} </mat-list-item>
-      <mat-divider></mat-divider>
+      <div *ngIf="experience.next_level_xp > 0">
+      <mat-progress-bar mode="determinate" value="{{(experience.current_xp / experience.next_level_xp) * 100}}"></mat-progress-bar>
+      {{experience.current_xp}} / {{experience.next_level_xp}}
+      <br />
+      {{(experience.current_xp /  experience.next_level_xp) * 100}}%
+      </div>
     </mat-list>
   </mat-card>
 </div>

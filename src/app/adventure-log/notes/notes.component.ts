@@ -13,4 +13,11 @@ export class NotesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addNote(){
+    this.notes.push({name: 'New Note', content: ''})
+  }
+  deleteNote(note){
+    this.notes = this.notes.filter(n => n !== note)
+  }
+
 }

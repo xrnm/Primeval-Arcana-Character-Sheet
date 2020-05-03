@@ -1,4 +1,4 @@
-<div class="container">
+<div id="notes-section" class="container">
   <h2 class="section-subtitle">Notes</h2>
   <mat-accordion>
     <mat-expansion-panel *ngFor="let note of notes">
@@ -9,6 +9,16 @@
       </mat-expansion-panel-header>
       <input type="text" [(ngModel)]="note.name" />
       <textarea [(ngModel)]="note.content">{{note.content}}</textarea>
+      <p class="delete-note">
+      <button (click)="deleteNote(note)"  mat-mini-fab aria-label="Delete Note" color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+      </p>
     </mat-expansion-panel>
   </mat-accordion>
+  <button (click)="addNote()" id="add-note-button" mat-mini-fab aria-label="Add Note Button" color="primary">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
+
+
