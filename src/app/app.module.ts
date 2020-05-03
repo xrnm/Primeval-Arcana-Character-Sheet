@@ -24,7 +24,11 @@ import { CharacterDerivedAttributesComponent } from './show-character/character-
 import { MatProgressBarModule} from "@angular/material/progress-bar";
 import { MatIconModule} from "@angular/material/icon";
 import { MatButtonModule} from "@angular/material/button";
-
+import { SessionsComponent } from './adventure-log/sessions/sessions.component';
+import { MatNativeDateModule} from "@angular/material/core";
+import { MatDatepickerModule} from "@angular/material/datepicker";
+import { MatInputModule} from "@angular/material/input";
+import { MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [
@@ -39,6 +43,7 @@ import { MatButtonModule} from "@angular/material/button";
     AdventureLogComponent,
     NotesComponent,
     CharacterDerivedAttributesComponent,
+    SessionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,9 +57,15 @@ import { MatButtonModule} from "@angular/material/button";
     FormsModule,
     MatProgressBarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatAutocompleteModule
   ],
-  providers: [],
+  providers: [
+    MatNativeDateModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

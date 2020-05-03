@@ -95,7 +95,8 @@ export let CHLORR: Game = new Game({
       clothing: "Chlorr is wearing plate and some pink fuzzy boots",
       quests: "Helping Le Brom with his sick cows by clearing out the Picard Mill"
     }),
-    sessions: [],
+    sessions: [{date: new Date('2020-01-02'), notes: 'good session', game_date: 'Two days ago'},
+      {date: new Date('2019-12-28'), notes: 'Really good session', game_date: 'seven days ago'}],
     notes: [{
       name: 'Places of Interest',
       content: 'Coldwater is a cool town with cool stuff okay?'

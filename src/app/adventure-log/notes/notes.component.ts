@@ -14,7 +14,7 @@ export class NotesComponent implements OnInit {
   }
 
   addNote(){
-    this.notes.push({name: 'New Note', content: ''})
+    this.notes.unshift({name: 'New Note', content: ''})
   }
   deleteNote(note){
     this.notes = this.notes.filter(n => n !== note)
