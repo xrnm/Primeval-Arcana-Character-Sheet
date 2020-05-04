@@ -15,7 +15,7 @@ export class GameService {
 
   importGame(json){
     this.game = new Game(JSON.parse(json));
-    interval(15000)
+    interval(3000)
       .subscribe((val) => { localStorage.setItem('odnd-character', JSON.stringify(this.game))});
 
   }
