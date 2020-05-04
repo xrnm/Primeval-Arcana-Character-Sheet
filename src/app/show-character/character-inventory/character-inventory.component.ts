@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Character} from "../../character";
+import {GameService} from "../../game.service";
 
 @Component({
   selector: 'character-inventory',
@@ -7,10 +8,11 @@ import {Character} from "../../character";
   styleUrls: ['./character-inventory.component.sass']
 })
 export class CharacterInventoryComponent implements OnInit {
-  @Input() character: Character
-  constructor() { }
+  character: Character;
+  constructor(private gameService: GameService) { }
 
   ngOnInit(): void {
+    this.character = this.gameService.getGame().getCharacter();
   }
 
 }

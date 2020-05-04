@@ -2,17 +2,17 @@
   <div id="abilities" class="container">
       <mat-card ngClass="{{character.primeAbility() === 'strength' ? 'prime' : ''}}">
         <h4>Strength</h4>
-        <strong>{{character.abilities.strength}}<span *ngIf="character.primeAbility() == 'strength'"> + {{character.level}}</span></strong>
+        <strong>{{character.abilities.strength}}<span *ngIf="character.primeAbility() == 'strength'"> + {{character.getLevel()}}</span></strong>
         <p class="prime-text" *ngIf="character.primeAbility() == 'strength'">Prime</p>
       </mat-card>
       <mat-card ngClass="{{character.primeAbility() === 'intelligence' ? 'prime' : ''}}">
         <h4>Intelligence</h4>
-        <strong>{{character.abilities.intelligence}}<span *ngIf="character.primeAbility() == 'intelligence'"> + {{character.level}}</span></strong>
+        <strong>{{character.abilities.intelligence}}<span *ngIf="character.primeAbility() == 'intelligence'"> + {{character.getLevel()}}</span></strong>
         <p class="prime-text" *ngIf="character.primeAbility() == 'intelligence'">Prime</p>
       </mat-card>
       <mat-card ngClass="{{character.primeAbility() === 'wisdom' ? 'prime' : ''}}">
         <h4>Wisdom</h4>
-        <strong>{{character.abilities.wisdom}}<span *ngIf="character.primeAbility() == 'wisdom'"> + {{character.level}}</span></strong>
+        <strong>{{character.abilities.wisdom}}<span *ngIf="character.primeAbility() == 'wisdom'"> + {{character.getLevel()}}</span></strong>
         <p class="prime-text" *ngIf="character.primeAbility() == 'wisdom'">Prime</p>
       </mat-card>
       <mat-card>

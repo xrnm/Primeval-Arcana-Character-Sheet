@@ -3,11 +3,12 @@ import {Purse} from "./purse";
 import {Item} from "./item";
 import {Container} from "./container";
 import {Game} from "./game";
+import {ExperienceBlock} from "./experience-block";
+import {Experience} from "./experience";
 
 export let CHLORR: Game = new Game({
     character: new Character({
       name: 'Chlorr',
-      level: 1,
       class: 'Fighter',
       race: 'Human',
       age: 21,
@@ -45,18 +46,21 @@ export let CHLORR: Game = new Game({
         spell: 16
       },
       experience: [
-        {
+        new ExperienceBlock({
           class: 'Fighter',
-          next_level_xp: 2000,
-          bonus_xp: 0,
-          current_xp: 350,
-        },
-        {
+
+          experiences: [
+            new Experience({points: 500, date: new Date(), notes: 'Killed some monsters'}),
+            new Experience({points: 5, date: new Date(), notes: 'Ate good cheese'}),
+            new Experience({points: 1200, date: new Date(), notes: 'Sold magic thimble'})
+          ]
+        }),
+        new ExperienceBlock({
           class: '',
           next_level_xp: 0,
           bonus_xp: 0,
-          current_xp: 0,
-        }],
+          experiences: []
+        })],
       purse: new Purse({
         platinum: 11,
         gold: 150,

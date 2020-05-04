@@ -2,24 +2,27 @@ import { Injectable } from '@angular/core';
 import {CHLORR} from "./chlorr";
 import {Character} from "./character";
 import {Game} from "./game";
-import {Session} from "./session";
-import {Note} from "./note";
+import {Observable, timer, interval} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
-  game: Game = CHLORR
+  game: Game;
+  getGame() : Game{
+    return this.game;
+  }
 
-  constructor() { }
+  importGame(json){
+    this.game = new Game(JSON.parse(json));
+    interval(15000)
+      .subscribe((val) => { localStorage.setItem('odnd-character', JSON.stringify(this.game))});
 
-  getCharacter() : Character{
-    return this.game.character;
   }
-  getSessions() : Session[]{
-    return this.game.sessions;
-  }
-  getNotes() : Note[]{
-    return this.game.notes;
-  }
+
+  constructor(){}
+
+
+
+
 }

@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from "@angular/forms";
 
@@ -29,6 +29,10 @@ import { MatNativeDateModule} from "@angular/material/core";
 import { MatDatepickerModule} from "@angular/material/datepicker";
 import { MatInputModule} from "@angular/material/input";
 import { MatAutocompleteModule} from "@angular/material/autocomplete";
+import { MatCheckboxModule} from "@angular/material/checkbox";
+import { MatSelectModule} from "@angular/material/select";
+import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +48,7 @@ import { MatAutocompleteModule} from "@angular/material/autocomplete";
     NotesComponent,
     CharacterDerivedAttributesComponent,
     SessionsComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,10 +66,13 @@ import { MatAutocompleteModule} from "@angular/material/autocomplete";
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [
-    MatNativeDateModule
+    MatNativeDateModule,
+    Title
   ],
   bootstrap: [AppComponent]
 })

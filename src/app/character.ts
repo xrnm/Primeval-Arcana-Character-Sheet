@@ -7,7 +7,6 @@ import {HitDiceHelper} from "./hit-dice-helper";
 
 export class Character implements Loadable {
   name: string;
-  level: number;
   class: string;
   race: string;
   age: number;
@@ -57,22 +56,28 @@ export class Character implements Loadable {
 
   constructor(init?: Partial<Character>) {
     Object.assign(this, init);
+    this.experience = init.experience.map((experience)=>new ExperienceBlock(experience));
+    this.purse = new Purse(init.purse)
+    this.weapons = init.weapons.map((item)=>new Item(item));
+    this.magic_items = init.magic_items.map((item)=>new Item(item));
+    this.armor = init.armor.map((item)=>new Item(item));
+    this.slung_items = init.slung_items.map((item)=>new Container(item));
   }
 
   hitDice() {
     switch (this.class) {
       case 'Fighter':
-        return HitDiceHelper.fighterHitDice(this.level);
+        return HitDiceHelper.fighterHitDice(this.getLevel());
       case 'Cleric':
-        return HitDiceHelper.clericHitDice(this.level);
+        return HitDiceHelper.clericHitDice(this.getLevel());
       case 'Magic User':
-        return HitDiceHelper.magiCUserHitDice(this.level);
+        return HitDiceHelper.magiCUserHitDice(this.getLevel());
       default:
         return {base: -1, bonus: -1}
     }
   }
 
-  load() {
+  load(): number {
     return this.weapons.concat(this.armor)
         .reduce((acc, item) => {
           return acc + item.weight
@@ -84,7 +89,6 @@ export class Character implements Loadable {
   }
 
   maximumLoad() {
-    return 10000;
     return this.abilities.strength * 150
   }
 
@@ -169,14 +173,26 @@ export class Character implements Loadable {
   }
 
   continuousTravel(): number {
-    return this.adjustedConstitution() + this.level;
+    return this.adjustedConstitution() + this.getLevel();
   }
 
   holdBreath(): number {
-    return (this.adjustedConstitution() + this.level) * 10;
+    return (this.adjustedConstitution() + this.getLevel()) * 10;
   }
 
   continuousMaximumEffort(): number {
-    return this.adjustedConstitution() + this.level;
+    return this.adjustedConstitution() + this.getLevel();
   }
+
+  getLevel(): number{
+      return this.experience.map((item) =>{return item.currentLevel();})
+      .filter((item) => !isNaN(item))
+      .reduce((item, max) => item > max ? item : max,-1);
+  }
+
+
+  static classes(){
+    return ['Fighter', 'Cleric', 'Magic User'];
+  }
+
 }

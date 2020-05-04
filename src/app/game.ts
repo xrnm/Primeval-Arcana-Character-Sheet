@@ -7,7 +7,20 @@ export class Game {
   sessions: Session[];
   notes: Note[];
 
+  getCharacter() : Character{
+      return this.character;
+  }
+  getSessions() : Session[]{
+      return this.sessions;
+  }
+  getNotes() : Note[]{
+     return this.notes;
+  }
+
   constructor(init?:Partial<Game>) {
     Object.assign(this, init);
+    this.character = new Character(init.character);
+    this.sessions = init.sessions.map(item => new Session(item));
+    this.notes = init.notes.map(item => new Note(item));
   }
 }

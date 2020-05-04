@@ -17,6 +17,7 @@ export class Container implements Loadable{
 
   constructor(init?:Partial<Container>) {
     Object.assign(this, init);
+    this.contents = init.contents.map(item=>new Item(item));
   }
 
 }

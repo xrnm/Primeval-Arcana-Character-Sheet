@@ -7,11 +7,13 @@
       <mat-divider></mat-divider>
       <mat-list-item><span>Bonus %: </span> {{experience.bonus_xp}} </mat-list-item>
       <mat-divider></mat-divider>
-      <div *ngIf="experience.next_level_xp > 0">
-      <mat-progress-bar mode="determinate" value="{{(experience.current_xp / experience.next_level_xp) * 100}}"></mat-progress-bar>
-      {{experience.current_xp}} / {{experience.next_level_xp}}
+      <mat-list-item><span>Level: </span> {{experience.currentLevel()}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <div *ngIf="experience.currentExperience() > 0">
+      <mat-progress-bar mode="determinate" value="{{experience.levelProgress()*100}}"></mat-progress-bar>
+      {{experience.currentExperience()}} / {{experience.totalExperienceForLevel(experience.currentLevel() + 1)}}
       <br />
-      {{(experience.current_xp /  experience.next_level_xp) * 100}}%
+      {{experience.levelProgress() | percent:'1.2' }}
       </div>
     </mat-list>
   </mat-card>

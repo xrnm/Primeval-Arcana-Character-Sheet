@@ -2,5 +2,7 @@ export class Note {
   name: string;
   content: string;
 
-  constructor(){}
+  constructor(init?:Partial<Note>) {
+    Object.assign(this, init);
+  }
 }

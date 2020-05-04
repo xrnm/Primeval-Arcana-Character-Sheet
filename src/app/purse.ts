@@ -14,6 +14,7 @@ export class Purse implements Loadable{
 
   constructor(init?:Partial<Purse>) {
     Object.assign(this, init);
+    this.gems = init.gems.map(gem=>new Item(gem));
   }
 
   load(){
