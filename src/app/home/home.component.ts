@@ -25,4 +25,9 @@ export class HomeComponent implements OnInit {
     reader.readAsText(file);
   }
 
+  newCharacter(){
+    this.gameService.newGame();
+    this.router.navigate(['/character'])
+  }
+
 }

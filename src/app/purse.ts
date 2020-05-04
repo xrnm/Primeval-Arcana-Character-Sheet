@@ -2,17 +2,18 @@ import {Item} from "./item";
 import {Loadable} from "./loadable";
 
 export class Purse implements Loadable{
-  platinum: number;
-  gold: number;
-  silver: number;
-  copper: number;
-  gems: Item[];
+  platinum: number = 0;
+  gold: number = 0;
+  silver: number = 0;
+  copper: number = 0;
+  gems: Item[] = [];
 
   getTotal(){
     return `${this.platinum * 100 + this.gold}G ${this.silver}S ${this.copper}C`
   }
 
   constructor(init?:Partial<Purse>) {
+    if(!init) return;
     Object.assign(this, init);
     this.gems = init.gems.map(gem=>new Item(gem));
   }

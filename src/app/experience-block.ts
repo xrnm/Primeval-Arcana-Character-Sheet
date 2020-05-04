@@ -2,13 +2,15 @@ import {Experience} from "./experience";
 
 export class ExperienceBlock {
   class: string;
-  experiences: Experience[];
-  next_level_xp: number;
+  experiences: Experience[] = [];
   bonus_xp: number;
 
   constructor(init?: Partial<ExperienceBlock>) {
     Object.assign(this, init);
-    this.experiences = init.experiences.map(e=>new Experience(e));
+    if(init && init.experiences)
+      this.experiences = init.experiences.map(e=>new Experience(e));
+    else
+      this.experiences = []
   }
 
   atomicExperience(): number {

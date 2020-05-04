@@ -7,7 +7,7 @@ import {HitDiceHelper} from "./hit-dice-helper";
 
 export class Character implements Loadable {
   name: string;
-  class: string;
+  class: string = 'Fighter';
   race: string;
   age: number;
   sex: string;
@@ -34,6 +34,13 @@ export class Character implements Loadable {
     dexterity: number,
     constitution: number,
     charisma: number,
+  } = {
+    strength: 0,
+    intelligence: 0,
+    wisdom: 0,
+    dexterity: 0,
+    constitution: 0,
+    charisma: 0,
   };
   saving_throws: {
     system_shock: number,
@@ -42,26 +49,46 @@ export class Character implements Loadable {
     petrification: number,
     dragon_breath: number,
     spell: number
+  } = {
+    system_shock: 0,
+    poison: 0,
+    paralysis: 0,
+    petrification: 0,
+    dragon_breath: 0,
+    spell: 0
   };
-  experience: ExperienceBlock[];
-  purse: Purse;
-  magic_items: Item[];
-  known_languages: String[];
-  weapons: Item[];
-  armor: Item[];
-  slung_items: Container[];
+  experience: ExperienceBlock[] = [new ExperienceBlock({class: 'Fighter', experiences: []})];
+  purse: Purse = new Purse();
+  magic_items: Item[] = [];
+  known_languages: String[] = [];
+  weapons: Item[] = [];
+  armor: Item[] = [];
+  slung_items: Container[] = [];
   appearance: string;
   clothing: string;
   quests: string;
 
   constructor(init?: Partial<Character>) {
+    if (!init) return;
     Object.assign(this, init);
-    this.experience = init.experience.map((experience)=>new ExperienceBlock(experience));
-    this.purse = new Purse(init.purse)
-    this.weapons = init.weapons.map((item)=>new Item(item));
-    this.magic_items = init.magic_items.map((item)=>new Item(item));
-    this.armor = init.armor.map((item)=>new Item(item));
-    this.slung_items = init.slung_items.map((item)=>new Container(item));
+
+    if(init.experience)
+      this.experience = init.experience.map((experience) => new ExperienceBlock(experience));
+
+
+
+    if (init.purse)
+      this.purse = new Purse(init.purse);
+
+    if (init.weapons)
+      this.weapons = init.weapons.map((item) => new Item(item));
+    if (init.magic_items)
+      this.magic_items = init.magic_items.map((item) => new Item(item));
+    if (init.armor)
+      this.armor = init.armor.map((item) => new Item(item));
+    if (init.slung_items)
+      this.slung_items = init.slung_items.map((item) => new Container(item));
+
   }
 
   hitDice() {
@@ -184,14 +211,16 @@ export class Character implements Loadable {
     return this.adjustedConstitution() + this.getLevel();
   }
 
-  getLevel(): number{
-      return this.experience.map((item) =>{return item.currentLevel();})
+  getLevel(): number {
+    return this.experience.map((item) => {
+      return item.currentLevel();
+    })
       .filter((item) => !isNaN(item))
-      .reduce((item, max) => item > max ? item : max,-1);
+      .reduce((item, max) => item > max ? item : max, -1);
   }
 
 
-  static classes(){
+  static classes() {
     return ['Fighter', 'Cleric', 'Magic User'];
   }
 

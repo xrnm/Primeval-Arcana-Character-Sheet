@@ -1,9 +1,14 @@
 <h1>Original Dungeons & Dragons Interactive Character Sheet</h1>
 <div>
   <div>
-      <button mat-raised-button color="primary" (click)="uploader.click()">Import Existing Character
+    <div>
+      <button mat-raised-button color="primary" (click)="newCharacter()">Create New Character
         <mat-icon>arrow_upwards</mat-icon>
       </button>
+    <button mat-raised-button color="primary" (click)="uploader.click()">Import Existing Character
+      <mat-icon>arrow_upwards</mat-icon>
+    </button>
     <input type="file" id="upload" #uploader (change)="importGame($event)"/>
   </div>
+
 </div>
