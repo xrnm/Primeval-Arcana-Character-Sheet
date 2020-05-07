@@ -1,61 +1,97 @@
-  <h2 class="section-subtitle"> Abilities </h2>
-  <div id="abilities" class="container">
-      <mat-card ngClass="{{character.primeAbility() === 'strength' ? 'prime' : ''}}">
-        <h4>Strength</h4>
-        <strong>{{character.abilities.strength}}<span *ngIf="character.primeAbility() == 'strength'"> + {{character.getLevel()}}</span></strong>
-        <p class="prime-text" *ngIf="character.primeAbility() == 'strength'">Prime</p>
-      </mat-card>
-      <mat-card ngClass="{{character.primeAbility() === 'intelligence' ? 'prime' : ''}}">
-        <h4>Intelligence</h4>
-        <strong>{{character.abilities.intelligence}}<span *ngIf="character.primeAbility() == 'intelligence'"> + {{character.getLevel()}}</span></strong>
-        <p class="prime-text" *ngIf="character.primeAbility() == 'intelligence'">Prime</p>
-      </mat-card>
-      <mat-card ngClass="{{character.primeAbility() === 'wisdom' ? 'prime' : ''}}">
-        <h4>Wisdom</h4>
-        <strong>{{character.abilities.wisdom}}<span *ngIf="character.primeAbility() == 'wisdom'"> + {{character.getLevel()}}</span></strong>
-        <p class="prime-text" *ngIf="character.primeAbility() == 'wisdom'">Prime</p>
-      </mat-card>
-      <mat-card>
-        <h4>Dexterity</h4>
-        <strong>{{character.abilities.dexterity}}</strong>
-      </mat-card>
-      <mat-card>
-        <h4>Constitution</h4>
-        <strong>{{character.abilities.constitution}}</strong>
-      </mat-card>
-      <mat-card>
-        <h4>Charisma</h4>
-        <strong>{{character.abilities.charisma}}</strong>
-      </mat-card>
-  </div>
-<div class="character-attributes">
-  <h2 class="section-subtitle"> Saving Throws </h2>
-  <div id="saving-throws" class="container">
-      <mat-card>
-        <h4>System Shock</h4>
-        <strong>{{character.saving_throws.system_shock}}</strong>
-      </mat-card>
-      <mat-card>
-        <h4>Death Ray / Poison</h4>
-        <strong>{{character.saving_throws.poison}}</strong>
-      </mat-card>
-      <mat-card>
-        <h4>Wand / Paralysis / Polymorph</h4>
-        <strong>{{character.saving_throws.paralysis}}</strong>
-      </mat-card>
-      <mat-card>
-        <h4>Petrification / Turn to stone</h4>
-        <strong>{{character.saving_throws.petrification}}</strong>
-      </mat-card>
-      <mat-card>
-        <h4>Dragon Breath / Area of Effect</h4>
-        <strong>{{character.saving_throws.dragon_breath}}</strong>
-      </mat-card>
-      <mat-card>
-        <h4>Spell / Rod / Stave</h4>
-        <strong>{{character.saving_throws.spell}}</strong>
-      </mat-card>
-  </div>
+<h2 class="section-subtitle"> Abilities </h2>
+<div id="abilities" class="container">
+  <mat-card ngClass="{{character.primeAbility() === 'strength' ? 'prime' : ''}}">
+    <h4>Strength</h4>
+    <strong>{{character.abilities.strength}}<span
+      *ngIf="character.primeAbility() == 'strength'"> + {{character.getLevel()}}</span></strong>
+    <p class="prime-text" *ngIf="character.primeAbility() == 'strength'">Prime</p>
+  </mat-card>
+  <mat-card ngClass="{{character.primeAbility() === 'intelligence' ? 'prime' : ''}}">
+    <h4>Intelligence</h4>
+    <strong>{{character.abilities.intelligence}}<span
+      *ngIf="character.primeAbility() == 'intelligence'"> + {{character.getLevel()}}</span></strong>
+    <p class="prime-text" *ngIf="character.primeAbility() == 'intelligence'">Prime</p>
+  </mat-card>
+  <mat-card ngClass="{{character.primeAbility() === 'wisdom' ? 'prime' : ''}}">
+    <h4>Wisdom</h4>
+    <strong>{{character.abilities.wisdom}}<span
+      *ngIf="character.primeAbility() == 'wisdom'"> + {{character.getLevel()}}</span></strong>
+    <p class="prime-text" *ngIf="character.primeAbility() == 'wisdom'">Prime</p>
+  </mat-card>
+  <mat-card>
+    <h4>Dexterity</h4>
+    <strong>{{character.abilities.dexterity}}</strong>
+  </mat-card>
+  <mat-card>
+    <h4>Constitution</h4>
+    <strong>{{character.abilities.constitution}}</strong>
+  </mat-card>
+  <mat-card>
+    <h4>Charisma</h4>
+    <strong>{{character.abilities.charisma}}</strong>
+  </mat-card>
+</div>
+<div class="container">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>Saving Throws & Derived Attributes</mat-expansion-panel-header>
+    <div class="saving-throw-content">
+      <div>
+        <mat-list>
+          <mat-list-item>
+            System Shock
+            <strong>{{character.saving_throws.system_shock}}</strong>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            Death Ray / Poison
+            <strong>{{character.saving_throws.poison}}</strong>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            Wand / Paralysis / Polymorph
+            <strong>{{character.saving_throws.paralysis}}</strong>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            Petrification / Turn to stone
+            <strong>{{character.saving_throws.petrification}}</strong>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            Dragon Breath / Area of Effect
+            <strong>{{character.saving_throws.dragon_breath}}</strong>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            Spell / Rod / Stave
+            <strong>{{character.saving_throws.spell}}</strong>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </div>
+      <div>
+        <mat-list>
+          <mat-list-item>Precision Thrown Weight: <strong>{{character.precisionThrownWeight()}}cn</strong>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Precision Thrown Distance: <strong>{{character.precisionThrownDistance()}} feet</strong>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Maximum Deadlift / Push / Pull: <strong>{{character.maximumLift()}}cn</strong></mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Continuous Travel: <strong>{{character.continuousTravel()}} hours</strong></mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Hold Breath: <strong>{{character.holdBreath()}} seconds</strong></mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Continuous Maximum Effort: <strong>{{character.continuousMaximumEffort()}} minutes</strong>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Total Weight: <strong>{{character.weight + character.load()}}cn</strong></mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </div>
+    </div>
+  </mat-expansion-panel>
 </div>
 
 

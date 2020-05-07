@@ -20,7 +20,6 @@ import { CharacterPurseComponent } from './show-character/character-purse/charac
 import { CharacterNotesComponent } from './show-character/character-notes/character-notes.component';
 import { AdventureLogComponent } from './adventure-log/adventure-log.component';
 import { NotesComponent } from './adventure-log/notes/notes.component';
-import { CharacterDerivedAttributesComponent } from './show-character/character-derived-attributes/character-derived-attributes.component';
 import { MatProgressBarModule} from "@angular/material/progress-bar";
 import { MatIconModule} from "@angular/material/icon";
 import { MatButtonModule} from "@angular/material/button";
@@ -32,7 +31,10 @@ import { MatAutocompleteModule} from "@angular/material/autocomplete";
 import { MatCheckboxModule} from "@angular/material/checkbox";
 import { MatSelectModule} from "@angular/material/select";
 import { HomeComponent } from './home/home.component';
-
+import { CharacterExperienceDialogComponent } from './show-character/character-experience/character-experience-dialog/character-experience-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatTableModule} from '@angular/material/table';
+import { ExperienceBlocksComponent } from './adventure-log/experience-blocks/experience-blocks.component';
 
 @NgModule({
   declarations: [
@@ -42,13 +44,14 @@ import { HomeComponent } from './home/home.component';
     CharacterAttributesComponent,
     CharacterInventoryComponent,
     CharacterExperienceComponent,
+    CharacterExperienceDialogComponent,
     CharacterPurseComponent,
     CharacterNotesComponent,
     AdventureLogComponent,
     NotesComponent,
-    CharacterDerivedAttributesComponent,
     SessionsComponent,
     HomeComponent,
+    ExperienceBlocksComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,11 +71,15 @@ import { HomeComponent } from './home/home.component';
     MatInputModule,
     MatAutocompleteModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [
     MatNativeDateModule,
-    Title
+    Title,
+  ],
+  entryComponents:[
   ],
   bootstrap: [AppComponent]
 })

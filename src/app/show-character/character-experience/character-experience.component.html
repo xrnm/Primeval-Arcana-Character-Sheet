@@ -16,5 +16,7 @@
       {{experience.levelProgress() | percent:'1.2' }}
       </div>
     </mat-list>
+    <button *ngIf="experience.class" mat-mini-fab color="primary" (click)="openDialog(experience)"><mat-icon>add</mat-icon></button>
+    <a routerLink="/adventure-log" class='detail-button' *ngIf="experience.class" mat-mini-fab color="accent"><mat-icon>subdirectory_arrow_right</mat-icon></a>
   </mat-card>
 </div>
