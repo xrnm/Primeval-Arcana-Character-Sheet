@@ -35,6 +35,7 @@ import { CharacterExperienceDialogComponent } from './show-character/character-e
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatTableModule} from '@angular/material/table';
 import { ExperienceBlocksComponent } from './adventure-log/experience-blocks/experience-blocks.component';
+import { ReversePipe } from './reverse.pipe';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ExperienceBlocksComponent } from './adventure-log/experience-blocks/exp
     SessionsComponent,
     HomeComponent,
     ExperienceBlocksComponent,
+    ReversePipe,
   ],
   imports: [
     BrowserModule,

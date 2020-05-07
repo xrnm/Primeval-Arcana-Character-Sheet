@@ -13,6 +13,14 @@ export class ExperienceBlock {
       this.experiences = []
   }
 
+  removeExperience(experience: Experience){
+    this.experiences = this.experiences.filter(e => e !=experience)
+  }
+
+  addExperience(experience: Experience){
+    this.experiences.unshift(experience);
+  }
+
   atomicExperience(): number {
     switch (this.class) {
       case 'Fighter':

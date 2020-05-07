@@ -1,9 +1,13 @@
 <h2 class="section-subtitle">Experience</h2>
 <div id="blocks-section" class="container">
   <div *ngFor="let block of blocks; let i = index">
-    <h3>Level {{block.currentLevel()}} {{block.class}}</h3>
-    <div id="add-experience">
-      <button (click)="addExperience(block)" id="add-experience-button" mat-mini-fab aria-label="Add Experience Button"
+    <h3>
+      Level {{block.currentLevel()}} {{block.class}}
+    <br />
+      {{block.currentExperience() }} / {{block.totalExperienceForLevel(block.currentLevel() + 1)}}
+    </h3>
+    <div class="add-experience">
+      <button (click)="addExperience(block)" class="add-experience-button" mat-mini-fab aria-label="Add Experience Button"
               color="primary">
         <mat-icon>add</mat-icon>
       </button>
@@ -14,7 +18,8 @@
           <mat-panel-title>
             {{experience.date | date:'longDate'}}
           </mat-panel-title>
-          <mat-panel-description>
+          <mat-panel-description class="description">
+            {{experience.notes | slice:0:75}}
           </mat-panel-description>
           <mat-panel-description>
             {{experience.points}}

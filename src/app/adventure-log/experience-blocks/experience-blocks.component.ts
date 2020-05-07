@@ -15,10 +15,11 @@ export class ExperienceBlocksComponent implements OnInit {
   }
 
   addExperience(block: ExperienceBlock){
-
+    console.log('meow');
+    block.addExperience(new Experience({date: new Date(), points:0}))
   }
   deleteExperience(experience: Experience, block: ExperienceBlock){
-
+    block.removeExperience(experience)
   }
 
 }
