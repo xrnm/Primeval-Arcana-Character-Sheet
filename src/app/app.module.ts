@@ -36,6 +36,10 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatTableModule} from '@angular/material/table';
 import { ExperienceBlocksComponent } from './adventure-log/experience-blocks/experience-blocks.component';
 import { ReversePipe } from './reverse.pipe';
+import { ItemComponent } from './show-character/item/item.component';
+import {DragDropModule} from "@angular/cdk/drag-drop";
+import { ItemListComponent } from './show-character/item-list/item-list.component';
+import { ItemDialogComponent } from './show-character/item-list/item-dialog/item-dialog.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +58,9 @@ import { ReversePipe } from './reverse.pipe';
     HomeComponent,
     ExperienceBlocksComponent,
     ReversePipe,
+    ItemComponent,
+    ItemListComponent,
+    ItemDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +82,8 @@ import { ReversePipe } from './reverse.pipe';
     MatCheckboxModule,
     MatSelectModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    DragDropModule
   ],
   providers: [
     MatNativeDateModule,

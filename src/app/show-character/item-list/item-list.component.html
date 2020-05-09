@@ -1,0 +1,4 @@
+<mat-list cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="items">
+  <item *ngFor="let item of items" [item]="item" cdkDrag>{{item}}</item>
+  <button mat-mini-fab (click)="openItemDialog(null,items)" color="primary"><mat-icon>add</mat-icon></button>
+</mat-list>

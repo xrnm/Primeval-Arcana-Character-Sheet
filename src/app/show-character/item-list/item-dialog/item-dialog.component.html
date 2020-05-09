@@ -1,0 +1,26 @@
+
+<h2 mat-dialog-title>{{item.inventoryString()}}</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="item.name"/>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <mat-label>Weight</mat-label>
+    <input matInput [(ngModel)]="item.weight" type="number"/>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <mat-label>Quantity</mat-label>
+    <input matInput [(ngModel)]="item.quantity" type="number"/>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="item.description" type="number"></textarea>
+    <mat-dialog-actions align="end">
+      <button mat-button [mat-dialog-close]="">Cancel</button>
+      <button mat-button [mat-dialog-close]="" cdkFocusInitial>Done</button>
+    </mat-dialog-actions>
+

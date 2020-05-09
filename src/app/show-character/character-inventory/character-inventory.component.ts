@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {Character} from "../../character";
 import {GameService} from "../../game.service";
 
@@ -9,10 +9,13 @@ import {GameService} from "../../game.service";
 })
 export class CharacterInventoryComponent implements OnInit {
   character: Character;
-  constructor(private gameService: GameService) { }
+
+  constructor(private gameService: GameService) {
+  }
 
   ngOnInit(): void {
     this.character = this.gameService.getGame().getCharacter();
   }
+
 
 }

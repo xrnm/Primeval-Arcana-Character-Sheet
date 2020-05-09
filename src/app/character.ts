@@ -107,8 +107,9 @@ export class Character implements Loadable {
   load(): number {
     return this.weapons.concat(this.armor)
         .reduce((acc, item) => {
-          return acc + item.weight
+          return acc + item.totalWeight()
         }, 0) +
+
       this.slung_items.reduce((acc, container) => {
         return acc + container.load()
       }, 0)

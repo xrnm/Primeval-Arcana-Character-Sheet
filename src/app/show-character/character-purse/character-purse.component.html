@@ -18,10 +18,7 @@
   <mat-card>
     <mat-list>
       <h2>Gems & Valuables</h2>
-      <div *ngFor="let gem of character.purse.gems">
-        <mat-list-item>{{gem.inventoryString()}}</mat-list-item>
-        <mat-divider></mat-divider>
-      </div>
+      <item-list [items]="character.purse.gems"></item-list>
     </mat-list>
   </mat-card>
   <mat-card>
