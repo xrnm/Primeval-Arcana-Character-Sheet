@@ -20,7 +20,6 @@ export class Game {
   }
 
   getName(): string {
-
     return `${this.character.name} -- ${this.character.getLevel()} ${this.character.race} ${this.character.class}`
   }
 

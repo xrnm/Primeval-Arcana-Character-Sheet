@@ -1,27 +1,68 @@
-# Odnd
+# ODND Revived Interactive Character Sheet (ICS)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
+This interactive character sheet is intended to create a convenient and easy place to keep track of character statistics, items, attributes, experiences, and more in a digital format.
 
-## Development server
+ICS automatically calculates many fields based on the rules and should eliminate the need to constantly reference rulebooks while playing to determine changes to character stats.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Finally, ICS keeps track of the weight of all items on the character and in bags/containers to keep an accurate total of character weight and make adjustments to movement.
 
-## Code scaffolding
+There is a version of the tool running here: https://odnd-character-sheet.s3-us-west-2.amazonaws.com/index.html
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features that are conspicuously absent
+1. Spells
+2. Turning Events
+3. Mounts
+4. Hirelings
+5. Carts / Strongholds / vaults etc
+6. Dynamically generated saving throws
+7. Unload warning on navigation
+8. Unload Warning on new character creation
+9. Adjustments on pretty much everything
+10. More beautifulness in the styles
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Developing and Deploying
+#### 1: Clone the repository
+`git clone git@github.com:xrnm/odnd-character-sheet.git`
 
-## Running unit tests
+#### 2:Install Node 12 and use NPM to install the Angular CLI
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+`npm install -g @angular/cli`
 
-## Running end-to-end tests
+#### 3: Install Yarn and project dependencies
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+`npm install -g yarn`
 
-## Further help
+`yarn install`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+#### 4: Run the application in development mode
+  
+`ng serve`
+
+Visit the application by navigating to `http://localhost:4200`
+
+Enjoy hot reloading!
+
+#### 5: Create a production build
+`ng build`
+This will create a directory called `dist` which contains the entire site. This can be hosted in an S3 bucket or any other location of your choice.
+
+## Contributing
+If you'd like to help build features and fix bugs to improve the character sheet feel free to fork it and make pull requests.
+
+TODO: Determine a style guide and give more guidance about contributing.
+
+## License & Copyright
+####Initial "Source available" license
+Intended for use by players. Please do not distribute or use in any commercial works.
+
+#### Copyright
+Copyright 2020 Justin Edwards. All rights reserved. 
+
+
+
+
+
+ 
+
+

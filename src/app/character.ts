@@ -75,8 +75,6 @@ export class Character implements Loadable {
     if(init.experience)
       this.experience = init.experience.map((experience) => new ExperienceBlock(experience));
 
-
-
     if (init.purse)
       this.purse = new Purse(init.purse);
 
@@ -117,7 +115,7 @@ export class Character implements Loadable {
   }
 
   maximumLoad() {
-    return this.abilities.strength * 150
+    return this.adjustedStrength() * 150
   }
 
   movementRating() {

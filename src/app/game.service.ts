@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Game} from "./game";
 import {interval} from "rxjs";
-import {Character} from "./character";
 import {Title} from "@angular/platform-browser";
+import {NEW_GAME} from "./new_game";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class GameService {
   }
 
   newGame(){
-    this.game = new Game({character: new Character({base_movement: 60}), notes: [], sessions: []});
+    this.game = NEW_GAME;
     this.beginCaching();
     return this.game;
   }

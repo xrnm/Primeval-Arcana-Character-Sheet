@@ -3,13 +3,51 @@
   <mat-card>
     <mat-list>
       <h2>Coins</h2>
-      <mat-list-item><span>Platinum: </span> {{character.purse.platinum}} </mat-list-item>
+      <mat-icon color="primary" class="purse-info-icon" matTooltip="Hold shift to change by 10, Ctrl to change by 100, and both to change by 1000">info</mat-icon>
+      <mat-list-item><span>Platinum: </span>
+        {{character.purse.platinum}}
+        <div class="mat-list-actions">
+          <button [disabled]="character.purse.platinum < 1" mat-mini-fab color="warn" (click)="changeCoin('platinum',-1, $event)">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary" (click)="changeCoin('platinum',1, $event)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Gold: </span> {{character.purse.gold}} </mat-list-item>
+      <mat-list-item><span>Gold: </span> {{character.purse.gold}}
+        <div class="mat-list-actions">
+          <button mat-mini-fab color="warn" (click)="changeCoin('gold',-1, $event)">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary" (click)="changeCoin('gold',1, $event)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Silver: </span> {{character.purse.silver}} </mat-list-item>
+      <mat-list-item><span>Silver: </span> {{character.purse.silver}}
+        <div class="mat-list-actions">
+          <button mat-mini-fab color="warn" (click)="changeCoin('silver',-1, $event)">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary" (click)="changeCoin('silver',1, $event)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Copper: </span> {{character.purse.copper}} </mat-list-item>
+      <mat-list-item><span>Copper: </span> {{character.purse.copper}}
+        <div class="mat-list-actions">
+          <button mat-mini-fab color="warn" (click)="changeCoin('copper',-1, $event)">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary" (click)="changeCoin('copper',1, $event)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item><span>Total: </span> {{character.purse.getTotal()}}</mat-list-item>
       <mat-divider></mat-divider>

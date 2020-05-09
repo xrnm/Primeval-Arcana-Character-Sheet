@@ -26,4 +26,7 @@ export class CharacterOverviewComponent implements OnInit {
     this.character = this.gameService.getGame().getCharacter();
   }
 
+  changeCharacter(attribute: string, delta: number){
+    this.character[attribute] += delta
+  }
 }

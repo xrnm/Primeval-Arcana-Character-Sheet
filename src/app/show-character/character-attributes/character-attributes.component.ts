@@ -15,4 +15,8 @@ export class CharacterAttributesComponent implements OnInit {
     this.character = this.gameService.getGame().getCharacter();
   }
 
+  changeAbility(ability, delta){
+    this.character.abilities[ability] += delta;
+  }
+
 }
