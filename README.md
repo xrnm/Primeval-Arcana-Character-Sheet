@@ -53,7 +53,7 @@ If you'd like to help build features and fix bugs to improve the character sheet
 TODO: Determine a style guide and give more guidance about contributing.
 
 ## License & Copyright
-####Initial "Source available" license
+#### Initial "Source available" license
 Intended for use by players. Please do not distribute or use in any commercial works.
 
 #### Copyright
