@@ -1,0 +1,3 @@
+export NEW_GAME = {
+
+}

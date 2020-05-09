@@ -3,26 +3,38 @@
   <mat-card>
     <mat-list>
       <h2>Weapons:</h2>
-      <item-list [items]="character.weapons"></item-list>
+      <item-list [items]="character.weapons" [capacity]="4"></item-list>
     </mat-list>
   </mat-card>
   <mat-card>
     <mat-list>
       <h2>Armor:</h2>
-      <item-list [items]="character.armor"></item-list>
+      <item-list [items]="character.armor" [capacity]="4"></item-list>
     </mat-list>
   </mat-card>
   <mat-card>
     <mat-list>
       <h2>Slung Items:</h2>
-      <div *ngFor="let si of character.slung_items">
-        <mat-list-item>{{si.inventoryString()}}</mat-list-item>
+      <div *ngFor="let si of character.getSlungItems()">
+        <mat-list-item>{{si.inventoryString()}}
+          <div class="mat-list-actions">
+            <button class="edit-item-button" mat-mini-fab color="accent" (click)="openContainerDialog(si)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn" (click)="deleteSlungItem(si)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-list-item>
         <mat-divider></mat-divider>
       </div>
+      <button *ngIf="character.getSlungItems().length < 4" mat-mini-fab (click)="openContainerDialog()" color="primary">
+        <mat-icon>add</mat-icon>
+      </button>
     </mat-list>
   </mat-card>
-  <mat-card *ngFor="let si of character.slung_items">
+  <mat-card *ngFor="let si of character.getSlottedContainers()">
     <h2>{{si.inventoryString()}}</h2>
-    <item-list [items]="si.contents"></item-list>
+    <item-list [capacity]="si.slots" [items]="si.contents"></item-list>
   </mat-card>
 </div>

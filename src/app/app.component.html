@@ -3,7 +3,8 @@
     <li><a routerLink="/character" routerLinkActive="active">Character</a></li>
     <li><a routerLink="/adventure-log" routerLinkActive="active">Adventure Log</a></li>
   </ul>
-  <button mat-raised-button color="primary" (click)="exportGame()">Export Character<mat-icon>arrow_downward</mat-icon></button>
+  <button mat-raised-button color="primary" (click)="exportGame()">Export<mat-icon>arrow_downward</mat-icon></button>
+  <button mat-icon-button color="warn" routerLink="/raw-edit"><mat-icon>settings</mat-icon></button>
 </mat-toolbar>
 <router-outlet></router-outlet>
 

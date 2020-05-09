@@ -36,5 +36,7 @@ export class ItemListComponent implements OnInit {
       }
     });
   }
-
+  getItems(): Item[]{
+    return this.items.filter(item => !item.deleted)
+  }
 }

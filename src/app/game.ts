@@ -7,17 +7,24 @@ export class Game {
   sessions: Session[];
   notes: Note[];
 
-  getCharacter() : Character{
-      return this.character;
-  }
-  getSessions() : Session[]{
-      return this.sessions;
-  }
-  getNotes() : Note[]{
-     return this.notes;
+  getCharacter(): Character {
+    return this.character;
   }
 
-  constructor(init?:Partial<Game>) {
+  getSessions(): Session[] {
+    return this.sessions;
+  }
+
+  getNotes(): Note[] {
+    return this.notes;
+  }
+
+  getName(): string {
+
+    return `${this.character.name} -- ${this.character.getLevel()} ${this.character.race} ${this.character.class}`
+  }
+
+  constructor(init?: Partial<Game>) {
     Object.assign(this, init);
     this.character = new Character(init.character);
     this.sessions = init.sessions.map(item => new Session(item));

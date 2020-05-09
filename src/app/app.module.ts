@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from "@angular/material/toolbar";
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatCardModule} from "@angular/material/card";
 import { MatExpansionModule} from "@angular/material/expansion";
 import { ShowCharacterComponent } from './show-character/show-character.component';
@@ -36,10 +37,12 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatTableModule} from '@angular/material/table';
 import { ExperienceBlocksComponent } from './adventure-log/experience-blocks/experience-blocks.component';
 import { ReversePipe } from './reverse.pipe';
-import { ItemComponent } from './show-character/item/item.component';
+import { ItemComponent } from './show-character/item-list/item/item.component';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { ItemListComponent } from './show-character/item-list/item-list.component';
 import { ItemDialogComponent } from './show-character/item-list/item-dialog/item-dialog.component';
+import { ContainerDialogComponent } from './show-character/character-inventory/container-dialog/container-dialog.component';
+import { RawEditComponent } from './raw-edit/raw-edit.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,8 @@ import { ItemDialogComponent } from './show-character/item-list/item-dialog/item
     ItemComponent,
     ItemListComponent,
     ItemDialogComponent,
+    ContainerDialogComponent,
+    RawEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +88,8 @@ import { ItemDialogComponent } from './show-character/item-list/item-dialog/item
     MatSelectModule,
     MatDialogModule,
     MatTableModule,
-    DragDropModule
+    DragDropModule,
+    MatTooltipModule
   ],
   providers: [
     MatNativeDateModule,

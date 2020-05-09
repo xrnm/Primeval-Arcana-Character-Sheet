@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>{{container.inventoryString()}}</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="container.name"/>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <mat-label>Weight</mat-label>
+    <input matInput [(ngModel)]="container.weight" type="number"/>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <mat-label>Slots</mat-label>
+    <input matInput [(ngModel)]="container.slots" type="number"/>
+  </mat-form-field>
+  <br/>
+
+  <mat-dialog-actions align="end">
+    <button mat-button *ngIf="this.slung_items" [mat-dialog-close]="">Cancel</button>
+    <button mat-button (click)="upsertContainer()" [mat-dialog-close]="" cdkFocusInitial>Done</button>
+  </mat-dialog-actions>
+
+</mat-dialog-content>

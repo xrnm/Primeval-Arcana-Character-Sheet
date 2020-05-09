@@ -1,4 +1,3 @@
-
 <h2 mat-dialog-title>{{item.inventoryString()}}</h2>
 <mat-dialog-content class="mat-typography">
   <mat-form-field>
@@ -19,8 +18,9 @@
   <mat-form-field>
     <mat-label>Description</mat-label>
     <textarea matInput [(ngModel)]="item.description" type="number"></textarea>
+  </mat-form-field>
     <mat-dialog-actions align="end">
-      <button mat-button [mat-dialog-close]="">Cancel</button>
-      <button mat-button [mat-dialog-close]="" cdkFocusInitial>Done</button>
+      <button mat-button *ngIf="this.list" [mat-dialog-close]="">Cancel</button>
+      <button color="primary" mat-raised-button (click)="upsertItem()" [mat-dialog-close]="" cdkFocusInitial>Done</button>
     </mat-dialog-actions>
-
+</mat-dialog-content>

@@ -1,0 +1,8 @@
+<div class="container">
+  <h1> Developer Edit Mode </h1>
+  <p> While this project is under active development and some key features are missing from the proper UI this view will
+    exist to let you tweak and update your character by editing the raw JSON</p>
+  <strong>You can mess up your character and cause unusual behavior. Please save your character before making changes</strong>
+  <textarea [(ngModel)]="raw"></textarea>
+  <button mat-raised-button (click)="save()" color="warn"> Save </button>
+</div>

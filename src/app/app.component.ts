@@ -13,7 +13,6 @@ import {Router} from "@angular/router";
 export class AppComponent {
   game: Game;
   constructor(private titleService: Title, private router: Router, public gameService: GameService) {
-    this.titleService = titleService;
   }
 
   ngOnInit(){

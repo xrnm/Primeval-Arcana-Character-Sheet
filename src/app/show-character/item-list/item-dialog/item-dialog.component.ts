@@ -21,5 +21,9 @@ export class ItemDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  upsertItem(){
+    if(this.list)
+      this.list.push(this.item);
+  }
 
 }

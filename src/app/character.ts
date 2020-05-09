@@ -110,7 +110,7 @@ export class Character implements Loadable {
           return acc + item.totalWeight()
         }, 0) +
 
-      this.slung_items.reduce((acc, container) => {
+      this.getSlungItems().reduce((acc, container) => {
         return acc + container.load()
       }, 0)
       + this.purse.load()
@@ -218,6 +218,13 @@ export class Character implements Loadable {
     })
       .filter((item) => !isNaN(item))
       .reduce((item, max) => item > max ? item : max, -1);
+  }
+  getSlottedContainers(): Container[]{
+    return this.getSlungItems().filter(item => item.slots > 0)
+  }
+
+  getSlungItems(): Container[]{
+    return this.slung_items.filter(item => !item.deleted);
   }
 
 

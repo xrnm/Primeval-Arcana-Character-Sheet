@@ -24,10 +24,8 @@
   <mat-card>
     <mat-list>
       <h2>Magic Items</h2>
-      <div *ngFor="let item of character.magic_items">
-        <mat-list-item>{{item.inventoryString()}}</mat-list-item>
-        <mat-divider></mat-divider>
-      </div>
+      <item-list [items]="character.magic_items">
+      </item-list>
     </mat-list>
   </mat-card>
 </div>
