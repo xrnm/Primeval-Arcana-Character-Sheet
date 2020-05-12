@@ -9,7 +9,7 @@ import {GameService} from "../../game.service";
 })
 export class CharacterOverviewComponent implements OnInit {
 
-  constructor(private gameService: GameService) { }
+  constructor() { }
   @Input() character: Character;
   editing: string = null;
 
@@ -23,7 +23,6 @@ export class CharacterOverviewComponent implements OnInit {
     this.editing = null;
   }
   ngOnInit(): void {
-    this.character = this.gameService.getGame().getCharacter();
   }
 
   changeCharacter(attribute: string, delta: number){

@@ -4,6 +4,7 @@ import {Item} from "./item";
 import {Purse} from "./purse";
 import {ExperienceBlock} from "./experience-block";
 import {HitDiceHelper} from "./hit-dice-helper";
+import {SpellBook} from "./spell-book";
 
 export class Character implements Loadable {
   name: string;
@@ -67,6 +68,7 @@ export class Character implements Loadable {
   appearance: string;
   clothing: string;
   quests: string;
+  spellbook: SpellBook;
 
   constructor(init?: Partial<Character>) {
     if (!init) return;
@@ -88,7 +90,9 @@ export class Character implements Loadable {
       this.slung_items = init.slung_items.map((item) => new Container(item));
 
   }
-
+  getClass(){
+    return this.class;
+  }
   hitDice() {
     switch (this.class) {
       case 'Fighter':
@@ -229,5 +233,7 @@ export class Character implements Loadable {
   static classes() {
     return ['Fighter', 'Cleric', 'Magic User'];
   }
+
+  getSpell
 
 }

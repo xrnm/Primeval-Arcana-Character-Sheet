@@ -43,6 +43,7 @@ import { ItemListComponent } from './show-character/item-list/item-list.componen
 import { ItemDialogComponent } from './show-character/item-list/item-dialog/item-dialog.component';
 import { ContainerDialogComponent } from './show-character/character-inventory/container-dialog/container-dialog.component';
 import { RawEditComponent } from './raw-edit/raw-edit.component';
+import { CharacterSpellBookComponent } from './show-character/character-spell-book/character-spell-book.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { RawEditComponent } from './raw-edit/raw-edit.component';
     ItemDialogComponent,
     ContainerDialogComponent,
     RawEditComponent,
+    CharacterSpellBookComponent,
   ],
   imports: [
     BrowserModule,

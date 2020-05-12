@@ -8,11 +8,10 @@ import {GameService} from "../../game.service";
   styleUrls: ['./character-notes.component.sass']
 })
 export class CharacterNotesComponent implements OnInit {
-  character: Character;
-  constructor(private gameService: GameService) { }
+  @Input() character: Character;
+  constructor() { }
 
   ngOnInit(): void {
-    this.character = this.gameService.getGame().getCharacter();
   }
 
 }
