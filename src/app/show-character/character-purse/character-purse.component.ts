@@ -8,11 +8,10 @@ import {GameService} from "../../game.service";
   styleUrls: ['./character-purse.component.sass']
 })
 export class CharacterPurseComponent implements OnInit {
-  character: Character;
-  constructor(private gameService: GameService) { }
+  @Input() character: Character;
+  constructor() { }
 
   ngOnInit(): void {
-    this.character = this.gameService.getGame().getCharacter();
   }
   changeCoin(type: string, delta: number, event){
     let magnitude = 1;
@@ -20,7 +19,7 @@ export class CharacterPurseComponent implements OnInit {
     if(event.shiftKey)
       magnitude *= 10;
 
-    if(event.ctrlKey)
+    if(event.ctrlKey || event.metaKey)
       magnitude *= 100;
 
     this.character.purse[type] += delta * magnitude;

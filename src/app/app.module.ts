@@ -43,6 +43,12 @@ import { ItemListComponent } from './show-character/item-list/item-list.componen
 import { ItemDialogComponent } from './show-character/item-list/item-dialog/item-dialog.component';
 import { ContainerDialogComponent } from './show-character/character-inventory/container-dialog/container-dialog.component';
 import { RawEditComponent } from './raw-edit/raw-edit.component';
+import { CharacterSpellBookComponent } from './show-character/character-spell-book/character-spell-book.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { CharacterSpellSlotsComponent } from './show-character/character-spell-book/character-spell-slots/character-spell-slots.component';
+import { SpellDialogComponent } from './show-character/character-spell-book/spell-dialog/spell-dialog.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import { LinksComponent } from './links/links.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +72,10 @@ import { RawEditComponent } from './raw-edit/raw-edit.component';
     ItemDialogComponent,
     ContainerDialogComponent,
     RawEditComponent,
+    CharacterSpellBookComponent,
+    CharacterSpellSlotsComponent,
+    SpellDialogComponent,
+    LinksComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +99,9 @@ import { RawEditComponent } from './raw-edit/raw-edit.component';
     MatDialogModule,
     MatTableModule,
     DragDropModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTabsModule,
+    MatSidenavModule
   ],
   providers: [
     MatNativeDateModule,

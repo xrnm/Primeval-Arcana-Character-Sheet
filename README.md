@@ -9,7 +9,7 @@ Finally, ICS keeps track of the weight of all items on the character and in bags
 There is a version of the tool running here: https://odnd-character-sheet.s3-us-west-2.amazonaws.com/index.html
 
 ## Features that are conspicuously absent
-1. Spells
+
 2. Turning Events
 3. Mounts
 4. Hirelings

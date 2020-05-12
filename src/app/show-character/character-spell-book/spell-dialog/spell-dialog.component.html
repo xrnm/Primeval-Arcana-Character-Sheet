@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Spell: {{spell.name}}</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="spell.name"/>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <mat-label>Level</mat-label>
+    <input matInput [(ngModel)]="spell.level" type="number"/>
+  </mat-form-field>
+  <br/>
+  <br/>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="spell.description" type="number"></textarea>
+  </mat-form-field>
+  <mat-dialog-actions align="end">
+    <button mat-button *ngIf="this.spellbook" [mat-dialog-close]="">Cancel</button>
+    <button color="primary" mat-raised-button (click)="upsertSpell()" [mat-dialog-close]="" cdkFocusInitial>Done</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

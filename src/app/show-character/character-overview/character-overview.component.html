@@ -5,15 +5,15 @@
     <mat-icon *ngIf="editing!='stats'" color='primary' (click)="editSection('stats')" class="edit">edit</mat-icon>
     <mat-list *ngIf="editing!='stats'">
       <h2>Stats</h2>
-      <mat-list-item><span>Name: </span> {{character.name}} </mat-list-item>
+      <mat-list-item><span>Name: &nbsp;</span> {{character.name}} </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Class: </span> {{character.class}} </mat-list-item>
+      <mat-list-item><span>Class: &nbsp;</span> {{character.class}} </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Age: </span> {{character.age}} </mat-list-item>
+      <mat-list-item><span>Age: &nbsp;</span> {{character.age}} </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Sex: </span> {{character.sex}} </mat-list-item>
+      <mat-list-item><span>Sex: &nbsp;</span> {{character.sex}} </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Race: </span> {{character.race}} </mat-list-item>
+      <mat-list-item><span>Race: &nbsp;</span> {{character.race}} </mat-list-item>
       <mat-divider></mat-divider>
     </mat-list>
     <div *ngIf="editing=='stats'">
@@ -64,13 +64,13 @@
     </mat-icon>
     <mat-list *ngIf="editing!='background'">
       <h2>Background</h2>
-      <mat-list-item><span>Alignment:</span> {{character.alignment}} </mat-list-item>
+      <mat-list-item><span>Alignment:&nbsp;</span> {{character.alignment}} </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Land of Origin:</span> {{character.origin}} </mat-list-item>
+      <mat-list-item><span>Land of Origin:&nbsp;</span> {{character.origin}} </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Profession:</span> {{character.profession}} </mat-list-item>
+      <mat-list-item><span>Profession:&nbsp;</span> {{character.profession}} </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Speaks:</span>
+      <mat-list-item><span>Speaks:&nbsp;</span>
         {{character.known_languages.concat(' ')}}
       </mat-list-item>
       <mat-divider></mat-divider>
@@ -111,17 +111,17 @@
     </mat-icon>
     <mat-list *ngIf="editing!='attributes'">
       <h2>Attributes</h2>
-      <mat-list-item><span>Height: </span> {{character.height}}''
+      <mat-list-item><span>Height: &nbsp;</span>{{character.displayHeight()}}
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Weight: </span> {{character.weight}}lbs
+      <mat-list-item><span>Weight: &nbsp;</span> {{character.weight}}lbs
       </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
-        <span>Hair:</span> {{character.hair_length}} {{character.hair_style}} {{character.hair_color}}
+        <span>Hair:&nbsp;</span> {{character.hair_length}} {{character.hair_style}} {{character.hair_color}}
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Eyes:</span> {{character.eye_color}} Eyes</mat-list-item>
+      <mat-list-item><span>Eyes:&nbsp;</span> {{character.eye_color}} Eyes</mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>Skin:{{character.skin_color}} Skin</mat-list-item>
       <mat-divider></mat-divider>
@@ -209,11 +209,11 @@
   <mat-card>
     <h4>Hit Dice</h4>
     <strong>{{character.hitDice().base}} <span
-      *ngIf="character.hitDice().bonus != 0">+ {{character.hitDice().bonus}}</span></strong>
+      *ngIf="character.hitDice().bonus != 0">+ {{character.hitDice().bonus}}&nbsp;</span></strong>
   </mat-card>
   <mat-card>
     <h4>Hit Points</h4>
-    <strong><span class="current-hp">{{character.current_hp}}</span> / {{character.total_hp}}</strong>
+    <strong><span class="current-hp">{{character.current_hp}}&nbsp;</span> / {{character.total_hp}}</strong>
     <div id="hp-area">
       <button [disabled]="character.current_hp==character.total_hp" (click)="changeCharacter('current_hp',1)" class="hp-button current-add" mat-mini-fab color="primary">
         <mat-icon>add</mat-icon>
@@ -238,14 +238,15 @@
         <strong>{{character.armor_class}}</strong>
         <button (click)="changeCharacter('armor_class', 1)" color="primary" mat-icon-button class="add-ac-button"><mat-icon>add</mat-icon></button>
       </div>
-      <div *ngIf="!character.shield">
+      <div *ngIf="character.shield">
         <strong>{{character.armor_class - 1}}</strong>
         <br/>
         <small>Shield</small>
       </div>
     </div>
     <small>
-      <mat-checkbox [(ngModel)]="character.helmet">Helmet</mat-checkbox>
+      <mat-checkbox [(ngModel)]="character.helmet">Helmet</mat-checkbox><br />
+      <mat-checkbox [(ngModel)]="character.shield">Shield</mat-checkbox>
     </small>
   </mat-card>
   <mat-card>

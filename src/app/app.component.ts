@@ -11,7 +11,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
+  year = new Date().getFullYear();
   game: Game;
+  opened = false;
   constructor(private titleService: Title, private router: Router, public gameService: GameService) {
   }
 
@@ -28,6 +30,10 @@ export class AppComponent {
     const blob = new Blob([JSON.stringify(game)], {type: 'application/json'});
     const file = new File([blob], game.getCharacter().name + '.json', {type: 'application/vnd.ms.excel'});
     saveAs(file);
+  }
+
+  toggleMenu(){
+    this.opened = !this.opened;
   }
 
 }

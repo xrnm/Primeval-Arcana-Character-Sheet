@@ -9,7 +9,7 @@ export class Purse implements Loadable{
   gems: Item[] = [];
 
   getTotal(){
-    return `${this.platinum * 100 + this.gold}G ${this.silver}S ${this.copper}C`
+    return `${this.platinum * 10 + this.gold}G ${this.silver}S ${this.copper}C`
   }
 
   constructor(init?:Partial<Purse>) {

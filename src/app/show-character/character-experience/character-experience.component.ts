@@ -12,11 +12,10 @@ import {ExperienceBlock} from "../../experience-block";
   styleUrls: ['./character-experience.component.sass']
 })
 export class CharacterExperienceComponent implements OnInit {
-  character: Character;
-  constructor(private gameService: GameService, public dialog: MatDialog) { }
+  @Input() character: Character;
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.character = this.gameService.getGame().getCharacter();
   }
   openDialog(experiences: ExperienceBlock){
     const dialogRef = this.dialog.open(CharacterExperienceDialogComponent,{

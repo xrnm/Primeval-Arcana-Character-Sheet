@@ -11,13 +11,12 @@ import {Container} from "../../container";
   styleUrls: ['./character-inventory.component.sass']
 })
 export class CharacterInventoryComponent implements OnInit {
-  character: Character;
+  @Input() character: Character;
 
-  constructor(private gameService: GameService, public dialog: MatDialog) {
+  constructor(public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    this.character = this.gameService.getGame().getCharacter();
   }
 
   openContainerDialog(container: Container = null){
