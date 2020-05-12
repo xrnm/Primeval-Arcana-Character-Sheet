@@ -50,7 +50,8 @@ export class ExperienceBlock {
   }
 
   levelProgress(): number{
-    return this.currentLevelExperience() / this.totalExperienceForLevel(this.currentLevel()+1)
+    return this.currentLevelExperience() / this.totalExperienceForLevel(this.currentLevel())
   }
 
 }
+

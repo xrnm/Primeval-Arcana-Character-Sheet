@@ -1,7 +1,7 @@
 <div class="container" id="spells" cdkDropListGroup *ngIf="character.class != 'Fighter'">
   <h2 class="section-subtitle">Spells</h2>
   <mat-card>
-    <h2>Spellbook</h2>
+    <h2>Available Spells</h2>
     <button color="primary" id="add-spell-button" mat-mini-fab (click)="openSpellDialog(character.spellbook, null)"><mat-icon>add</mat-icon></button>
     <mat-tab-group>
       <mat-tab *ngFor="let _ of spellLevelsIter(); let i = index" label="Level {{i+1}}">

@@ -16,7 +16,7 @@ export class GameService {
 
   importGame(json) {
     if(!json){
-      this.titleService.setTitle('ODND Character Sheet');
+      this.titleService.setTitle('Revived Character Sheet');
       return
     }
 

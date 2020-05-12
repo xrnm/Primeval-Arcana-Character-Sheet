@@ -1,4 +1,4 @@
-# ODND Revived Interactive Character Sheet (ICS)
+# Revived Interactive Character Sheet (ICS)
 
 This interactive character sheet is intended to create a convenient and easy place to keep track of character statistics, items, attributes, experiences, and more in a digital format.
 

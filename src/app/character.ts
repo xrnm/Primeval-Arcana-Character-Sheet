@@ -72,6 +72,7 @@ export class Character implements Loadable {
   quests: string;
   spellbook: SpellBook = new SpellBook();
   spells: SpellGroup[];
+  hirelings: Character[];
 
   constructor(init?: Partial<Character>) {
     if (!init) return;
@@ -93,10 +94,16 @@ export class Character implements Loadable {
       this.slung_items = init.slung_items.map((item) => new Container(item));
     if (init.spellbook)
       this.spellbook = new SpellBook((init.spellbook));
+
     if(init.spells)
       this.spells = init.spells.map(sg=>new SpellGroup(sg));
     else
       this.initializeSpells();
+
+    if(init.hirelings)
+      this.hirelings = init.hirelings.map(hireling=>new Character(hireling));
+    else
+      this.hirelings = [];
   }
   initializeSpells(){
     this.spells = SpellSlotHelper.allSpellSlots(this).map((count,index)=>{
