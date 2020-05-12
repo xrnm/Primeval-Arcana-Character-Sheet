@@ -44,6 +44,8 @@ import { ItemDialogComponent } from './show-character/item-list/item-dialog/item
 import { ContainerDialogComponent } from './show-character/character-inventory/container-dialog/container-dialog.component';
 import { RawEditComponent } from './raw-edit/raw-edit.component';
 import { CharacterSpellBookComponent } from './show-character/character-spell-book/character-spell-book.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { CharacterSpellSlotsComponent } from './show-character/character-spell-slots/character-spell-slots.component';
 
 @NgModule({
   declarations: [
@@ -68,31 +70,33 @@ import { CharacterSpellBookComponent } from './show-character/character-spell-bo
     ContainerDialogComponent,
     RawEditComponent,
     CharacterSpellBookComponent,
+    CharacterSpellSlotsComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatExpansionModule,
-    MatCardModule,
-    MatListModule,
-    MatGridListModule,
-    FormsModule,
-    MatProgressBarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    MatCheckboxModule,
-    MatSelectModule,
-    MatDialogModule,
-    MatTableModule,
-    DragDropModule,
-    MatTooltipModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatExpansionModule,
+        MatCardModule,
+        MatListModule,
+        MatGridListModule,
+        FormsModule,
+        MatProgressBarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatCheckboxModule,
+        MatSelectModule,
+        MatDialogModule,
+        MatTableModule,
+        DragDropModule,
+        MatTooltipModule,
+        MatTabsModule
+    ],
   providers: [
     MatNativeDateModule,
     Title,

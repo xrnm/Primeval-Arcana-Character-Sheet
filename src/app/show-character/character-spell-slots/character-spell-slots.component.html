@@ -1,0 +1,16 @@
+<h2>Spell Slots</h2>
+<mat-tab-group>
+  <mat-tab *ngFor="let spellGroup of character.spells" label="Level {{spellGroup.level}}">
+    <mat-list cdkDropList (cdkDropListDropped)="drop($event, spellGroup)" [cdkDropListData]="spellGroup.spells">
+      <mat-list-item *ngFor="let spell of spellGroup.spells; let j = index" cdkDrag>
+        Slot {{j + 1}}:&nbsp;
+        <div *ngIf="spell">{{spell.name}} (Level {{spell.level}})
+          <button color="warn" mat-mini-fab (click)="removeSpell(spellGroup,j)"><mat-icon>remove</mat-icon></button>
+        </div>
+
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-tab>
+</mat-tab-group>
+

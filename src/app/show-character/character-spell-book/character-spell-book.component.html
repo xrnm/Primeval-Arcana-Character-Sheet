@@ -1,0 +1,20 @@
+<div class="container" id="spells" cdkDropListGroup *ngIf="character.class != 'Fighter'">
+  <h2 class="section-subtitle">Spells</h2>
+  <mat-card>
+    <h2>Spellbook</h2>
+    <mat-tab-group>
+      <mat-tab *ngFor="let _ of spellLevelsIter(); let i = index" label="Level {{i+1}}">
+        <mat-list cdkDropList (cdkDropListDropped)="drop($event)"
+                  [cdkDropListData]="character.spellbook.getSpells(i+1)">
+          <mat-list-item *ngFor="let spell of this.character.spellbook.getSpells(i+1)" cdkDrag>
+            {{spell.name}} (Level {{spell.level}})
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+  <mat-card>
+    <character-spell-slots [character]="character"></character-spell-slots>
+  </mat-card>
+</div>

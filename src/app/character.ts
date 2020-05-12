@@ -5,6 +5,8 @@ import {Purse} from "./purse";
 import {ExperienceBlock} from "./experience-block";
 import {HitDiceHelper} from "./hit-dice-helper";
 import {SpellBook} from "./spell-book";
+import {SpellSlotHelper} from "./spell-slot-helper";
+import {SpellGroup} from "./spell-group";
 
 export class Character implements Loadable {
   name: string;
@@ -68,7 +70,8 @@ export class Character implements Loadable {
   appearance: string;
   clothing: string;
   quests: string;
-  spellbook: SpellBook;
+  spellbook: SpellBook = new SpellBook();
+  spells: SpellGroup[];
 
   constructor(init?: Partial<Character>) {
     if (!init) return;
@@ -88,7 +91,20 @@ export class Character implements Loadable {
       this.armor = init.armor.map((item) => new Item(item));
     if (init.slung_items)
       this.slung_items = init.slung_items.map((item) => new Container(item));
-
+    if (init.spellbook)
+      this.spellbook = new SpellBook((init.spellbook));
+    if(init.spells)
+      this.spells = init.spells.map(sg=>new SpellGroup(sg));
+    else
+      this.initializeSpells();
+  }
+  initializeSpells(){
+    this.spells = SpellSlotHelper.allSpellSlots(this).map((count,index)=>{
+      return new SpellGroup({slots:count, level:index+1, spells: Array(count)})
+    });
+  }
+  getSpellGroupForLevel(level: number): SpellGroup{
+    return this.spells.find(sg=>sg.level==level)
   }
   getClass(){
     return this.class;
@@ -105,6 +121,15 @@ export class Character implements Loadable {
         return {base: -1, bonus: -1}
     }
   }
+
+  highestPossibleSpellLevel(): number{
+    return SpellSlotHelper.highestSpellLevel(this);
+  }
+
+  spellSlots(level: number) : number{
+    return SpellSlotHelper.spellSlots(this,level)
+  }
+
 
   load(): number {
     return this.weapons.concat(this.armor)
