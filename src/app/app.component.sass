@@ -1,14 +1,46 @@
 mat-toolbar
+  position: relative
+  div
+    position: absolute
+    right: 4px
   a
     text-decoration: none
     color: rgba(0,0,0,.87)
-  ul
-    flex: 1 1 auto
-    li
-      list-style-type: none
-      height: 100%
-      display: inline-block
-      padding: 32px
-      a.active
-        color: red
+#github-logo
+  position: absolute
+  right: 16px
+  bottom: 16px
+  img
+    width: 32px
+    height: 32px
+
+#copyright
+  font-size: 10pt
+  display: block
+  text-align: center
+  position: absolute
+  left: 0
+  right: 0
+  bottom: 4px
+
+mat-sidenav-container
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+
+
+.menu-hamburger
+  display: none
+
+@media screen and (max-width: 760px)
+  #navigation
+    app-links
+      display: none
+    .menu-hamburger, #site-title
+      display: block
+    ul, li, a, button
+      display: none
+
 

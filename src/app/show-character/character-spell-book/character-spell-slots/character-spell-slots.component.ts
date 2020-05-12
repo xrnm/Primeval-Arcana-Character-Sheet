@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Character} from "../../character";
-import {Spell} from "../../spell";
+import {Character} from "../../../character";
+import {Spell} from "../../../spell";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 
 @Component({
@@ -10,23 +10,26 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag
 })
 export class CharacterSpellSlotsComponent implements OnInit {
   @Input() character: Character;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
+
   drop(event: CdkDragDrop<Spell[]>, spellGroup) {
     spellGroup.firstEmpty();
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      console.log(spellGroup.full());
-      if(!spellGroup.full())
-        spellGroup.insert(event.previousContainer.data[event.previousIndex])
+      const spell = event.previousContainer.data[event.previousIndex];
+      if (!spellGroup.full() && spell.level <= spellGroup.level)
+        spellGroup.insert(spell)
     }
   }
 
-  removeSpell(group, index){
-    group.spells.splice(index,1);
+  removeSpell(group, index) {
+    group.spells.splice(index, 1);
     group.spells.push(null);
   }
 }

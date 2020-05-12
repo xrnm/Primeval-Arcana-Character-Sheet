@@ -5,7 +5,7 @@
       <mat-list-item *ngFor="let spell of spellGroup.spells; let j = index" cdkDrag>
         Slot {{j + 1}}:&nbsp;
         <div *ngIf="spell">{{spell.name}} (Level {{spell.level}})
-          <button color="warn" mat-mini-fab (click)="removeSpell(spellGroup,j)"><mat-icon>remove</mat-icon></button>
+          <button class="use-spell-button" color="warn" mat-mini-fab (click)="removeSpell(spellGroup,j)"><mat-icon>remove</mat-icon></button>
         </div>
 
         <mat-divider></mat-divider>

@@ -45,7 +45,10 @@ import { ContainerDialogComponent } from './show-character/character-inventory/c
 import { RawEditComponent } from './raw-edit/raw-edit.component';
 import { CharacterSpellBookComponent } from './show-character/character-spell-book/character-spell-book.component';
 import {MatTabsModule} from "@angular/material/tabs";
-import { CharacterSpellSlotsComponent } from './show-character/character-spell-slots/character-spell-slots.component';
+import { CharacterSpellSlotsComponent } from './show-character/character-spell-book/character-spell-slots/character-spell-slots.component';
+import { SpellDialogComponent } from './show-character/character-spell-book/spell-dialog/spell-dialog.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import { LinksComponent } from './links/links.component';
 
 @NgModule({
   declarations: [
@@ -71,32 +74,35 @@ import { CharacterSpellSlotsComponent } from './show-character/character-spell-s
     RawEditComponent,
     CharacterSpellBookComponent,
     CharacterSpellSlotsComponent,
+    SpellDialogComponent,
+    LinksComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatExpansionModule,
-        MatCardModule,
-        MatListModule,
-        MatGridListModule,
-        FormsModule,
-        MatProgressBarModule,
-        MatIconModule,
-        MatButtonModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatInputModule,
-        MatAutocompleteModule,
-        MatCheckboxModule,
-        MatSelectModule,
-        MatDialogModule,
-        MatTableModule,
-        DragDropModule,
-        MatTooltipModule,
-        MatTabsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatExpansionModule,
+    MatCardModule,
+    MatListModule,
+    MatGridListModule,
+    FormsModule,
+    MatProgressBarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatTableModule,
+    DragDropModule,
+    MatTooltipModule,
+    MatTabsModule,
+    MatSidenavModule
+  ],
   providers: [
     MatNativeDateModule,
     Title,

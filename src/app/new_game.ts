@@ -8,7 +8,7 @@ export let NEW_GAME: Game = new Game({
     base_movement: 60,
     current_hp: 7,
     total_hp: 7,
-    armor_class: 7,
+    armor_class: 9,
     known_languages: ['Common'],
     abilities:{
       strength: 10,

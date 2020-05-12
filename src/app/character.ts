@@ -253,6 +253,9 @@ export class Character implements Loadable {
   getSlungItems(): Container[]{
     return this.slung_items.filter(item => !item.deleted);
   }
+  displayHeight(){
+    return `${Math.floor(this.height/12)}'${this.height%12}'' (${this.height}'')`
+  }
 
 
   static classes() {

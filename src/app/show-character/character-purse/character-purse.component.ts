@@ -19,7 +19,7 @@ export class CharacterPurseComponent implements OnInit {
     if(event.shiftKey)
       magnitude *= 10;
 
-    if(event.ctrlKey)
+    if(event.ctrlKey || event.metaKey)
       magnitude *= 100;
 
     this.character.purse[type] += delta * magnitude;

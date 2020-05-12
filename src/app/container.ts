@@ -17,7 +17,7 @@ export class Container implements Loadable {
   }
 
   inventoryString() {
-    return `${this.name} (${this.load()})`
+    return `${this.name} (${this.load()}cn)`
   }
 
   constructor(init?: Partial<Container>) {
