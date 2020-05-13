@@ -9,6 +9,7 @@ import {NEW_GAME} from "./new_game";
 })
 export class GameService {
   game: Game;
+  lock: boolean = false;
 
   getGame(): Game {
     return this.game;
@@ -41,6 +42,9 @@ export class GameService {
         // Update title with any changes
         this.titleService.setTitle(this.game.getName());
       });
+  }
+  toggleLock(){
+    this.lock = !this.lock
   }
 
   constructor(private titleService: Title) {

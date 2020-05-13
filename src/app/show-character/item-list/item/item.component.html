@@ -1,17 +1,17 @@
 <mat-list-item *ngIf="!item.deleted" >
   <div matTooltip="{{item.description}}">{{item.inventoryString()}}</div>
   <div class="mat-list-actions">
-    <button [disabled]="item.quantity < 2" (click)="item.consume()" mat-icon-button color="warn"
+    <button [disabled]="item.quantity < 2" (click)="consume(item)" mat-icon-button color="warn"
             aria-label="Consume Item">
       <mat-icon>remove</mat-icon>
     </button>
-    <button (click)="item.collect()" mat-icon-button color="primary" aria-label="Collect Item">
+    <button (click)="collect(item)" mat-icon-button color="primary" aria-label="Collect Item">
       <mat-icon>add</mat-icon>
     </button>
     <button class="edit-item-button" (click)="openItemDialog(item)" mat-mini-fab color="accent" aria-label="Edit Item">
       <mat-icon>edit</mat-icon>
     </button>
-    <button mat-mini-fab color="warn" (click)="item.delete()" aria-label="Delete Item">
+    <button mat-mini-fab color="warn" (click)="delete(item)" aria-label="Delete Item">
       <mat-icon>delete</mat-icon>
     </button>
   </div>

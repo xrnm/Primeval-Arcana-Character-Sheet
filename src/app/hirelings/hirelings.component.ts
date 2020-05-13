@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Character} from "../character";
 import {GameService} from "../game.service";
+import {NEW_CHARACTER} from "../new-character";
 
 @Component({
   selector: 'app-hirelings',
@@ -8,21 +9,36 @@ import {GameService} from "../game.service";
   styleUrls: ['./hirelings.component.sass']
 })
 export class HirelingsComponent implements OnInit {
-  @Input() hirelings: Character[];
-
+  character: Character;
   constructor(private gameService: GameService) {
   }
 
   ngOnInit(): void {
-    this.hirelings = this.gameService.getGame().getCharacter().hirelings;
-    if(!this.hirelings)
-      this.hirelings = [];
+    this.character = this.gameService.getGame().getCharacter()
   }
-  addHireling(){
-    this.hirelings.push(new Character());
+
+  getHirelings(){
+    return this.character.hirelings.filter(h=>!h.deleted);
   }
-  removeHireling(hireling){
-  this.hirelings= this.hirelings.filter(h=>h!=hireling);
+
+  addHireling() {
+    if(this.gameService.lock)
+      return;
+
+    this.gameService.getGame().getCharacter().hirelings.push(new Character(NEW_CHARACTER));
+  }
+
+  removeHireling(hireling) {
+    if(this.gameService.lock)
+      return;
+    hireling.deleted = true
+  }
+
+  bestLabel(hireling){
+    if(hireling.name)
+      return `${hireling.name} (${hireling.getLevel()}${hireling.getClassAbbreviation()})`;
+    else
+      return `${hireling.getLevel()}${hireling.getClassAbbreviation()}`;
   }
 
 }

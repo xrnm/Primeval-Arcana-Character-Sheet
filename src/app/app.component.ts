@@ -36,4 +36,8 @@ export class AppComponent {
     this.opened = !this.opened;
   }
 
+  lockPage(){
+    this.gameService.toggleLock()
+  }
+
 }

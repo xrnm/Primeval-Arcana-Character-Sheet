@@ -1,3 +1,4 @@
+<div id="overlay"> </div>
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="side" [(opened)]="opened">
     <app-links></app-links>
@@ -25,7 +26,8 @@
       </div>
     </mat-toolbar>
     <router-outlet></router-outlet>
-    <button class="lock-icon" mat-mini-fab><mat-icon>lock</mat-icon></button>
+    <button *ngIf="!gameService.lock" (click)='lockPage()' class="lock-icon" mat-mini-fab><mat-icon>lock</mat-icon></button>
+    <button *ngIf="gameService.lock" (click)='lockPage()' color="warn" class="lock-icon" mat-mini-fab><mat-icon>vpn_key</mat-icon></button>
     <mat-toolbar id="footer">
       <a routerLink="/">Revived Character Sheet</a>
       <small id="copyright">Copyright &copy; {{year}} Justin Edwards. All Rights Reserved. (for now)</small>

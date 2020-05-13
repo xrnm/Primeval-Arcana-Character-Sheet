@@ -13,11 +13,13 @@ import {ExperienceBlock} from "../../experience-block";
 })
 export class CharacterExperienceComponent implements OnInit {
   @Input() character: Character;
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private gameService: GameService) { }
 
   ngOnInit(): void {
   }
   openDialog(experiences: ExperienceBlock){
+    if(this.gameService.lock)
+      return;
     const dialogRef = this.dialog.open(CharacterExperienceDialogComponent,{
       data: {
         experiences: experiences

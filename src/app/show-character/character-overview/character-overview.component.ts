@@ -9,23 +9,30 @@ import {GameService} from "../../game.service";
 })
 export class CharacterOverviewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private gameService: GameService) { }
   @Input() character: Character;
   editing: string = null;
 
   classes = Character.classes();
 
   editSection(id){
+    if(this.gameService.lock)
+      return;
+
     this.editing = id
   }
 
   doneEditing(){
+    if(this.gameService.lock)
+      return;
     this.editing = null;
   }
   ngOnInit(): void {
   }
 
   changeCharacter(attribute: string, delta: number){
+    if(this.gameService.lock)
+      return;
     this.character[attribute] += delta
   }
 }

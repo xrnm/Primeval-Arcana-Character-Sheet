@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Character} from "../../character";
 import {GameService} from "../../game.service";
+import {Game} from "../../game";
 
 @Component({
   selector: 'character-purse',
@@ -9,11 +10,14 @@ import {GameService} from "../../game.service";
 })
 export class CharacterPurseComponent implements OnInit {
   @Input() character: Character;
-  constructor() { }
+  constructor(private gameService: GameService) { }
 
   ngOnInit(): void {
   }
   changeCoin(type: string, delta: number, event){
+    if(this.gameService.lock)
+      return;
+
     let magnitude = 1;
 
     if(event.shiftKey)

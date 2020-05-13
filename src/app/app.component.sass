@@ -34,9 +34,15 @@ mat-sidenav-container
   display: none
 
 .lock-icon
+  display: none
   position: fixed
-  bottom: 50px
-  right: 50px
+  bottom: 68px
+  right: 16px
+  z-index: 15
+
+@media screen and (max-width: 1366px)
+  .lock-icon
+    display: block
 
 @media screen and (max-width: 760px)
   #navigation

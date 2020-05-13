@@ -4,6 +4,7 @@ import {Spell} from "../../spell";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {SpellDialogComponent} from "./spell-dialog/spell-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {GameService} from "../../game.service";
 
 @Component({
   selector: 'character-spell-book',
@@ -12,7 +13,7 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class CharacterSpellBookComponent implements OnInit {
   @Input() character: Character;
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private gameService: GameService) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +22,8 @@ export class CharacterSpellBookComponent implements OnInit {
   }
 
   openSpellDialog(spellbook, spell){
+    if(this.gameService.lock)
+      return;
     const dialogRef = this.dialog.open(SpellDialogComponent,{
       data: {
         spellbook: spellbook,
@@ -29,6 +32,8 @@ export class CharacterSpellBookComponent implements OnInit {
     });
   }
   drop(event: CdkDragDrop<Spell[]>){
+    if(this.gameService.lock)
+      return;
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
