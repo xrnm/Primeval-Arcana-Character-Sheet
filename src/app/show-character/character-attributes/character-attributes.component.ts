@@ -9,12 +9,14 @@ import {GameService} from "../../game.service";
 })
 export class CharacterAttributesComponent implements OnInit {
   @Input() character: Character;
-  constructor() { }
+  constructor(private gameService: GameService) { }
 
   ngOnInit(): void {
   }
 
   changeAbility(ability, delta){
+    if(this.gameService.lock)
+      return;
     this.character.abilities[ability] += delta;
   }
 

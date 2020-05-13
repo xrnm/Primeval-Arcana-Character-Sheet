@@ -24,7 +24,6 @@ export class SpellDialogComponent implements OnInit {
   }
 
   upsertSpell(){
-    console.log(this.spellbook);
     if(this.spellbook)
       this.spellbook.spells.push(this.spell);
   }

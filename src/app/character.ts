@@ -72,6 +72,9 @@ export class Character implements Loadable {
   quests: string;
   spellbook: SpellBook = new SpellBook();
   spells: SpellGroup[];
+  hirelings: Character[];
+
+  deleted: boolean = false;
 
   constructor(init?: Partial<Character>) {
     if (!init) return;
@@ -93,16 +96,24 @@ export class Character implements Loadable {
       this.slung_items = init.slung_items.map((item) => new Container(item));
     if (init.spellbook)
       this.spellbook = new SpellBook((init.spellbook));
+
+    this.initializeSpells();
+
     if(init.spells)
-      this.spells = init.spells.map(sg=>new SpellGroup(sg));
+      this.spells.map(sg=>sg.importSpells(init.spells));
+
+    if(init.hirelings)
+      this.hirelings = init.hirelings.map(hireling=>new Character(hireling));
     else
-      this.initializeSpells();
+      this.hirelings = [];
   }
+
   initializeSpells(){
     this.spells = SpellSlotHelper.allSpellSlots(this).map((count,index)=>{
       return new SpellGroup({slots:count, level:index+1, spells: Array(count)})
     });
   }
+
   getSpellGroupForLevel(level: number): SpellGroup{
     return this.spells.find(sg=>sg.level==level)
   }
@@ -120,6 +131,10 @@ export class Character implements Loadable {
       default:
         return {base: -1, bonus: -1}
     }
+  }
+
+  getClassAbbreviation(){
+    return this.getClass()[0]
   }
 
   highestPossibleSpellLevel(): number{
@@ -254,6 +269,8 @@ export class Character implements Loadable {
     return this.slung_items.filter(item => !item.deleted);
   }
   displayHeight(){
+    if(!this.height)
+      return '';
     return `${Math.floor(this.height/12)}'${this.height%12}'' (${this.height}'')`
   }
 

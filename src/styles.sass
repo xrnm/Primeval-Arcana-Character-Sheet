@@ -1,9 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@fortawesome/fontawesome-free/css/all.css"
 @import '~@fortawesome/fontawesome-free/css/brands.css'
+
+@font-face
+  font-family: 'Cinzel'
+  src: url('/assets/fonts/Cinzel-Regular.ttf') format('truetype')
+
+@font-face
+  font-family: 'LibreBaskerville'
+  src: url('/assets/fonts/LibreBaskerville-Regular.ttf') format('truetype')
+
+*
+  font-family: LibreBaskerville
+
 body
   margin: 0
   background-color: #EFEFEF
+
+h1,h2,h3,h4,h5
+  font-family: Cinzel
+mat-toolbar a
+  font-family: Cinzel
+
 
 h1.section-title
   font-size: 64px
@@ -11,12 +29,15 @@ h1.section-title
   text-align: center
   margin-bottom: 3px
   width: 100%
+  font-family: Cinzel
+
 
 h2.section-subtitle
   font-size: 32px
   font-weight: normal
   text-align: center
   width: 100%
+  font-family: Cinzel
 
 .container
   width: 85%
@@ -36,8 +57,13 @@ h2.section-subtitle
     h4
       text-align: center
       margin-bottom: 32px
+    h1,h2,h3,h4,h5
+      font-family: Cinzel
     strong
       font-size: 28px
+      font-family: Cinzel
+
+
 
 mat-dialog-content
   width: 50vw

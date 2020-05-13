@@ -1,4 +1,4 @@
-# ODND Revived Interactive Character Sheet (ICS)
+# Revived Interactive Character Sheet (ICS)
 
 This interactive character sheet is intended to create a convenient and easy place to keep track of character statistics, items, attributes, experiences, and more in a digital format.
 
@@ -6,13 +6,13 @@ ICS automatically calculates many fields based on the rules and should eliminate
 
 Finally, ICS keeps track of the weight of all items on the character and in bags/containers to keep an accurate total of character weight and make adjustments to movement.
 
-There is a version of the tool running here: https://odnd-character-sheet.s3-us-west-2.amazonaws.com/index.html
+There is a version of the tool running here:
+https://ics.blacktowergames.com
 
 ## Features that are conspicuously absent
 
 2. Turning Events
 3. Mounts
-4. Hirelings
 5. Carts / Strongholds / vaults etc
 6. Dynamically generated saving throws
 7. Unload warning on navigation

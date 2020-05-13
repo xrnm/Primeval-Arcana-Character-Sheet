@@ -30,9 +30,19 @@ mat-sidenav-container
   left: 0
   right: 0
 
-
 .menu-hamburger
   display: none
+
+.lock-icon
+  display: none
+  position: fixed
+  bottom: 68px
+  right: 16px
+  z-index: 15
+
+@media screen and (max-width: 1366px)
+  .lock-icon
+    display: block
 
 @media screen and (max-width: 760px)
   #navigation

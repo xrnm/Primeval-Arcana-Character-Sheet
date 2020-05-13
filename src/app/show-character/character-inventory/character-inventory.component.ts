@@ -4,6 +4,7 @@ import {GameService} from "../../game.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ContainerDialogComponent} from "./container-dialog/container-dialog.component";
 import {Container} from "../../container";
+import {Game} from "../../game";
 
 @Component({
   selector: 'character-inventory',
@@ -13,13 +14,16 @@ import {Container} from "../../container";
 export class CharacterInventoryComponent implements OnInit {
   @Input() character: Character;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private gameService: GameService) {
   }
 
   ngOnInit(): void {
   }
 
   openContainerDialog(container: Container = null){
+    if(this.gameService.lock)
+      return;
+
     let slung_items = null;
     if(!container){
       slung_items = this.character.slung_items;
@@ -34,6 +38,8 @@ export class CharacterInventoryComponent implements OnInit {
   }
 
   deleteSlungItem(slung_item){
+    if(this.gameService.lock)
+      return;
     slung_item.delete();
   }
 }
