@@ -76,32 +76,32 @@
         <mat-list>
           <mat-list-item>
             System Shock
-            {{character.saving_throws.system_shock}}
+            {{character.getSystemShock()}}
           </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item>
             Death Ray / Poison
-            {{character.saving_throws.poison}}
+            {{character.getSavingThrows().poison}}
           </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item>
             Wand / Paralysis / Polymorph
-            {{character.saving_throws.paralysis}}
+            {{character.getSavingThrows().paralysis}}
           </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item>
             Petrification / Turn to stone
-            {{character.saving_throws.petrification}}
+            {{character.getSavingThrows().petrification}}
           </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item>
             Dragon Breath / Area of Effect
-            {{character.saving_throws.dragon_breath}}
+            {{character.getSavingThrows().dragon_breath}}
           </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item>
             Spell / Rod / Stave
-            {{character.saving_throws.spell}}
+            {{character.getSavingThrows().spell}}
           </mat-list-item>
           <mat-divider></mat-divider>
         </mat-list>

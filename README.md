@@ -15,11 +15,10 @@ https://ics.blacktowergames.com
 2. Turning Events
 3. Mounts
 5. Carts / Strongholds / vaults etc
-6. Dynamically generated saving throws
-7. Unload warning on navigation
-8. Unload Warning on new character creation
-9. Adjustments on pretty much everything
-10. More beautifulness in the styles
+6. Unload warning on navigation
+7. Unload Warning on new character creation
+8. Adjustments on pretty much everything
+9. More beautifulness in the styles
 
 
 ## Developing and Deploying

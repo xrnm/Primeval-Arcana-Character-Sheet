@@ -7,6 +7,7 @@ import {HitDiceHelper} from "./hit-dice-helper";
 import {SpellBook} from "./spell-book";
 import {SpellSlotHelper} from "./spell-slot-helper";
 import {SpellGroup} from "./spell-group";
+import {SavingThrowsHelper} from "./saving-throws-helper";
 
 export class Character implements Loadable {
   name: string;
@@ -216,6 +217,14 @@ export class Character implements Loadable {
       modifier += this.getLevel();
 
     return this.abilities.strength + modifier;
+  }
+
+  getSavingThrows(){
+    return SavingThrowsHelper.getSavingThrows(this)
+  }
+
+  getSystemShock(): number{
+    return 20 - (this.adjustedConstitution() + this.getLevel());
   }
 
   adjustedDexterity(): number {
