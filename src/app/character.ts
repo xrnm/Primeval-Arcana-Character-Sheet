@@ -213,7 +213,7 @@ export class Character implements Loadable {
     let modifier = 0;
 
     if (this.class == 'Fighter')
-      modifier += 1;
+      modifier += this.getLevel();
 
     return this.abilities.strength + modifier;
   }
