@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Character} from "../character";
 import {GameService} from "../game.service";
-import {NEW_CHARACTER} from "../new-character";
+import {NewCharacter} from "../new-character";
 
 @Component({
   selector: 'app-hirelings',
@@ -25,7 +25,7 @@ export class HirelingsComponent implements OnInit {
     if(this.gameService.lock)
       return;
 
-    this.gameService.getGame().getCharacter().hirelings.push(new Character(NEW_CHARACTER));
+    this.gameService.getGame().getCharacter().hirelings.push(new Character(NewCharacter.NEW_CHARACTER()));
   }
 
   removeHireling(hireling) {
