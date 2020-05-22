@@ -234,9 +234,7 @@ export class Character implements Loadable {
   }
 
   adjustedConstitution(): number {
-    let modifier = 0;
-
-    return this.abilities.dexterity + modifier;
+    return this.abilities.constitution;
   }
 
   precisionThrownWeight(): number {
