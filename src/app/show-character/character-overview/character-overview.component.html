@@ -123,7 +123,8 @@
       <mat-divider></mat-divider>
       <mat-list-item><span>Eyes:&nbsp;</span> {{character.eye_color}} Eyes</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>Skin:{{character.skin_color}} Skin</mat-list-item>
+      <mat-list-item>
+        <span>Skin:&nbsp; </span>{{character.skin_color}} Skin</mat-list-item>
       <mat-divider></mat-divider>
     </mat-list>
     <mat-list *ngIf="editing=='attributes'">
@@ -181,15 +182,15 @@
     <mat-icon *ngIf="editing!='movement'" color='primary' (click)="editSection('movement')" class="edit">edit
     </mat-icon>
     <mat-list *ngIf="editing!='movement'">
-      <mat-list-item>Base Movement: {{character.base_movement}}</mat-list-item>
+      <mat-list-item><span>Base Movement:&nbsp; </span> {{character.base_movement}}</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>Movement Rating: {{character.movementRating()}}</mat-list-item>
+      <mat-list-item><span>Movement Rating:&nbsp; </span> {{character.movementRating()}}</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>1 Pace: {{character.movementRating() / 6}}</mat-list-item>
+      <mat-list-item><span>1 Pace:&nbsp; </span> {{character.movementRating() / 6}}</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>2 Pace: {{character.movementRating() / 3}}</mat-list-item>
+      <mat-list-item><span>2 Pace:&nbsp; </span> {{character.movementRating() / 3}}</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>3 Pace: {{character.movementRating() / 2}}</mat-list-item>
+      <mat-list-item><span>3 Pace:&nbsp; </span> {{character.movementRating() / 2}}</mat-list-item>
       <mat-divider></mat-divider>
     </mat-list>
     <mat-list *ngIf="editing=='movement'">
