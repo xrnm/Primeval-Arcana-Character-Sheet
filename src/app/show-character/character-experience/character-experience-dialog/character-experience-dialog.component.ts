@@ -21,7 +21,7 @@ export class CharacterExperienceDialogComponent implements OnInit {
   }
 
   addExperience(){
-    this.block.experiences.push(this.experience);
+    this.block.experiences.unshift(this.experience);
   }
 
   ngOnInit(): void {
