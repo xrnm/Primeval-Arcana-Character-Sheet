@@ -16,6 +16,8 @@ export class SpellGroup {
   }
 
   insert(spell: Spell) {
+    if(this.full()) return;
+
     this.spells[this.firstEmpty()] = spell
   }
 

@@ -14,8 +14,9 @@ export class SpellDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data) {
     this.spellbook = data.spellbook;
+    let level = data.level ? data.level : 0
     if(!data.spell)
-      this.spell = new Spell();
+      this.spell = new Spell({level:level});
     else
       this.spell = data.spell;
   }

@@ -21,15 +21,24 @@ export class CharacterSpellBookComponent implements OnInit {
     return Array(this.character.highestPossibleSpellLevel()).fill(0);
   }
 
-  openSpellDialog(spellbook, spell){
+  openSpellDialog(spellbook, spell, level){
     if(this.gameService.lock)
       return;
     const dialogRef = this.dialog.open(SpellDialogComponent,{
       data: {
         spellbook: spellbook,
-        spell: spell
+        spell: spell,
+        level: level
       }
     });
+  }
+
+  removeSpell(spell){
+    this.character.spellbook.removeSpell(spell);
+  }
+
+  memorizeSpell(spell){
+    this.character.spells[spell.level-1].insert(spell);
   }
   drop(event: CdkDragDrop<Spell[]>){
     if(this.gameService.lock)
