@@ -34,7 +34,8 @@
     </mat-list>
   </mat-card>
   <mat-card *ngFor="let si of character.getSlottedContainers()">
-    <h2>{{si.inventoryString()}}</h2>
+    <h2>{{si.inventoryString(false)}}</h2>
+    <h3 [class.overfull]="si.load() >= si.capacity">{{si.capacityString()}}</h3>
     <item-list [capacity]="si.slots" [items]="si.contents"></item-list>
   </mat-card>
 </div>

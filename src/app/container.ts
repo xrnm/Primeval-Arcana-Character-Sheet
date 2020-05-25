@@ -1,11 +1,13 @@
 import {Loadable} from "./loadable";
 import {Item} from "./item";
+import {formatPercent} from "@angular/common";
 
 export class Container implements Loadable {
   slots: number = 0;
   contents: Item[] = [];
   name: string;
   weight: number;
+  capacity: number;
   deleted: boolean = false;
 
   load() {
@@ -16,8 +18,17 @@ export class Container implements Loadable {
     }, this.weight)
   }
 
-  inventoryString() {
-    return `${this.name} (${this.load()}cn)`
+  inventoryString(includeWeight=true) {
+    if(includeWeight)
+      return `${this.name} (${this.load()}cn)`;
+    else
+      return `${this.name}`;
+  }
+
+  capacityString() {
+    if(!this.capacity)
+      return `${this.load()}cn`;
+    return `${this.load()}/${this.capacity}cn (${((this.load() / this.capacity)*100).toFixed(2)}%)`;
   }
 
   constructor(init?: Partial<Container>) {

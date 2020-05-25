@@ -20,15 +20,15 @@ export class ItemComponent implements OnInit {
       return;
     item.delete();
   }
-  consume(item){
+  consume(item, $event){
     if(this.gameService.lock)
       return;
-    item.consume()
+    item.consume($event)
   }
-  collect(item){
+  collect(item, $event){
     if(this.gameService.lock)
       return;
-    item.collect()
+    item.collect($event)
   }
 
   openItemDialog(item: Item){

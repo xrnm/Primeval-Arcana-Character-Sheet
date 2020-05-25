@@ -21,12 +21,32 @@ export class Item {
     return `${this.quantity > -1 ? this.quantity : ''} ${this.name} (${this.weight * this.quantity}cn)`
   }
 
-  consume() {
-    this.quantity -= 1;
+  consume(event) {
+    let magnitude = 1;
+
+    if(event.shiftKey)
+      magnitude *= 10;
+
+    if(event.ctrlKey || event.metaKey)
+      magnitude *= 100;
+
+    this.quantity -= magnitude;
+
+    // Disallow negative purse values
+    if(this.quantity < 0)
+      this.quantity = 0;
   }
 
-  collect() {
-    this.quantity += 1;
+  collect(event) {
+    let magnitude = 1;
+
+    if(event.shiftKey)
+      magnitude *= 10;
+
+    if(event.ctrlKey || event.metaKey)
+      magnitude *= 100;
+
+    this.quantity += magnitude;
   }
 
   delete() {
