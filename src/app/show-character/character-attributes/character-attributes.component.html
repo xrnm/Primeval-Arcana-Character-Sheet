@@ -75,32 +75,38 @@
       <div>
         <mat-list>
           <mat-list-item>
-            System Shock
+            <span>System Shock:</span>
+            &nbsp;
             {{character.getSystemShock()}}
           </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item>
-            Death Ray / Poison
+            <span>Death Ray / Poison:</span>
+            &nbsp;
             {{character.getSavingThrows().poison}}
           </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item>
-            Wand / Paralysis / Polymorph
+            <span>Wand / Paralysis / Polymorph:</span>
+            &nbsp;
             {{character.getSavingThrows().paralysis}}
           </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item>
-            Petrification / Turn to stone
+            <span>Petrification / Turn to stone:</span>
+            &nbsp;
             {{character.getSavingThrows().petrification}}
           </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item>
-            Dragon Breath / Area of Effect
+            <span>Dragon Breath / Area of Effect:</span>
+            &nbsp;
             {{character.getSavingThrows().dragon_breath}}
           </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item>
-            Spell / Rod / Stave
+            <span>Spell / Rod / Stave:</span>
+            &nbsp;
             {{character.getSavingThrows().spell}}
           </mat-list-item>
           <mat-divider></mat-divider>
@@ -108,22 +114,47 @@
       </div>
       <div>
         <mat-list>
-          <mat-list-item>Precision Thrown Weight: {{character.precisionThrownWeight()}}cn
+          <mat-list-item>
+            <span>Precision Thrown Weight:</span>
+            &nbsp;
+            {{character.precisionThrownWeight()}}cn
           </mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item>Precision Thrown Distance: {{character.precisionThrownDistance()}} feet
+          <mat-list-item>
+            <span>Precision Thrown Distance:</span>
+            &nbsp;
+            {{character.precisionThrownDistance()}} feet
           </mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item>Maximum Deadlift / Push / Pull: {{character.maximumLift()}}cn</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>Continuous Travel: {{character.continuousTravel()}} hours</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>Hold Breath: {{character.holdBreath()}} seconds</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>Continuous Maximum Effort: {{character.continuousMaximumEffort()}} minutes
+          <mat-list-item>
+            <span>Maximum Deadlift / Push / Pull:</span>
+            &nbsp;
+            {{character.maximumLift()}}cn
           </mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item>Total Weight: {{character.weight * 10 + character.load()}}cn</mat-list-item>
+          <mat-list-item>
+            <span>Continuous Travel:</span>
+            &nbsp;
+            {{character.continuousTravel()}} hours
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <span>Hold Breath:</span>
+            &nbsp;
+            {{character.holdBreath()}} seconds
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <span>Continuous Maximum Effort:</span>
+            &nbsp;
+            {{character.continuousMaximumEffort()}} minutes
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <span>Total Weight:</span>
+            &nbsp;
+            {{character.weight * 10 + character.load()}}cn
+          </mat-list-item>
           <mat-divider></mat-divider>
         </mat-list>
       </div>
