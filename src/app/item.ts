@@ -18,7 +18,7 @@ export class Item {
   inventoryString() {
     if(!this.name)
       return "New Item";
-    return `${this.quantity > 0 ? this.quantity : ''} ${this.name} (${this.weight * this.quantity}cn)`
+    return `${this.quantity > -1 ? this.quantity : ''} ${this.name} (${this.weight * this.quantity}cn)`
   }
 
   consume() {

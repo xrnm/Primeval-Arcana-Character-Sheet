@@ -1,7 +1,7 @@
 <mat-list-item *ngIf="!item.deleted" >
-  <div matTooltip="{{item.description}}">{{item.inventoryString()}}</div>
+  <div [class.empty]="item.quantity==0" matTooltip="{{item.description}}">{{item.inventoryString()}}</div>
   <div class="mat-list-actions">
-    <button [disabled]="item.quantity < 2" (click)="consume(item)" mat-icon-button color="warn"
+    <button [disabled]="item.quantity < 1" (click)="consume(item)" mat-icon-button color="warn"
             aria-label="Consume Item">
       <mat-icon>remove</mat-icon>
     </button>
