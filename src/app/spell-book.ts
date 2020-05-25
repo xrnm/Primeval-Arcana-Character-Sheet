@@ -12,5 +12,9 @@ export class SpellBook {
   getSpells(level: number) {
     return this.spells.filter(spell => spell.level == level)
   }
+  removeSpell(spell){
+    if(confirm("Are you sure you want to unlearn " + spell.name))
+    this.spells = this.spells.filter(s=>s!=spell)
+  }
 
 }

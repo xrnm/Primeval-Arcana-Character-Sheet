@@ -3,15 +3,25 @@
 mat-card
   width: 45%
 
-#add-spell-button
-  position: absolute
-  top: 8px
-  right: 8px
+.add-spell-button
+  margin: 24px auto
 
-.spell-edit-icon
+.action-buttons
   position: absolute
   right: 8px
-  top: 8px
+  bottom: 0
+  top: 0
+  display: flex
+  justify-content: flex-end
+  button
+    margin: 2px
+    color: white
+
+.spell-info-icon
+  position: absolute
+  right: 8px
+  top: 4px
+
 
 @media screen and (max-width: 820px)
   mat-card

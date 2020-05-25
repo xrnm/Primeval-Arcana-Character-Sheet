@@ -26,7 +26,7 @@ export class CharacterSpellSlotsComponent implements OnInit {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       const spell = event.previousContainer.data[event.previousIndex];
-      if (!spellGroup.full() && spell.level <= spellGroup.level)
+      if (spell.level <= spellGroup.level)
         spellGroup.insert(spell)
     }
   }
