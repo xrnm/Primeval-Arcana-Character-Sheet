@@ -1,6 +1,5 @@
 import {Loadable} from "./loadable";
 import {Item} from "./item";
-import {formatPercent} from "@angular/common";
 
 export class Container implements Loadable {
   slots: number = 0;

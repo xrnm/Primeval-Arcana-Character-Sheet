@@ -8,6 +8,7 @@ import {SpellBook} from "./spell-book";
 import {SpellSlotHelper} from "./spell-slot-helper";
 import {SpellGroup} from "./spell-group";
 import {SavingThrowsHelper} from "./saving-throws-helper";
+import {Mount} from "./mount";
 
 export class Character implements Loadable {
   name: string;
@@ -74,6 +75,7 @@ export class Character implements Loadable {
   spellbook: SpellBook = new SpellBook();
   spells: SpellGroup[];
   hirelings: Character[];
+  mounts: Mount[];
 
   deleted: boolean = false;
 
@@ -107,6 +109,9 @@ export class Character implements Loadable {
       this.hirelings = init.hirelings.map(hireling=>new Character(hireling));
     else
       this.hirelings = [];
+
+    if(init.mounts)
+      this.mounts = init.mounts.map(m=>new Mount(m));
   }
 
   initializeSpells(){
@@ -275,10 +280,15 @@ export class Character implements Loadable {
   getSlungItems(): Container[]{
     return this.slung_items.filter(item => !item.deleted);
   }
+
   displayHeight(){
     if(!this.height)
       return '';
     return `${Math.floor(this.height/12)}'${this.height%12}'' (${this.height}'')`
+  }
+
+  getMounts(){
+    return this.mounts.filter(m=>!m.deleted);
   }
 
 
