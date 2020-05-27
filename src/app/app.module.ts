@@ -50,6 +50,7 @@ import { SpellDialogComponent } from './show-character/character-spell-book/spel
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { LinksComponent } from './links/links.component';
 import { HirelingsComponent } from './hirelings/hirelings.component';
+import { CharacterMountsComponent } from './show-character/character-mounts/character-mounts.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { HirelingsComponent } from './hirelings/hirelings.component';
     SpellDialogComponent,
     LinksComponent,
     HirelingsComponent,
+    CharacterMountsComponent,
   ],
   imports: [
     BrowserModule,

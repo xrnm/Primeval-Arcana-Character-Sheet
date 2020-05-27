@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Character} from "../character";
 import {GameService} from "../game.service";
 import {NewCharacter} from "../new-character";
+import {DefaultSettingsHelper} from "../default-settings-helper";
 
 @Component({
   selector: 'app-hirelings',
@@ -25,13 +26,14 @@ export class HirelingsComponent implements OnInit {
     if(this.gameService.lock)
       return;
 
-    this.gameService.getGame().getCharacter().hirelings.push(new Character(NewCharacter.NEW_CHARACTER()));
+    this.gameService.getGame().getCharacter().hirelings.push(new Character(DefaultSettingsHelper.character()));
   }
 
   removeHireling(hireling) {
     if(this.gameService.lock)
       return;
-    hireling.deleted = true
+    if(confirm("Are you sure you want to remove " + hireling.name + '?'))
+      hireling.deleted = true
   }
 
   bestLabel(hireling){
