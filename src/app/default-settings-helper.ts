@@ -24,6 +24,7 @@ export class DefaultSettingsHelper {
         dragon_breath: 17,
         spell: 18
       },
+      mounts: [],
     }
   };
   public static mount(){

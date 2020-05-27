@@ -75,7 +75,7 @@ export class Character implements Loadable {
   spellbook: SpellBook = new SpellBook();
   spells: SpellGroup[];
   hirelings: Character[];
-  mounts: Mount[];
+  mounts: Mount[] = [];
 
   deleted: boolean = false;
 
