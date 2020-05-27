@@ -11,6 +11,7 @@
 
         <mat-list dense *ngIf="editing!=i">
           <div mat-subheader><h2>Stats & Abilities</h2></div>
+          <mat-divider></mat-divider>
           <mat-list-item><span>Morale:&nbsp;</span> {{mount.morale}} </mat-list-item>
           <mat-list-item>
             <span>HP:&nbsp;</span>
@@ -29,8 +30,8 @@
           <mat-list-item><span>Alignment:&nbsp;</span> {{mount.alignment}}</mat-list-item>
           <mat-list-item><span>Species :&nbsp;</span> {{mount.species}}</mat-list-item>
           <mat-list-item><span>Intelligence:&nbsp;</span> {{mount.intelligence}}</mat-list-item>
-          <mat-divider></mat-divider>
           <div mat-subheader><h2>Saddle Bags</h2></div>
+          <mat-divider></mat-divider>
           <div *ngFor="let si of mount.getSlungItems()">
             <mat-list-item>{{si.inventoryString()}}
               <div class="mat-list-actions">
@@ -42,7 +43,6 @@
                 </button>
               </div>
             </mat-list-item>
-            <mat-divider></mat-divider>
           </div>
           <button *ngIf="mount.getSlungItems().length < 3" mat-mini-fab (click)="openContainerDialog(null, mount)" color="primary">
             <mat-icon>add</mat-icon>

@@ -6,7 +6,7 @@
     font-family: Cinzel
   .mount-cards
     display: flex
-    flex-folow: row
+    flex-wrap: wrap
 
 mat-card
   margin: 24px auto
@@ -21,10 +21,14 @@ mat-card
   margin: 24px auto
   display: block
 
+@media screen and (max-width: 1650px)
+  .mount mat-card
+    width: 30%
+
 @media screen and (max-width: 1300px)
-  mat-card
+  .mount mat-card
     width: 40%
 @media screen and (max-width: 1024px)
-  mat-card
+  .mount mat-card
     width: 60%
 
