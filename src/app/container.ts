@@ -27,7 +27,7 @@ export class Container implements Loadable {
   capacityString() {
     if(!this.capacity)
       return `${this.load()}cn`;
-    return `${this.load()}/${this.capacity}cn (${((this.load() / this.capacity)*100).toFixed(2)}%)`;
+    return `${this.load()-this.weight}/${this.capacity}cn (${(((this.load() - this.weight) / this.capacity)*100).toFixed(0)}%)`;
   }
 
   constructor(init?: Partial<Container>) {

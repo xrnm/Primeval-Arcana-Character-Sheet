@@ -7,7 +7,7 @@
       <mat-tab *ngFor="let _ of spellLevelsIter(); let i = index" label="Level {{i+1}}">
         <mat-list cdkDropList (cdkDropListDropped)="drop($event)"
                   [cdkDropListData]="character.spellbook.getSpells(i+1)">
-          <mat-list-item *ngFor="let spell of this.character.spellbook.getSpells(i+1)" cdkDrag>
+          <mat-list-item *ngFor="let spell of this.character.spellbook.getSpells(i+1)" cdkDrag matTooltip="{{spell.description}}">
             {{spell.name}} (Level {{spell.level}})
             <div class="action-buttons">
               <button mat-mini-fab  color="primary" class="spell-memorize-icon" (click)="memorizeSpell(spell)"><mat-icon>save_alt</mat-icon></button>

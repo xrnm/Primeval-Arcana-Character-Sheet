@@ -26,9 +26,22 @@ export class SpellGroup {
   }
 
   importSpells(spellGroups: SpellGroup[]) {
-    const matchingLevelGroup =  spellGroups.find(sg => sg.level == this.level)
+    const matchingLevelGroup =  spellGroups.find(sg => sg.level == this.level);
       if(matchingLevelGroup)
         matchingLevelGroup.spells.forEach(sp => this.insert(sp))
+  }
+
+  setSlots(count){
+    //Update the count
+    this.slots = count;
+    // push slots that are missing
+    while(this.slots > this.spells.length)
+      this.spells.push(null);
+    // delete excess slots
+    while(this.slots < this.spells.length)
+      this.spells.pop();
+
+
   }
 
 }
