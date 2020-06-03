@@ -1,6 +1,7 @@
 <h2 class="section-subtitle"> Abilities </h2>
 <div id="abilities" class="container">
   <mat-card ngClass="{{character.primeAbility() === 'strength' ? 'prime' : ''}}">
+    <mat-icon *ngIf="character.hasPositiveAbilityAdjustment('strength')" color="primary" class="ability-info-icon" matTooltip="Your high strength compels to you an additional +1 damage to melee and thrown attacks">info</mat-icon>
     <h4>Strength</h4>
     <button (click)="changeAbility('strength',-1)" mat-icon-button color="warn">
       <mat-icon>remove</mat-icon>
@@ -11,9 +12,10 @@
       <mat-icon>add</mat-icon>
     </button>
     <p class="prime-text" *ngIf="character.primeAbility() == 'strength'">Prime</p>
-
   </mat-card>
   <mat-card ngClass="{{character.primeAbility() === 'intelligence' ? 'prime' : ''}}">
+    <mat-icon *ngIf="character.hasPositiveAbilityAdjustment('intelligence')" color="primary" class="ability-info-icon" matTooltip="Your high intellect compels to you one additional spoken language for each point above 10 ">info</mat-icon>
+    <mat-icon *ngIf="character.hasNegativeAbilityAdjustment('intelligence')" color="primary" class="ability-info-icon" matTooltip="Your weak intellect renders you unable to read or write">info</mat-icon>
     <h4>Intelligence</h4>
     <button (click)="changeAbility('intelligence',-1)" mat-icon-button color="warn">
       <mat-icon>remove</mat-icon>
@@ -26,6 +28,7 @@
     <p class="prime-text" *ngIf="character.primeAbility() == 'intelligence'">Prime</p>
   </mat-card>
   <mat-card ngClass="{{character.primeAbility() === 'wisdom' ? 'prime' : ''}}">
+    <mat-icon *ngIf="character.hasPositiveAbilityAdjustment('wisdom')" color="primary" class="ability-info-icon" matTooltip="Your high wisdom compels to you an additional +10% comprehend spoken language for every point above 10">info</mat-icon>
     <h4>Wisdom</h4>
     <button (click)="changeAbility('wisdom',-1)" mat-icon-button color="warn">
       <mat-icon>remove</mat-icon>
@@ -38,6 +41,7 @@
     <p class="prime-text" *ngIf="character.primeAbility() == 'wisdom'">Prime</p>
   </mat-card>
   <mat-card>
+    <mat-icon *ngIf="character.hasPositiveAbilityAdjustment('dexterity')" color="primary" class="ability-info-icon" matTooltip="Your high dexterity compels to you an additional +1 damage on missile attacks">info</mat-icon>
     <h4>Dexterity</h4>
     <button (click)="changeAbility('dexterity',-1)" mat-icon-button color="warn">
       <mat-icon>remove</mat-icon>
@@ -48,6 +52,8 @@
     </button>
   </mat-card>
   <mat-card>
+    <mat-icon *ngIf="character.hasPositiveAbilityAdjustment('constitution')" color="primary" class="ability-info-icon" matTooltip="Your high constitution compels to you an additional hit point for per whole hit die">info</mat-icon>
+    <mat-icon *ngIf="character.hasNegativeAbilityAdjustment('constitution')" color="primary" class="ability-info-icon" matTooltip="Your low constitution leaves you with a persistent ailment, allergy, infirmity">info</mat-icon>
     <h4>Constitution</h4>
     <button (click)="changeAbility('constitution',-1)" mat-icon-button color="warn">
       <mat-icon>remove</mat-icon>
@@ -58,6 +64,8 @@
     </button>
   </mat-card>
   <mat-card>
+    <mat-icon *ngIf="character.hasPositiveAbilityAdjustment('charisma')" color="primary" class="ability-info-icon" matTooltip="Your high charisma compels to you +1 to loyalty base and reaction checks">info</mat-icon>
+    <mat-icon *ngIf="character.hasNegativeAbilityAdjustment('charisma')" color="primary" class="ability-info-icon" matTooltip="Your low charisma leaves you with a mandatory identifying quality">info</mat-icon>
     <h4>Charisma</h4>
     <button (click)="changeAbility('charisma',-1)" mat-icon-button color="warn">
       <mat-icon>remove</mat-icon>

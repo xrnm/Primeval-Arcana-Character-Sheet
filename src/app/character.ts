@@ -291,11 +291,38 @@ export class Character implements Loadable {
     return this.mounts.filter(m=>!m.deleted);
   }
 
+  hasPositiveAbilityAdjustment(ability: string): boolean{
+    if(ability=='strength')
+      return this.abilities.strength >= 14;
+    else if(ability=='intelligence')
+      return this.abilities.intelligence >= 11;
+    else if(ability=='wisdom')
+      return this.abilities.wisdom >= 11;
+    else if(ability=='dexterity')
+      return this.abilities.dexterity >= 14;
+    else if(ability=='constitution')
+      return this.abilities.constitution >= 14;
+    else if(ability=='charisma')
+      return this.abilities.charisma >= 14;
+    else
+      return false;
+  }
+
+  hasNegativeAbilityAdjustment(ability: string): boolean{
+    if(ability=='intelligence')
+      return this.abilities.intelligence <= 7;
+    else if(ability=='constitution')
+      return this.abilities.constitution <= 5;
+    else if(ability=='charisma')
+      return this.abilities.charisma <= 6;
+    else
+      return false;
+  }
+
 
   static classes() {
     return ['Fighter', 'Cleric', 'Magic User'];
   }
 
-  getSpell
 
 }
