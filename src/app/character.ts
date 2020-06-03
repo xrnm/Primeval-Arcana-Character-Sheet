@@ -120,9 +120,22 @@ export class Character implements Loadable {
     });
   }
 
-  getSpellGroupForLevel(level: number): SpellGroup{
-    return this.spells.find(sg=>sg.level==level)
+  getMemorizedSpells(){
+     SpellSlotHelper.allSpellSlots(this).forEach((size,index)=>{
+       // Set each spell group to have the correct number of slots
+       if(this.spells[index])
+         this.spells[index].setSlots(size);
+       else
+         this.spells[index] = new SpellGroup({slots:size, level:index+1, spells: Array(size)})
+     });
+
+     // delete missing spell groups
+     while(this.spells.length > SpellSlotHelper.allSpellSlots(this).length)
+       this.spells.pop();
+
+    return this.spells
   }
+
   getClass(){
     return this.class;
   }
