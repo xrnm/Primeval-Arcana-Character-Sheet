@@ -62,6 +62,8 @@
   <mat-card>
     <mat-icon *ngIf="editing!='background'" color='primary' (click)="editSection('background')" class="edit">edit
     </mat-icon>
+    <mat-icon *ngIf="character.hasPositiveAbilityAdjustment('intelligence')" color="primary" class="ability-info-icon" matTooltip="Your high intellect compels to you one additional spoken language for each point above 10 ">info</mat-icon>
+    <mat-icon *ngIf="character.hasNegativeAbilityAdjustment('intelligence')" color="primary" class="ability-info-icon" matTooltip="Your weak intellect renders you unable to read or write">info</mat-icon>
     <mat-list *ngIf="editing!='background'">
       <h2>Background</h2>
       <mat-list-item><span>Alignment:&nbsp;</span> {{character.alignment}} </mat-list-item>
@@ -76,6 +78,7 @@
       <mat-divider></mat-divider>
     </mat-list>
     <mat-list *ngIf="editing=='background'">
+    'background'">
       <h2>Edit Background</h2>
       <mat-list-item>
         <mat-form-field>
@@ -213,6 +216,7 @@
       *ngIf="character.hitDice().bonus != 0">+ {{character.hitDice().bonus}}&nbsp;</span></strong>
   </mat-card>
   <mat-card>
+    <mat-icon *ngIf="character.hasPositiveAbilityAdjustment('constitution')" color="primary" class="ability-info-icon" matTooltip="Your high constitution compels to you an additional hit point for per whole hit die">info</mat-icon>
     <h4>Hit Points</h4>
     <strong><span class="current-hp">{{character.current_hp}}&nbsp;</span> / {{character.total_hp}}</strong>
     <div id="hp-area">
@@ -253,10 +257,12 @@
   <mat-card>
     <h4>Melee To-hit</h4>
     <strong>+{{character.meleeToHit()}}</strong>
+    <p *ngIf="character.hasPositiveAbilityAdjustment('strength')" class="damage-modifier">+1 damage</p>
   </mat-card>
   <mat-card>
     <h4>Missile To-hit</h4>
     <strong>+{{character.missileToHit()}}</strong>
+    <p *ngIf="character.hasPositiveAbilityAdjustment('dexterity')" class="damage-modifier">+1 damage</p>
   </mat-card>
 </div>
 
