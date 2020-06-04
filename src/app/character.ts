@@ -19,7 +19,8 @@ export class Character implements Loadable {
   profession: string;
   origin: string;
   alignment: string;
-  height: number;
+  height_inch: number;
+  height_foot: number;
   weight: number;
   eye_color: string;
   hair_color: string;
@@ -295,9 +296,9 @@ export class Character implements Loadable {
   }
 
   displayHeight(){
-    if(!this.height)
+    if(!this.height_foot && !this.height_inch)
       return '';
-    return `${Math.floor(this.height/12)}'${this.height%12}'' (${this.height}'')`
+    return `${this.height_foot ? this.height_foot : 0}' ${this.height_inch ? this.height_inch : 0}"`
   }
 
   getMounts(){
