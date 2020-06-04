@@ -298,7 +298,7 @@ export class Character implements Loadable {
   displayHeight(){
     if(!this.height_foot && !this.height_inch)
       return '';
-    return `${this.height_foot}' ${this.height_inch}"`
+    return `${this.height_foot ? this.height_foot : 0}' ${this.height_inch ? this.height_inch : 0}"`
   }
 
   getMounts(){
