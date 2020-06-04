@@ -134,8 +134,12 @@
       <h2>Edit Attributes</h2>
       <mat-list-item>
         <mat-form-field>
-          <mat-label>Height:</mat-label>
-          <input matInput [(ngModel)]="character.height" type="number"/>
+          <mat-label>Height Feet:</mat-label><input matInput [(ngModel)]="character.height_foot" type="number"/>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Height Inches:</mat-label><input matInput [(ngModel)]="character.height_inch" type="number"/>
         </mat-form-field>
       </mat-list-item>
       <mat-list-item>
