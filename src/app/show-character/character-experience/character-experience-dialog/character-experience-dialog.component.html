@@ -15,8 +15,10 @@
     <mat-label>Notes</mat-label>
     <textarea matInput [(ngModel)]="experience.notes"> </textarea>
   </mat-form-field>
+  <br />
+  {{experience.points }} + {{block.bonus_xp}}% Bonus = {{block.applyBonus(experience.points)}}
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button [mat-dialog-close]="" >Cancel</button>
-  <button mat-button (click)="addExperience()" [mat-dialog-close]="" cdkFocusInitial>Done</button>
+  <button mat-raised-button [mat-dialog-close]="" >Cancel</button>
+  <button color="primary" mat-raised-button (click)="addExperience()" [mat-dialog-close]="" cdkFocusInitial>Done</button>
 </mat-dialog-actions>

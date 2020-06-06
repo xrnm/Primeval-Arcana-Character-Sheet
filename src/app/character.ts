@@ -12,7 +12,6 @@ import {Mount} from "./mount";
 
 export class Character implements Loadable {
   name: string;
-  class: string = 'Fighter';
   race: string;
   age: number;
   sex: string;
@@ -84,8 +83,10 @@ export class Character implements Loadable {
     if (!init) return;
     Object.assign(this, init);
 
-    if(init.experience)
+    if (init.experience)
       this.experience = init.experience.map((experience) => new ExperienceBlock(experience));
+    this.initializeExperienceBonus();
+
 
     if (init.purse)
       this.purse = new Purse(init.purse);
@@ -103,45 +104,51 @@ export class Character implements Loadable {
 
     this.initializeSpells();
 
-    if(init.spells)
-      this.spells.map(sg=>sg.importSpells(init.spells));
+    if (init.spells)
+      this.spells.map(sg => sg.importSpells(init.spells));
 
-    if(init.hirelings)
-      this.hirelings = init.hirelings.map(hireling=>new Character(hireling));
+    if (init.hirelings)
+      this.hirelings = init.hirelings.map(hireling => new Character(hireling));
     else
       this.hirelings = [];
 
-    if(init.mounts)
-      this.mounts = init.mounts.map(m=>new Mount(m));
+    if (init.mounts)
+      this.mounts = init.mounts.map(m => new Mount(m));
   }
 
-  initializeSpells(){
-    this.spells = SpellSlotHelper.allSpellSlots(this).map((count,index)=>{
-      return new SpellGroup({slots:count, level:index+1, spells: Array(count)})
+  initializeExperienceBonus() {
+    const primeScore = this.abilities[this.primeAbility().toLowerCase()];
+    if (primeScore > 14)
+      this.experience[0].bonus_xp = 10;
+    else if (primeScore > 12)
+      this.experience[0].bonus_xp = 5;
+    else
+      this.experience[0].bonus_xp = 0;
+      }
+
+
+  getMemorizedSpells() {
+    SpellSlotHelper.allSpellSlots(this).forEach((size, index) => {
+      // Set each spell group to have the correct number of slots
+      if (this.spells[index])
+        this.spells[index].setSlots(size);
+      else
+        this.spells[index] = new SpellGroup({slots: size, level: index + 1, spells: Array(size)})
     });
-  }
 
-  getMemorizedSpells(){
-     SpellSlotHelper.allSpellSlots(this).forEach((size,index)=>{
-       // Set each spell group to have the correct number of slots
-       if(this.spells[index])
-         this.spells[index].setSlots(size);
-       else
-         this.spells[index] = new SpellGroup({slots:size, level:index+1, spells: Array(size)})
-     });
-
-     // delete missing spell groups
-     while(this.spells.length > SpellSlotHelper.allSpellSlots(this).length)
-       this.spells.pop();
+    // delete missing spell groups
+    while (this.spells.length > SpellSlotHelper.allSpellSlots(this).length)
+      this.spells.pop();
 
     return this.spells
   }
 
-  getClass(){
-    return this.class;
+  getClass() {
+    return this.experience[0].class
   }
+
   hitDice() {
-    switch (this.class) {
+    switch (this.getClass()) {
       case 'Fighter':
         return HitDiceHelper.fighterHitDice(this.getLevel());
       case 'Cleric':
@@ -153,16 +160,16 @@ export class Character implements Loadable {
     }
   }
 
-  getClassAbbreviation(){
+  getClassAbbreviation() {
     return this.getClass()[0]
   }
 
-  highestPossibleSpellLevel(): number{
+  highestPossibleSpellLevel(): number {
     return SpellSlotHelper.highestSpellLevel(this);
   }
 
-  spellSlots(level: number) : number{
-    return SpellSlotHelper.spellSlots(this,level)
+  spellSlots(level: number): number {
+    return SpellSlotHelper.spellSlots(this, level)
   }
 
 
@@ -176,6 +183,12 @@ export class Character implements Loadable {
         return acc + container.load()
       }, 0)
       + this.purse.load()
+  }
+
+  initializeSpells() {
+    this.spells = SpellSlotHelper.allSpellSlots(this).map((count, index) => {
+      return new SpellGroup({slots: count, level: index + 1, spells: Array(count)})
+    });
   }
 
   maximumLoad() {
@@ -219,7 +232,7 @@ export class Character implements Loadable {
   }
 
   primeAbility() {
-    switch (this.class) {
+    switch (this.getClass()) {
       case 'Fighter':
         return 'strength';
       case "Magic User":
@@ -232,17 +245,17 @@ export class Character implements Loadable {
   adjustedStrength(): number {
     let modifier = 0;
 
-    if (this.class == 'Fighter')
+    if (this.getClass() == 'Fighter')
       modifier += this.getLevel();
 
     return this.abilities.strength + modifier;
   }
 
-  getSavingThrows(){
+  getSavingThrows() {
     return SavingThrowsHelper.getSavingThrows(this)
   }
 
-  getSystemShock(): number{
+  getSystemShock(): number {
     return 20 - (this.adjustedConstitution() + this.getLevel());
   }
 
@@ -287,47 +300,48 @@ export class Character implements Loadable {
       .filter((item) => !isNaN(item))
       .reduce((item, max) => item > max ? item : max, -1);
   }
-  getSlottedContainers(): Container[]{
+
+  getSlottedContainers(): Container[] {
     return this.getSlungItems().filter(item => item.slots > 0)
   }
 
-  getSlungItems(): Container[]{
+  getSlungItems(): Container[] {
     return this.slung_items.filter(item => !item.deleted);
   }
 
-  displayHeight(){
-    if(!this.height_foot && !this.height_inch)
+  displayHeight() {
+    if (!this.height_foot && !this.height_inch)
       return '';
     return `${this.height_foot ? this.height_foot : 0}' ${this.height_inch ? this.height_inch : 0}"`
   }
 
-  getMounts(){
-    return this.mounts.filter(m=>!m.deleted);
+  getMounts() {
+    return this.mounts.filter(m => !m.deleted);
   }
 
-  hasPositiveAbilityAdjustment(ability: string): boolean{
-    if(ability=='strength')
+  hasPositiveAbilityAdjustment(ability: string): boolean {
+    if (ability == 'strength')
       return this.abilities.strength >= 14;
-    else if(ability=='intelligence')
+    else if (ability == 'intelligence')
       return this.abilities.intelligence >= 11;
-    else if(ability=='wisdom')
+    else if (ability == 'wisdom')
       return this.abilities.wisdom >= 11;
-    else if(ability=='dexterity')
+    else if (ability == 'dexterity')
       return this.abilities.dexterity >= 14;
-    else if(ability=='constitution')
+    else if (ability == 'constitution')
       return this.abilities.constitution >= 14;
-    else if(ability=='charisma')
+    else if (ability == 'charisma')
       return this.abilities.charisma >= 14;
     else
       return false;
   }
 
-  hasNegativeAbilityAdjustment(ability: string): boolean{
-    if(ability=='intelligence')
+  hasNegativeAbilityAdjustment(ability: string): boolean {
+    if (ability == 'intelligence')
       return this.abilities.intelligence <= 7;
-    else if(ability=='constitution')
+    else if (ability == 'constitution')
       return this.abilities.constitution <= 5;
-    else if(ability=='charisma')
+    else if (ability == 'charisma')
       return this.abilities.charisma <= 6;
     else
       return false;

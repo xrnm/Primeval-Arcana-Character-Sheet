@@ -18,6 +18,7 @@ export class CharacterAttributesComponent implements OnInit {
     if(this.gameService.lock)
       return;
     this.character.abilities[ability] += delta;
+    this.character.initializeExperienceBonus();
   }
 
 }

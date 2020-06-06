@@ -10,7 +10,10 @@ export class ExperienceBlock {
     if(init && init.experiences)
       this.experiences = init.experiences.map(e=>new Experience(e));
     else
-      this.experiences = []
+      this.experiences = [];
+  }
+  applyBonus(points){
+    return Math.round(points * (1 + (this.bonus_xp / 100)));
   }
 
   removeExperience(experience: Experience){
@@ -46,11 +49,16 @@ export class ExperienceBlock {
   }
 
   currentLevelExperience(): number{
+    if(this.currentLevel() == 1)
+      return this.currentExperience();
     return this.currentExperience() - this.totalExperienceForLevel(this.currentLevel());
   }
 
   levelProgress(): number{
-    return this.currentLevelExperience() / this.totalExperienceForLevel(this.currentLevel())
+    if(this.currentLevel() == 1)
+      return this.currentLevelExperience() / (this.totalExperienceForLevel(this.currentLevel()+1))
+    
+    return this.currentLevelExperience() / (this.totalExperienceForLevel(this.currentLevel()+1) - this.totalExperienceForLevel(this.currentLevel()))
   }
 
 }
