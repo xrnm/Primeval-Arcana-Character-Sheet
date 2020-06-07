@@ -11,9 +11,7 @@ https://ics.blacktowergames.com
 
 ## Features that are conspicuously absent
 
-1. Perks for high/low stats 
 2. Turning Events
-3. Mounts
 5. Carts / Strongholds / vaults etc
 6. Unload warning on navigation
 7. Unload Warning on new character creation
