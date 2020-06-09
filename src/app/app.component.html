@@ -11,31 +11,32 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar id="navigation">
-        <a id="site-title" routerLink="/">Revived Character Sheet</a>
-        <app-links></app-links>
-        <div>
-          <button class="menu-hamburger" mat-icon-button (click)="toggleMenu()">
-            <mat-icon>menu</mat-icon>
-          </button>
-          <button mat-raised-button color="primary" (click)="exportGame()">Export
-            <mat-icon>arrow_downward</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" routerLink="/raw-edit">
-            <mat-icon>settings</mat-icon>
-          </button>
-        </div>
+      <a id="site-title" routerLink="/">Revived Character Sheet</a>
+      <app-links></app-links>
+      <div>
+        <button class="menu-hamburger" mat-icon-button (click)="toggleMenu()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" (click)="exportGame()">Export
+          <mat-icon>arrow_downward</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" routerLink="/raw-edit">
+          <mat-icon>settings</mat-icon>
+        </button>
+      </div>
     </mat-toolbar>
-    <div *ngFor="let character of [gameService.getGame().getCharacter()]" id="character-summary">
-      {{character.name}} |
-      {{character.getClass()}} {{character.getLevel()}} |
-      STR {{character.adjustedAbilityString('strength')}} |
-      INT {{character.adjustedAbilityString('intelligence')}} |
-      WIS {{character.adjustedAbilityString('wisdom')}} |
-      DEX {{character.adjustedAbilityString('dexterity')}} |
-      CON {{character.adjustedAbilityString('constitution')}} |
-      CHA {{character.adjustedAbilityString('charisma')}}
+    <div *ngIf="gameService.getGame()" id="character-summary">
+      <div *ngFor="let character of [gameService.getGame().getCharacter()]">
+        {{character.name}} |
+        {{character.getClass()}} {{character.getLevel()}} |
+        STR {{character.adjustedAbilityString('strength')}} |
+        INT {{character.adjustedAbilityString('intelligence')}} |
+        WIS {{character.adjustedAbilityString('wisdom')}} |
+        DEX {{character.adjustedAbilityString('dexterity')}} |
+        CON {{character.adjustedAbilityString('constitution')}} |
+        CHA {{character.adjustedAbilityString('charisma')}}
+      </div>
     </div>
-
     <router-outlet></router-outlet>
     <button *ngIf="!gameService.lock" (click)='lockPage()' class="lock-icon" mat-mini-fab>
       <mat-icon>lock</mat-icon>
