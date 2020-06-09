@@ -6,8 +6,7 @@
     <button (click)="changeAbility('strength',-1)" mat-icon-button color="warn">
       <mat-icon>remove</mat-icon>
     </button>
-    <strong>{{character.abilities.strength}}<span
-      *ngIf="character.primeAbility() == 'strength'"> + {{character.getLevel()}}</span></strong>
+    <strong>{{character.adjustedAbilityString('strength')}}</strong>
     <button (click)="changeAbility('strength',1)" mat-icon-button color="primary">
       <mat-icon>add</mat-icon>
     </button>
@@ -20,8 +19,7 @@
     <button (click)="changeAbility('intelligence',-1)" mat-icon-button color="warn">
       <mat-icon>remove</mat-icon>
     </button>
-    <strong>{{character.abilities.intelligence}}<span
-      *ngIf="character.primeAbility() == 'intelligence'"> + {{character.getLevel()}}</span></strong>
+    <strong>{{character.adjustedAbilityString('intelligence')}}</strong>
     <button (click)="changeAbility('intelligence',1)" mat-icon-button color="primary">
       <mat-icon>add</mat-icon>
     </button>

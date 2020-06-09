@@ -7,10 +7,7 @@
       {{block.currentExperience() }} / {{block.totalExperienceForLevel(block.currentLevel() + 1)}}
     </h3>
     <div class="add-experience">
-      <button (click)="addExperience(block)" class="add-experience-button" mat-mini-fab aria-label="Add Experience Button"
-              color="primary">
-        <mat-icon>add</mat-icon>
-      </button>
+      <button mat-mini-fab color="primary" (click)="openDialog(block)"><mat-icon>add</mat-icon></button>
     </div>
     <mat-accordion>
       <mat-expansion-panel *ngFor="let experience of block.experiences; let j = index">

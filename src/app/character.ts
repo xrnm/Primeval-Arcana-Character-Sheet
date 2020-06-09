@@ -124,7 +124,7 @@ export class Character implements Loadable {
       this.experience[0].bonus_xp = 5;
     else
       this.experience[0].bonus_xp = 0;
-      }
+  }
 
 
   getMemorizedSpells() {
@@ -249,6 +249,13 @@ export class Character implements Loadable {
       modifier += this.getLevel();
 
     return this.abilities.strength + modifier;
+  }
+
+  adjustedAbilityString(ability): string {
+    let str = this.abilities[ability];
+    if(this.primeAbility()==ability)
+      str += ' + ' + this.getLevel();
+    return str
   }
 
   getSavingThrows() {

@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import {ExperienceBlock} from "../../experience-block";
 import {Experience} from "../../experience";
 import {GameService} from "../../game.service";
+import {MatDialog} from "@angular/material/dialog";
+import {CharacterExperienceDialogComponent} from "../../show-character/character-experience/character-experience-dialog/character-experience-dialog.component";
 
 @Component({
   selector: 'adventure-log-experience-blocks',
@@ -10,7 +12,7 @@ import {GameService} from "../../game.service";
 })
 export class ExperienceBlocksComponent implements OnInit {
   @Input() blocks: ExperienceBlock[];
-  constructor(private gameService: GameService) { }
+  constructor(public dialog: MatDialog, private gameService: GameService) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +27,16 @@ export class ExperienceBlocksComponent implements OnInit {
     if(this.gameService.lock)
       return;
     block.removeExperience(experience)
+  }
+
+  openDialog(experiences: ExperienceBlock){
+    if(this.gameService.lock)
+      return;
+    const dialogRef = this.dialog.open(CharacterExperienceDialogComponent,{
+      data: {
+        experiences: experiences
+      }
+    });
   }
 
 }

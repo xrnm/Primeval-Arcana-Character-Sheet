@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {GameService} from "./game.service";
 import {saveAs} from 'file-saver'
 import {Game} from "./game";
 import {Router} from "@angular/router";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,9 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
   year = new Date().getFullYear();
-  game: Game;
   opened = false;
-  constructor(private titleService: Title, private router: Router, public gameService: GameService) {
+
+  constructor(@Inject(DOCUMENT) private document: Document, private titleService: Title, private router: Router, public gameService: GameService) {
   }
 
   ngOnInit(){
