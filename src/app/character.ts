@@ -72,6 +72,7 @@ export class Character implements Loadable {
   appearance: string;
   clothing: string;
   quests: string;
+  will: string;
   spellbook: SpellBook = new SpellBook();
   spells: SpellGroup[];
   hirelings: Character[];
