@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {GameService} from "./game.service";
 import {saveAs} from 'file-saver'
@@ -12,8 +12,8 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
   year = new Date().getFullYear();
-  game: Game;
   opened = false;
+
   constructor(private titleService: Title, private router: Router, public gameService: GameService) {
   }
 
