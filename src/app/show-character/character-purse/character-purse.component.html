@@ -4,8 +4,8 @@
     <mat-list dense>
       <h2>Coins</h2>
       <mat-icon color="primary" class="purse-info-icon" matTooltip="Hold shift to change by 10, Ctrl to change by 100, and both to change by 1000">info</mat-icon>
-      <mat-list-item><span>Platinum: </span>
-        {{character.purse.platinum}}
+      <mat-list-item><span>Platinum:&nbsp; </span>
+        {{character.purse.platinum | number}}
         <div class="mat-list-actions">
           <button [disabled]="character.purse.platinum < 1" mat-mini-fab color="warn" (click)="changeCoin('platinum',-1, $event)">
             <mat-icon>remove</mat-icon>
@@ -16,7 +16,7 @@
         </div>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Gold: </span> {{character.purse.gold}}
+      <mat-list-item><span>Gold:&nbsp; </span> {{character.purse.gold | number}}
         <div class="mat-list-actions">
           <button mat-mini-fab color="warn" (click)="changeCoin('gold',-1, $event)">
             <mat-icon>remove</mat-icon>
@@ -27,7 +27,7 @@
         </div>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Silver: </span> {{character.purse.silver}}
+      <mat-list-item><span>Silver:&nbsp; </span> {{character.purse.silver | number}}
         <div class="mat-list-actions">
           <button mat-mini-fab color="warn" (click)="changeCoin('silver',-1, $event)">
             <mat-icon>remove</mat-icon>
@@ -38,7 +38,7 @@
         </div>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Copper: </span> {{character.purse.copper}}
+      <mat-list-item><span>Copper:&nbsp; </span> {{character.purse.copper | number}}
         <div class="mat-list-actions">
           <button mat-mini-fab color="warn" (click)="changeCoin('copper',-1, $event)">
             <mat-icon>remove</mat-icon>
