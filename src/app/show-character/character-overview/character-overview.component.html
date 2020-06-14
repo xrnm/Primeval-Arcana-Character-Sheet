@@ -219,23 +219,27 @@
       *ngIf="character.hitDice().bonus != 0">+ {{character.hitDice().bonus}}&nbsp;</span></strong>
   </mat-card>
   <mat-card>
-    <mat-icon *ngIf="character.hasPositiveAbilityAdjustment('constitution')" color="primary" class="ability-info-icon" matTooltip="Your high constitution compels to you an additional hit point for per whole hit die">info</mat-icon>
+    <mat-icon *ngIf="editing!='hitpoints'" color='primary' (click)="editSection('hitpoints')" class="edit">edit
+    </mat-icon>
+    <mat-icon *ngIf="editing!='hitpoints' && character.hasPositiveAbilityAdjustment('constitution')" color="primary" class="ability-info-icon" matTooltip="Your high constitution compels to you an additional hit point for per whole hit die">info</mat-icon>
     <h4>Hit Points</h4>
-    <strong><span class="current-hp">{{character.current_hp}}&nbsp;</span> / {{character.total_hp}}</strong>
+    <div *ngIf="editing!='hitpoints'">
+    <strong><span class="current-hp">{{character.current_hp}}&nbsp;</span> / {{character.total_hp}}<span id="hpmax">Max</span></strong>
     <div id="hp-area">
-      <button [disabled]="character.current_hp==character.total_hp" (click)="changeCharacter('current_hp',1)" class="hp-button current-add" mat-mini-fab color="primary">
-        <mat-icon>add</mat-icon>
-      </button>
       <button (click)="changeCharacter('current_hp',-1)" class="hp-button current-remove" mat-mini-fab color="warn">
         <mat-icon>remove</mat-icon>
       </button>
-
-      <button (click)="changeCharacter('total_hp',1)" class="hp-button total-add" mat-mini-fab color="accent">
+      <button [disabled]="character.current_hp==character.total_hp" (click)="changeCharacter('current_hp',1)" class="hp-button current-add" mat-mini-fab color="primary">
         <mat-icon>add</mat-icon>
       </button>
-      <button (click)="changeCharacter('total_hp', -1)" class="hp-button current-remove" mat-mini-fab color="accent">
-        <mat-icon>remove</mat-icon>
-      </button>
+    </div>
+    </div>
+    <div *ngIf="editing=='hitpoints'">
+      <mat-form-field>
+        <mat-label>Maximum Hitpoints:</mat-label>
+        <input matInput type="number" min="0" [(ngModel)]="character.total_hp" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
     </div>
   </mat-card>
   <mat-card>
