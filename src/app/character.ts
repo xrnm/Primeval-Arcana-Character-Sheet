@@ -252,11 +252,17 @@ export class Character implements Loadable {
     return this.abilities.strength + modifier;
   }
 
-  adjustedAbilityString(ability): string {
-    let str = this.abilities[ability];
-    if(this.primeAbility()==ability)
+  adjustedAbilityString(abilityName): string {
+    let str = this.abilities[abilityName];
+    if(this.primeAbility()==abilityName)
       str += ' + ' + this.getLevel();
     return str
+  }
+  adjustedAbility(abilityName): number {
+    let adjustedAbility = this.abilities[abilityName];
+    if(this.primeAbility()==abilityName)
+      adjustedAbility += this.getLevel();
+    return adjustedAbility
   }
 
   getSavingThrows() {
@@ -328,29 +334,32 @@ export class Character implements Loadable {
   }
 
   hasPositiveAbilityAdjustment(ability: string): boolean {
+    const adjustedAbility = this.adjustedAbility(ability);
+
     if (ability == 'strength')
-      return this.abilities.strength >= 14;
+      return adjustedAbility >= 14;
     else if (ability == 'intelligence')
-      return this.abilities.intelligence >= 11;
+      return adjustedAbility >= 11;
     else if (ability == 'wisdom')
-      return this.abilities.wisdom >= 11;
+      return adjustedAbility >= 11;
     else if (ability == 'dexterity')
-      return this.abilities.dexterity >= 14;
+      return adjustedAbility >= 14;
     else if (ability == 'constitution')
-      return this.abilities.constitution >= 14;
+      return adjustedAbility >= 14;
     else if (ability == 'charisma')
-      return this.abilities.charisma >= 14;
+      return adjustedAbility >= 14;
     else
       return false;
   }
 
   hasNegativeAbilityAdjustment(ability: string): boolean {
+    const adjustedAbility = this.adjustedAbility(ability);
     if (ability == 'intelligence')
-      return this.abilities.intelligence <= 7;
+      return adjustedAbility <= 7;
     else if (ability == 'constitution')
-      return this.abilities.constitution <= 5;
+      return adjustedAbility <= 5;
     else if (ability == 'charisma')
-      return this.abilities.charisma <= 6;
+      return adjustedAbility <= 6;
     else
       return false;
   }
