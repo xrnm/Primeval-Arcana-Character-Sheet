@@ -16,7 +16,6 @@ export class ShowCharacterComponent implements OnInit {
     if(!this.gameService.getGame())
       this.router.navigate(['']);
     this.character = this.gameService.getGame().getCharacter();
-
   }
 
 }
