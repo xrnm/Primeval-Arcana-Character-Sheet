@@ -19,6 +19,6 @@ export class Purse implements Loadable{
   }
 
   load(){
-    return this.platinum + this.gold + this.silver + this.copper + this.gems.reduce((acc,item)=>acc+item.weight,0)
+    return this.platinum + this.gold + this.silver + this.copper + this.gems.reduce((acc,item)=>acc+item.totalWeight(),0)
   }
 }

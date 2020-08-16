@@ -27,14 +27,14 @@
     </mat-toolbar>
     <div *ngIf="gameService.getGame()" id="character-summary">
       <div *ngFor="let character of [gameService.getGame().getCharacter()]">
-        {{character.name}} |
-        {{character.getClass()}} {{character.getLevel()}} |
-        STR {{character.adjustedAbilityString('strength')}} |
-        INT {{character.adjustedAbilityString('intelligence')}} |
-        WIS {{character.adjustedAbilityString('wisdom')}} |
+        {{character.name}} ({{character.getClassAbbreviation()}}{{character.getLevel()}})|
+        STR {{character.adjustedAbilityString('strength',true)}} |
+        INT {{character.adjustedAbilityString('intelligence',true)}} |
+        WIS {{character.adjustedAbilityString('wisdom',true)}} |
         DEX {{character.adjustedAbilityString('dexterity')}} |
         CON {{character.adjustedAbilityString('constitution')}} |
-        CHA {{character.adjustedAbilityString('charisma')}}
+        CHA {{character.adjustedAbilityString('charisma')}} |
+        TH +{{character.meleeToHit()}} +{{character.missileToHit()}}
       </div>
     </div>
     <router-outlet></router-outlet>
@@ -44,6 +44,15 @@
     <button *ngIf="gameService.lock" (click)='lockPage()' color="warn" class="lock-icon" mat-mini-fab>
       <mat-icon>vpn_key</mat-icon>
     </button>
+    <div *ngIf="gameService.getGame()" id="character-movement-summary">
+      <div *ngFor="let character of [gameService.getGame().getCharacter()]">
+        HP {{character.current_hp}}/{{character.total_hp}} |
+        1x Pace {{character.movementRating() / 6}} |
+        3x Pace {{character.movementRating() / 3}} |
+        2x Pace {{character.movementRating() / 2}} |
+        Weight {{character.load()}}/{{character.maximumLoad()}}
+      </div>
+    </div>
     <mat-toolbar id="footer">
       <a routerLink="/">Revived Character Sheet</a>
       <small id="copyright">Copyright &copy; {{year}} Justin Edwards. All Rights Reserved. (for now)</small>

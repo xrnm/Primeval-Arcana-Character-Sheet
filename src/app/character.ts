@@ -252,10 +252,13 @@ export class Character implements Loadable {
     return this.abilities.strength + modifier;
   }
 
-  adjustedAbilityString(abilityName): string {
-    let str = this.abilities[abilityName];
+  adjustedAbilityString(abilityName, stripSpaces=false): string {
+    let str = ''+this.abilities[abilityName];
+    console.log(typeof str)
     if(this.primeAbility()==abilityName)
       str += ' + ' + this.getLevel();
+    if(stripSpaces)
+      str = str.replace(/\s/g, '');
     return str
   }
   adjustedAbility(abilityName): number {

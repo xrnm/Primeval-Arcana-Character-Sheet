@@ -16,8 +16,9 @@
     <mat-list dense>
       <h2>Slung Items:</h2>
       <div *ngFor="let si of character.getSlungItems()">
-        <mat-list-item>{{si.inventoryString()}}
+        <mat-list-item [class.overfull]="si.unequipped">{{si.inventoryString()}}
           <div class="mat-list-actions">
+            <mat-icon [color]="si.unequipped ? 'primary' : 'warn'" class="unequip-icon" [class.unequipped]="si.unequipped" (click)="si.unequipped = !si.unequipped">pan_tool</mat-icon>
             <button class="edit-item-button" mat-mini-fab color="accent" (click)="openContainerDialog(si)">
               <mat-icon>edit</mat-icon>
             </button>
@@ -35,7 +36,7 @@
   </mat-card>
   <mat-card *ngFor="let si of character.getSlottedContainers()">
     <h2>{{si.inventoryString(false)}}</h2>
-    <h3 [class.overfull]="si.load() - si.weight > si.capacity ">{{si.capacityString()}}</h3>
+    <h3 [class.overfull]="si.isOverfull()">{{si.capacityString()}}</h3>
     <item-list [capacity]="si.slots" [items]="si.contents"></item-list>
   </mat-card>
 </div>

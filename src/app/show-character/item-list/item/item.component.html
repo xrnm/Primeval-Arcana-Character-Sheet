@@ -1,8 +1,9 @@
 <mat-list-item *ngIf="!item.deleted">
-  <div [class.empty]="item.quantity==0" matTooltip="{{item.description}}">
+  <div [class.empty]="item.quantity==0||item.unequipped" matTooltip="{{item.description}}">
     {{item.inventoryString()}}
   </div>
   <div class="mat-list-actions">
+    <mat-icon [color]="item.unequipped ? 'primary' : 'warn'" class="unequip-icon" [class.unequipped]="item.unequipped" (click)="item.unequipped = !item.unequipped">pan_tool</mat-icon>
     <button [disabled]="item.quantity < 1" (click)="consume(item, $event)" mat-icon-button color="warn"
             aria-label="Consume Item">
       <mat-icon>remove</mat-icon>
