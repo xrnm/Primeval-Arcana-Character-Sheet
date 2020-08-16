@@ -7,14 +7,22 @@ export class Container implements Loadable {
   name: string;
   weight: number;
   capacity: number;
+  unequipped: boolean
   deleted: boolean = false;
 
+  isOverfull(){
+    this.contentsWeight() > this.capacity
+  }
   load() {
-    if (this.deleted)
+    if (this.deleted || this.unequipped)
       return 0;
+    return this.contentsWeight() + this.weight
+  }
+
+  contentsWeight(){
     return this.contents.reduce((weight, item, index) => {
       return weight + item.totalWeight()
-    }, this.weight)
+    },0)
   }
 
   inventoryString(includeWeight=true) {
@@ -27,7 +35,7 @@ export class Container implements Loadable {
   capacityString() {
     if(!this.capacity)
       return `${this.load()}cn`;
-    return `${this.load()-this.weight}/${this.capacity}cn (${(((this.load() - this.weight) / this.capacity)*100).toFixed(0)}%)`;
+    return `${this.contentsWeight()}/${this.capacity}cn (${((this.contentsWeight() / this.capacity)*100).toFixed(0)}%)`;
   }
 
   constructor(init?: Partial<Container>) {

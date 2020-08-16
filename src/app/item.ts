@@ -5,13 +5,14 @@ export class Item {
   quantity: number = 1;
   description: string;
   deleted: boolean = false;
+  unequipped: boolean;
 
   constructor(init?: Partial<Item>) {
     Object.assign(this, init);
   }
 
   totalWeight() {
-    if(this.deleted) return 0;
+    if(this.deleted || this.unequipped) return 0;
     return this.weight * this.quantity
   }
 
