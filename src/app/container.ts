@@ -11,11 +11,12 @@ export class Container implements Loadable {
   deleted: boolean = false;
 
   isOverfull(){
-    this.contentsWeight() > this.capacity
+    return this.contentsWeight() > this.capacity
   }
   load() {
     if (this.deleted || this.unequipped)
       return 0;
+
     return this.contentsWeight() + this.weight
   }
 
