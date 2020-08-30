@@ -1,4 +1,7 @@
-<h2 class="section-subtitle">Experience</h2>
+<h2 class="section-subtitle">
+  <a routerLink="/adventure-log"> Experience</a>
+  <button mat-mini-fab color="primary" (click)="openDialog()"><mat-icon>add</mat-icon></button>
+</h2>
 <div id="experience" class="container">
   <mat-card *ngFor="let experience of character.experience; let i  = index;">
     <mat-list dense>
@@ -16,7 +19,6 @@
       {{experience.levelProgress() | percent:'1.2' }}
       </div>
     </mat-list>
-    <button *ngIf="experience.class" mat-mini-fab color="primary" (click)="openDialog(experience)"><mat-icon>add</mat-icon></button>
-    <a routerLink="/adventure-log" class='detail-button' *ngIf="experience.class" mat-mini-fab color="accent"><mat-icon>subdirectory_arrow_right</mat-icon></a>
   </mat-card>
 </div>
+

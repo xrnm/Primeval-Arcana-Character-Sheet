@@ -9,6 +9,7 @@ import {SpellSlotHelper} from "./spell-slot-helper";
 import {SpellGroup} from "./spell-group";
 import {SavingThrowsHelper} from "./saving-throws-helper";
 import {Mount} from "./mount";
+import {Experience} from "./experience";
 
 export class Character implements Loadable {
   name: string;
@@ -62,7 +63,7 @@ export class Character implements Loadable {
     dragon_breath: 0,
     spell: 0
   };
-  experience: ExperienceBlock[] = [new ExperienceBlock({class: 'Fighter', experiences: []})];
+  experience: ExperienceBlock[] = [new ExperienceBlock({class: 'Fighter', prime: 'Strength', experiences: []})];
   purse: Purse = new Purse();
   magic_items: Item[] = [];
   known_languages: String[] = [];
@@ -254,7 +255,6 @@ export class Character implements Loadable {
 
   adjustedAbilityString(abilityName, stripSpaces=false): string {
     let str = ''+this.abilities[abilityName];
-    console.log(typeof str)
     if(this.primeAbility()==abilityName)
       str += ' + ' + this.getLevel();
     if(stripSpaces)
@@ -367,9 +367,15 @@ export class Character implements Loadable {
       return false;
   }
 
-
   static classes() {
     return ['Fighter', 'Cleric', 'Magic User'];
+  }
+
+  addExperience(experience: Experience){
+    const numBlocks = this.experience.length
+    let xp = experience.points
+
+      console.log(experience);
   }
 
 

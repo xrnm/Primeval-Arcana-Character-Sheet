@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Level {{block.currentLevel()}} {{block.class}}</h2>
+<h2 mat-dialog-title>Add Experience:</h2>
 <mat-dialog-content class="mat-typography">
   <mat-form-field>
     <mat-label>Date</mat-label>
@@ -16,7 +16,9 @@
     <textarea matInput [(ngModel)]="experience.notes"> </textarea>
   </mat-form-field>
   <br />
+  <p *ngFor="let block of character.experience">
   {{experience.points }} + {{block.bonus_xp}}% Bonus = {{block.applyBonus(experience.points)}}
+  </p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-raised-button [mat-dialog-close]="" >Cancel</button>

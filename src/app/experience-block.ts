@@ -3,6 +3,7 @@ import {Experience} from "./experience";
 export class ExperienceBlock {
   class: string;
   experiences: Experience[] = [];
+  prime: string;
   bonus_xp: number;
 
   constructor(init?: Partial<ExperienceBlock>) {
@@ -33,6 +34,7 @@ export class ExperienceBlock {
         return 625;
     }
   }
+  g
 
   currentExperience(): number {
     return this.experiences.reduce((acc, experience) => experience.points + acc, 0)

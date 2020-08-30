@@ -17,12 +17,12 @@ export class CharacterExperienceComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  openDialog(experiences: ExperienceBlock){
+  openDialog(){
     if(this.gameService.lock)
       return;
     const dialogRef = this.dialog.open(CharacterExperienceDialogComponent,{
       data: {
-        experiences: experiences
+        character: this.character
       }
     });
   }
