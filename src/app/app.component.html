@@ -34,7 +34,7 @@
         DEX {{character.adjustedAbilityString('dexterity')}} |
         CON {{character.adjustedAbilityString('constitution')}} |
         CHA {{character.adjustedAbilityString('charisma')}} |
-        TH +{{character.meleeToHit()}} +{{character.missileToHit()}}
+        To-Hit +{{character.meleeToHit()}} +{{character.missileToHit()}}
       </div>
     </div>
     <router-outlet></router-outlet>
@@ -48,9 +48,9 @@
       <div *ngFor="let character of [gameService.getGame().getCharacter()]">
         HP {{character.current_hp}}/{{character.total_hp}} |
         1x Pace {{character.movementRating() / 6}} |
-        3x Pace {{character.movementRating() / 3}} |
-        2x Pace {{character.movementRating() / 2}} |
-        Weight {{character.load()}}/{{character.maximumLoad()}}
+        2x Pace {{character.movementRating() / 3}} |
+        3x Pace {{character.movementRating() / 2}} |
+        Carried Weight {{character.load()}}/{{character.maximumLoad()}}
       </div>
     </div>
     <mat-toolbar id="footer">
