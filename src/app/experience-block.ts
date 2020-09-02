@@ -71,10 +71,14 @@ export class ExperienceBlock {
   }
 
   levelProgress(): number{
-    if(this.currentLevel() == 1)
-      return this.currentLevelExperience() / (this.totalExperienceForLevel(this.currentLevel()+1))
+    return this.currentLevelExperience() / this.experienceForNextLevel()
+  }
 
-    return this.currentLevelExperience() / (this.totalExperienceForLevel(this.currentLevel()+1) - this.totalExperienceForLevel(this.currentLevel()))
+  experienceForNextLevel(): number{
+    if(this.currentLevel() == 1)
+      return this.totalExperienceForLevel(this.currentLevel()+1)
+
+    return this.totalExperienceForLevel(this.currentLevel()+1) - this.totalExperienceForLevel(this.currentLevel())
   }
 
 

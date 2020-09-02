@@ -166,6 +166,7 @@ export class Character implements Loadable {
   }
 
   getClassAbbreviation() {
+    //TODO: Update this guy
     return this.getInitialClass()[0]
   }
 
@@ -387,44 +388,59 @@ export class Character implements Loadable {
     return ['Fighter', 'Cleric', 'Magic User'];
   }
 
-  numBlocks() {
+  experienceBlockCount() {
     return this.experience.length
   }
 
   addExperience(experience: Experience) {
+    let multiclass_description = ""
 
+    this.experience.forEach((block,index)=>{
+      if(index == 0)
+        return;
+      const xp = this.getBlockExperience(experience, index)
+      multiclass_description += ` ${block.class[0]} ${xp}`
+      block.addExperience(new Experience({
+        date:experience.date,
+        points:xp,
+        notes: experience.notes,
+      }))
+    })
+
+    let initialBlock = this.experience[0];
+    const xp = this.getBlockExperience(experience, 0);
+    initialBlock.addExperience(new Experience({
+      date:experience.date,
+      points:xp,
+      notes: experience.notes,
+      multiclass_description: `${experience.points}: ${initialBlock.class[0]} ${xp}}` + multiclass_description
+    }))
   }
 
   getBlockExperience(experience, index) {
-    // Get XP and subtract out any remainders
-    let hangoverXp = experience.points % this.numBlocks()
-    const totalXp = experience.points - hangoverXp;
-
-    // Split between classes
-    let classXp = totalXp / this.numBlocks();
+    // Are any classes maxed?
     const maxedClasses = this.getMaxedExperienceBlocks();
     const maxedClassPrimes = maxedClasses.map(b => b.prime)
 
-    if (maxedClassPrimes.length) {
-      console.log(maxedClassPrimes.includes(this.experience[index].prime));
-      if (maxedClassPrimes.includes(this.experience[index].prime))
+    // If maxed you don't get any XP
+    if (maxedClassPrimes.length && maxedClassPrimes.includes(this.experience[index].prime))
         return 0
 
-      classXp = totalXp / (this.numBlocks() - maxedClasses.length)
-      hangoverXp = experience.points % (this.numBlocks() - maxedClasses.length)
-    }
-    500  is ended up 249 249 fuck
-    if (index - maxedClasses.length < hangoverXp) {
+    // Get XP and subtract out any remainders
+    let hangoverXp = experience.points % (this.experienceBlockCount() - maxedClasses.length)
+    const totalXp = experience.points - hangoverXp;
+
+    // Split between classes
+    let classXp = totalXp / (this.experienceBlockCount() - maxedClasses.length)
+
+    // If there is hangoverXP enough for this class, add it in
+    if (index - maxedClasses.length < hangoverXp)
       classXp += 1
-    }
 
     return classXp
   }
 
   getMaxedExperienceBlocks() {
-    // console.log(this.abilities);
-    // console.log(this.experience[0].prime);
-    // console.log(this.abilities[this.experience[0].prime]);
     return this.experience.filter(b => b.currentLevel() == this.abilities[b.prime])
   }
 

@@ -1,14 +1,14 @@
 <h2 class="section-subtitle">Experience</h2>
+<div class="add-experience">
+  <button class="add-experience-button"mat-mini-fab color="primary" (click)="openDialog()"><mat-icon>add</mat-icon></button>
+</div>
 <div id="blocks-section" class="container">
-  <div *ngFor="let block of blocks; let i = index">
+  <div *ngFor="let block of character.experience; let i = index">
     <h3>
       Level {{block.currentLevel()}} {{block.class}}
     <br />
       {{block.currentExperience() }} / {{block.totalExperienceForLevel(block.currentLevel() + 1)}}
     </h3>
-    <div class="add-experience">
-      <button mat-mini-fab color="primary" (click)="openDialog(block)"><mat-icon>add</mat-icon></button>
-    </div>
     <mat-accordion>
       <mat-expansion-panel *ngFor="let experience of block.experiences; let j = index">
         <mat-expansion-panel-header>
