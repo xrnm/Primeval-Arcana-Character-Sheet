@@ -85,8 +85,11 @@ export class Character implements Loadable {
     if (!init) return;
     Object.assign(this, init);
 
+
     if (init.experience)
       this.experience = init.experience.map((experience) => new ExperienceBlock(experience));
+
+
     this.initializeExperienceBonus();
 
 
@@ -119,7 +122,7 @@ export class Character implements Loadable {
   }
 
   initializeExperienceBonus() {
-    const primeScore = this.abilities[this.primeAbility().toLowerCase()];
+    const primeScore = this.abilities[this.getInitialPrime().toLowerCase()];
     if (primeScore > 14)
       this.experience[0].bonus_xp = 10;
     else if (primeScore > 12)
@@ -145,12 +148,12 @@ export class Character implements Loadable {
     return this.spells
   }
 
-  getClass() {
+  getInitialClass() {
     return this.experience[0].class
   }
 
   hitDice() {
-    switch (this.getClass()) {
+    switch (this.getInitialClass()) {
       case 'Fighter':
         return HitDiceHelper.fighterHitDice(this.getLevel());
       case 'Cleric':
@@ -163,7 +166,7 @@ export class Character implements Loadable {
   }
 
   getClassAbbreviation() {
-    return this.getClass()[0]
+    return this.getInitialClass()[0]
   }
 
   highestPossibleSpellLevel(): number {
@@ -233,8 +236,8 @@ export class Character implements Loadable {
     return this.toHit() + modifier;
   }
 
-  primeAbility() {
-    switch (this.getClass()) {
+  getInitialPrime() {
+    switch (this.getInitialClass()) {
       case 'Fighter':
         return 'strength';
       case "Magic User":
@@ -244,27 +247,40 @@ export class Character implements Loadable {
     }
   }
 
+  primeAbilities() {
+    return this.experience.map(e => {
+      return {ability: e.prime, level: e.currentLevel()};
+    })
+  }
+
+  abilityIsPrime(ability) {
+    return this.primeAbilities().filter(b => b.ability == ability).length > 0
+  }
+
   adjustedStrength(): number {
     let modifier = 0;
 
-    if (this.getClass() == 'Fighter')
+    if (this.getInitialClass() == 'Fighter')
       modifier += this.getLevel();
 
     return this.abilities.strength + modifier;
   }
 
-  adjustedAbilityString(abilityName, stripSpaces=false): string {
-    let str = ''+this.abilities[abilityName];
-    if(this.primeAbility()==abilityName)
-      str += ' + ' + this.getLevel();
-    if(stripSpaces)
+  adjustedAbilityString(abilityName, stripSpaces = false): string {
+    let str = '' + this.abilities[abilityName];
+    const ability = this.primeAbilities().find(b => b.ability == abilityName)
+    if (ability)
+      str += ' + ' + ability.level
+    if (stripSpaces)
       str = str.replace(/\s/g, '');
     return str
   }
+
   adjustedAbility(abilityName): number {
     let adjustedAbility = this.abilities[abilityName];
-    if(this.primeAbility()==abilityName)
-      adjustedAbility += this.getLevel();
+    const ability = this.primeAbilities().find(b => b.ability == abilityName)
+    if (ability)
+      adjustedAbility += ability.level
     return adjustedAbility
   }
 
@@ -371,12 +387,45 @@ export class Character implements Loadable {
     return ['Fighter', 'Cleric', 'Magic User'];
   }
 
-  addExperience(experience: Experience){
-    const numBlocks = this.experience.length
-    let xp = experience.points
-
-      console.log(experience);
+  numBlocks() {
+    return this.experience.length
   }
 
+  addExperience(experience: Experience) {
+
+  }
+
+  getBlockExperience(experience, index) {
+    // Get XP and subtract out any remainders
+    let hangoverXp = experience.points % this.numBlocks()
+    const totalXp = experience.points - hangoverXp;
+
+    // Split between classes
+    let classXp = totalXp / this.numBlocks();
+    const maxedClasses = this.getMaxedExperienceBlocks();
+    const maxedClassPrimes = maxedClasses.map(b => b.prime)
+
+    if (maxedClassPrimes.length) {
+      console.log(maxedClassPrimes.includes(this.experience[index].prime));
+      if (maxedClassPrimes.includes(this.experience[index].prime))
+        return 0
+
+      classXp = totalXp / (this.numBlocks() - maxedClasses.length)
+      hangoverXp = experience.points % (this.numBlocks() - maxedClasses.length)
+    }
+    500  is ended up 249 249 fuck
+    if (index - maxedClasses.length < hangoverXp) {
+      classXp += 1
+    }
+
+    return classXp
+  }
+
+  getMaxedExperienceBlocks() {
+    // console.log(this.abilities);
+    // console.log(this.experience[0].prime);
+    // console.log(this.abilities[this.experience[0].prime]);
+    return this.experience.filter(b => b.currentLevel() == this.abilities[b.prime])
+  }
 
 }

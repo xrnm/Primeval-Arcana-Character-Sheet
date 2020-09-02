@@ -1,9 +1,9 @@
 export class SavingThrowsHelper {
 
   static getSavingThrows(character){
-    if(character.getClass()== 'Fighter')
+    if(character.getInitialClass()== 'Fighter')
       return SavingThrowsHelper.FIGHTER_SAVING_THROWS[character.getLevel()];
-    else if(character.getClass()== 'Magic User')
+    else if(character.getInitialClass()== 'Magic User')
       return SavingThrowsHelper.MAGIC_USER_SAVING_THROWS[character.getLevel()];
     else
       return SavingThrowsHelper.CLERIC_SAVING_THROWS[character.getLevel()];

@@ -1,4 +1,4 @@
-<div class="container" id="spells" cdkDropListGroup *ngIf="character.getClass() != 'Fighter'">
+<div class="container" id="spells" cdkDropListGroup *ngIf="character.getInitialClass() != 'Fighter'">
   <h2 class="section-subtitle">Spells</h2>
   <mat-card>
     <mat-icon color="primary" class="spell-info-icon" matTooltip="You may drag and drop spells from the spell book into your character's spell slots on the right. You may overcast spells, but you may not load spell into a slot of lower level">info</mat-icon>

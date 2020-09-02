@@ -54,9 +54,9 @@ export class SpellSlotHelper {
   }
 
   static allSpellSlots(character: Character) {
-    if (character.getClass() == 'Magic User')
+    if (character.getInitialClass() == 'Magic User')
       return this.magicUserSpellSlots(character.getLevel());
-    else if (character.getClass() == 'Cleric')
+    else if (character.getInitialClass() == 'Cleric')
       return this.clericSpellSlots(character.getLevel());
     else
       return [];
@@ -68,9 +68,9 @@ export class SpellSlotHelper {
 
   static highestSpellQuantity(character: Character): number {
     let quantity;
-    if (character.getClass() == 'Magic User')
+    if (character.getInitialClass() == 'Magic User')
       quantity = this.magicUserSpellSlots(character.getLevel())[0];
-    else if (character.getClass() == 'Cleric')
+    else if (character.getInitialClass() == 'Cleric')
       quantity = this.clericSpellSlots(character.getLevel())[0];
     else
       return 0;

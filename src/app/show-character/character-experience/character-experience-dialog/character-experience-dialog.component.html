@@ -16,8 +16,9 @@
     <textarea matInput [(ngModel)]="experience.notes"> </textarea>
   </mat-form-field>
   <br />
-  <p *ngFor="let block of character.experience">
-  {{experience.points }} + {{block.bonus_xp}}% Bonus = {{block.applyBonus(experience.points)}}
+  <p *ngFor="let block of character.experience; let i = index">
+  {{block.class}}:&nbsp;{{ character.getBlockExperience(experience, i)}} +
+    {{block.bonus_xp}}% Bonus = {{block.applyBonus(character.getBlockExperience(experience,i))}}
   </p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

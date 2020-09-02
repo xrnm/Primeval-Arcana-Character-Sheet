@@ -12,6 +12,20 @@ export class ExperienceBlock {
       this.experiences = init.experiences.map(e=>new Experience(e));
     else
       this.experiences = [];
+
+    this.prime = this.primeAbility()
+
+  }
+
+  primeAbility() {
+    switch (this.class) {
+      case 'Fighter':
+        return 'strength';
+      case "Magic User":
+        return "intelligence";
+      case "Cleric":
+        return "wisdom";
+    }
   }
   applyBonus(points){
     return Math.round(points * (1 + (this.bonus_xp / 100)));
@@ -62,6 +76,7 @@ export class ExperienceBlock {
 
     return this.currentLevelExperience() / (this.totalExperienceForLevel(this.currentLevel()+1) - this.totalExperienceForLevel(this.currentLevel()))
   }
+
 
 }
 
