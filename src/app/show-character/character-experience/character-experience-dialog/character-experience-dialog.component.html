@@ -18,7 +18,7 @@
   <br />
   <p *ngFor="let block of character.experience; let i = index">
   {{block.class}}:&nbsp;{{ character.getBlockExperience(experience, i)}} +
-    {{block.bonus_xp}}% Bonus = {{block.applyBonus(character.getBlockExperience(experience,i))}} of {{block.experienceForNextLevel()}}
+    {{block.bonus_xp}}% Bonus = {{block.applyBonus(character.getBlockExperience(experience,i))}} of {{block.experienceNeededForNextLevel()}}
   </p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

@@ -36,6 +36,10 @@ export class ExperienceBlock {
   }
 
   addExperience(experience: Experience){
+    experience.points = this.applyBonus(experience.points)
+    if(experience.points > this.experienceNeededForNextLevel())
+      experience.points = this.experienceNeededForNextLevel()
+    
     this.experiences.unshift(experience);
   }
 
@@ -79,6 +83,10 @@ export class ExperienceBlock {
       return this.totalExperienceForLevel(this.currentLevel()+1)
 
     return this.totalExperienceForLevel(this.currentLevel()+1) - this.totalExperienceForLevel(this.currentLevel())
+  }
+
+  experienceNeededForNextLevel(): number{
+    return this.experienceForNextLevel()-this.currentLevelExperience()
   }
 
 
