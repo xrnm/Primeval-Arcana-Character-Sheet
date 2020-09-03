@@ -383,6 +383,9 @@ export class Character implements Loadable {
     else
       return false;
   }
+  getExperience(): ExperienceBlock[]{
+    return this.experience.filter(b=>!b.deleted)
+  }
 
   static classes() {
     return ['Fighter', 'Cleric', 'Magic User'];

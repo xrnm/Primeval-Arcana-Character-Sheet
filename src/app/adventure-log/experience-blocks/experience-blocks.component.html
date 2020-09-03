@@ -3,7 +3,7 @@
   <button class="add-experience-button"mat-mini-fab color="primary" (click)="openDialog()"><mat-icon>add</mat-icon></button>
 </div>
 <div id="blocks-section" class="container">
-  <div *ngFor="let block of character.experience; let i = index">
+  <div *ngFor="let block of character.getExperience(); let i = index">
     <h3>
       Level {{block.currentLevel()}} {{block.class}}
     <br />

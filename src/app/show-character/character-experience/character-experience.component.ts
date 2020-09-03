@@ -32,4 +32,8 @@ export class CharacterExperienceComponent implements OnInit {
   addExperinceBlock(){
     console.log('fuck');
   }
+  confirmDelete(block){
+    if(confirm("Are you sure you want to delete this block and all of the experience?"))
+      block.delete()
+  }
 }

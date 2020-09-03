@@ -5,6 +5,7 @@ export class ExperienceBlock {
   experiences: Experience[] = [];
   prime: string;
   bonus_xp: number;
+  deleted: boolean
 
   constructor(init?: Partial<ExperienceBlock>) {
     Object.assign(this, init);
@@ -39,7 +40,7 @@ export class ExperienceBlock {
     experience.points = this.applyBonus(experience.points)
     if(experience.points > this.experienceNeededForNextLevel())
       experience.points = this.experienceNeededForNextLevel()
-    
+
     this.experiences.unshift(experience);
   }
 
@@ -88,7 +89,9 @@ export class ExperienceBlock {
   experienceNeededForNextLevel(): number{
     return this.experienceForNextLevel()-this.currentLevelExperience()
   }
-
+  delete(){
+    this.deleted = true
+  }
 
 }
 
