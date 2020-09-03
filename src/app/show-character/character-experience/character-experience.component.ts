@@ -13,6 +13,7 @@ import {ExperienceBlock} from "../../experience-block";
 })
 export class CharacterExperienceComponent implements OnInit {
   @Input() character: Character;
+  editing: number = -1
   constructor(public dialog: MatDialog, private gameService: GameService) { }
 
   ngOnInit(): void {

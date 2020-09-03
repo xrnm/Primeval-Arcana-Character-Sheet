@@ -9,6 +9,7 @@
     <br />
       {{block.currentExperience() }} / {{block.totalExperienceForLevel(block.currentLevel() + 1)}}
     </h3>
+
     <mat-accordion>
       <mat-expansion-panel *ngFor="let experience of block.experiences; let j = index">
         <mat-expansion-panel-header>

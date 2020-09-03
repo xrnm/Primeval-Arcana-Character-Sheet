@@ -4,13 +4,16 @@
 </h2>
 <div id="experience" class="container">
   <mat-card *ngFor="let experience of character.experience; let i  = index;">
-    <mat-list dense>
+    <mat-icon class='experience-edit' color="primary" *ngIf="editing!=i" (click)="editing = i">edit</mat-icon>
+    <mat-list dense *ngIf="editing!=i">
       <h2>Experience Block {{i + 1}}</h2>
-      <mat-list-item><span>Class: </span> {{experience.class}} </mat-list-item>
+      <mat-list-item><span>Class:&nbsp;</span> {{experience.class}} </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Bonus Experience:&nbsp;</span> {{experience.bonus_xp}}% </mat-list-item>
+      <mat-list-item><span>Prime Requisite:&nbsp; </span> {{experience.prime | titlecase}} </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Level: </span> {{experience.currentLevel()}} </mat-list-item>
+      <mat-list-item><span>Bonus Experience:&nbsp;&nbsp;</span> {{experience.bonus_xp}}% </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Level:&nbsp; </span> {{experience.currentLevel()}} </mat-list-item>
       <mat-divider></mat-divider>
       <div *ngIf="experience.currentExperience() > 0">
       <mat-progress-bar mode="determinate" value="{{experience.levelProgress()*100}}"></mat-progress-bar>
@@ -18,6 +21,11 @@
       <br />
       {{experience.levelProgress() | percent:'1.2' }}
       </div>
+    </mat-list>
+
+    <mat-list dense *ngIf="editing==i">
+      <h2>Experience Block {{i + 1}}</h2>
+      
     </mat-list>
   </mat-card>
 </div>
