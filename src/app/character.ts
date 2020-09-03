@@ -388,6 +388,10 @@ export class Character implements Loadable {
     return ['Fighter', 'Cleric', 'Magic User'];
   }
 
+  static abilities() {
+    return ['strength', 'intelligence', 'wisdom', 'dexterity','constitution','charisma'];
+  }
+
   experienceBlockCount() {
     return this.experience.length
   }
