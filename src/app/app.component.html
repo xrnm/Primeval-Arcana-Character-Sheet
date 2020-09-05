@@ -11,7 +11,10 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar id="navigation">
-      <a id="site-title" routerLink="/">Revived Character Sheet</a>
+      <a id="site-title" routerLink="/">Revived Character Sheet
+        <span class="version">v{{gameService.version}}</span>
+      </a>
+
       <app-links></app-links>
       <div>
         <button class="menu-hamburger" mat-icon-button (click)="toggleMenu()">

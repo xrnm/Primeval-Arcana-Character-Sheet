@@ -1,4 +1,4 @@
-<div class="container" id="spells" cdkDropListGroup *ngFor="let block of character.getAllMagicUserBlocks()">
+<div class="container" id="spells" cdkDropListGroup *ngFor="let block of spellContainingBlocks()">
   <h2 class="section-subtitle">{{block.class | titlecase}} Spells</h2>
   <mat-card>
     <mat-icon color="primary" class="spell-info-icon" matTooltip="You may drag and drop spells from the spell book into your character's spell slots on the right. You may overcast spells, but you may not load spell into a slot of lower level">info</mat-icon>
@@ -10,9 +10,9 @@
           <mat-list-item *ngFor="let spell of block.spellbook.getSpells(i+1)" cdkDrag matTooltip="{{spell.description}}">
             {{spell.name}} (Level {{spell.level}})
             <div class="action-buttons">
-              <button mat-mini-fab  color="primary" class="spell-memorize-icon" (click)="memorizeSpell(spell)"><mat-icon>save_alt</mat-icon></button>
+              <button mat-mini-fab  color="primary" class="spell-memorize-icon" (click)="memorizeSpell(block, spell)"><mat-icon>save_alt</mat-icon></button>
               <button mat-mini-fab  color="accent" class="spell-edit-icon" (click)="openSpellDialog(null, spell, null)"><mat-icon>edit</mat-icon></button>
-              <button mat-mini-fab  color="warn" class="spell-delete-icon" (click)="removeSpell(spell)"><mat-icon>delete</mat-icon></button>
+              <button mat-mini-fab  color="warn" class="spell-delete-icon" (click)="removeSpell(block, spell)"><mat-icon>delete</mat-icon></button>
             </div>
             <mat-divider></mat-divider>
           </mat-list-item>

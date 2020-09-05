@@ -33,12 +33,12 @@ export class CharacterSpellBookComponent implements OnInit {
     });
   }
 
-  removeSpell(spell){
-    this.character.spellbook.removeSpell(spell);
+  removeSpell(block, spell){
+    block.spellbook.removeSpell(spell);
   }
 
-  memorizeSpell(spell){
-    this.character.spells[spell.level-1].insert(spell);
+  memorizeSpell(block, spell){
+    block.spells[spell.level-1].insert(spell);
   }
   drop(event: CdkDragDrop<Spell[]>){
     if(this.gameService.lock)

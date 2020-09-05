@@ -19,8 +19,18 @@ export class ExperienceBlock {
     else
       this.experiences = [];
 
-    if(!init || !init.prime)
-      this.prime = this.primeAbility()
+    if(init && init.spellbook)
+      this.spellbook = new SpellBook(init.spellbook)
+    else
+      this.spellbook = new SpellBook()
+    this.initializeSpells()
+
+    if(init && init.spells){
+      this.spells.map(sg => sg.importSpells(init.spells));
+    }
+
+    if(!this.prime && (!init || !init.prime))
+      this.prime = this.getPrimeFromClass()
 
   }
   initializeSpells() {
@@ -37,7 +47,7 @@ export class ExperienceBlock {
     return Array(this.highestPossibleSpellLevel()).fill(0);
   }
 
-  primeAbility() {
+  getPrimeFromClass() {
     switch (this.class) {
       case 'Fighter':
         return 'strength';

@@ -62,7 +62,7 @@ export class Character implements Loadable {
     dragon_breath: 0,
     spell: 0
   };
-  experience: ExperienceBlock[] = [new ExperienceBlock({class: 'Fighter', prime: 'Strength', experiences: []})];
+  experience: ExperienceBlock[] = [new ExperienceBlock({class: 'Fighter', prime: 'strength', experiences: []})];
   purse: Purse = new Purse();
   magic_items: Item[] = [];
   known_languages: String[] = [];
@@ -84,19 +84,25 @@ export class Character implements Loadable {
 
   constructor(init?: Partial<Character>) {
     if (!init) return;
+
+
+    Object.assign(this, init);
+
+    if (init.experience)
+      this.experience = init.experience.map((experience) => new ExperienceBlock(experience));
+
+    // If storing data on character.spellbook or character.spells move that into the first XP block
+    // and clear out the deprecated field
     if(init.spellbook){
-      this.getExperience()[0].spellbook = init.spellbook
+      this.getExperience()[0].spellbook = new SpellBook(init.spellbook)
       this.spellbook = null
     }
+
     if (init.spells){
       this.getExperience()[0].initializeSpells()
       this.getExperience()[0].spells.map(sg => sg.importSpells(init.spells));
       this.spells = null
     }
-    Object.assign(this, init);
-
-    if (init.experience)
-      this.experience = init.experience.map((experience) => new ExperienceBlock(experience));
 
 
 
@@ -154,9 +160,9 @@ export class Character implements Loadable {
         case 'Fighter':
           return HitDiceHelper.fighterHitDice(this.getFighterLevel());
         case 'Cleric':
-          return HitDiceHelper.clericHitDice(this.getMagicUserLevel());
+          return HitDiceHelper.clericHitDice(this.getClericLevel());
         case 'Magic User':
-          return HitDiceHelper.magiCUserHitDice(this.getClericLevel());
+          return HitDiceHelper.magicUserHitDice(this.getMagicUserLevel());
         default:
           return {base: -1, bonus: -1}
       }
@@ -206,11 +212,11 @@ export class Character implements Loadable {
   }
 
   getAllClericBlocks(): ExperienceBlock[]{
-    return this.getExperience().filter(b=>b.class='Cleric')
+    return this.getExperience().filter(b=>b.class=='Cleric')
   }
 
   getAllMagicUserBlocks(): ExperienceBlock[]{
-    return this.getExperience().filter(b=>b.class='Magic User')
+    return this.getExperience().filter(b=>b.class=='Magic User')
   }
 
   getAbilityAbbreviation(ability): string {
