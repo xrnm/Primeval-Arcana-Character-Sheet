@@ -1,6 +1,6 @@
 <h2>Spell Slots</h2>
 <mat-tab-group>
-  <mat-tab *ngFor="let spellGroup of character.getMemorizedSpells()" label="Level {{spellGroup.level}}">
+  <mat-tab *ngFor="let spellGroup of block.getMemorizedSpells()" label="Level {{spellGroup.level}}">
     <mat-list cdkDropList (cdkDropListDropped)="drop($event, spellGroup)" [cdkDropListData]="spellGroup.spells">
       <mat-list-item *ngFor="let spell of spellGroup.spells; let j = index" cdkDrag>
         Slot {{j + 1}}:&nbsp;

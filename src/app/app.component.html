@@ -11,7 +11,10 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar id="navigation">
-      <a id="site-title" routerLink="/">Revived Character Sheet</a>
+      <a id="site-title" routerLink="/">Revived Character Sheet
+        <span class="version">v{{gameService.version}}</span>
+      </a>
+
       <app-links></app-links>
       <div>
         <button class="menu-hamburger" mat-icon-button (click)="toggleMenu()">
@@ -27,7 +30,7 @@
     </mat-toolbar>
     <div *ngIf="gameService.getGame()" id="character-summary">
       <div *ngFor="let character of [gameService.getGame().getCharacter()]">
-        {{character.name}} ({{character.getClassAbbreviation()}}{{character.getLevel()}})|
+        {{character.name}} {{character.getConciseClassLevelString()}}|
         STR {{character.adjustedAbilityString('strength',true)}} |
         INT {{character.adjustedAbilityString('intelligence',true)}} |
         WIS {{character.adjustedAbilityString('wisdom',true)}} |

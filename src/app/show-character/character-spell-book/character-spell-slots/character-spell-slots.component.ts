@@ -3,6 +3,7 @@ import {Character} from "../../../character";
 import {Spell} from "../../../spell";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {GameService} from "../../../game.service";
+import {ExperienceBlock} from "../../../experience-block";
 
 @Component({
   selector: 'character-spell-slots',
@@ -10,7 +11,7 @@ import {GameService} from "../../../game.service";
   styleUrls: ['./character-spell-slots.component.sass']
 })
 export class CharacterSpellSlotsComponent implements OnInit {
-  @Input() character: Character;
+  @Input() block: ExperienceBlock;
 
   constructor(private gameService: GameService) {
   }

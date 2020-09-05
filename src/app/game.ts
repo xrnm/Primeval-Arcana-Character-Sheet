@@ -20,7 +20,7 @@ export class Game {
   }
 
   getName(): string {
-    return `${this.character.name} -- ${this.character.getLevel()} ${this.character.race} ${this.character.getClass()}`
+    return `${this.character.name} -- ${this.character.getConciseClassLevelString()} ${this.character.race} `
   }
 
   constructor(init?: Partial<Game>) {

@@ -1,9 +1,16 @@
 import {Experience} from "./experience";
+import {SpellBook} from "./spell-book";
+import {SpellGroup} from "./spell-group";
+import {SpellSlotHelper} from "./spell-slot-helper";
 
 export class ExperienceBlock {
   class: string;
   experiences: Experience[] = [];
+  prime: string;
   bonus_xp: number;
+  spellbook: SpellBook
+  spells: SpellGroup[]
+  deleted: boolean
 
   constructor(init?: Partial<ExperienceBlock>) {
     Object.assign(this, init);
@@ -11,6 +18,44 @@ export class ExperienceBlock {
       this.experiences = init.experiences.map(e=>new Experience(e));
     else
       this.experiences = [];
+
+    if(init && init.spellbook)
+      this.spellbook = new SpellBook(init.spellbook)
+    else
+      this.spellbook = new SpellBook()
+    this.initializeSpells()
+
+    if(init && init.spells){
+      this.spells.map(sg => sg.importSpells(init.spells));
+    }
+
+    if(!this.prime && (!init || !init.prime))
+      this.prime = this.getPrimeFromClass()
+
+  }
+  initializeSpells() {
+    this.spells = SpellSlotHelper.allSpellSlots(this.class,this.currentLevel()).map((count, index) => {
+      return new SpellGroup({slots: count, level: index + 1, spells: Array(count)})
+    });
+  }
+
+  highestPossibleSpellLevel(): number {
+    return SpellSlotHelper.highestSpellLevel(this.class,this.currentLevel());
+  }
+
+  spellLevelsIter(){
+    return Array(this.highestPossibleSpellLevel()).fill(0);
+  }
+
+  getPrimeFromClass() {
+    switch (this.class) {
+      case 'Fighter':
+        return 'strength';
+      case "Magic User":
+        return "intelligence";
+      case "Cleric":
+        return "wisdom";
+    }
   }
   applyBonus(points){
     return Math.round(points * (1 + (this.bonus_xp / 100)));
@@ -21,6 +66,10 @@ export class ExperienceBlock {
   }
 
   addExperience(experience: Experience){
+    experience.points = this.applyBonus(experience.points)
+    if(experience.points > this.experienceNeededForNextLevel())
+      experience.points = this.experienceNeededForNextLevel()
+
     this.experiences.unshift(experience);
   }
 
@@ -33,6 +82,7 @@ export class ExperienceBlock {
         return 625;
     }
   }
+
 
   currentExperience(): number {
     return this.experiences.reduce((acc, experience) => experience.points + acc, 0)
@@ -55,10 +105,37 @@ export class ExperienceBlock {
   }
 
   levelProgress(): number{
-    if(this.currentLevel() == 1)
-      return this.currentLevelExperience() / (this.totalExperienceForLevel(this.currentLevel()+1))
+    return this.currentLevelExperience() / this.experienceForNextLevel()
+  }
 
-    return this.currentLevelExperience() / (this.totalExperienceForLevel(this.currentLevel()+1) - this.totalExperienceForLevel(this.currentLevel()))
+  experienceForNextLevel(): number{
+    if(this.currentLevel() == 1)
+      return this.totalExperienceForLevel(this.currentLevel()+1)
+
+    return this.totalExperienceForLevel(this.currentLevel()+1) - this.totalExperienceForLevel(this.currentLevel())
+  }
+
+  experienceNeededForNextLevel(): number{
+    return this.experienceForNextLevel()-this.currentLevelExperience()
+  }
+  delete(){
+    this.deleted = true
+  }
+
+  getMemorizedSpells() {
+    SpellSlotHelper.allSpellSlots(this.class, this.currentLevel()).forEach((size, index) => {
+      // Set each spell group to have the correct number of slots
+      if (this.spells[index])
+        this.spells[index].setSlots(size);
+      else
+        this.spells[index] = new SpellGroup({slots: size, level: index + 1, spells: Array(size)})
+    });
+
+    // delete missing spell groups
+    while (this.spells.length > SpellSlotHelper.allSpellSlots(this.class, this.currentLevel()).length)
+      this.spells.pop();
+
+    return this.spells
   }
 
 }

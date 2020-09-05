@@ -13,7 +13,7 @@ export class HitDiceHelper {
     return {base: level, bonus: 0};
   }
 
-  static magiCUserHitDice(level){
+  static magicUserHitDice(level){
     return {base: Math.ceil(level/2), bonus: 1 - (level % 2)}
   }
 }

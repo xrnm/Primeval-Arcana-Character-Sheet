@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {ExperienceBlock} from "../../../experience-block";
 import {Experience} from "../../../experience";
+import {Character} from "../../../character";
 
 
 @Component({
@@ -10,20 +11,20 @@ import {Experience} from "../../../experience";
   styleUrls: ['./character-experience-dialog.component.sass']
 })
 export class CharacterExperienceDialogComponent implements OnInit {
-  block: ExperienceBlock;
+  character: Character;
   experience: Experience;
 
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data) {
-    this.block = data.experiences;
+    this.character = data.character;
     this.experience = new Experience({points: 0, date: new Date()});
   }
 
   addExperience(){
-    this.experience.points = this.block.applyBonus(this.experience.points);
-    this.block.addExperience(this.experience);
+    this.character.addExperience(this.experience);
   }
+
 
   ngOnInit(): void {
   }

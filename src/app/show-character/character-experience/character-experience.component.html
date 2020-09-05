@@ -1,22 +1,68 @@
-<h2 class="section-subtitle">Experience</h2>
+<h2 class="section-subtitle">
+  <a routerLink="/adventure-log"> Experience</a>
+  <button mat-mini-fab color="primary" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</h2>
 <div id="experience" class="container">
-  <mat-card *ngFor="let experience of character.experience; let i  = index;">
-    <mat-list dense>
+  <mat-card *ngFor="let experience of character.getExperience(); let i  = index;">
+    <mat-icon class='experience-edit' color="primary" *ngIf="editing!=i" (click)="editing = i">edit</mat-icon>
+    <mat-list dense *ngIf="editing!=i">
       <h2>Experience Block {{i + 1}}</h2>
-      <mat-list-item><span>Class: </span> {{experience.class}} </mat-list-item>
+      <mat-list-item><span>Class:&nbsp;</span> {{experience.class}} </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Bonus Experience:&nbsp;</span> {{experience.bonus_xp}}% </mat-list-item>
+      <mat-list-item><span>Prime Requisite:&nbsp; </span> {{experience.prime | titlecase}} </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Level: </span> {{experience.currentLevel()}} </mat-list-item>
+      <mat-list-item><span>Bonus Experience:&nbsp;&nbsp;</span> {{experience.bonus_xp}}%</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Level:&nbsp; </span> {{experience.currentLevel()}} </mat-list-item>
       <mat-divider></mat-divider>
       <div *ngIf="experience.currentExperience() > 0">
-      <mat-progress-bar mode="determinate" value="{{experience.levelProgress()*100}}"></mat-progress-bar>
-      {{experience.currentExperience()}} / {{experience.totalExperienceForLevel(experience.currentLevel() + 1)}}
-      <br />
-      {{experience.levelProgress() | percent:'1.2' }}
+        <mat-progress-bar mode="determinate" value="{{experience.levelProgress()*100}}"></mat-progress-bar>
+        {{experience.currentExperience()}} / {{experience.totalExperienceForLevel(experience.currentLevel() + 1)}}
+        <br/>
+        {{experience.levelProgress() | percent:'1.2' }}
       </div>
     </mat-list>
-    <button *ngIf="experience.class" mat-mini-fab color="primary" (click)="openDialog(experience)"><mat-icon>add</mat-icon></button>
-    <a routerLink="/adventure-log" class='detail-button' *ngIf="experience.class" mat-mini-fab color="accent"><mat-icon>subdirectory_arrow_right</mat-icon></a>
+
+    <mat-list dense *ngIf="editing==i">
+      <mat-icon class='experience-edit' color="warn" *ngIf="editing==i&&character.getExperience().length>1" (click)="confirmDelete(experience)">delete</mat-icon>
+      <h2>Experience Block {{i + 1}}</h2>
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Class:</mat-label>
+          <mat-select [(ngModel)]="experience.class">
+            <mat-option *ngFor="let class of classes" [value]="class">
+              {{class}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Prime Requisite:</mat-label>
+          <mat-select [(ngModel)]="experience.prime">
+            <mat-option *ngFor="let prime of abilities" [value]="prime">
+              {{prime}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
+      </mat-list-item>
+
+    </mat-list>
+  </mat-card>
+  <mat-card class="new-class" *ngIf="canAddClass()">
+    <div class="table">
+      <div class="table-cell">
+        <button class="add-experience-block" color="primary" mat-mini-fab (click)="addExperienceBlock()">
+          <mat-icon>add</mat-icon>
+        </button>
+        <h1>Add a class</h1>
+      </div>
+    </div>
   </mat-card>
 </div>
+

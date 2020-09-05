@@ -1,11 +1,40 @@
+h2
+  a
+    text-transform: uppercase
+    font-family: Cinzel
+    color: rgba(0,0,0,.87)
+    padding-right: 25px
+  button
+    vertical-align: middle
+
 #experience
   justify-content: space-between
   mat-card
     width: 45%
+    margin-bottom: 24px
+    button
+      margin: 0 auto
+    .experience-edit
+      position: absolute
+      top: 5px
+      right: 5px
+      &:hover
+        cursor: pointer
+    mat-form-field
+      margin: 0 auto
+      width: 100%
   .detail-button
     position: absolute
     right: 8px
     bottom: 8px
+  .new-class
+    .table
+      width: 100%
+      height: 100%
+      display: table
+      .table-cell
+        vertical-align: middle
+        display: table-cell
 
 @media screen and (max-width: 820px)
   #experience

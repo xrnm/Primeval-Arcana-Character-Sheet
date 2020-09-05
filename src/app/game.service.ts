@@ -10,6 +10,7 @@ import {NEW_GAME} from "./new_game";
 export class GameService {
   game: Game;
   lock: boolean = false;
+  version = '1.100'
 
   getGame(): Game {
     return this.game;

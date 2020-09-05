@@ -1,13 +1,26 @@
+import {ExperienceBlock} from "./experience-block";
+
 export class SavingThrowsHelper {
 
-  static getSavingThrows(character){
-    if(character.getClass()== 'Fighter')
-      return SavingThrowsHelper.FIGHTER_SAVING_THROWS[character.getLevel()];
-    else if(character.getClass()== 'Magic User')
-      return SavingThrowsHelper.MAGIC_USER_SAVING_THROWS[character.getLevel()];
+  static getSavingThrows(block: ExperienceBlock){
+    if(block.class== 'Fighter')
+      return SavingThrowsHelper.FIGHTER_SAVING_THROWS[block.currentLevel()];
+    else if(block.class== 'Magic User')
+      return SavingThrowsHelper.MAGIC_USER_SAVING_THROWS[block.currentLevel()];
     else
-      return SavingThrowsHelper.CLERIC_SAVING_THROWS[character.getLevel()];
-
+      return SavingThrowsHelper.CLERIC_SAVING_THROWS[block.currentLevel()];
+  }
+  static getBestSavingThrows(character){
+    return character.getExperience().map(block=>this.getSavingThrows(block))
+      .reduce((previous,current)=>{
+        if(!previous)
+          return current
+        for(const [key, value] of Object.entries(previous)){
+          if(current[key]<value)
+            previous[key] = current[key]
+        }
+        return previous
+      },false)
   }
 
   static MAGIC_USER_SAVING_THROWS = [

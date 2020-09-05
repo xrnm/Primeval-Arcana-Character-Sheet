@@ -17,10 +17,10 @@ export class CharacterSpellBookComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  spellLevelsIter(){
-    return Array(this.character.highestPossibleSpellLevel()).fill(0);
-  }
 
+  spellContainingBlocks(){
+    return [...this.character.getAllMagicUserBlocks(), ...this.character.getAllClericBlocks()]
+  }
   openSpellDialog(spellbook, spell, level){
     if(this.gameService.lock)
       return;
@@ -33,12 +33,12 @@ export class CharacterSpellBookComponent implements OnInit {
     });
   }
 
-  removeSpell(spell){
-    this.character.spellbook.removeSpell(spell);
+  removeSpell(block, spell){
+    block.spellbook.removeSpell(spell);
   }
 
-  memorizeSpell(spell){
-    this.character.spells[spell.level-1].insert(spell);
+  memorizeSpell(block, spell){
+    block.spells[spell.level-1].insert(spell);
   }
   drop(event: CdkDragDrop<Spell[]>){
     if(this.gameService.lock)
