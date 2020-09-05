@@ -5,7 +5,6 @@ import {Purse} from "./purse";
 import {ExperienceBlock} from "./experience-block";
 import {HitDiceHelper} from "./hit-dice-helper";
 import {SpellBook} from "./spell-book";
-import {SpellSlotHelper} from "./spell-slot-helper";
 import {SpellGroup} from "./spell-group";
 import {SavingThrowsHelper} from "./saving-throws-helper";
 import {Mount} from "./mount";
@@ -86,11 +85,10 @@ export class Character implements Loadable {
   constructor(init?: Partial<Character>) {
     if (!init) return;
     if(init.spellbook){
-      this.getExperience()[0].spellbook = this.spellbook
-      init.spellbook = null
+      this.getExperience()[0].spellbook = init.spellbook
+      this.spellbook = null
     }
     if (init.spells){
-      this.getExperience()[0].spells = init.spells
       this.getExperience()[0].initializeSpells()
       this.getExperience()[0].spells.map(sg => sg.importSpells(init.spells));
       this.spells = null
@@ -144,21 +142,7 @@ export class Character implements Loadable {
   }
 
 
-  getMemorizedSpells() {
-    SpellSlotHelper.allSpellSlots(this).forEach((size, index) => {
-      // Set each spell group to have the correct number of slots
-      if (this.spells[index])
-        this.spells[index].setSlots(size);
-      else
-        this.spells[index] = new SpellGroup({slots: size, level: index + 1, spells: Array(size)})
-    });
 
-    // delete missing spell groups
-    while (this.spells.length > SpellSlotHelper.allSpellSlots(this).length)
-      this.spells.pop();
-
-    return this.spells
-  }
 
   getInitialClass() {
     return this.getExperience()[0].class
@@ -219,6 +203,14 @@ export class Character implements Loadable {
 
   getMagicUserLevel(): number {
     return this.getHighestClassLevel('Magic User')
+  }
+
+  getAllClericBlocks(): ExperienceBlock[]{
+    return this.getExperience().filter(b=>b.class='Cleric')
+  }
+
+  getAllMagicUserBlocks(): ExperienceBlock[]{
+    return this.getExperience().filter(b=>b.class='Magic User')
   }
 
   getAbilityAbbreviation(ability): string {

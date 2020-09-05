@@ -18,11 +18,9 @@ export class CharacterSpellBookComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  spellLevelsIter(){
-    return 0
-    //return Array(this.character.highestPossibleSpellLevel()).fill(0);
+  spellContainingBlocks(){
+    return [...this.character.getAllMagicUserBlocks(), ...this.character.getAllClericBlocks()]
   }
-
   openSpellDialog(spellbook, spell, level){
     if(this.gameService.lock)
       return;

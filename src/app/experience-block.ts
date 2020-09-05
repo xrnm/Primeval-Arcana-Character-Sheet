@@ -33,6 +33,10 @@ export class ExperienceBlock {
     return SpellSlotHelper.highestSpellLevel(this.class,this.currentLevel());
   }
 
+  spellLevelsIter(){
+    return Array(this.highestPossibleSpellLevel()).fill(0);
+  }
+
   primeAbility() {
     switch (this.class) {
       case 'Fighter':
@@ -68,7 +72,7 @@ export class ExperienceBlock {
         return 625;
     }
   }
-  g
+
 
   currentExperience(): number {
     return this.experiences.reduce((acc, experience) => experience.points + acc, 0)
@@ -106,6 +110,22 @@ export class ExperienceBlock {
   }
   delete(){
     this.deleted = true
+  }
+
+  getMemorizedSpells() {
+    SpellSlotHelper.allSpellSlots(this.class, this.currentLevel()).forEach((size, index) => {
+      // Set each spell group to have the correct number of slots
+      if (this.spells[index])
+        this.spells[index].setSlots(size);
+      else
+        this.spells[index] = new SpellGroup({slots: size, level: index + 1, spells: Array(size)})
+    });
+
+    // delete missing spell groups
+    while (this.spells.length > SpellSlotHelper.allSpellSlots(this.class, this.currentLevel()).length)
+      this.spells.pop();
+
+    return this.spells
   }
 
 }

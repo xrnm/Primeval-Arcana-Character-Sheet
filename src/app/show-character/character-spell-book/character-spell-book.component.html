@@ -1,13 +1,13 @@
-<div class="container" id="spells" cdkDropListGroup *ngIf="character.getInitialClass() != 'Fighter'">
-  <h2 class="section-subtitle">Spells</h2>
+<div class="container" id="spells" cdkDropListGroup *ngFor="let block of character.getAllMagicUserBlocks()">
+  <h2 class="section-subtitle">{{block.class | titlecase}} Spells</h2>
   <mat-card>
     <mat-icon color="primary" class="spell-info-icon" matTooltip="You may drag and drop spells from the spell book into your character's spell slots on the right. You may overcast spells, but you may not load spell into a slot of lower level">info</mat-icon>
     <h2>Available Spells</h2>
     <mat-tab-group>
-      <mat-tab *ngFor="let _ of spellLevelsIter(); let i = index" label="Level {{i+1}}">
+      <mat-tab *ngFor="let _ of block.spellLevelsIter(); let i = index" label="Level {{i+1}}">
         <mat-list cdkDropList (cdkDropListDropped)="drop($event)"
-                  [cdkDropListData]="character.spellbook.getSpells(i+1)">
-          <mat-list-item *ngFor="let spell of this.character.spellbook.getSpells(i+1)" cdkDrag matTooltip="{{spell.description}}">
+                  [cdkDropListData]="block.spellbook.getSpells(i+1)">
+          <mat-list-item *ngFor="let spell of block.spellbook.getSpells(i+1)" cdkDrag matTooltip="{{spell.description}}">
             {{spell.name}} (Level {{spell.level}})
             <div class="action-buttons">
               <button mat-mini-fab  color="primary" class="spell-memorize-icon" (click)="memorizeSpell(spell)"><mat-icon>save_alt</mat-icon></button>
@@ -17,11 +17,11 @@
             <mat-divider></mat-divider>
           </mat-list-item>
         </mat-list>
-        <button color="primary" class="add-spell-button" mat-mini-fab (click)="openSpellDialog(character.spellbook, null, i+1)"><mat-icon>add</mat-icon></button>
+        <button color="primary" class="add-spell-button" mat-mini-fab (click)="openSpellDialog(block.spellbook, null, i+1)"><mat-icon>add</mat-icon></button>
       </mat-tab>
     </mat-tab-group>
   </mat-card>
   <mat-card>
-    <character-spell-slots [character]="character"></character-spell-slots>
+    <character-spell-slots [block]="block"></character-spell-slots>
   </mat-card>
 </div>
