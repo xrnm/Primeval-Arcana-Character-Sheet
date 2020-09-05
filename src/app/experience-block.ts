@@ -1,10 +1,15 @@
 import {Experience} from "./experience";
+import {SpellBook} from "./spell-book";
+import {SpellGroup} from "./spell-group";
+import {SpellSlotHelper} from "./spell-slot-helper";
 
 export class ExperienceBlock {
   class: string;
   experiences: Experience[] = [];
   prime: string;
   bonus_xp: number;
+  spellbook: SpellBook
+  spells: SpellGroup[]
   deleted: boolean
 
   constructor(init?: Partial<ExperienceBlock>) {
@@ -14,8 +19,18 @@ export class ExperienceBlock {
     else
       this.experiences = [];
 
-    this.prime = this.primeAbility()
+    if(!init || !init.prime)
+      this.prime = this.primeAbility()
 
+  }
+  initializeSpells() {
+    this.spells = SpellSlotHelper.allSpellSlots(this.class,this.currentLevel()).map((count, index) => {
+      return new SpellGroup({slots: count, level: index + 1, spells: Array(count)})
+    });
+  }
+
+  highestPossibleSpellLevel(): number {
+    return SpellSlotHelper.highestSpellLevel(this.class,this.currentLevel());
   }
 
   primeAbility() {

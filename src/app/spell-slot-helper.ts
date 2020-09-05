@@ -49,36 +49,17 @@ export class SpellSlotHelper {
     [3, 3, 3, 3, 3, 3, 1],//20
   ];
 
-  static highestSpellLevel(character: Character): number {
-    return this.allSpellSlots(character).length
+  static highestSpellLevel(className: string, level: number): number {
+    return this.allSpellSlots(className, level).length
   }
 
-  static allSpellSlots(character: Character) {
-    if (character.getInitialClass() == 'Magic User')
-      return this.magicUserSpellSlots(character.getLevel());
-    else if (character.getInitialClass() == 'Cleric')
-      return this.clericSpellSlots(character.getLevel());
+  static allSpellSlots(className: string,level: number) {
+    if (className == 'Magic User')
+      return this.magicUserSpellSlots(level);
+    else if (className == 'Cleric')
+      return this.clericSpellSlots(level);
     else
       return [];
-  }
-
-  static spellSlots(character:  Character, level: number): number{
-    return this.allSpellSlots(character)[level-1]
-  }
-
-  static highestSpellQuantity(character: Character): number {
-    let quantity;
-    if (character.getInitialClass() == 'Magic User')
-      quantity = this.magicUserSpellSlots(character.getLevel())[0];
-    else if (character.getInitialClass() == 'Cleric')
-      quantity = this.clericSpellSlots(character.getLevel())[0];
-    else
-      return 0;
-
-    if (!quantity)
-      return 0;
-
-    return quantity;
   }
 
   static magicUserSpellSlots(level) {

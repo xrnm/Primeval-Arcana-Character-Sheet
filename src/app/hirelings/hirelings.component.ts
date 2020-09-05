@@ -38,9 +38,9 @@ export class HirelingsComponent implements OnInit {
 
   bestLabel(hireling){
     if(hireling.name)
-      return `${hireling.name} (${hireling.getLevel()}${hireling.getClassAbbreviation()})`;
+      return `${hireling.name} ${hireling.getConciseClassLevelString()}`;
     else
-      return `${hireling.getLevel()}${hireling.getClassAbbreviation()}`;
+      return hireling.getConciseClassLevelString();
   }
 
 }

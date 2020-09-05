@@ -27,7 +27,7 @@
     </mat-toolbar>
     <div *ngIf="gameService.getGame()" id="character-summary">
       <div *ngFor="let character of [gameService.getGame().getCharacter()]">
-        {{character.name}} ({{character.getClassAbbreviation()}}{{character.getLevel()}})|
+        {{character.name}} {{character.getConciseClassLevelString()}}|
         STR {{character.adjustedAbilityString('strength',true)}} |
         INT {{character.adjustedAbilityString('intelligence',true)}} |
         WIS {{character.adjustedAbilityString('wisdom',true)}} |

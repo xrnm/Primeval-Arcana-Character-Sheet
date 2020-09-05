@@ -20,8 +20,4 @@ export class RawEditComponent implements OnInit {
     this.gameService.importGame(this.raw);
     this.router.navigate(['character'])
   }
-  installSpells(){
-    this.gameService.getGame().getCharacter().initializeSpells();
-  }
-
 }

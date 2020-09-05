@@ -17,8 +17,10 @@ export class CharacterSpellBookComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   spellLevelsIter(){
-    return Array(this.character.highestPossibleSpellLevel()).fill(0);
+    return 0
+    //return Array(this.character.highestPossibleSpellLevel()).fill(0);
   }
 
   openSpellDialog(spellbook, spell, level){

@@ -74,8 +74,10 @@ export class Character implements Loadable {
   clothing: string;
   quests: string;
   will: string;
+  // these are deprecated, do not use.
   spellbook: SpellBook = new SpellBook();
   spells: SpellGroup[];
+
   hirelings: Character[];
   mounts: Mount[] = [];
 
@@ -83,11 +85,21 @@ export class Character implements Loadable {
 
   constructor(init?: Partial<Character>) {
     if (!init) return;
+    if(init.spellbook){
+      this.getExperience()[0].spellbook = this.spellbook
+      init.spellbook = null
+    }
+    if (init.spells){
+      this.getExperience()[0].spells = init.spells
+      this.getExperience()[0].initializeSpells()
+      this.getExperience()[0].spells.map(sg => sg.importSpells(init.spells));
+      this.spells = null
+    }
     Object.assign(this, init);
-
 
     if (init.experience)
       this.experience = init.experience.map((experience) => new ExperienceBlock(experience));
+
 
 
     this.initializeExperienceBonus();
@@ -104,13 +116,8 @@ export class Character implements Loadable {
       this.armor = init.armor.map((item) => new Item(item));
     if (init.slung_items)
       this.slung_items = init.slung_items.map((item) => new Container(item));
-    if (init.spellbook)
-      this.spellbook = new SpellBook((init.spellbook));
 
-    this.initializeSpells();
 
-    if (init.spells)
-      this.spells.map(sg => sg.importSpells(init.spells));
 
     if (init.hirelings)
       this.hirelings = init.hirelings.map(hireling => new Character(hireling));
@@ -122,13 +129,18 @@ export class Character implements Loadable {
   }
 
   initializeExperienceBonus() {
-    const primeScore = this.abilities[this.getInitialPrime().toLowerCase()];
-    if (primeScore > 14)
-      this.experience[0].bonus_xp = 10;
-    else if (primeScore > 12)
-      this.experience[0].bonus_xp = 5;
-    else
-      this.experience[0].bonus_xp = 0;
+    this.experience = this.experience.map((experience) => {
+      const primeScore = this.abilities[experience.prime];
+
+      if (primeScore > 14)
+        experience.bonus_xp = 10;
+      else if (primeScore > 12)
+        experience.bonus_xp = 5;
+      else
+        experience.bonus_xp = 0;
+
+      return experience;
+    });
   }
 
 
@@ -149,35 +161,86 @@ export class Character implements Loadable {
   }
 
   getInitialClass() {
-    return this.experience[0].class
+    return this.getExperience()[0].class
   }
 
   hitDice() {
-    switch (this.getInitialClass()) {
-      case 'Fighter':
-        return HitDiceHelper.fighterHitDice(this.getLevel());
-      case 'Cleric':
-        return HitDiceHelper.clericHitDice(this.getLevel());
-      case 'Magic User':
-        return HitDiceHelper.magiCUserHitDice(this.getLevel());
+    return this.getExperience().map((block)=> {
+      switch (block.class) {
+        case 'Fighter':
+          return HitDiceHelper.fighterHitDice(this.getFighterLevel());
+        case 'Cleric':
+          return HitDiceHelper.clericHitDice(this.getMagicUserLevel());
+        case 'Magic User':
+          return HitDiceHelper.magiCUserHitDice(this.getClericLevel());
+        default:
+          return {base: -1, bonus: -1}
+      }
+    }).reduce((previous,current)=>{
+      // This is calculated on maximum possible XP.
+      // A 7 + 7 beats an 8 because 42 + 7 = 49 and 8 * 6 = 48
+      if(previous.base*6 + previous.bonus > current.base*6 + current.bonus)
+        return previous
+      return current
+
+    }, {base: -1, bonus: -1})
+  }
+
+  getHighestClassLevel(className): number {
+    return this.getExperience()
+      .filter(b => b.class == className)
+      .reduce((p, c) => p > c.currentLevel() ? p : c.currentLevel(), 0)
+  }
+
+  getConciseClassLevelString() {
+    const fighterLevel = this.getFighterLevel()
+    const clericLevel = this.getClericLevel()
+    const magicUserLevel = this.getMagicUserLevel()
+    let str = '('
+    if (fighterLevel > 0)
+      str += 'F' + fighterLevel
+
+    if (clericLevel > 0)
+      str += 'C' + clericLevel
+
+    if (magicUserLevel > 0)
+      str += 'M' + magicUserLevel
+    str += ')'
+    return str
+  }
+
+  getClericLevel(): number {
+    return this.getHighestClassLevel('Cleric')
+  }
+
+  getFighterLevel(): number {
+    return this.getHighestClassLevel('Fighter')
+  }
+
+  getMagicUserLevel(): number {
+    return this.getHighestClassLevel('Magic User')
+  }
+
+  getAbilityAbbreviation(ability): string {
+    if (!ability)
+      ability = ''
+    switch (ability.toLowerCase()) {
+      case 'strength':
+        return 'STR'
+      case 'intelligence':
+        return 'INT'
+      case 'wisdom':
+        return 'WIS'
+      case 'dexterity':
+        return 'DEX'
+      case 'constitution':
+        return 'CON'
+      case 'charisma':
+        return 'CHA'
       default:
-        return {base: -1, bonus: -1}
+        return ''
     }
   }
-
-  getClassAbbreviation() {
-    //TODO: Update this guy
-    return this.getInitialClass()[0]
-  }
-
-  highestPossibleSpellLevel(): number {
-    return SpellSlotHelper.highestSpellLevel(this);
-  }
-
-  spellSlots(level: number): number {
-    return SpellSlotHelper.spellSlots(this, level)
-  }
-
 
   load(): number {
     return this.weapons.concat(this.armor)
@@ -191,14 +254,10 @@ export class Character implements Loadable {
       + this.purse.load()
   }
 
-  initializeSpells() {
-    this.spells = SpellSlotHelper.allSpellSlots(this).map((count, index) => {
-      return new SpellGroup({slots: count, level: index + 1, spells: Array(count)})
-    });
-  }
+
 
   maximumLoad() {
-    return this.adjustedStrength() * 150
+    return this.adjustedAbility('strength') * 150
   }
 
   movementRating() {
@@ -237,34 +296,15 @@ export class Character implements Loadable {
     return this.toHit() + modifier;
   }
 
-  getInitialPrime() {
-    switch (this.getInitialClass()) {
-      case 'Fighter':
-        return 'strength';
-      case "Magic User":
-        return "intelligence";
-      case "Cleric":
-        return "wisdom";
-    }
-  }
 
   primeAbilities() {
-    return this.experience.map(e => {
+    return this.getExperience().map(e => {
       return {ability: e.prime, level: e.currentLevel()};
     })
   }
 
   abilityIsPrime(ability) {
     return this.primeAbilities().filter(b => b.ability == ability).length > 0
-  }
-
-  adjustedStrength(): number {
-    let modifier = 0;
-
-    if (this.getInitialClass() == 'Fighter')
-      modifier += this.getLevel();
-
-    return this.abilities.strength + modifier;
   }
 
   adjustedAbilityString(abilityName, stripSpaces = false): string {
@@ -286,11 +326,15 @@ export class Character implements Loadable {
   }
 
   getSavingThrows() {
-    return SavingThrowsHelper.getSavingThrows(this)
+    return SavingThrowsHelper.getBestSavingThrows(this)
   }
 
   getSystemShock(): number {
-    return 20 - (this.adjustedConstitution() + this.getLevel());
+    return 20 - (this.adjustedConstitution() + this.getHighestLevel());
+  }
+  getHighestLevel(): number{
+    return this.getExperience()
+      .reduce((maxlvl,block)=> maxlvl > block.currentLevel() ? maxlvl : block.currentLevel(), 0)
   }
 
   adjustedDexterity(): number {
@@ -304,7 +348,7 @@ export class Character implements Loadable {
   }
 
   precisionThrownWeight(): number {
-    return 10 * (this.adjustedStrength() / 2);
+    return 10 * (this.adjustedAbility('strength') / 2);
   }
 
   precisionThrownDistance(): number {
@@ -312,27 +356,19 @@ export class Character implements Loadable {
   }
 
   maximumLift(): number {
-    return this.adjustedStrength() * 250
+    return this.adjustedAbility('strength') * 250
   }
 
   continuousTravel(): number {
-    return this.adjustedConstitution() + this.getLevel();
+    return this.adjustedConstitution() + this.getHighestLevel();
   }
 
   holdBreath(): number {
-    return (this.adjustedConstitution() + this.getLevel()) * 10;
+    return (this.adjustedConstitution() + this.getHighestLevel()) * 10;
   }
 
   continuousMaximumEffort(): number {
-    return this.adjustedConstitution() + this.getLevel();
-  }
-
-  getLevel(): number {
-    return this.experience.map((item) => {
-      return item.currentLevel();
-    })
-      .filter((item) => !isNaN(item))
-      .reduce((item, max) => item > max ? item : max, -1);
+    return this.adjustedConstitution() + this.getHighestLevel();
   }
 
   getSlottedContainers(): Container[] {
@@ -383,8 +419,9 @@ export class Character implements Loadable {
     else
       return false;
   }
-  getExperience(): ExperienceBlock[]{
-    return this.experience.filter(b=>!b.deleted)
+
+  getExperience(): ExperienceBlock[] {
+    return this.experience.filter(b => !b.deleted)
   }
 
   static classes() {
@@ -392,33 +429,33 @@ export class Character implements Loadable {
   }
 
   static abilities() {
-    return ['strength', 'intelligence', 'wisdom', 'dexterity','constitution','charisma'];
+    return ['strength', 'intelligence', 'wisdom', 'dexterity', 'constitution', 'charisma'];
   }
 
   experienceBlockCount() {
-    return this.experience.length
+    return this.getExperience().length
   }
 
   addExperience(experience: Experience) {
     let multiclass_description = ""
 
-    this.experience.forEach((block,index)=>{
-      if(index == 0)
+    this.getExperience().forEach((block, index) => {
+      if (index == 0)
         return;
       const xp = this.getBlockExperience(experience, index)
       multiclass_description += ` ${block.class[0]} ${xp}`
       block.addExperience(new Experience({
-        date:experience.date,
-        points:xp,
+        date: experience.date,
+        points: xp,
         notes: experience.notes,
       }))
     })
 
-    let initialBlock = this.experience[0];
+    let initialBlock = this.getExperience()[0];
     const xp = this.getBlockExperience(experience, 0);
     initialBlock.addExperience(new Experience({
-      date:experience.date,
-      points:xp,
+      date: experience.date,
+      points: xp,
       notes: experience.notes,
       multiclass_description: `${experience.points}: ${initialBlock.class[0]} ${xp}}` + multiclass_description
     }))
@@ -430,8 +467,8 @@ export class Character implements Loadable {
     const maxedClassPrimes = maxedClasses.map(b => b.prime)
 
     // If maxed you don't get any XP
-    if (maxedClassPrimes.length && maxedClassPrimes.includes(this.experience[index].prime))
-        return 0
+    if (maxedClassPrimes.length && maxedClassPrimes.includes(this.getExperience()[index].prime))
+      return 0
 
     // Get XP and subtract out any remainders
     let hangoverXp = experience.points % (this.experienceBlockCount() - maxedClasses.length)
@@ -448,7 +485,7 @@ export class Character implements Loadable {
   }
 
   getMaxedExperienceBlocks() {
-    return this.experience.filter(b => b.currentLevel() == this.abilities[b.prime])
+    return this.getExperience().filter(b => b.currentLevel() == this.abilities[b.prime])
   }
 
 }
