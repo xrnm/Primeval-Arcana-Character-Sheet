@@ -435,13 +435,11 @@ export class Character implements Loadable {
   }
 
   addExperience(experience: Experience) {
-    let multiclass_description = ""
 
     this.getExperience().forEach((block, index) => {
       if (index == 0)
         return;
       const xp = this.getBlockExperience(experience, index)
-      multiclass_description += ` ${block.class[0]} ${xp}`
       block.addExperience(new Experience({
         date: experience.date,
         points: xp,
@@ -455,7 +453,6 @@ export class Character implements Loadable {
       date: experience.date,
       points: xp,
       notes: experience.notes,
-      multiclass_description: `${experience.points}: ${initialBlock.class[0]} ${xp}}` + multiclass_description
     }))
   }
 
