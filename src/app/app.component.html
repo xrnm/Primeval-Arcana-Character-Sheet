@@ -37,7 +37,8 @@
         DEX {{character.adjustedAbilityString('dexterity')}} |
         CON {{character.adjustedAbilityString('constitution')}} |
         CHA {{character.adjustedAbilityString('charisma')}} |
-        To-Hit +{{character.meleeToHit()}} +{{character.missileToHit()}}
+        To-Hit +{{character.meleeToHit()}} +{{character.missileToHit()}} |
+        AC {{character.armor_class}}<span *ngIf="character.shield">/{{character.armor_class - 1}}</span>
       </div>
     </div>
     <router-outlet></router-outlet>
