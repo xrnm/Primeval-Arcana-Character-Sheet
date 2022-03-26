@@ -336,13 +336,11 @@ export class Character implements Loadable {
   }
 
   adjustedDexterity(): number {
-    let modifier = 0;
-
-    return this.abilities.dexterity + modifier;
+    return this.adjustedAbility('dexterity');
   }
 
   adjustedConstitution(): number {
-    return this.abilities.constitution;
+    return this.adjustedAbility('constitution');
   }
 
   precisionThrownWeight(): number {
