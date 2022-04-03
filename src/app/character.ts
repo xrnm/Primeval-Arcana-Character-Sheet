@@ -94,12 +94,12 @@ export class Character implements Loadable {
 
     // If storing data on character.spellbook or character.spells move that into the first XP block
     // and clear out the deprecated field
-    if(init.spellbook){
+    if (init.spellbook) {
       this.getExperience()[0].spellbook = new SpellBook(init.spellbook)
       this.spellbook = null
     }
 
-    if (init.spells){
+    if (init.spells) {
       this.getExperience()[0].initializeSpells()
       this.getExperience()[0].spells.map(sg => sg.importSpells(init.spells));
       this.spells = null
@@ -119,7 +119,6 @@ export class Character implements Loadable {
       this.armor = init.armor.map((item) => new Item(item));
     if (init.slung_items)
       this.slung_items = init.slung_items.map((item) => new Container(item));
-
 
 
     if (init.hirelings)
@@ -146,15 +145,20 @@ export class Character implements Loadable {
     });
   }
 
-
-
+  initializeInitialSpells() {
+    this.experience.forEach((experience) => {
+      if (experience.spellbook.spells.length < 1 && experience.class === 'Cleric') {
+        experience.spellbook.initializeSpells()
+      }
+    });
+  }
 
   getInitialClass() {
     return this.getExperience()[0].class
   }
 
   hitDice() {
-    return this.getExperience().map((block)=> {
+    return this.getExperience().map((block) => {
       switch (block.class) {
         case 'Fighter':
           return HitDiceHelper.fighterHitDice(this.getFighterLevel());
@@ -165,10 +169,10 @@ export class Character implements Loadable {
         default:
           return {base: -1, bonus: -1}
       }
-    }).reduce((previous,current)=>{
+    }).reduce((previous, current) => {
       // This is calculated on maximum possible XP.
       // A 7 + 7 beats an 8 because 42 + 7 = 49 and 8 * 6 = 48
-      if(previous.base*6 + previous.bonus > current.base*6 + current.bonus)
+      if (previous.base * 6 + previous.bonus > current.base * 6 + current.bonus)
         return previous
       return current
 
@@ -210,12 +214,12 @@ export class Character implements Loadable {
     return this.getHighestClassLevel('Magic User')
   }
 
-  getAllClericBlocks(): ExperienceBlock[]{
-    return this.getExperience().filter(b=>b.class=='Cleric')
+  getAllClericBlocks(): ExperienceBlock[] {
+    return this.getExperience().filter(b => b.class == 'Cleric')
   }
 
-  getAllMagicUserBlocks(): ExperienceBlock[]{
-    return this.getExperience().filter(b=>b.class=='Magic User')
+  getAllMagicUserBlocks(): ExperienceBlock[] {
+    return this.getExperience().filter(b => b.class == 'Magic User')
   }
 
   getAbilityAbbreviation(ability): string {
@@ -250,7 +254,6 @@ export class Character implements Loadable {
       }, 0)
       + this.purse.load()
   }
-
 
 
   maximumLoad() {
@@ -329,9 +332,10 @@ export class Character implements Loadable {
   getSystemShock(): number {
     return 20 - (this.adjustedConstitution() + this.getHighestLevel());
   }
-  getHighestLevel(): number{
+
+  getHighestLevel(): number {
     return this.getExperience()
-      .reduce((maxlvl,block)=> maxlvl > block.currentLevel() ? maxlvl : block.currentLevel(), 0)
+      .reduce((maxlvl, block) => maxlvl > block.currentLevel() ? maxlvl : block.currentLevel(), 0)
   }
 
   adjustedDexterity(): number {
