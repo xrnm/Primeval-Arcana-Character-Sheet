@@ -1,0 +1,65 @@
+<div class="container" id="cleric">
+  <mat-card>
+    <mat-icon *ngIf="editing!='deity'" color='primary' (click)="editSection('deity')" class="edit">edit</mat-icon>
+    <mat-list *ngIf="editing!='deity'">
+      <h2>Deity & Prayers</h2>
+      <mat-list-item><span>Deity name: &nbsp;</span> {{character.deity_name}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Deity Domain: &nbsp;</span> {{character.deity_domain}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Divine Edict: &nbsp;</span> {{character.deity_edict}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Divine Anathema: &nbsp;</span> {{character.deity_anathema}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Prayer Slots: &nbsp;</span> {{character.getTotalPrayerSlots() - character.used_pray_slots}}
+        / {{character.getTotalPrayerSlots()}}
+        <div class="mat-list-actions">
+          <button [disabled]="character.used_pray_slots >= character.getTotalPrayerSlots()" mat-mini-fab color="warn"
+                  (click)="changePrayer(-1)">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary" (click)="changePrayer(1)"
+                  [disabled]="character.used_pray_slots <= 0">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+    <div *ngIf="editing=='deity'">
+      <h2>Edit Deity</h2>
+      <mat-list>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Deity Name:</mat-label>
+            <input matInput [(ngModel)]="character.deity_name"/>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Deity Domain:</mat-label>
+            <input matInput [(ngModel)]="character.deity_domain" type="text"/>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Divine Edict:</mat-label>
+            <input matInput [(ngModel)]="character.deity_edict"/>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Divine Anathema:</mat-label>
+            <input matInput [(ngModel)]="character.deity_anathema"/>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-card>
+  <mat-card>
+    <h2>Turning</h2>
+  </mat-card>
+</div>

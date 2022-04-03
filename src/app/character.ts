@@ -73,6 +73,11 @@ export class Character implements Loadable {
   clothing: string;
   quests: string;
   will: string;
+  used_pray_slots: number = 0
+  deity_name: string
+  deity_domain: string
+  deity_edict: string
+  deity_anathema: string
 
   // these are deprecated, do not use.
   spellbook: SpellBook = new SpellBook();
@@ -156,6 +161,9 @@ export class Character implements Loadable {
   getInitialClass() {
     return this.getExperience()[0].class
   }
+  prayerSlots(){
+
+  }
 
   hitDice() {
     return this.getExperience().map((block) => {
@@ -216,6 +224,11 @@ export class Character implements Loadable {
 
   getAllClericBlocks(): ExperienceBlock[] {
     return this.getExperience().filter(b => b.class == 'Cleric')
+  }
+
+  getTotalPrayerSlots(): number{
+    console.log(Math.max(...this.getExperience().filter(b => b.class == 'Cleric').map((experience) => experience.getTotalPrayerSlot())));
+    return Math.max(...this.getExperience().filter(b => b.class == 'Cleric').map((experience) => experience.getTotalPrayerSlot()));
   }
 
   getAllMagicUserBlocks(): ExperienceBlock[] {
