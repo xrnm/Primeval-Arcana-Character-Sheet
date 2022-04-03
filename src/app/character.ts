@@ -73,6 +73,7 @@ export class Character implements Loadable {
   clothing: string;
   quests: string;
   will: string;
+
   // these are deprecated, do not use.
   spellbook: SpellBook = new SpellBook();
   spells: SpellGroup[];
@@ -103,8 +104,6 @@ export class Character implements Loadable {
       this.getExperience()[0].spells.map(sg => sg.importSpells(init.spells));
       this.spells = null
     }
-
-
 
     this.initializeExperienceBonus();
 
