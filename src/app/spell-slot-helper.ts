@@ -1,7 +1,7 @@
 import {Character} from "./character";
-
+import {Spell} from "./spell";
+import {StaticDataHelper} from "./static_data_helper";
 export class SpellSlotHelper {
-
   static MAGIC_USER_SPELL_SLOTS = [
     [],
     [1],//1
@@ -68,5 +68,9 @@ export class SpellSlotHelper {
 
   static clericSpellSlots(level) {
     return this.CLERIC_SPELL_SLOTS[level]
+  }
+
+  static initializeClericSpells() {
+    return StaticDataHelper.getClericSpellData().map((spell) => new Spell(spell))
   }
 }

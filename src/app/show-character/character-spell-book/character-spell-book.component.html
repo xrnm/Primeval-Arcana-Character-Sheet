@@ -8,7 +8,7 @@
         <mat-list cdkDropList (cdkDropListDropped)="drop($event)"
                   [cdkDropListData]="block.spellbook.getSpells(i+1)">
           <mat-list-item *ngFor="let spell of block.spellbook.getSpells(i+1)" cdkDrag matTooltip="{{spell.description}}">
-            {{spell.name}} (Level {{spell.level}})
+            {{spell.name}} (Level {{spell.level}})  <em *ngIf="spell.reversible" matTooltip="This spell is reversible">*</em>
             <div class="action-buttons">
               <button mat-mini-fab  color="primary" class="spell-memorize-icon" (click)="memorizeSpell(block, spell)"><mat-icon>save_alt</mat-icon></button>
               <button mat-mini-fab  color="accent" class="spell-edit-icon" (click)="openSpellDialog(null, spell, null)"><mat-icon>edit</mat-icon></button>
