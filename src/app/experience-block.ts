@@ -10,6 +10,7 @@ export class ExperienceBlock {
   bonus_xp: number;
   spellbook: SpellBook
   spells: SpellGroup[]
+  prayerSlots: number;
   deleted: boolean
 
   constructor(init?: Partial<ExperienceBlock>) {
@@ -138,6 +139,13 @@ export class ExperienceBlock {
       this.spells.pop();
 
     return this.spells
+  }
+
+  getTotalPrayerSlot(): number{
+    if(this.class!== 'Cleric')
+      return 0
+    return this.currentLevel()
+
   }
 
 }
