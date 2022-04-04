@@ -10,6 +10,7 @@ export class SavingThrowsHelper {
     else
       return SavingThrowsHelper.CLERIC_SAVING_THROWS[block.currentLevel()];
   }
+
   static getBestSavingThrows(character){
     return character.getExperience().map(block=>this.getSavingThrows(block))
       .reduce((previous,current)=>{

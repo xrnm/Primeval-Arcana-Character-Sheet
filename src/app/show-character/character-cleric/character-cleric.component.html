@@ -1,4 +1,4 @@
-<div class="container" id="cleric">
+<div *ngIf="character.getTotalPrayerSlots() > 0" class="container" id="cleric">
   <mat-card>
     <mat-icon *ngIf="editing!='deity'" color='primary' (click)="editSection('deity')" class="edit">edit</mat-icon>
     <mat-list *ngIf="editing!='deity'">
@@ -15,11 +15,24 @@
         / {{character.getTotalPrayerSlots()}}
         <div class="mat-list-actions">
           <button [disabled]="character.used_pray_slots >= character.getTotalPrayerSlots()" mat-mini-fab color="warn"
-                  (click)="changePrayer(-1)">
+                  (click)="changePrayer(1)">
             <mat-icon>remove</mat-icon>
           </button>
-          <button mat-mini-fab color="primary" (click)="changePrayer(1)"
+          <button mat-mini-fab color="primary" (click)="changePrayer(-1)"
                   [disabled]="character.used_pray_slots <= 0">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+      <mat-list-item><span>Turnings Slots: &nbsp;</span> {{character.getTotalTurningSlots() - character.used_turning_slots}}
+        / {{character.getTotalTurningSlots()}}
+        <div class="mat-list-actions">
+          <button [disabled]="character.used_turning_slots >= character.getTotalTurningSlots()" mat-mini-fab color="warn"
+                  (click)="changeTurning(1)">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary" (click)="changeTurning(-1)"
+                  [disabled]="character.used_turning_slots <= 0">
             <mat-icon>add</mat-icon>
           </button>
         </div>
@@ -60,6 +73,28 @@
     </div>
   </mat-card>
   <mat-card>
-    <h2>Turning</h2>
+    <mat-icon color="primary" class="turning-info-icon"
+              matTooltip="If a raw number roll 2d6 and if you meet or exceed the number listed, roll another 2d6 and turn that many hit die. T means automatically turn the number of d6, D means automatically destroy the number of d6">
+      info
+    </mat-icon>
+    <h2>Turning Events</h2>
+    <mat-list>
+      <mat-list-item><span>Skeleton: &nbsp;</span>     {{character.getTurningEvents().skeleton}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Zombie: &nbsp;</span> {{character.getTurningEvents().zombie}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Ghoul: &nbsp;</span> {{character.getTurningEvents().ghoul}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Wight: &nbsp;</span> {{character.getTurningEvents().wight}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Wraith: &nbsp;</span>  {{character.getTurningEvents().wraith}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Mummy: &nbsp;</span>      {{character.getTurningEvents().mummy}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Spectre: &nbsp;</span>  {{character.getTurningEvents().spectre}} </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Vampire: &nbsp;</span>      {{character.getTurningEvents().vampire}} </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
   </mat-card>
 </div>

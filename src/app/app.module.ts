@@ -52,8 +52,6 @@ import { LinksComponent } from './links/links.component';
 import { HirelingsComponent } from './hirelings/hirelings.component';
 import { CharacterMountsComponent } from './show-character/character-mounts/character-mounts.component';
 import { CharacterClericComponent } from './show-character/character-cleric/character-cleric.component';
-import { CharacterClericDeityComponent } from './show-character/character-cleric/character-cleric-deity/character-cleric-deity.component';
-import { CharacterClericTurningComponent } from './show-character/character-cleric/character-cleric-turning/character-cleric-turning.component';
 
 @NgModule({
   declarations: [
@@ -83,9 +81,7 @@ import { CharacterClericTurningComponent } from './show-character/character-cler
     LinksComponent,
     HirelingsComponent,
     CharacterMountsComponent,
-    CharacterClericComponent,
-    CharacterClericDeityComponent,
-    CharacterClericTurningComponent,
+    CharacterClericComponent
   ],
   imports: [
     BrowserModule,

@@ -24,9 +24,14 @@ export class CharacterClericComponent implements OnInit {
   }
 
   changePrayer(delta){
-    const newVal = this.character.used_pray_slots - delta
+    const newVal = this.character.used_pray_slots + delta
     if(newVal >= 0 && newVal <= this.character.getTotalPrayerSlots())
       this.character.used_pray_slots = newVal
+  }
+  changeTurning(delta){
+    const newVal = this.character.used_turning_slots + delta
+    if(newVal >= 0 && newVal <= this.character.getTotalTurningSlots())
+      this.character.used_turning_slots = newVal
   }
 
   doneEditing(){

@@ -9,6 +9,7 @@ import {SpellGroup} from "./spell-group";
 import {SavingThrowsHelper} from "./saving-throws-helper";
 import {Mount} from "./mount";
 import {Experience} from "./experience";
+import {ClericTurningHelper} from "./cleric-turning-helper";
 
 export class Character implements Loadable {
   name: string;
@@ -74,6 +75,7 @@ export class Character implements Loadable {
   quests: string;
   will: string;
   used_pray_slots: number = 0
+  used_turning_slots: number = 0
   deity_name: string
   deity_domain: string
   deity_edict: string
@@ -187,6 +189,8 @@ export class Character implements Loadable {
     }, {base: -1, bonus: -1})
   }
 
+
+
   getHighestClassLevel(className): number {
     return this.getExperience()
       .filter(b => b.class == className)
@@ -227,8 +231,15 @@ export class Character implements Loadable {
   }
 
   getTotalPrayerSlots(): number{
-    console.log(Math.max(...this.getExperience().filter(b => b.class == 'Cleric').map((experience) => experience.getTotalPrayerSlot())));
     return Math.max(...this.getExperience().filter(b => b.class == 'Cleric').map((experience) => experience.getTotalPrayerSlot()));
+  }
+
+  getTotalTurningSlots(): number{
+    return Math.max(...this.getExperience().filter(b => b.class == 'Cleric').map((experience) => experience.getTotalPrayerSlot()));
+  }
+
+  getTurningEvents(){
+    return ClericTurningHelper.getSavingThrows(Math.max(...this.getAllClericBlocks().map((block) => block.currentLevel())))
   }
 
   getAllMagicUserBlocks(): ExperienceBlock[] {
