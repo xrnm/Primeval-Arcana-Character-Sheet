@@ -163,9 +163,6 @@ export class Character implements Loadable {
   getInitialClass() {
     return this.getExperience()[0].class
   }
-  prayerSlots(){
-
-  }
 
   hitDice() {
     return this.getExperience().map((block) => {
