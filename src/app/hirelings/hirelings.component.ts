@@ -18,6 +18,18 @@ export class HirelingsComponent implements OnInit {
     this.character = this.gameService.getGame().getCharacter()
   }
 
+  importHireling(event){
+    if(this.gameService.lock)
+      return;
+    let file = event.target.files[0];
+    const reader: FileReader = new FileReader();
+    reader.onloadend = function (e) {
+      const result: string = reader.result as string
+      return this.character.hirelings.push(new Character(JSON.parse(result).character));
+    }.bind(this);
+    reader.readAsText(file);
+  }
+
   getHirelings(){
     return this.character.hirelings.filter(h=>!h.deleted);
   }
