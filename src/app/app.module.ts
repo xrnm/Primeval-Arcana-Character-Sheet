@@ -51,6 +51,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import { LinksComponent } from './links/links.component';
 import { HirelingsComponent } from './hirelings/hirelings.component';
 import { CharacterMountsComponent } from './show-character/character-mounts/character-mounts.component';
+import { CharacterClericComponent } from './show-character/character-cleric/character-cleric.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { CharacterMountsComponent } from './show-character/character-mounts/char
     LinksComponent,
     HirelingsComponent,
     CharacterMountsComponent,
+    CharacterClericComponent
   ],
   imports: [
     BrowserModule,

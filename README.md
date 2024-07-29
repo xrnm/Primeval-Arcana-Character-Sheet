@@ -1,3 +1,4 @@
+
 # Revived Interactive Character Sheet (ICS)
 
 This interactive character sheet is intended to create a convenient and easy place to keep track of character statistics, items, attributes, experiences, and more in a digital format.
@@ -11,12 +12,11 @@ https://ics.blacktowergames.com
 
 ## Features that are conspicuously absent
 
-2. Turning Events
-5. Carts / Strongholds / vaults etc
-6. Unload warning on navigation
-7. Unload Warning on new character creation
-8. Adjustments on pretty much everything
-9. More beautifulness in the styles
+1. Carts / Strongholds / vaults etc
+2. Unload warning on navigation
+3. Unload Warning on new character creation
+4. Adjustments on pretty much everything
+5. More beautifulness in the styles
 
 
 ## Developing and Deploying

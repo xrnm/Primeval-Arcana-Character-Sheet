@@ -10,6 +10,7 @@ export class ExperienceBlock {
   bonus_xp: number;
   spellbook: SpellBook
   spells: SpellGroup[]
+  prayerSlots: number;
   deleted: boolean
 
   constructor(init?: Partial<ExperienceBlock>) {
@@ -20,9 +21,10 @@ export class ExperienceBlock {
       this.experiences = [];
 
     if(init && init.spellbook)
-      this.spellbook = new SpellBook(init.spellbook)
+      this.spellbook = new SpellBook(init.spellbook, this.class)
     else
-      this.spellbook = new SpellBook()
+      this.spellbook = new SpellBook(null, this.class)
+
     this.initializeSpells()
 
     if(init && init.spells){
@@ -47,6 +49,7 @@ export class ExperienceBlock {
     return Array(this.highestPossibleSpellLevel()).fill(0);
   }
 
+  // This is only used as a fallback for defaults. It is overrideable.
   getPrimeFromClass() {
     switch (this.class) {
       case 'Fighter':
@@ -136,6 +139,13 @@ export class ExperienceBlock {
       this.spells.pop();
 
     return this.spells
+  }
+
+  getTotalPrayerSlot(): number{
+    if(this.class!== 'Cleric')
+      return 0
+    return this.currentLevel()
+
   }
 
 }

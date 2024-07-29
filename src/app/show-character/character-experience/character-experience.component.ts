@@ -40,13 +40,13 @@ export class CharacterExperienceComponent implements OnInit {
   }
 
   canAddClass(){
-
     return this.character.getExperience()[0].currentLevelExperience() - 1000 >= 0
   }
 
   doneEditing(){
     this.editing = -1;
     this.character.initializeExperienceBonus()
+    this.character.initializeInitialSpells();
   }
   confirmDelete(block){
     if(confirm("Are you sure you want to delete this block and all of the experience?")){
