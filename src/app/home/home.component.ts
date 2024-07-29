@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
   @Output() imported = new EventEmitter<Game>();
   ngOnInit(): void {
   }
-
   importGame(event){
     let file = event.target.files[0];
     const reader: FileReader = new FileReader();
