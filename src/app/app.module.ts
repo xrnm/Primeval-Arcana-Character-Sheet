@@ -113,8 +113,6 @@ import { CharacterClericComponent } from './show-character/character-cleric/char
     MatNativeDateModule,
     Title,
   ],
-  entryComponents:[
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
