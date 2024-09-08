@@ -2,7 +2,7 @@
 
 <div id="abilities" class="container">
   <mat-card appearance="outlined" ngClass="{{character.abilityIsPrime('strength') ? 'prime' : ''}}">
-    <mat-card-content class="mat-body-2">
+    <mat-card-content class="mat-subtitle-2">
     <mat-icon *ngIf="character.hasPositiveAbilityAdjustment('strength')" color="primary" class="ability-info-icon" matTooltip="Your high strength compels to you an additional +1 damage to melee and thrown attacks">info</mat-icon>
     <mat-card-header><h4>Strength</h4></mat-card-header>
     <button (click)="changeAbility('strength',-1)" mat-icon-button color="warn">
