@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {ExperienceBlock} from "../../experience-block";
 import {Experience} from "../../experience";
 import {GameService} from "../../game.service";
-import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
+import {MatDialog} from "@angular/material/dialog";
 import {CharacterExperienceDialogComponent} from "../../show-character/character-experience/character-experience-dialog/character-experience-dialog.component";
 import {Character} from "../../character";
 

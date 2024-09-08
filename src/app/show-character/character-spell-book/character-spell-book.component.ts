@@ -3,7 +3,7 @@ import {Character} from "../../character";
 import {Spell} from "../../spell";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {SpellDialogComponent} from "./spell-dialog/spell-dialog.component";
-import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
+import {MatDialog} from "@angular/material/dialog";
 import {GameService} from "../../game.service";
 
 @Component({

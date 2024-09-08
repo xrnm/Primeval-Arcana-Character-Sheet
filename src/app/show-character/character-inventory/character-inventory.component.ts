@@ -1,7 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Character} from "../../character";
 import {GameService} from "../../game.service";
-import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
+import {MatDialog} from "@angular/material/dialog";
 import {ContainerDialogComponent} from "./container-dialog/container-dialog.component";
 import {Container} from "../../container";
 import {Game} from "../../game";

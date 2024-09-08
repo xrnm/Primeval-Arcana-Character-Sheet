@@ -1,5 +1,5 @@
 <div *ngIf="character.getTotalPrayerSlots() > 0" class="container" id="cleric">
-  <mat-card>
+  <mat-card appearance="outlined">
     <mat-icon *ngIf="editing!='deity'" color='primary' (click)="editSection('deity')" class="edit">edit</mat-icon>
     <mat-list *ngIf="editing!='deity'">
       <h2>Deity & Prayers</h2>
@@ -72,7 +72,7 @@
       </mat-list>
     </div>
   </mat-card>
-  <mat-card>
+  <mat-card appearance="outlined">
     <mat-icon color="primary" class="turning-info-icon"
               matTooltip="If a raw number roll 2d6 and if you meet or exceed the number listed, roll another 2d6 and turn that many hit die. T means automatically turn the number of d6, D means automatically destroy the number of d6">
       info

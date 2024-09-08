@@ -5,7 +5,7 @@
   </button>
 </h2>
 <div id="experience" class="container">
-  <mat-card *ngFor="let experience of character.getExperience(); let i  = index;">
+  <mat-card appearance="outlined" *ngFor="let experience of character.getExperience(); let i  = index;">
     <mat-icon class='experience-edit' color="primary" *ngIf="editing!=i" (click)="editing = i">edit</mat-icon>
     <mat-list dense *ngIf="editing!=i">
       <h2>Experience Block {{i + 1}}</h2>
@@ -54,7 +54,7 @@
 
     </mat-list>
   </mat-card>
-  <mat-card class="new-class" *ngIf="canAddClass()">
+  <mat-card appearance="outlined" class="new-class" *ngIf="canAddClass()">
     <div class="table">
       <div class="table-cell">
         <button class="add-experience-block" color="primary" mat-mini-fab (click)="addExperienceBlock()">

@@ -5,7 +5,7 @@
     <h2>{{mount.name}}</h2>
     <h5>{{mount.getDescription()}}</h5>
     <div class="mount-cards">
-      <mat-card>
+      <mat-card appearance="outlined">
         <mat-icon *ngIf="editing!=i" color='primary' (click)="startEditing(i)" class="edit">edit</mat-icon>
         <mat-icon *ngIf="editing==i" color='warn' (click)="removeMount(mount)" class="edit">delete</mat-icon>
 
@@ -133,13 +133,13 @@
           </mat-list-item>
         </mat-list>
       </mat-card>
-      <mat-card>
+      <mat-card appearance="outlined">
         <mat-list>
           <h2>Inventory</h2>
           <item-list [items]="mount.inventory"></item-list>
         </mat-list>
       </mat-card>
-      <mat-card *ngFor="let si of mount.getSlungItems()">
+      <mat-card appearance="outlined" *ngFor="let si of mount.getSlungItems()">
         <mat-list>
           <h2>{{si.name}}</h2>
           <item-list [items]="si.contents"></item-list>

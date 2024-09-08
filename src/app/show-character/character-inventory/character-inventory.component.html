@@ -1,18 +1,18 @@
 <h2 class="section-subtitle">Inventory - {{character.load()}}cn / {{character.maximumLoad()}}cn</h2>
 <div class="container" id="inventory" >
-  <mat-card>
+  <mat-card appearance="outlined">
     <mat-list dense>
       <h2>Weapons:</h2>
       <item-list [items]="character.weapons" [capacity]="4"></item-list>
     </mat-list>
   </mat-card>
-  <mat-card>
+  <mat-card appearance="outlined">
     <mat-list dense>
       <h2>Armor:</h2>
       <item-list [items]="character.armor" [capacity]="4"></item-list>
     </mat-list>
   </mat-card>
-  <mat-card>
+  <mat-card appearance="outlined">
     <mat-list dense>
       <h2>Slung Items:</h2>
       <div *ngFor="let si of character.getSlungItems()">
@@ -34,7 +34,7 @@
       </button>
     </mat-list>
   </mat-card>
-  <mat-card *ngFor="let si of character.getSlottedContainers()">
+  <mat-card appearance="outlined" *ngFor="let si of character.getSlottedContainers()">
     <h2><span *ngIf="si.unequipped">Unequipped</span> {{si.inventoryString(false)}} </h2>
     <h3 [class.overfull]="si.isOverfull()">{{si.capacityString()}}</h3>
     <item-list [capacity]="si.slots" [items]="si.contents"></item-list>

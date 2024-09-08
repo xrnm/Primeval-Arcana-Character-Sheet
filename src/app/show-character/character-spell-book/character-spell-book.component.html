@@ -1,6 +1,6 @@
 <div class="container" id="spells" cdkDropListGroup *ngFor="let block of spellContainingBlocks()">
   <h2 class="section-subtitle">{{block.class | titlecase}} Spells</h2>
-  <mat-card>
+  <mat-card appearance="outlined">
     <mat-icon color="primary" class="spell-info-icon" matTooltip="You may drag and drop spells from the spell book into your character's spell slots on the right. You may overcast spells, but you may not load spell into a slot of lower level">info</mat-icon>
     <h2>Available Spells</h2>
     <mat-tab-group>
@@ -21,7 +21,7 @@
       </mat-tab>
     </mat-tab-group>
   </mat-card>
-  <mat-card>
+  <mat-card appearance="outlined">
     <character-spell-slots [block]="block"></character-spell-slots>
   </mat-card>
 </div>

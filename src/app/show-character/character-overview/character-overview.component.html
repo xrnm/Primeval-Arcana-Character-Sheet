@@ -1,7 +1,7 @@
 <h1 class="section-title">{{character.name}}</h1>
 <h2 *ngFor="let block of character.getExperience()" class="section-subtitle"> Level {{block.currentLevel()}} {{character.race}} {{block.class}}</h2>
 <div id="overview" class="container">
-  <mat-card>
+  <mat-card appearance="outlined">
     <mat-icon *ngIf="editing!='stats'" color='primary' (click)="editSection('stats')" class="edit">edit</mat-icon>
     <mat-list *ngIf="editing!='stats'">
       <h2>Stats</h2>
@@ -49,7 +49,7 @@
       </mat-list>
     </div>
   </mat-card>
-  <mat-card>
+  <mat-card appearance="outlined">
     <mat-icon *ngIf="editing!='background'" color='primary' (click)="editSection('background')" class="edit">edit
     </mat-icon>
     <mat-icon *ngIf="character.hasPositiveAbilityAdjustment('intelligence')" color="primary" class="ability-info-icon" matTooltip="Your high intellect compels to you one additional spoken language for each point above 10 ">info</mat-icon>
@@ -98,7 +98,7 @@
       </mat-list-item>
     </mat-list>
   </mat-card>
-  <mat-card>
+  <mat-card appearance="outlined">
     <mat-icon *ngIf="editing!='attributes'" color='primary' (click)="editSection('attributes')" class="edit">edit
     </mat-icon>
     <mat-list *ngIf="editing!='attributes'">
@@ -173,7 +173,7 @@
       </mat-list-item>
     </mat-list>
   </mat-card>
-  <mat-card id="movement">
+  <mat-card appearance="outlined" id="movement">
     <h2>Movement</h2>
     <mat-icon *ngIf="editing!='movement'" color='primary' (click)="editSection('movement')" class="edit">edit
     </mat-icon>
@@ -203,12 +203,12 @@
   </mat-card>
 </div>
 <div id="overview-stats" class="container">
-  <mat-card>
+  <mat-card appearance="outlined">
     <h4>Hit Dice</h4>
     <strong>{{character.hitDice().base}} <span
       *ngIf="character.hitDice().bonus != 0">+ {{character.hitDice().bonus}}&nbsp;</span></strong>
   </mat-card>
-  <mat-card>
+  <mat-card appearance="outlined">
     <mat-icon *ngIf="editing!='hitpoints'" color='primary' (click)="editSection('hitpoints')" class="edit">edit
     </mat-icon>
     <mat-icon *ngIf="editing!='hitpoints' && character.hasPositiveAbilityAdjustment('constitution')" color="primary" class="ability-info-icon" matTooltip="Your high constitution compels to you an additional hit point for per whole hit die">info</mat-icon>
@@ -232,7 +232,7 @@
       <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
     </div>
   </mat-card>
-  <mat-card>
+  <mat-card appearance="outlined">
     <h4>Armor Class</h4>
     <div id="armor-class">
       <div>
@@ -251,12 +251,12 @@
       <mat-checkbox [(ngModel)]="character.shield">Shield</mat-checkbox>
     </small>
   </mat-card>
-  <mat-card>
+  <mat-card appearance="outlined">
     <h4>Melee To-hit</h4>
     <strong>+{{character.meleeToHit()}}</strong>
     <p *ngIf="character.hasPositiveAbilityAdjustment('strength')" class="damage-modifier">+1 damage</p>
   </mat-card>
-  <mat-card>
+  <mat-card appearance="outlined">
     <h4>Missile To-hit</h4>
     <strong>+{{character.missileToHit()}}</strong>
     <p *ngIf="character.hasPositiveAbilityAdjustment('dexterity')" class="damage-modifier">+1 damage</p>
