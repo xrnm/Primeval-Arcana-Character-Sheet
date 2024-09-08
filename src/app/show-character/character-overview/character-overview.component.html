@@ -2,6 +2,7 @@
 <h2 *ngFor="let block of character.getExperience()" class="section-subtitle"> Level {{block.currentLevel()}} {{character.race}} {{block.class}}</h2>
 <div id="overview" class="container">
   <mat-card appearance="outlined">
+    <mat-card-content>
     <mat-icon *ngIf="editing!='stats'" color='primary' (click)="editSection('stats')" class="edit">edit</mat-icon>
     <mat-list *ngIf="editing!='stats'">
       <h2>Stats</h2>
@@ -48,6 +49,7 @@
         </mat-list-item>
       </mat-list>
     </div>
+    </mat-card-content>
   </mat-card>
   <mat-card appearance="outlined">
     <mat-icon *ngIf="editing!='background'" color='primary' (click)="editSection('background')" class="edit">edit
