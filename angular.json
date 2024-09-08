@@ -71,18 +71,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "odnd:build"
+            "buildTarget": "odnd:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "odnd:build:production"
+              "buildTarget": "odnd:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "odnd:build"
+            "buildTarget": "odnd:build"
           }
         },
         "test": {
