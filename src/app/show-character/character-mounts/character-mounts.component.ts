@@ -5,7 +5,7 @@ import {DefaultSettingsHelper} from "../../default-settings-helper";
 import {Mount} from "../../mount";
 import {Container} from "../../container";
 import {ContainerDialogComponent} from "../character-inventory/container-dialog/container-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
+import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
 
 @Component({
   selector: 'character-mounts',
