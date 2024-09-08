@@ -5,7 +5,8 @@
   </button>
 </h2>
 <div id="experience" class="container">
-  <mat-card *ngFor="let experience of character.getExperience(); let i  = index;">
+  <mat-card appearance="outlined" *ngFor="let experience of character.getExperience(); let i  = index;">
+    <mat-card-content>
     <mat-icon class='experience-edit' color="primary" *ngIf="editing!=i" (click)="editing = i">edit</mat-icon>
     <mat-list dense *ngIf="editing!=i">
       <h2>Experience Block {{i + 1}}</h2>
@@ -17,7 +18,7 @@
       <mat-divider></mat-divider>
       <mat-list-item><span>Level:&nbsp; </span> {{experience.currentLevel()}} </mat-list-item>
       <mat-divider></mat-divider>
-      <div *ngIf="experience.currentExperience() > 0">
+      <div class="progress-bar" *ngIf="experience.currentExperience() > 0">
         <mat-progress-bar mode="determinate" value="{{experience.levelProgress()*100}}"></mat-progress-bar>
         {{experience.currentExperience()}} / {{experience.totalExperienceForLevel(experience.currentLevel() + 1)}}
         <br/>
@@ -25,7 +26,7 @@
       </div>
     </mat-list>
 
-    <mat-list dense *ngIf="editing==i">
+    <mat-list dense *ngIf="editing==i" class="editing">
       <mat-icon class='experience-edit' color="warn" *ngIf="editing==i&&character.getExperience().length>1" (click)="confirmDelete(experience)">delete</mat-icon>
       <h2>Experience Block {{i + 1}}</h2>
       <mat-list-item>
@@ -53,8 +54,10 @@
       </mat-list-item>
 
     </mat-list>
+    </mat-card-content>
   </mat-card>
-  <mat-card class="new-class" *ngIf="canAddClass()">
+  <mat-card appearance="outlined" class="new-class" *ngIf="canAddClass()">
+    <mat-card-content>
     <div class="table">
       <div class="table-cell">
         <button class="add-experience-block" color="primary" mat-mini-fab (click)="addExperienceBlock()">
@@ -63,6 +66,7 @@
         <h1>Add a class</h1>
       </div>
     </div>
+    </mat-card-content>
   </mat-card>
 </div>
 

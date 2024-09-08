@@ -1,6 +1,7 @@
 <h2 class="section-subtitle">Coinage and Valuables</h2>
 <div id="purse" class="container">
-  <mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
     <mat-list dense>
       <h2>Coins</h2>
       <mat-icon color="primary" class="purse-info-icon" matTooltip="Hold shift to change by 10, Ctrl to change by 100, and both to change by 1000">info</mat-icon>
@@ -52,18 +53,23 @@
       <mat-list-item><span>Total: </span> {{character.purse.getTotal()}}</mat-list-item>
       <mat-divider></mat-divider>
     </mat-list>
+    </mat-card-content>
   </mat-card>
-  <mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
     <mat-list>
       <h2>Gems & Valuables</h2>
       <item-list [items]="character.purse.gems"></item-list>
     </mat-list>
+    </mat-card-content>
   </mat-card>
-  <mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
     <mat-list>
       <h2>Magic Items</h2>
       <item-list [items]="character.magic_items">
       </item-list>
     </mat-list>
+    </mat-card-content>
   </mat-card>
 </div>

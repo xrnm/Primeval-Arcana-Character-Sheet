@@ -1,3 +1,5 @@
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
+
 /* You can add global styles to this file, and also import other style files */
 @font-face
   font-family: 'Cinzel'
@@ -27,6 +29,7 @@ mat-toolbar a
   bottom: 4px
   .edit-item-button mat-icon
       color: white
+
 
 
 h1.section-title
@@ -65,13 +68,20 @@ h2.section-subtitle
     h4
       text-align: center
       margin-bottom: 32px
+      padding-top: 25px
     h1,h2,h3,h4,h5
       font-family: Cinzel
+      text-align: center
     strong
       font-size: 28px
       font-family: Cinzel
-
-
+    mat-card-content
+      text-align: left
+    .editing
+      mat-list-item
+        min-height: 65px
+        margin: 0
+        padding: 0
 
 mat-dialog-content
   width: 50vw
