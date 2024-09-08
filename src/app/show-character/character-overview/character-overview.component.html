@@ -1,235 +1,255 @@
-<h1 class="section-title">{{character.name}}</h1>
-<h2 *ngFor="let block of character.getExperience()" class="section-subtitle"> Level {{block.currentLevel()}} {{character.race}} {{block.class}}</h2>
+<h1 class="section-title">{{ character.name }}</h1>
+<h2 *ngFor="let block of character.getExperience()" class="section-subtitle">
+  Level {{ block.currentLevel() }} {{ character.race }} {{ block.class }}</h2>
 <div id="overview" class="container">
   <mat-card appearance="outlined">
     <mat-card-content>
-    <mat-icon *ngIf="editing!='stats'" color='primary' (click)="editSection('stats')" class="edit">edit</mat-icon>
-    <mat-list *ngIf="editing!='stats'">
-      <h2>Stats</h2>
-      <mat-list-item><span>Name: &nbsp;</span> {{character.name}} </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>Class: &nbsp;</span> {{character.getConciseClassLevelString()}} </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>Age: &nbsp;</span> {{character.age}} </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>Sex: &nbsp;</span> {{character.sex}} </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>Race: &nbsp;</span> {{character.race}} </mat-list-item>
-      <mat-divider></mat-divider>
-    </mat-list>
-    <div *ngIf="editing=='stats'">
-      <h2>Edit Stats</h2>
-      <mat-list>
+      <mat-icon *ngIf="editing!='stats'" color='primary' (click)="editSection('stats')" class="edit">edit</mat-icon>
+      <mat-list *ngIf="editing!='stats'">
+        <h2>Stats</h2>
+        <mat-list-item><span>Name: &nbsp;</span> {{ character.name }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span>Class: &nbsp;</span> {{ character.getConciseClassLevelString() }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span>Age: &nbsp;</span> {{ character.age }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span>Sex: &nbsp;</span> {{ character.sex }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span>Race: &nbsp;</span> {{ character.race }}</mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+      <div *ngIf="editing=='stats'" class="editing">
+        <h2>Edit Stats</h2>
+        <mat-list>
+          <mat-list-item>
+            <mat-form-field>
+              <mat-label>Name:</mat-label>
+              <input matInput [(ngModel)]="character.name"/>
+            </mat-form-field>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-form-field>
+              <mat-label>Age:</mat-label>
+              <input matInput [(ngModel)]="character.age" type="number"/>
+            </mat-form-field>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-form-field>
+              <mat-label>Sex:</mat-label>
+              <input matInput [(ngModel)]="character.sex"/>
+            </mat-form-field>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-form-field>
+              <mat-label>Race:</mat-label>
+              <input matInput [(ngModel)]="character.race"/>
+            </mat-form-field>
+          </mat-list-item>
+          <mat-list-item>
+            <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <mat-icon *ngIf="editing!='background'" color='primary' (click)="editSection('background')" class="edit">edit
+      </mat-icon>
+      <mat-icon *ngIf="character.hasPositiveAbilityAdjustment('intelligence')" color="primary" class="ability-info-icon"
+                matTooltip="Your high intellect compels to you one additional spoken language for each point above 10 ">
+        info
+      </mat-icon>
+      <mat-icon *ngIf="character.hasNegativeAbilityAdjustment('intelligence')" color="primary" class="ability-info-icon"
+                matTooltip="Your weak intellect renders you unable to read or write">info
+      </mat-icon>
+      <mat-list *ngIf="editing!='background'">
+        <h2>Background</h2>
+        <mat-list-item><span>Alignment:&nbsp;</span> {{ character.alignment }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span>Land of Origin:&nbsp;</span> {{ character.origin }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span>Profession:&nbsp;</span> {{ character.profession }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span>Known Languages:&nbsp;</span>
+          {{ character.known_languages }}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+      <mat-list *ngIf="editing=='background'" class="editing">
+        <h2>Edit Background</h2>
         <mat-list-item>
           <mat-form-field>
-            <mat-label>Name:</mat-label>
-            <input matInput [(ngModel)]="character.name"/>
+            <mat-label>Alignment:</mat-label>
+            <input matInput [(ngModel)]="character.alignment"/>
           </mat-form-field>
         </mat-list-item>
         <mat-list-item>
           <mat-form-field>
-            <mat-label>Age:</mat-label>
-            <input matInput [(ngModel)]="character.age" type="number"/>
+            <mat-label>Land of Origin:</mat-label>
+            <input matInput [(ngModel)]="character.origin"/>
           </mat-form-field>
         </mat-list-item>
         <mat-list-item>
           <mat-form-field>
-            <mat-label>Sex:</mat-label>
-            <input matInput [(ngModel)]="character.sex"/>
+            <mat-label>Profession:</mat-label>
+            <input matInput [(ngModel)]="character.profession"/>
           </mat-form-field>
         </mat-list-item>
         <mat-list-item>
           <mat-form-field>
-            <mat-label>Race:</mat-label>
-            <input matInput [(ngModel)]="character.race"/>
+            <mat-label>Known Languages:</mat-label>
+            <input matInput [(ngModel)]="character.known_languages"/>
           </mat-form-field>
         </mat-list-item>
         <mat-list-item>
           <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
         </mat-list-item>
       </mat-list>
-    </div>
     </mat-card-content>
   </mat-card>
   <mat-card appearance="outlined">
-    <mat-icon *ngIf="editing!='background'" color='primary' (click)="editSection('background')" class="edit">edit
-    </mat-icon>
-    <mat-icon *ngIf="character.hasPositiveAbilityAdjustment('intelligence')" color="primary" class="ability-info-icon" matTooltip="Your high intellect compels to you one additional spoken language for each point above 10 ">info</mat-icon>
-    <mat-icon *ngIf="character.hasNegativeAbilityAdjustment('intelligence')" color="primary" class="ability-info-icon" matTooltip="Your weak intellect renders you unable to read or write">info</mat-icon>
-    <mat-list *ngIf="editing!='background'">
-      <h2>Background</h2>
-      <mat-list-item><span>Alignment:&nbsp;</span> {{character.alignment}} </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>Land of Origin:&nbsp;</span> {{character.origin}} </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>Profession:&nbsp;</span> {{character.profession}} </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>Known Languages:&nbsp;</span>
-        {{character.known_languages}}
-      </mat-list-item>
-      <mat-divider></mat-divider>
-    </mat-list>
-    <mat-list *ngIf="editing=='background'">
-      <h2>Edit Background</h2>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Alignment:</mat-label>
-          <input matInput [(ngModel)]="character.alignment"/>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Land of Origin:</mat-label>
-          <input matInput [(ngModel)]="character.origin"/>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Profession:</mat-label>
-          <input matInput [(ngModel)]="character.profession"/>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Known Languages:</mat-label>
-          <input matInput [(ngModel)]="character.known_languages"/>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
-      </mat-list-item>
-    </mat-list>
-  </mat-card>
-  <mat-card appearance="outlined">
-    <mat-icon *ngIf="editing!='attributes'" color='primary' (click)="editSection('attributes')" class="edit">edit
-    </mat-icon>
-    <mat-list *ngIf="editing!='attributes'">
-      <h2>Attributes</h2>
-      <mat-list-item><span>Height: &nbsp;</span>{{character.displayHeight()}}
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>Weight: &nbsp;</span> {{character.weight}}lbs
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>
-        <span>Hair:&nbsp;</span> {{character.hair_length}} {{character.hair_style}} {{character.hair_color}}
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>Eyes:&nbsp;</span> {{character.eye_color}} Eyes</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>
-        <span>Skin:&nbsp; </span>{{character.skin_color}} Skin</mat-list-item>
-      <mat-divider></mat-divider>
-    </mat-list>
-    <mat-list *ngIf="editing=='attributes'">
-      <h2>Edit Attributes</h2>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Height Feet:</mat-label><input matInput [(ngModel)]="character.height_foot" type="number"/>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Height Inches:</mat-label><input matInput [(ngModel)]="character.height_inch" type="number"/>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Weight:</mat-label>
-          <input matInput [(ngModel)]="character.weight" type="number"/>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Hair Color:</mat-label>
-          <input matInput [(ngModel)]="character.hair_color"/>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Hair Length:</mat-label>
-          <input matInput [(ngModel)]="character.hair_length"/>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Hair Style:</mat-label>
-          <input matInput [(ngModel)]="character.hair_style"/>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Eye Color:</mat-label>
-          <input matInput [(ngModel)]="character.eye_color"/>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Skin Color:</mat-label>
-          <input matInput [(ngModel)]="character.skin_color"/>
-        </mat-form-field>
-      </mat-list-item>
+    <mat-card-content>
+      <mat-icon *ngIf="editing!='attributes'" color='primary' (click)="editSection('attributes')" class="edit">edit
+      </mat-icon>
+      <mat-list *ngIf="editing!='attributes'">
+        <h2>Attributes</h2>
+        <mat-list-item><span>Height: &nbsp;</span>{{ character.displayHeight() }}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span>Weight: &nbsp;</span> {{ character.weight }}lbs
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <span>Hair:&nbsp;</span> {{ character.hair_length }} {{ character.hair_style }} {{ character.hair_color }}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span>Eyes:&nbsp;</span> {{ character.eye_color }} Eyes</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <span>Skin:&nbsp; </span>{{ character.skin_color }} Skin
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+      <mat-list *ngIf="editing=='attributes'" class="editing">
+        <h2>Edit Attributes</h2>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Height Feet:</mat-label>
+            <input matInput [(ngModel)]="character.height_foot" type="number"/>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Height Inches:</mat-label>
+            <input matInput [(ngModel)]="character.height_inch" type="number"/>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Weight:</mat-label>
+            <input matInput [(ngModel)]="character.weight" type="number"/>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Hair Color:</mat-label>
+            <input matInput [(ngModel)]="character.hair_color"/>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Hair Length:</mat-label>
+            <input matInput [(ngModel)]="character.hair_length"/>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Hair Style:</mat-label>
+            <input matInput [(ngModel)]="character.hair_style"/>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Eye Color:</mat-label>
+            <input matInput [(ngModel)]="character.eye_color"/>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Skin Color:</mat-label>
+            <input matInput [(ngModel)]="character.skin_color"/>
+          </mat-form-field>
+        </mat-list-item>
 
-      <mat-list-item>
-        <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
-      </mat-list-item>
-    </mat-list>
+        <mat-list-item>
+          <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
   </mat-card>
   <mat-card appearance="outlined" id="movement">
-    <h2>Movement</h2>
-    <mat-icon *ngIf="editing!='movement'" color='primary' (click)="editSection('movement')" class="edit">edit
-    </mat-icon>
-    <mat-list *ngIf="editing!='movement'">
-      <mat-list-item><span>Base Movement:&nbsp;</span>{{character.base_movement}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>Movement Rating:&nbsp;</span>{{character.movementRating()}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>1 Pace:&nbsp;</span>{{character.movementRating() / 6}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>2 Pace:&nbsp;</span>{{character.movementRating() / 3}}</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>3 Pace:&nbsp;</span>{{character.movementRating() / 2}}</mat-list-item>
-      <mat-divider></mat-divider>
-    </mat-list>
-    <mat-list *ngIf="editing=='movement'">
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Base Movement:</mat-label>
-          <input matInput [(ngModel)]="character.base_movement" type="number"/>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
-      </mat-list-item>
-    </mat-list>
+    <mat-card-content>
+      <h2>Movement</h2>
+      <mat-icon *ngIf="editing!='movement'" color='primary' (click)="editSection('movement')" class="edit">edit
+      </mat-icon>
+      <mat-list *ngIf="editing!='movement'">
+        <mat-list-item><span>Base Movement:&nbsp;</span>{{ character.base_movement }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span>Movement Rating:&nbsp;</span>{{ character.movementRating() }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span>1 Pace:&nbsp;</span>{{ character.movementRating() / 6 }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span>2 Pace:&nbsp;</span>{{ character.movementRating() / 3 }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span>3 Pace:&nbsp;</span>{{ character.movementRating() / 2 }}</mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+      <mat-list *ngIf="editing=='movement'" class="editing">
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Base Movement:</mat-label>
+            <input matInput [(ngModel)]="character.base_movement" type="number"/>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
   </mat-card>
 </div>
 <div id="overview-stats" class="container">
   <mat-card appearance="outlined">
     <h4>Hit Dice</h4>
-    <strong>{{character.hitDice().base}} <span
-      *ngIf="character.hitDice().bonus != 0">+ {{character.hitDice().bonus}}&nbsp;</span></strong>
+    <strong>{{ character.hitDice().base }} <span
+      *ngIf="character.hitDice().bonus != 0">+ {{ character.hitDice().bonus }}&nbsp;</span></strong>
   </mat-card>
   <mat-card appearance="outlined">
     <mat-icon *ngIf="editing!='hitpoints'" color='primary' (click)="editSection('hitpoints')" class="edit">edit
     </mat-icon>
-    <mat-icon *ngIf="editing!='hitpoints' && character.hasPositiveAbilityAdjustment('constitution')" color="primary" class="ability-info-icon" matTooltip="Your high constitution compels to you an additional hit point for per whole hit die">info</mat-icon>
+    <mat-icon *ngIf="editing!='hitpoints' && character.hasPositiveAbilityAdjustment('constitution')" color="primary"
+              class="ability-info-icon"
+              matTooltip="Your high constitution compels to you an additional hit point for per whole hit die">info
+    </mat-icon>
     <h4>Hit Points</h4>
     <div *ngIf="editing!='hitpoints'">
-    <strong><span class="current-hp">{{character.current_hp}}</span> / {{character.total_hp}}<span id="hpmax">Max</span></strong>
-    <div id="hp-area">
-      <button (click)="changeCharacter('current_hp',-1)" class="hp-button current-remove" mat-mini-fab color="warn">
-        <mat-icon>remove</mat-icon>
-      </button>
-      <button [disabled]="character.current_hp==character.total_hp" (click)="changeCharacter('current_hp',1)" class="hp-button current-add" mat-mini-fab color="primary">
-        <mat-icon>add</mat-icon>
-      </button>
+      <strong><span class="current-hp">{{ character.current_hp }}</span> / {{ character.total_hp }}<span
+        id="hpmax">Max</span></strong>
+      <div id="hp-area">
+        <button (click)="changeCharacter('current_hp',-1)" class="hp-button current-remove" mat-mini-fab color="warn">
+          <mat-icon>remove</mat-icon>
+        </button>
+        <button [disabled]="character.current_hp==character.total_hp" (click)="changeCharacter('current_hp',1)"
+                class="hp-button current-add" mat-mini-fab color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
     </div>
-    </div>
-    <div *ngIf="editing=='hitpoints'">
+    <div *ngIf="editing=='hitpoints'" class="editing">
       <mat-form-field>
         <mat-label>Maximum Hitpoints:</mat-label>
-        <input matInput type="number" min="0" [(ngModel)]="character.total_hp" />
+        <input matInput type="number" min="0" [(ngModel)]="character.total_hp"/>
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
     </div>
@@ -238,29 +258,34 @@
     <h4>Armor Class</h4>
     <div id="armor-class">
       <div>
-        <button (click)="changeCharacter('armor_class', -1)" color="warn" mat-icon-button class="remove-ac-button"><mat-icon>remove</mat-icon></button>
-        <strong>{{character.armor_class}}</strong>
-        <button (click)="changeCharacter('armor_class', 1)" color="primary" mat-icon-button class="add-ac-button"><mat-icon>add</mat-icon></button>
+        <button (click)="changeCharacter('armor_class', -1)" color="warn" mat-icon-button class="remove-ac-button">
+          <mat-icon>remove</mat-icon>
+        </button>
+        <strong>{{ character.armor_class }}</strong>
+        <button (click)="changeCharacter('armor_class', 1)" color="primary" mat-icon-button class="add-ac-button">
+          <mat-icon>add</mat-icon>
+        </button>
       </div>
       <div *ngIf="character.shield">
-        <strong>{{character.armor_class - 1}}</strong>
+        <strong>{{ character.armor_class - 1 }}</strong>
         <br/>
         <small>Shield</small>
       </div>
     </div>
     <small>
-      <mat-checkbox [(ngModel)]="character.helmet">Helmet</mat-checkbox><br />
+      <mat-checkbox [(ngModel)]="character.helmet">Helmet</mat-checkbox>
+      <br/>
       <mat-checkbox [(ngModel)]="character.shield">Shield</mat-checkbox>
     </small>
   </mat-card>
   <mat-card appearance="outlined">
     <h4>Melee To-hit</h4>
-    <strong>+{{character.meleeToHit()}}</strong>
+    <strong>+{{ character.meleeToHit() }}</strong>
     <p *ngIf="character.hasPositiveAbilityAdjustment('strength')" class="damage-modifier">+1 damage</p>
   </mat-card>
   <mat-card appearance="outlined">
     <h4>Missile To-hit</h4>
-    <strong>+{{character.missileToHit()}}</strong>
+    <strong>+{{ character.missileToHit() }}</strong>
     <p *ngIf="character.hasPositiveAbilityAdjustment('dexterity')" class="damage-modifier">+1 damage</p>
   </mat-card>
 </div>

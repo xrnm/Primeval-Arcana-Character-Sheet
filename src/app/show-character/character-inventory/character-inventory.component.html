@@ -1,42 +1,53 @@
-<h2 class="section-subtitle">Inventory - {{character.load()}}cn / {{character.maximumLoad()}}cn</h2>
-<div class="container" id="inventory" >
+<h2 class="section-subtitle">Inventory - {{ character.load() }}cn / {{ character.maximumLoad() }}cn</h2>
+<div class="container" id="inventory">
   <mat-card appearance="outlined">
-    <mat-list dense>
-      <h2>Weapons:</h2>
-      <item-list [items]="character.weapons" [capacity]="4"></item-list>
-    </mat-list>
+    <mat-card-content>
+      <mat-list dense>
+        <h2>Weapons:</h2>
+        <item-list [items]="character.weapons" [capacity]="4"></item-list>
+      </mat-list>
+    </mat-card-content>
   </mat-card>
   <mat-card appearance="outlined">
-    <mat-list dense>
-      <h2>Armor:</h2>
-      <item-list [items]="character.armor" [capacity]="4"></item-list>
-    </mat-list>
+    <mat-card-content>
+      <mat-list dense>
+        <h2>Armor:</h2>
+        <item-list [items]="character.armor" [capacity]="4"></item-list>
+      </mat-list>
+    </mat-card-content>
   </mat-card>
   <mat-card appearance="outlined">
-    <mat-list dense>
-      <h2>Slung Items:</h2>
-      <div *ngFor="let si of character.getSlungItems()">
-        <mat-list-item [class.overfull]="si.unequipped">{{si.inventoryString()}}
-          <div class="mat-list-actions">
-            <mat-icon [color]="si.unequipped ? 'primary' : 'warn'" class="unequip-icon" [class.unequipped]="si.unequipped" (click)="si.unequipped = !si.unequipped">pan_tool</mat-icon>
-            <button class="edit-item-button" mat-mini-fab color="accent" (click)="openContainerDialog(si)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-mini-fab color="warn" (click)="deleteSlungItem(si)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-      </div>
-      <button *ngIf="character.getSlungItems().length < 5" mat-mini-fab (click)="openContainerDialog()" color="primary">
-        <mat-icon>add</mat-icon>
-      </button>
-    </mat-list>
+    <mat-card-content>
+      <mat-list dense>
+        <h2>Slung Items:</h2>
+        <div *ngFor="let si of character.getSlungItems()">
+          <mat-list-item [class.overfull]="si.unequipped">{{ si.inventoryString() }}
+            <div class="mat-list-actions">
+              <mat-icon [color]="si.unequipped ? 'primary' : 'warn'" class="unequip-icon"
+                        [class.unequipped]="si.unequipped" (click)="si.unequipped = !si.unequipped">pan_tool
+              </mat-icon>
+              <button class="edit-item-button" mat-mini-fab color="accent" (click)="openContainerDialog(si)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-mini-fab color="warn" (click)="deleteSlungItem(si)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+        <button *ngIf="character.getSlungItems().length < 5" mat-mini-fab (click)="openContainerDialog()"
+                color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-list>
+    </mat-card-content>
   </mat-card>
   <mat-card appearance="outlined" *ngFor="let si of character.getSlottedContainers()">
-    <h2><span *ngIf="si.unequipped">Unequipped</span> {{si.inventoryString(false)}} </h2>
-    <h3 [class.overfull]="si.isOverfull()">{{si.capacityString()}}</h3>
-    <item-list [capacity]="si.slots" [items]="si.contents"></item-list>
+    <mat-card-content>
+      <h2><span *ngIf="si.unequipped">Unequipped</span> {{ si.inventoryString(false) }} </h2>
+      <h3 [class.overfull]="si.isOverfull()">{{ si.capacityString() }}</h3>
+      <item-list [capacity]="si.slots" [items]="si.contents"></item-list>
+    </mat-card-content>
   </mat-card>
 </div>
