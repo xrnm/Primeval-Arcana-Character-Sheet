@@ -23,7 +23,7 @@ https://ics.blacktowergames.com
 #### 1: Clone the repository
 `git clone git@github.com:xrnm/odnd-character-sheet.git`
 
-#### 2:Install Node 12 and use NPM to install the Angular CLI
+#### 2:Install Node and use NPM to install the Angular CLI
 
 `npm install -g @angular/cli`
 
