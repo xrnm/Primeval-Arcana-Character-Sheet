@@ -10,14 +10,14 @@ import {NEW_GAME} from "./new_game";
 export class GameService {
   game: Game;
   lock: boolean = false;
-  version = '1.200'
+  version = '1.201'
   getGame(): Game {
     return this.game;
   }
 
   importGame(json) {
     if(!json){
-      this.titleService.setTitle('Primeval Arcana Character Sheet');
+      this.titleService.setTitle('Primeval Arcana Interactive Character Sheet (ICS)');
       return
     }
 

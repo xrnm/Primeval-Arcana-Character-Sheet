@@ -21,7 +21,7 @@ https://ics.blacktowergames.com
 
 ## Developing and Deploying
 #### 1: Clone the repository
-`git clone git@github.com:xrnm/odnd-character-sheet.git`
+`git clone git@github.com:xrnm/Primeval-Arcana-Character-Sheet.git`
 
 #### 2:Install Node and use NPM to install the Angular CLI
 
