@@ -1,5 +1,5 @@
 
-# Revived Interactive Character Sheet (ICS)
+# Primeval Arcana Interactive Character Sheet (ICS)
 
 This interactive character sheet is intended to create a convenient and easy place to keep track of character statistics, items, attributes, experiences, and more in a digital format.
 

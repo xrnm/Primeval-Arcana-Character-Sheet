@@ -17,7 +17,7 @@ export class GameService {
 
   importGame(json) {
     if(!json){
-      this.titleService.setTitle('Revived Character Sheet');
+      this.titleService.setTitle('Primeval Arcana Character Sheet');
       return
     }
 
