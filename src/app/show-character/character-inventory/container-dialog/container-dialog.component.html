@@ -1,6 +1,17 @@
 <h2 mat-dialog-title>{{container.inventoryString()}}</h2>
 <mat-dialog-content class="mat-typography">
   <mat-form-field>
+    <mat-label>Template</mat-label>
+    <input matInput [(ngModel)]="templateFilter" (ngModelChange)="filterTemplates()"
+           [matAutocomplete]="templateAuto">
+    <mat-autocomplete #templateAuto="matAutocomplete" (optionSelected)="onTemplateSelect($event)">
+      <mat-option *ngFor="let e of filteredEquipment" [value]="e.name">
+        {{e.name}} ({{formatGp(e.price)}}, {{e.weight}}cn)
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
     <mat-label>Name</mat-label>
     <input matInput [(ngModel)]="container.name"/>
   </mat-form-field>
@@ -14,7 +25,7 @@
     <mat-label>Maximum Capacity</mat-label>
     <input matInput [(ngModel)]="container.capacity" type="number"/>
   </mat-form-field>
-  <br />
+  <br/>
   <mat-form-field>
     <mat-label>Slots</mat-label>
     <input matInput [(ngModel)]="container.slots" type="number"/>

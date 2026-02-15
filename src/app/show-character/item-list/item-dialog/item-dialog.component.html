@@ -1,6 +1,17 @@
 <h2 mat-dialog-title>{{item.inventoryString()}}</h2>
 <mat-dialog-content class="mat-typography">
   <mat-form-field>
+    <mat-label>Template</mat-label>
+    <input matInput [(ngModel)]="templateFilter" (ngModelChange)="filterTemplates()"
+           [matAutocomplete]="templateAuto">
+    <mat-autocomplete #templateAuto="matAutocomplete" (optionSelected)="onTemplateSelect($event)">
+      <mat-option *ngFor="let e of filteredEquipment" [value]="e.name">
+        {{e.name}} ({{formatGp(e.price)}}, {{e.weight}}cn)
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
     <mat-label>Name</mat-label>
     <input matInput [(ngModel)]="item.name"/>
   </mat-form-field>
@@ -17,10 +28,10 @@
   <br/>
   <mat-form-field>
     <mat-label>Description</mat-label>
-    <textarea matInput [(ngModel)]="item.description" type="number"></textarea>
+    <textarea matInput [(ngModel)]="item.description"></textarea>
   </mat-form-field>
-    <mat-dialog-actions align="end">
-      <button mat-button *ngIf="this.list" [mat-dialog-close]="">Cancel</button>
-      <button color="primary" mat-raised-button (click)="upsertItem()" [mat-dialog-close]="" cdkFocusInitial>Done</button>
-    </mat-dialog-actions>
+  <mat-dialog-actions align="end">
+    <button mat-button *ngIf="this.list" [mat-dialog-close]="">Cancel</button>
+    <button color="primary" mat-raised-button (click)="upsertItem()" [mat-dialog-close]="" cdkFocusInitial>Done</button>
+  </mat-dialog-actions>
 </mat-dialog-content>

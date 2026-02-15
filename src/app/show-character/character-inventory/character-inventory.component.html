@@ -36,10 +36,12 @@
           </mat-list-item>
           <mat-divider></mat-divider>
         </div>
-        <button *ngIf="character.getSlungItems().length < 5" mat-mini-fab (click)="openContainerDialog()"
-                color="primary">
-          <mat-icon>add</mat-icon>
-        </button>
+        <div class="add-item">
+          <button *ngIf="character.getSlungItems().length < 5" mat-mini-fab (click)="openContainerDialog()"
+                  color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
       </mat-list>
     </mat-card-content>
   </mat-card>

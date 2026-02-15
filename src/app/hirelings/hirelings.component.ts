@@ -1,8 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Character} from "../character";
-import {GameService} from "../game.service";
-import {NewCharacter} from "../new-character";
-import {DefaultSettingsHelper} from "../default-settings-helper";
+import {Character} from '../character';
+import {GameService} from '../game.service';
+import {NewCharacter} from '../new-character';
+import {DefaultSettingsHelper} from '../default-settings-helper';
+import {MatDialog} from '@angular/material/dialog';
+import {GenerateCharacterDialogComponent} from '../generate-character-dialog/generate-character-dialog.component';
 
 @Component({
   selector: 'app-hirelings',
@@ -11,7 +13,7 @@ import {DefaultSettingsHelper} from "../default-settings-helper";
 })
 export class HirelingsComponent implements OnInit {
   character: Character;
-  constructor(private gameService: GameService) {
+  constructor(private gameService: GameService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -39,6 +41,21 @@ export class HirelingsComponent implements OnInit {
       return;
 
     this.gameService.getGame().getCharacter().hirelings.push(new Character(DefaultSettingsHelper.character()));
+  }
+
+  generateHireling() {
+    if(this.gameService.lock)
+      return;
+
+    const dialogRef = this.dialog.open(GenerateCharacterDialogComponent, {
+      width: '90vw',
+      maxWidth: '1000px'
+    });
+    dialogRef.afterClosed().subscribe((hireling: Character) => {
+      if (hireling) {
+        this.gameService.getGame().getCharacter().hirelings.push(hireling);
+      }
+    });
   }
 
   removeHireling(hireling) {

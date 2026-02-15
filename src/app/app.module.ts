@@ -47,10 +47,12 @@ import {MatTabsModule} from "@angular/material/tabs";
 import { CharacterSpellSlotsComponent } from './show-character/character-spell-book/character-spell-slots/character-spell-slots.component';
 import { SpellDialogComponent } from './show-character/character-spell-book/spell-dialog/spell-dialog.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatStepperModule} from "@angular/material/stepper";
 import { LinksComponent } from './links/links.component';
 import { HirelingsComponent } from './hirelings/hirelings.component';
 import { CharacterMountsComponent } from './show-character/character-mounts/character-mounts.component';
 import { CharacterClericComponent } from './show-character/character-cleric/character-cleric.component';
+import { GenerateCharacterDialogComponent } from './generate-character-dialog/generate-character-dialog.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,8 @@ import { CharacterClericComponent } from './show-character/character-cleric/char
     LinksComponent,
     HirelingsComponent,
     CharacterMountsComponent,
-    CharacterClericComponent
+    CharacterClericComponent,
+    GenerateCharacterDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -106,7 +109,8 @@ import { CharacterClericComponent } from './show-character/character-cleric/char
     DragDropModule,
     MatTooltipModule,
     MatTabsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatStepperModule
   ],
   providers: [
     MatNativeDateModule,

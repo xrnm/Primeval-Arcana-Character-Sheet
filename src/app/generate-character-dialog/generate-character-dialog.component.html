@@ -1,0 +1,342 @@
+<h2 mat-dialog-title>Generate Character</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-horizontal-stepper #stepper linear="false">
+
+    <!-- Step 1: Class, Abilities & Identity -->
+    <mat-step label="Character">
+      <div class="step-content">
+        <h3>Class & Abilities</h3>
+        <div class="row">
+          <mat-form-field>
+            <mat-label>Class</mat-label>
+            <mat-select [(ngModel)]="characterClass" (ngModelChange)="onClassChange()">
+              <mat-option *ngFor="let c of classes" [value]="c">{{c}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Level</mat-label>
+            <input matInput type="number" [(ngModel)]="level" min="0" max="20"
+                   (ngModelChange)="onLevelChange()">
+          </mat-form-field>
+        </div>
+
+        <table class="abilities-table">
+          <thead>
+            <tr>
+              <th>STR</th>
+              <th>INT</th>
+              <th>WIS</th>
+              <th>DEX</th>
+              <th>CON</th>
+              <th>CHA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="number" [(ngModel)]="abilities.strength" min="3" max="18"></td>
+              <td><input type="number" [(ngModel)]="abilities.intelligence" min="3" max="18"></td>
+              <td><input type="number" [(ngModel)]="abilities.wisdom" min="3" max="18"></td>
+              <td><input type="number" [(ngModel)]="abilities.dexterity" min="3" max="18"></td>
+              <td><input type="number" [(ngModel)]="abilities.constitution" min="3" max="18"></td>
+              <td><input type="number" [(ngModel)]="abilities.charisma" min="3" max="18"></td>
+            </tr>
+          </tbody>
+        </table>
+        <button mat-raised-button color="accent" (click)="rollAbilities(); rerollClass()">
+          <mat-icon>casino</mat-icon> Randomize
+        </button>
+
+        <h3 class="section-divider">Identity</h3>
+        <div class="name-row">
+          <mat-form-field class="name-field">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="name">
+          </mat-form-field>
+          <button mat-icon-button color="accent" (click)="generateName()" matTooltip="Reroll name">
+            <mat-icon>casino</mat-icon>
+          </button>
+        </div>
+        <div class="name-options">
+          <mat-checkbox [(ngModel)]="useTitle">Title</mat-checkbox>
+          <mat-checkbox [(ngModel)]="multiBarrel">Multi-barrelled</mat-checkbox>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <mat-label>Sex</mat-label>
+            <mat-select [(ngModel)]="sex">
+              <mat-option *ngFor="let s of sexes" [value]="s">{{s}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Alignment</mat-label>
+            <mat-select [(ngModel)]="alignment">
+              <mat-option *ngFor="let a of alignments" [value]="a">{{a}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="accent" (click)="randomizeIdentity()">
+          <mat-icon>casino</mat-icon> Randomize
+        </button>
+
+        <div class="step-actions">
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- Step 2: Physical & Background -->
+    <mat-step label="Description">
+      <div class="step-content">
+        <h3>Physical</h3>
+        <div class="row">
+          <mat-form-field>
+            <mat-label>Age Category</mat-label>
+            <mat-select [(ngModel)]="ageCategory">
+              <mat-option *ngFor="let a of ageCategories" [value]="a">{{a}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Weight Class</mat-label>
+            <mat-select [(ngModel)]="weightClass">
+              <mat-option *ngFor="let w of weightClasses" [value]="w">{{w}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <mat-label>Eye Color</mat-label>
+            <mat-select [(ngModel)]="eyeColor">
+              <mat-option *ngFor="let e of eyeColorOptions" [value]="e">{{e}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Skin Color</mat-label>
+            <mat-select [(ngModel)]="skinColor">
+              <mat-option *ngFor="let s of skinColorOptions" [value]="s">{{s}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <mat-label>Hair Color</mat-label>
+            <mat-select [(ngModel)]="hairColor">
+              <mat-option *ngFor="let h of hairColorOptions" [value]="h">{{h}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Hair Type</mat-label>
+            <mat-select [(ngModel)]="hairType">
+              <mat-option *ngFor="let h of hairTypeOptions" [value]="h">{{h}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <mat-label>Hair Length</mat-label>
+            <mat-select [(ngModel)]="hairLength">
+              <mat-option *ngFor="let h of hairLengthOptions" [value]="h">{{h}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="row-spacer"></div>
+        </div>
+        <button mat-raised-button color="accent" (click)="randomizePhysical()">
+          <mat-icon>casino</mat-icon> Randomize
+        </button>
+
+        <h3 class="section-divider">Background</h3>
+        <div class="row">
+          <mat-form-field>
+            <mat-label>Profession</mat-label>
+            <mat-select [(ngModel)]="profession">
+              <mat-option *ngFor="let p of professionOptions" [value]="p">{{p}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Dental Status</mat-label>
+            <mat-select [(ngModel)]="dentalStatus">
+              <mat-option *ngFor="let d of dentalOptions" [value]="d">{{d}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-checkbox [(ngModel)]="identifyingQuality">Identifying Quality</mat-checkbox>
+        </div>
+        <div class="row" *ngIf="identifyingQuality">
+          <mat-form-field>
+            <mat-label>Quality</mat-label>
+            <mat-select [(ngModel)]="identifyingQualityText">
+              <mat-option *ngFor="let q of identifyingQualityOptions" [value]="q">{{q}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="row-spacer"></div>
+        </div>
+        <button mat-raised-button color="accent" (click)="randomizeBackground()">
+          <mat-icon>casino</mat-icon> Randomize
+        </button>
+
+        <div class="step-actions">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- Step 3: Equipment -->
+    <mat-step label="Equipment">
+      <div class="step-content">
+        <mat-form-field class="full-width">
+          <mat-label>Weapons</mat-label>
+          <mat-select [(ngModel)]="selectedWeapons" multiple>
+            <mat-option *ngFor="let w of weaponOptions" [value]="w">
+              {{w.name}} ({{formatGp(w.price)}}, {{w.weight}}cn)
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Armor</mat-label>
+          <mat-select [(ngModel)]="selectedArmor" multiple>
+            <mat-option *ngFor="let a of armorOptions" [value]="a">
+              {{a.name}} ({{formatGp(a.price)}}, {{a.weight}}cn)
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Loadout</mat-label>
+          <mat-select [(ngModel)]="selectedLoadout">
+            <mat-option value="none">None</mat-option>
+            <mat-option *ngFor="let l of loadoutOptions" [value]="l.name">
+              {{l.name}} ({{formatGp(l.totalCost)}})
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="loadout-details" *ngIf="getSelectedLoadout()">
+          <h4>{{getSelectedLoadout().scenario}} - {{getSelectedLoadout().weightClass}}</h4>
+          <div class="loadout-section">
+            <strong>Backpack:</strong>
+            <span *ngFor="let item of getSelectedLoadout().backpackItems; let last = last">
+              {{item.name}}<span *ngIf="item.quantity > 1"> x{{item.quantity}}</span><span *ngIf="!last">, </span>
+            </span>
+          </div>
+          <div class="loadout-section">
+            <strong>Slung:</strong>
+            <span *ngFor="let item of getSelectedLoadout().slungItems; let last = last">
+              {{item.name}}<span *ngIf="item.quantity > 1"> x{{item.quantity}}</span><span *ngIf="!last">, </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="equipment-summary">
+          <div class="summary-row">
+            <span>Starting Gold: {{startingGold}}gp</span>
+            <button mat-icon-button color="accent" (click)="rerollGold()" matTooltip="Reroll gold">
+              <mat-icon>casino</mat-icon>
+            </button>
+          </div>
+          <div class="summary-row">
+            <span>Equipment Cost: {{formatGp(equipmentCostCopper())}}</span>
+          </div>
+          <div class="summary-row">
+            <span [class.cost-warning]="remainingCopper() < 0">
+              Remaining: {{formatGp(remainingCopper())}}
+            </span>
+          </div>
+          <mat-checkbox [(ngModel)]="deductGold">Deduct cost from starting gold</mat-checkbox>
+          <div class="cost-warning" *ngIf="deductGold && remainingCopper() < 0">
+            Equipment cost exceeds available gold.
+          </div>
+        </div>
+
+        <div class="equipment-summary">
+          <div class="summary-row">
+            <span>Total Weight: {{equipmentWeight()}}cn / {{estimatedMaxLoad()}}cn max</span>
+          </div>
+          <div class="summary-row">
+            <span>Movement: {{estimatedMovement()}}ft/turn</span>
+          </div>
+        </div>
+
+        <div class="step-actions">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext
+                  *ngIf="hasClassSpecificStep()">Next</button>
+          <button mat-raised-button color="primary" (click)="buildAndFinish()"
+                  *ngIf="!hasClassSpecificStep()">Done</button>
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- Step 4: Class-Specific (conditional) -->
+    <mat-step label="Class-Specific" *ngIf="hasClassSpecificStep()">
+      <div class="step-content">
+        <div *ngIf="isCleric()">
+          <h3>Deity</h3>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Deity Name</mat-label>
+              <input matInput [(ngModel)]="deityName">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Domain</mat-label>
+              <mat-select [(ngModel)]="deityDomain">
+                <mat-option *ngFor="let d of domains" [value]="d">{{d}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Edict</mat-label>
+              <mat-select [(ngModel)]="deityEdict">
+                <mat-option *ngFor="let e of edicts" [value]="e">{{e}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Anathema</mat-label>
+              <mat-select [(ngModel)]="deityAnathema">
+                <mat-option *ngFor="let a of anathemas" [value]="a">{{a}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div *ngIf="isMagicUser()">
+          <h3>Spellbook</h3>
+          <mat-tab-group *ngIf="muSpells.length > 0">
+            <mat-tab *ngFor="let lvl of getSpellLevels()" label="Level {{lvl}}">
+              <mat-list dense>
+                <mat-list-item *ngFor="let spell of getSpellsForLevel(lvl)">
+                  <mat-select [(ngModel)]="spell.name" class="spell-select">
+                    <mat-option *ngFor="let s of spellOptionsForLevel(lvl)" [value]="s">{{s}}</mat-option>
+                  </mat-select>
+                  <button mat-mini-fab color="warn" class="spell-delete-btn" (click)="removeSpell(spell)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                  <mat-divider></mat-divider>
+                </mat-list-item>
+              </mat-list>
+              <button mat-mini-fab color="primary" class="spell-add-btn" (click)="addSpell(lvl)">
+                <mat-icon>add</mat-icon>
+              </button>
+            </mat-tab>
+          </mat-tab-group>
+          <p *ngIf="muSpells.length === 0" class="no-spells">No spell slots at this level.</p>
+        </div>
+
+        <button mat-raised-button color="accent" (click)="randomizeClassSpecific()">
+          <mat-icon>casino</mat-icon> Randomize All
+        </button>
+
+        <div class="step-actions">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" (click)="buildAndFinish()">Done</button>
+        </div>
+      </div>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button [mat-dialog-close]="">Cancel</button>
+</mat-dialog-actions>
