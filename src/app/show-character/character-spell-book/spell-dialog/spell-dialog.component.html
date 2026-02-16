@@ -1,6 +1,19 @@
 <h2 mat-dialog-title>Spell: {{spell.name}}</h2>
 <mat-dialog-content class="mat-typography">
   <mat-form-field>
+    <mat-label>Search spell list</mat-label>
+    <input matInput [(ngModel)]="spellFilter" (ngModelChange)="filterSpells()"
+      [matAutocomplete]="spellAuto">
+    <mat-autocomplete #spellAuto="matAutocomplete" (optionSelected)="onSpellSelect($event)">
+      @for (s of filteredSpells; track s) {
+        <mat-option [value]="s.name">
+          {{s.name}} (Level {{s.level}})
+        </mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
     <mat-label>Name</mat-label>
     <input matInput [(ngModel)]="spell.name"/>
   </mat-form-field>
@@ -10,10 +23,9 @@
     <input matInput [(ngModel)]="spell.level" type="number"/>
   </mat-form-field>
   <br/>
-  <br/>
   <mat-form-field>
     <mat-label>Description</mat-label>
-    <textarea matInput [(ngModel)]="spell.description" type="number"></textarea>
+    <textarea matInput [(ngModel)]="spell.description"></textarea>
   </mat-form-field>
   <mat-dialog-actions align="end">
     @if (this.spellbook) {

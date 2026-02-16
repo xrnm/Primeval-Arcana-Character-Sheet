@@ -25,7 +25,7 @@
                       <mat-icon>save_alt</mat-icon>
                     </button>
                     <button mat-mini-fab color="accent" class="spell-edit-icon"
-                      (click)="openSpellDialog(null, spell, null)">
+                      (click)="openSpellDialog(null, spell, null, block.class)">
                       <mat-icon>edit</mat-icon>
                     </button>
                     <button mat-mini-fab color="warn" class="spell-delete-icon" (click)="removeSpell(block, spell)">
@@ -37,7 +37,7 @@
               }
             </mat-list>
             <button color="primary" class="add-spell-button" mat-mini-fab
-              (click)="openSpellDialog(block.spellbook, null, i+1)">
+              (click)="openSpellDialog(block.spellbook, null, i+1, block.class)">
               <mat-icon>add</mat-icon>
             </button>
           </mat-tab>

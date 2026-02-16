@@ -31,14 +31,15 @@ export class CharacterSpellBookComponent implements OnInit {
   spellContainingBlocks(){
     return [...this.character.getAllMagicUserBlocks(), ...this.character.getAllClericBlocks()]
   }
-  openSpellDialog(spellbook, spell, level){
+  openSpellDialog(spellbook, spell, level, characterClass?){
     if(this.gameService.lock)
       return;
     const dialogRef = this.dialog.open(SpellDialogComponent,{
       data: {
         spellbook: spellbook,
         spell: spell,
-        level: level
+        level: level,
+        characterClass: characterClass
       }
     });
   }
