@@ -5,11 +5,19 @@ import {MatDialog} from "@angular/material/dialog";
 import {ContainerDialogComponent} from "./container-dialog/container-dialog.component";
 import {Container} from "../../container";
 import {Game} from "../../game";
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { MatList, MatListItem } from '@angular/material/list';
+import { ItemListComponent } from '../item-list/item-list.component';
+
+import { MatIcon } from '@angular/material/icon';
+import { MatMiniFabButton } from '@angular/material/button';
+import { MatDivider } from '@angular/material/divider';
 
 @Component({
-  selector: 'character-inventory',
-  templateUrl: './character-inventory.component.html',
-  styleUrls: ['./character-inventory.component.sass']
+    selector: 'character-inventory',
+    templateUrl: './character-inventory.component.html',
+    styleUrls: ['./character-inventory.component.sass'],
+    imports: [MatCard, MatCardContent, MatList, ItemListComponent, MatListItem, MatIcon, MatMiniFabButton, MatDivider]
 })
 export class CharacterInventoryComponent implements OnInit {
   @Input() character: Character;

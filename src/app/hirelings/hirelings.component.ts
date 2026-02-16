@@ -1,17 +1,32 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Character} from "../character";
-import {GameService} from "../game.service";
-import {NewCharacter} from "../new-character";
-import {DefaultSettingsHelper} from "../default-settings-helper";
+import {Character} from '../character';
+import {GameService} from '../game.service';
+import {NewCharacter} from '../new-character';
+import {DefaultSettingsHelper} from '../default-settings-helper';
+import {MatDialog} from '@angular/material/dialog';
+import {GenerateCharacterDialogComponent} from '../generate-character-dialog/generate-character-dialog.component';
+import { MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatTabGroup, MatTab } from '@angular/material/tabs';
+
+import { CharacterOverviewComponent } from '../show-character/character-overview/character-overview.component';
+import { CharacterAttributesComponent } from '../show-character/character-attributes/character-attributes.component';
+import { CharacterSpellBookComponent } from '../show-character/character-spell-book/character-spell-book.component';
+import { CharacterExperienceComponent } from '../show-character/character-experience/character-experience.component';
+import { CharacterPurseComponent } from '../show-character/character-purse/character-purse.component';
+import { CharacterInventoryComponent } from '../show-character/character-inventory/character-inventory.component';
+import { ExperienceBlocksComponent } from '../adventure-log/experience-blocks/experience-blocks.component';
+import { CharacterNotesComponent } from '../show-character/character-notes/character-notes.component';
 
 @Component({
-  selector: 'app-hirelings',
-  templateUrl: './hirelings.component.html',
-  styleUrls: ['./hirelings.component.sass']
+    selector: 'app-hirelings',
+    templateUrl: './hirelings.component.html',
+    styleUrls: ['./hirelings.component.sass'],
+    imports: [MatMiniFabButton, MatIcon, MatTabGroup, MatTab, CharacterOverviewComponent, CharacterAttributesComponent, CharacterSpellBookComponent, CharacterExperienceComponent, CharacterPurseComponent, CharacterInventoryComponent, ExperienceBlocksComponent, CharacterNotesComponent]
 })
 export class HirelingsComponent implements OnInit {
   character: Character;
-  constructor(private gameService: GameService) {
+  constructor(private gameService: GameService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -39,6 +54,21 @@ export class HirelingsComponent implements OnInit {
       return;
 
     this.gameService.getGame().getCharacter().hirelings.push(new Character(DefaultSettingsHelper.character()));
+  }
+
+  generateHireling() {
+    if(this.gameService.lock)
+      return;
+
+    const dialogRef = this.dialog.open(GenerateCharacterDialogComponent, {
+      width: '90vw',
+      maxWidth: '1000px'
+    });
+    dialogRef.afterClosed().subscribe((hireling: Character) => {
+      if (hireling) {
+        this.gameService.getGame().getCharacter().hirelings.push(hireling);
+      }
+    });
   }
 
   removeHireling(hireling) {

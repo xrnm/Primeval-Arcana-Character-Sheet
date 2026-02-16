@@ -1,0 +1,959 @@
+[
+  {
+    "name": "Axe, Battle",
+    "category": "Weapons",
+    "price": 700,
+    "weight": 70,
+    "sold_in": 1,
+    "description": "A heavy-headed axe between 3 to 5 feet in length. Features the Flex property, allowing for increased damage when wielded with two hands."
+  },
+  {
+    "name": "Axe, Hand",
+    "category": "Weapons",
+    "price": 300,
+    "weight": 35,
+    "sold_in": 1,
+    "description": "A small axe between 1 to 2 feet in length. Can be used in melee or thrown with a range of 10/30 yards."
+  },
+  {
+    "name": "Bow, Composite",
+    "category": "Weapons",
+    "price": 5000,
+    "weight": 60,
+    "sold_in": 1,
+    "description": "A 64-inch recurved bow designed for high tension. Effective range of 80/160/240 yards."
+  },
+  {
+    "name": "Bow, Short Composite",
+    "category": "Weapons",
+    "price": 7000,
+    "weight": 35,
+    "sold_in": 1,
+    "description": "A compact 40-inch recurved bow. Effective range of 60/120/180 yards."
+  },
+  {
+    "name": "Bow, Long",
+    "category": "Weapons",
+    "price": 3500,
+    "weight": 45,
+    "sold_in": 1,
+    "description": "A 76-inch straight bow. Effective range of 70/140/210 yards."
+  },
+  {
+    "name": "Bow, Short",
+    "category": "Weapons",
+    "price": 2500,
+    "weight": 25,
+    "sold_in": 1,
+    "description": "A 52-inch bow for light ranged combat. Effective range of 50/100/150 yards."
+  },
+  {
+    "name": "Crossbow, Heavy",
+    "category": "Weapons",
+    "price": 2500,
+    "weight": 70,
+    "sold_in": 1,
+    "description": "A 36-inch powerful mechanical bow. Requires two hands to loose and reload. Range of 80/160/240 yards."
+  },
+  {
+    "name": "Crossbow, Light",
+    "category": "Weapons",
+    "price": 1500,
+    "weight": 35,
+    "sold_in": 1,
+    "description": "A 24-inch mechanical bow. Can be loosed with one hand but requires two to reload. Range of 60/120/180 yards."
+  },
+  {
+    "name": "Dagger",
+    "category": "Weapons",
+    "price": 300,
+    "weight": 20,
+    "sold_in": 1,
+    "description": "A short-bladed weapon between 9 to 18 inches. Useful for melee or throwing (10/30 yard range)."
+  },
+  {
+    "name": "Flail or Iron Bar",
+    "category": "Weapons",
+    "price": 800,
+    "weight": 40,
+    "sold_in": 1,
+    "description": "A bludgeoning weapon between 2.5 to 4 feet in length."
+  },
+  {
+    "name": "Halberd",
+    "category": "Weapons",
+    "price": 700,
+    "weight": 70,
+    "sold_in": 1,
+    "description": "A 6-foot polearm featuring both an axe head and a spike for versatile combat."
+  },
+  {
+    "name": "Lance",
+    "category": "Weapons",
+    "price": 400,
+    "weight": 150,
+    "sold_in": 1,
+    "description": "A 12-foot long spear designed for mounted charging."
+  },
+  {
+    "name": "Mace or Warhammer",
+    "category": "Weapons",
+    "price": 500,
+    "weight": 35,
+    "sold_in": 1,
+    "description": "A 2.5 to 4-foot bludgeoning tool. Features the Flex property for two-handed use."
+  },
+  {
+    "name": "Morning Star",
+    "category": "Weapons",
+    "price": 600,
+    "weight": 50,
+    "sold_in": 1,
+    "description": "A 2.5 to 4-foot spiked club. Features the Flex property for two-handed use."
+  },
+  {
+    "name": "Pike",
+    "category": "Weapons",
+    "price": 900,
+    "weight": 125,
+    "sold_in": 1,
+    "description": "An exceptionally long polearm between 15 to 25 feet, primarily for stationary defense."
+  },
+  {
+    "name": "Polearm",
+    "category": "Weapons",
+    "price": 700,
+    "weight": 100,
+    "sold_in": 1,
+    "description": "A 10-foot long reach weapon."
+  },
+  {
+    "name": "Javelin",
+    "category": "Weapons",
+    "price": 100,
+    "weight": 25,
+    "sold_in": 1,
+    "description": "A 6.5-foot light throwing spear. Range 15/30/45 yards."
+  },
+  {
+    "name": "Spear",
+    "category": "Weapons",
+    "price": 100,
+    "weight": 35,
+    "sold_in": 1,
+    "description": "A 7-foot versatile weapon for melee or throwing (10/30 yards). Features the Flex property."
+  },
+  {
+    "name": "Sword",
+    "category": "Weapons",
+    "price": 1000,
+    "weight": 30,
+    "sold_in": 1,
+    "description": "A standard bladed weapon between 2 to 4 feet in length."
+  },
+  {
+    "name": "Sword, Two-handed",
+    "category": "Weapons",
+    "price": 1500,
+    "weight": 60,
+    "sold_in": 1,
+    "description": "A massive 5 to 7-foot blade. Features the Flex property."
+  },
+  {
+    "name": "Whip",
+    "category": "Weapons",
+    "price": 500,
+    "weight": 25,
+    "sold_in": 1,
+    "description": "A 20-foot leather whip with a minimum attack range of 10 feet."
+  },
+  {
+    "name": "Sling",
+    "category": "Weapons",
+    "price": 50,
+    "weight": 1,
+    "sold_in": 1,
+    "description": "A leather strap for hurling stones. Range 40/80/160 yards."
+  },
+  {
+    "name": "Arrow, Silver",
+    "category": "Ammunition",
+    "price": 500,
+    "weight": 3,
+    "sold_in": 1,
+    "description": "A single arrow fitted with a head of solid silver."
+  },
+  {
+    "name": "Arrows",
+    "category": "Ammunition",
+    "price": 500,
+    "weight": 2,
+    "sold_in": 20,
+    "description": "A bundle of 20 arrows, 32 inches in length."
+  },
+  {
+    "name": "Quiver",
+    "category": "Ammunition",
+    "price": 500,
+    "weight": 10,
+    "sold_in": 1,
+    "slingable": true,
+    "description": "A leather shoulder-strapped container for 20 arrows."
+  },
+  {
+    "name": "Quarrels",
+    "category": "Ammunition",
+    "price": 500,
+    "weight": 1,
+    "sold_in": 30,
+    "description": "A bundle of 30 16-inch bolts for use with crossbows."
+  },
+  {
+    "name": "Quarrel Case",
+    "category": "Ammunition",
+    "price": 500,
+    "weight": 10,
+    "sold_in": 1,
+    "slingable": true,
+    "description": "A wooden shoulder-strapped container for 30 quarrels."
+  },
+  {
+    "name": "Sling Stone Pouch",
+    "category": "Ammunition",
+    "price": 50,
+    "weight": 2,
+    "sold_in": 1,
+    "slingable": true,
+    "description": "A small leather pouch for carrying up to 20 sling stones."
+  },
+  {
+    "name": "Sling Stones",
+    "category": "Ammunition",
+    "price": 10,
+    "weight": 1,
+    "sold_in": 20,
+    "description": "A set of 20 smooth stones for use with a sling."
+  },
+  {
+    "name": "Backpack",
+    "category": "Adventuring Gear",
+    "price": 500,
+    "weight": 75,
+    "sold_in": 1,
+    "slingable": true,
+    "description": "Leather storage pack with a fastening top flap. Holds up to 800cn."
+  },
+  {
+    "name": "Dungeoneer's Plank",
+    "category": "Adventuring Gear",
+    "price": 300,
+    "weight": 100,
+    "sold_in": 1,
+    "slingable": true,
+    "description": "Interlocking wooden plank measuring 5ft x 6in x 2in."
+  },
+  {
+    "name": "Dungeoneer's Pole",
+    "category": "Adventuring Gear",
+    "price": 300,
+    "weight": 100,
+    "sold_in": 1,
+    "slingable": true,
+    "description": "Interlocking 10-foot wooden pole with a 2-inch diameter."
+  },
+  {
+    "name": "Herbs",
+    "category": "Adventuring Gear",
+    "price": 1000,
+    "weight": 1,
+    "sold_in": 1,
+    "description": "Various botanicals such as belladonna, pennyroyal, or sage."
+  },
+  {
+    "name": "Holy Symbol, Silver",
+    "category": "Adventuring Gear",
+    "price": 2500,
+    "weight": 23,
+    "sold_in": 1,
+    "description": "Solid silver consecrated icon (6in x 2in x 0.5in)."
+  },
+  {
+    "name": "Holy Symbol, Wood",
+    "category": "Adventuring Gear",
+    "price": 200,
+    "weight": 1,
+    "sold_in": 1,
+    "description": "Consecrated wooden icon (12in x 4in x 1in)."
+  },
+  {
+    "name": "Holy Water",
+    "category": "Adventuring Gear",
+    "price": 2500,
+    "weight": 3,
+    "sold_in": 1,
+    "description": "3oz of blessed water in a glass vial."
+  },
+  {
+    "name": "Lamp / Lantern",
+    "category": "Adventuring Gear",
+    "price": 1000,
+    "weight": 40,
+    "sold_in": 1,
+    "description": "Tin illumination device with a hanging loop. Weighs 20cn when empty."
+  },
+  {
+    "name": "Mallet",
+    "category": "Adventuring Gear",
+    "price": 200,
+    "weight": 15,
+    "sold_in": 1,
+    "description": "14-inch wooden striking tool."
+  },
+  {
+    "name": "Mirror, Silvered",
+    "category": "Adventuring Gear",
+    "price": 1500,
+    "weight": 5,
+    "sold_in": 1,
+    "description": "3-inch diameter glass disk with a silver coating."
+  },
+  {
+    "name": "Mirror, Steel",
+    "category": "Adventuring Gear",
+    "price": 500,
+    "weight": 15,
+    "sold_in": 1,
+    "description": "6-inch diameter polished steel disk."
+  },
+  {
+    "name": "Oil Flask",
+    "category": "Adventuring Gear",
+    "price": 200,
+    "weight": 25,
+    "sold_in": 1,
+    "description": "34oz ceramic bottle of lamp oil. Weighs 5cn when empty."
+  },
+  {
+    "name": "Rope",
+    "category": "Adventuring Gear",
+    "price": 100,
+    "weight": 60,
+    "sold_in": 1,
+    "description": "50-foot length of 1-inch diameter plant fiber cordage."
+  },
+  {
+    "name": "Rope, Silk",
+    "category": "Adventuring Gear",
+    "price": 1500,
+    "weight": 15,
+    "sold_in": 1,
+    "description": "50-foot length of 0.5-inch diameter lightweight silk cordage."
+  },
+  {
+    "name": "Sack, Large",
+    "category": "Adventuring Gear",
+    "price": 200,
+    "weight": 7,
+    "sold_in": 1,
+    "description": "Canvas cinch-top bag (2ft x 4ft) with 800cn capacity."
+  },
+  {
+    "name": "Sack, Small",
+    "category": "Adventuring Gear",
+    "price": 100,
+    "weight": 2,
+    "sold_in": 1,
+    "description": "Canvas cinch-top bag (12in x 12in) with 200cn capacity."
+  },
+  {
+    "name": "Salt, Coarse",
+    "category": "Adventuring Gear",
+    "price": 200,
+    "weight": 16,
+    "sold_in": 1,
+    "slingable": true,
+    "description": "Leather pouch (6in x 6in) of coarse salt. 1cn empty."
+  },
+  {
+    "name": "Spikes",
+    "category": "Adventuring Gear",
+    "price": 100,
+    "weight": 9,
+    "sold_in": 10,
+    "description": "Set of 10 8-inch iron spikes for securing doors or terrain."
+  },
+  {
+    "name": "Tinderbox",
+    "category": "Adventuring Gear",
+    "price": 100,
+    "weight": 1,
+    "sold_in": 1,
+    "description": "Steel kit with a flint striker for starting fires."
+  },
+  {
+    "name": "Torches",
+    "category": "Adventuring Gear",
+    "price": 100,
+    "weight": 20,
+    "sold_in": 6,
+    "description": "Set of 6 2-foot wooden rods with fuel reservoirs. Provides 30 minutes of light each."
+  },
+  {
+    "name": "Rations, Iron",
+    "category": "Consumables",
+    "price": 1500,
+    "weight": 25,
+    "sold_in": 7,
+    "description": "7 individual tin-boxed meals that do not spoil."
+  },
+  {
+    "name": "Rations, Standard",
+    "category": "Consumables",
+    "price": 500,
+    "weight": 20,
+    "sold_in": 7,
+    "description": "7-day supply of food with a 14-day spoilage period."
+  },
+  {
+    "name": "Waterskin / Wineskin",
+    "category": "Consumables",
+    "price": 100,
+    "weight": 50,
+    "sold_in": 1,
+    "slingable": true,
+    "description": "Container for 68oz of liquid. 6cn when empty."
+  },
+  {
+    "name": "Wine",
+    "category": "Consumables",
+    "price": 300,
+    "weight": 44,
+    "sold_in": 1,
+    "description": "68oz of moderate quality wine."
+  },
+  {
+    "name": "Leather Armor",
+    "category": "Armor",
+    "price": 1500,
+    "weight": 150,
+    "sold_in": 1,
+    "ac": 7,
+    "description": "Light defensive suit (AC 7). Allows for quiet movement and is the maximum weight for Magic-User casting."
+  },
+  {
+    "name": "Chain Mail",
+    "category": "Armor",
+    "price": 3000,
+    "weight": 250,
+    "sold_in": 1,
+    "ac": 5,
+    "description": "Suit of interlocking metal rings (AC 5). Heavy construction hinders stealth."
+  },
+  {
+    "name": "Plate Mail",
+    "category": "Armor",
+    "price": 5000,
+    "weight": 450,
+    "sold_in": 1,
+    "ac": 3,
+    "description": "Heavy defensive suit of metal plates (AC 3). Impossible to move quietly."
+  },
+  {
+    "name": "Full Plate",
+    "category": "Armor",
+    "price": 20000,
+    "weight": 650,
+    "sold_in": 1,
+    "ac": 2,
+    "description": "Complete suit of articulated plate armor (AC 2). Reduces agility."
+  },
+  {
+    "name": "Shield",
+    "category": "Armor",
+    "price": 1000,
+    "weight": 70,
+    "sold_in": 1,
+    "shield": true,
+    "description": "Round 1.5-foot diameter defense. Provides a -1 AC bonus."
+  },
+  {
+    "name": "Heater Shield",
+    "category": "Armor",
+    "price": 3000,
+    "weight": 140,
+    "sold_in": 1,
+    "shield": true,
+    "description": "Large shield (3ft x 2ft) providing a -2 AC bonus to the forward 90° arc."
+  },
+  {
+    "name": "Helmet",
+    "category": "Armor",
+    "price": 1000,
+    "weight": 60,
+    "sold_in": 1,
+    "helmet": true,
+    "description": "Standard head protection. Negates the criticality of head hits."
+  },
+  {
+    "name": "Visored Helmet",
+    "category": "Armor",
+    "price": 3000,
+    "weight": 100,
+    "sold_in": 1,
+    "helmet": true,
+    "description": "Enclosed helm providing a -1 AC bonus and head hit non-criticality; impairs hearing and sight."
+  },
+  {
+    "name": "Chain Coif",
+    "category": "Armor",
+    "price": 1500,
+    "weight": 70,
+    "sold_in": 1,
+    "helmet": true,
+    "description": "Mail neck protection. Negates the criticality of neck hits."
+  },
+  {
+    "name": "Horse, Draft",
+    "category": "Animal Transport",
+    "price": 3000,
+    "weight": 15000,
+    "sold_in": 1,
+    "description": "Powerful equine with 8,000cn load capacity. Travels 20 miles per day."
+  },
+  {
+    "name": "Horse, Light",
+    "category": "Animal Transport",
+    "price": 4000,
+    "weight": 8400,
+    "sold_in": 1,
+    "description": "Fast equine with 4,000cn load capacity. Travels 50 miles per day."
+  },
+  {
+    "name": "Horse, Medium",
+    "category": "Animal Transport",
+    "price": 10000,
+    "weight": 10000,
+    "sold_in": 1,
+    "description": "Balanced equine with 6,000cn load capacity. Travels 40 miles per day."
+  },
+  {
+    "name": "Horse, Heavy",
+    "category": "Animal Transport",
+    "price": 20000,
+    "weight": 20000,
+    "sold_in": 1,
+    "description": "Robust warhorse with 8,000cn load capacity. Travels 30 miles per day."
+  },
+  {
+    "name": "Donkey / Mule",
+    "category": "Animal Transport",
+    "price": 2000,
+    "weight": 7500,
+    "sold_in": 1,
+    "description": "Sturdy beast of burden with 6,000cn load capacity. Travels 15 miles per day."
+  },
+  {
+    "name": "Saddle",
+    "category": "Animal Transport",
+    "price": 2500,
+    "weight": 250,
+    "sold_in": 1,
+    "description": "Leather seat for mounts, sized per breed."
+  },
+  {
+    "name": "Saddle Bags",
+    "category": "Animal Transport",
+    "price": 1000,
+    "weight": 75,
+    "sold_in": 1,
+    "description": "Two leather bags with flaps; provides 400cn storage capacity per bag."
+  },
+  {
+    "name": "Chain Barding",
+    "category": "Animal Transport",
+    "price": 9000,
+    "weight": 750,
+    "sold_in": 1,
+    "description": "Interlocking ring armor for horse-sized mounts (AC 5)."
+  },
+  {
+    "name": "Plate Barding",
+    "category": "Animal Transport",
+    "price": 15000,
+    "weight": 1000,
+    "sold_in": 1,
+    "description": "Metal plate armor for horse-sized mounts (AC 3)."
+  },
+  {
+    "name": "Charcoal / Chalk Rod",
+    "category": "Writing Goods",
+    "price": 100,
+    "weight": 1,
+    "sold_in": 1,
+    "description": "An 8-inch marking rod for writing on various surfaces."
+  },
+  {
+    "name": "Ink Vial, Black",
+    "category": "Writing Goods",
+    "price": 5000,
+    "weight": 3,
+    "sold_in": 1,
+    "description": "Glass vial containing 3.5oz of black ink. 1cn when empty."
+  },
+  {
+    "name": "Ink Vial, Red",
+    "category": "Writing Goods",
+    "price": 7500,
+    "weight": 3,
+    "sold_in": 1,
+    "description": "Glass vial containing 3.5oz of red ink. 1cn when empty."
+  },
+  {
+    "name": "Journal",
+    "category": "Writing Goods",
+    "price": 5000,
+    "weight": 15,
+    "sold_in": 1,
+    "description": "Softbound book (7in x 11in x 2in) with 100 pages. Used for notes or spell transcription."
+  },
+  {
+    "name": "Paper",
+    "category": "Writing Goods",
+    "price": 500,
+    "weight": 2,
+    "sold_in": 5,
+    "description": "5 sheets of heavyweight 14in x 22in parchment."
+  },
+  {
+    "name": "Pencil",
+    "category": "Writing Goods",
+    "price": 500,
+    "weight": 1,
+    "sold_in": 1,
+    "description": "8-inch wooden rod with a charcoal center."
+  },
+  {
+    "name": "Spell Book",
+    "category": "Writing Goods",
+    "price": 20000,
+    "weight": 50,
+    "sold_in": 1,
+    "description": "Hardbound tome (14in x 22in x 4in) with 200 pages. Required for Magic-User spells."
+  },
+  {
+    "name": "Pounce",
+    "category": "Writing Goods",
+    "price": 100,
+    "weight": 2,
+    "sold_in": 1,
+    "description": "Tin container of powder used to dry ink. 1cn when empty."
+  },
+  {
+    "name": "Quill",
+    "category": "Writing Goods",
+    "price": 1000,
+    "weight": 1,
+    "sold_in": 1,
+    "description": "8-inch swan feather writing instrument."
+  },
+  {
+    "name": "Cart",
+    "category": "Mechanical Transport",
+    "price": 10000,
+    "weight": 5000,
+    "sold_in": 1,
+    "description": "Two-wheeled wooden transport with a 20,000cn capacity. Divides pull force required by 6."
+  },
+  {
+    "name": "Wagon",
+    "category": "Mechanical Transport",
+    "price": 20000,
+    "weight": 10000,
+    "sold_in": 1,
+    "description": "Four-wheeled wooden transport with a 40,000cn capacity. Divides pull force required by 5."
+  },
+  {
+    "name": "Carriage",
+    "category": "Mechanical Transport",
+    "price": 30000,
+    "weight": 13500,
+    "sold_in": 1,
+    "description": "Four-wheeled wooden transport with a 35,000cn capacity. Divides pull force required by 5."
+  },
+  {
+    "name": "Boat",
+    "category": "Mechanical Transport",
+    "price": 10000,
+    "weight": 1600,
+    "sold_in": 1,
+    "description": "12-foot wooden watercraft with 8,000cn capacity; includes four oars."
+  },
+  {
+    "name": "Raft",
+    "category": "Mechanical Transport",
+    "price": 4000,
+    "weight": 5000,
+    "sold_in": 1,
+    "description": "6-foot wooden platform with 8,000cn capacity; includes two oars."
+  },
+  {
+    "name": "Barber Kit",
+    "category": "Specialized Kits",
+    "price": 7500,
+    "weight": 25,
+    "sold_in": 1,
+    "description": "A wooden case containing a scalpel, scissors, forceps, and a suture set."
+  },
+  {
+    "name": "Climbing Kit",
+    "category": "Specialized Kits",
+    "price": 2500,
+    "weight": 150,
+    "sold_in": 1,
+    "slingable": true,
+    "description": "Specialized gear including 10 pitons, a hammer, 2 picks, and 2 crampons."
+  },
+  {
+    "name": "Cooking Kit",
+    "category": "Specialized Kits",
+    "price": 1500,
+    "weight": 225,
+    "sold_in": 1,
+    "slingable": true,
+    "description": "Includes 2 cutlery sets, a 12-inch skillet, a 100oz pot, and a 4-foot tripod."
+  },
+  {
+    "name": "Dungeoneer Kit",
+    "category": "Specialized Kits",
+    "price": 1500,
+    "weight": 520,
+    "sold_in": 1,
+    "slingable": true,
+    "description": "Comprehensive set including a hammer, 2 dungeoneer's planks, 2 dungeoneer's poles, and 10 spikes."
+  },
+  {
+    "name": "Fishing Kit",
+    "category": "Specialized Kits",
+    "price": 1000,
+    "weight": 30,
+    "sold_in": 1,
+    "slingable": true,
+    "description": "Includes a wooden pole, 100 feet of silk line, 2 lures, and 4 hooks."
+  },
+  {
+    "name": "Locksmith Kit",
+    "category": "Specialized Kits",
+    "price": 5000,
+    "weight": 15,
+    "sold_in": 1,
+    "description": "A leather case containing 6 lock picks, 4 files, and 4 probes."
+  },
+  {
+    "name": "Sewing Kit",
+    "category": "Specialized Kits",
+    "price": 100,
+    "weight": 2,
+    "sold_in": 1,
+    "description": "A wooden case containing 10 needles and 50 feet of cotton thread."
+  },
+  {
+    "name": "Writing Kit",
+    "category": "Specialized Kits",
+    "price": 6000,
+    "weight": 7,
+    "sold_in": 1,
+    "description": "A leather case containing a black ink vial, pencil, charcoal rod, and a quill."
+  },
+  {
+    "name": "Amulet, Brooch, Circlet, Pendant",
+    "category": "Treasure Items",
+    "price": null,
+    "weight": null,
+    "sold_in": 1,
+    "description": "Various personal jewelry items."
+  },
+  {
+    "name": "Armlet, Bracelet, Large Gem, Wand",
+    "category": "Treasure Items",
+    "price": null,
+    "weight": null,
+    "sold_in": 1,
+    "description": "Larger jewelry items, gems, or magical wands."
+  },
+  {
+    "name": "Cuff, Diadem, Modest Crown, Rod, Tiara",
+    "category": "Treasure Items",
+    "price": null,
+    "weight": null,
+    "sold_in": 1,
+    "description": "Elaborate headwear, heavy jewelry, or magical rods."
+  },
+  {
+    "name": "Mid-sized Gem, Large Pearl, Set Ring",
+    "category": "Treasure Items",
+    "price": null,
+    "weight": null,
+    "sold_in": 1,
+    "description": "Common precious stones and rings."
+  },
+  {
+    "name": "Small Gem, Mid-sized Pearl, Unset Ring",
+    "category": "Treasure Items",
+    "price": null,
+    "weight": null,
+    "sold_in": 1,
+    "description": "Minor precious items."
+  },
+  {
+    "name": "Bejeweled Crown, Sceptre, Staff, Stave",
+    "category": "Treasure Items",
+    "price": null,
+    "weight": null,
+    "sold_in": 1,
+    "description": "High-value regalia and magical staves."
+  },
+  {
+    "name": "Bread",
+    "category": "Household Goods",
+    "price": 10,
+    "weight": 15,
+    "sold_in": 1,
+    "description": "A circular loaf of bread with a 12-inch diameter."
+  },
+  {
+    "name": "Butter",
+    "category": "Household Goods",
+    "price": 100,
+    "weight": 10,
+    "sold_in": 1,
+    "description": "8oz of bovine, goat, or sheep butter in a ceramic jar. 5cn when empty."
+  },
+  {
+    "name": "Candle",
+    "category": "Household Goods",
+    "price": 10,
+    "weight": 10,
+    "sold_in": 1,
+    "description": "A 3in x 6in tallow pillar candle with a 36-hour burn time."
+  },
+  {
+    "name": "Cheese",
+    "category": "Household Goods",
+    "price": 30,
+    "weight": 10,
+    "sold_in": 1,
+    "description": "A 16oz wedge of cloth-wrapped bovine, goat, or sheep cheese."
+  },
+  {
+    "name": "Grain",
+    "category": "Household Goods",
+    "price": 100,
+    "weight": 250,
+    "sold_in": 1,
+    "description": "A burlap sack of assorted cereal crops such as wheat, rice, or oats."
+  },
+  {
+    "name": "Lard / Tallow",
+    "category": "Household Goods",
+    "price": 100,
+    "weight": 30,
+    "sold_in": 1,
+    "description": "32oz of fat in a wooden lidded box. 10cn when empty."
+  },
+  {
+    "name": "Salt, Fine",
+    "category": "Household Goods",
+    "price": 50,
+    "weight": 2,
+    "sold_in": 1,
+    "description": "A parchment envelope of finely granulated salt."
+  },
+  {
+    "name": "Twine",
+    "category": "Household Goods",
+    "price": 100,
+    "weight": 11,
+    "sold_in": 1,
+    "description": "150-foot spool of 3-ply twisted cordage."
+  },
+  {
+    "name": "Bed Roll",
+    "category": "Various Items",
+    "price": 1000,
+    "weight": 100,
+    "sold_in": 1,
+    "description": "A wool and down sleeping roll (7ft x 3ft)."
+  },
+  {
+    "name": "Blanket",
+    "category": "Various Items",
+    "price": 500,
+    "weight": 50,
+    "sold_in": 1,
+    "description": "A 6ft x 4ft wool blanket."
+  },
+  {
+    "name": "Grappling Hook",
+    "category": "Various Items",
+    "price": 500,
+    "weight": 25,
+    "sold_in": 1,
+    "description": "A 12-inch 4-clawed steel hook for climbing."
+  },
+  {
+    "name": "Hammer",
+    "category": "Various Items",
+    "price": 300,
+    "weight": 30,
+    "sold_in": 1,
+    "description": "A 15-inch tool with a steel head and wooden handle."
+  },
+  {
+    "name": "Sulfur Matches",
+    "category": "Various Items",
+    "price": 5000,
+    "weight": 1,
+    "sold_in": 25,
+    "description": "A wooden case containing 25 3-inch sulfur matches."
+  },
+  {
+    "name": "Spade",
+    "category": "Various Items",
+    "price": 400,
+    "weight": 40,
+    "sold_in": 1,
+    "description": "A 4-foot digging tool with a steel head and wooden handle."
+  },
+  {
+    "name": "Stakes",
+    "category": "Various Items",
+    "price": 20,
+    "weight": 2,
+    "sold_in": 12,
+    "description": "A set of 12 1-foot long wooden stakes."
+  },
+  {
+    "name": "Tar Palling",
+    "category": "Various Items",
+    "price": 1000,
+    "weight": 200,
+    "sold_in": 1,
+    "description": "A 10ft x 10ft sheet of heavy tarred and waxed canvas."
+  },
+  {
+    "name": "Tent, Large",
+    "category": "Various Items",
+    "price": 10000,
+    "weight": 500,
+    "sold_in": 1,
+    "description": "A 50ft x 15ft waxed canvas tent; includes 20ft of rope, 20 stakes, and 20 poles."
+  },
+  {
+    "name": "Tent, Small",
+    "category": "Various Items",
+    "price": 500,
+    "weight": 75,
+    "sold_in": 1,
+    "description": "A 7ft x 5ft waxed canvas tent; includes 10ft of rope, 5 stakes, and 5 poles."
+  }
+]

@@ -8,7 +8,7 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label> Points</mat-label>
-  <input matInput [(ngModel)]="experience.points" type="number" />
+    <input matInput [(ngModel)]="experience.points" type="number" />
   </mat-form-field>
   <br />
   <mat-form-field>
@@ -16,10 +16,12 @@
     <textarea matInput [(ngModel)]="experience.notes"> </textarea>
   </mat-form-field>
   <br />
-  <p *ngFor="let block of character.getExperience(); let i = index">
-  {{block.class}} ({{character.getAbilityAbbreviation(block.prime)}}):&nbsp;{{ character.getBlockExperience(experience, i)}} +
-    {{block.bonus_xp}}% Bonus = {{block.applyBonus(character.getBlockExperience(experience,i))}} of {{block.experienceNeededForNextLevel()}}
-  </p>
+  @for (block of character.getExperience(); track block; let i = $index) {
+    <p>
+      {{block.class}} ({{character.getAbilityAbbreviation(block.prime)}}):&nbsp;{{ character.getBlockExperience(experience, i)}} +
+      {{block.bonus_xp}}% Bonus = {{block.applyBonus(character.getBlockExperience(experience,i))}} of {{block.experienceNeededForNextLevel()}}
+    </p>
+  }
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-raised-button [mat-dialog-close]="" >Cancel</button>

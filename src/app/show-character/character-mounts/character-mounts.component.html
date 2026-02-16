@@ -1,162 +1,177 @@
 <div class="container">
   <h2 class="section-subtitle">Animal Assets</h2>
-  <div class="mount" *ngFor="let mount of character.getMounts(); let i = index;">
-    <mat-divider></mat-divider>
-    <h2>{{ mount.name }}</h2>
-    <h5>{{ mount.getDescription() }}</h5>
-    <div class="mount-cards">
-      <mat-card appearance="outlined">
-        <mat-card-content>
-          <mat-icon *ngIf="editing!=i" color='primary' (click)="startEditing(i)" class="edit">edit</mat-icon>
-          <mat-icon *ngIf="editing==i" color='warn' (click)="removeMount(mount)" class="edit">delete</mat-icon>
-
-          <mat-list dense *ngIf="editing!=i">
-            <div mat-subheader><h2>Stats & Abilities</h2></div>
-            <mat-divider></mat-divider>
-            <mat-list-item><span>Morale:&nbsp;</span> {{ mount.morale }}</mat-list-item>
-            <mat-list-item>
-              <span>HP:&nbsp;</span>
-              {{ mount.current_hp }}/{{ mount.total_hp }}
-              &nbsp;
-              <span>HD:&nbsp;</span>
-              {{ mount.hit_dice }}
-              &nbsp;
-              <span>AC:&nbsp;</span>
-              {{ mount.armor_class }}
-              &nbsp;
-            </mat-list-item>
-            <mat-list-item><span>Carrying:&nbsp;</span>{{ mount.load() }} / {{ mount.max_carry }}</mat-list-item>
-            <mat-list-item><span>Max Pull:&nbsp;</span> {{ mount.max_pull }}</mat-list-item>
-            <mat-list-item><span>Base Movement:&nbsp;</span> {{ mount.base_movement }}</mat-list-item>
-            <mat-list-item><span>Alignment:&nbsp;</span> {{ mount.alignment }}</mat-list-item>
-            <mat-list-item><span>Species :&nbsp;</span> {{ mount.species }}</mat-list-item>
-            <mat-list-item><span>Intelligence:&nbsp;</span> {{ mount.intelligence }}</mat-list-item>
-            <div mat-subheader><h2>Saddle Bags</h2></div>
-            <mat-divider></mat-divider>
-            <div *ngFor="let si of mount.getSlungItems()">
-              <mat-list-item>{{ si.inventoryString() }}
-                <div class="mat-list-actions">
-                  <button class="edit-item-button" mat-mini-fab color="accent" (click)="openContainerDialog(si, mount)">
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                  <button mat-mini-fab color="warn" (click)="deleteSlungItem(si)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </div>
-              </mat-list-item>
-            </div>
-            <div class="add-item">
-              <button *ngIf="mount.getSlungItems().length < 3" mat-mini-fab (click)="openContainerDialog(null, mount)"
+  @for (mount of character.getMounts(); track mount; let i = $index) {
+    <div class="mount">
+      <mat-divider></mat-divider>
+      <h2>{{ mount.name }}</h2>
+      <h5>{{ mount.getDescription() }}</h5>
+      <div class="mount-cards">
+        <mat-card appearance="outlined">
+          <mat-card-content>
+            @if (editing!=i) {
+              <mat-icon color='primary' (click)="startEditing(i)" class="edit">edit</mat-icon>
+            }
+            @if (editing==i) {
+              <mat-icon color='warn' (click)="removeMount(mount)" class="edit">delete</mat-icon>
+            }
+            @if (editing!=i) {
+              <mat-list dense>
+                <div mat-subheader><h2>Stats & Abilities</h2></div>
+                <mat-divider></mat-divider>
+                <mat-list-item><span>Morale:&nbsp;</span> {{ mount.morale }}</mat-list-item>
+                <mat-list-item>
+                  <span>HP:&nbsp;</span>
+                  {{ mount.current_hp }}/{{ mount.total_hp }}
+                  &nbsp;
+                  <span>HD:&nbsp;</span>
+                  {{ mount.hit_dice }}
+                  &nbsp;
+                  <span>AC:&nbsp;</span>
+                  {{ mount.armor_class }}
+                  &nbsp;
+                </mat-list-item>
+                <mat-list-item><span>Carrying:&nbsp;</span>{{ mount.load() }} / {{ mount.max_carry }}</mat-list-item>
+                <mat-list-item><span>Max Pull:&nbsp;</span> {{ mount.max_pull }}</mat-list-item>
+                <mat-list-item><span>Base Movement:&nbsp;</span> {{ mount.base_movement }}</mat-list-item>
+                <mat-list-item><span>Alignment:&nbsp;</span> {{ mount.alignment }}</mat-list-item>
+                <mat-list-item><span>Species :&nbsp;</span> {{ mount.species }}</mat-list-item>
+                <mat-list-item><span>Intelligence:&nbsp;</span> {{ mount.intelligence }}</mat-list-item>
+                <div mat-subheader><h2>Saddle Bags</h2></div>
+                <mat-divider></mat-divider>
+                @for (si of mount.getSlungItems(); track si) {
+                  <div>
+                    <mat-list-item>{{ si.inventoryString() }}
+                      <div class="mat-list-actions">
+                        <button class="edit-item-button" mat-mini-fab color="accent" (click)="openContainerDialog(si, mount)">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-mini-fab color="warn" (click)="deleteSlungItem(si)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                    </mat-list-item>
+                  </div>
+                }
+                <div class="add-item">
+                  @if (mount.getSlungItems().length < 3) {
+                    <button mat-mini-fab (click)="openContainerDialog(null, mount)"
                       color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </div>
-          </mat-list>
-          <mat-list *ngIf="editing==i" class="editing">
-            <h2>Edit {{ mount.name }}</h2>
-            <mat-list-item>
-              <mat-form-field>
-                <mat-label>Name:</mat-label>
-                <input matInput [(ngModel)]="mount.name"/>
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-form-field>
-                <mat-label>Morale:</mat-label>
-                <input type="number" matInput [(ngModel)]="mount.morale"/>
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-form-field>
-                <mat-label>Current HP:</mat-label>
-                <input type="number" matInput [(ngModel)]="mount.current_hp"/>
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-form-field>
-                <mat-label>Total HP:</mat-label>
-                <input type="number" matInput [(ngModel)]="mount.total_hp"/>
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-form-field>
-                <mat-label>Hit Dice:</mat-label>
-                <input type="number" matInput [(ngModel)]="mount.hit_dice"/>
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-form-field>
-                <mat-label>Armor Class:</mat-label>
-                <input type="number" matInput [(ngModel)]="mount.armor_class"/>
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-form-field>
-                <mat-label>Max Carry:</mat-label>
-                <input type="number" matInput [(ngModel)]="mount.max_carry"/>
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-form-field>
-                <mat-label>Max Pull:</mat-label>
-                <input type="number" matInput [(ngModel)]="mount.max_pull"/>
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-form-field>
-                <mat-label>Base Movement:</mat-label>
-                <input type="number" matInput [(ngModel)]="mount.base_movement"/>
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-form-field>
-                <mat-label>Alignment:</mat-label>
-                <input matInput [(ngModel)]="mount.alignment"/>
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-form-field>
-                <mat-label>Species:</mat-label>
-                <input matInput [(ngModel)]="mount.species"/>
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-form-field>
-                <mat-label>Intelligence:</mat-label>
-                <input type="number" matInput [(ngModel)]="mount.intelligence"/>
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-checkbox [(ngModel)]="mount.barding">Barding</mat-checkbox>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-checkbox [(ngModel)]="mount.saddle">Saddle</mat-checkbox>
-            </mat-list-item>
-            <mat-list-item>
-              <button mat-raised-button color="primary" (click)="stopEditing()">Done</button>
-            </mat-list-item>
-          </mat-list>
-        </mat-card-content>
-      </mat-card>
-      <mat-card appearance="outlined">
-        <mat-card-content>
-          <mat-list>
-            <h2>Inventory</h2>
-            <item-list [items]="mount.inventory"></item-list>
-          </mat-list>
-        </mat-card-content>
-      </mat-card>
-      <mat-card appearance="outlined" *ngFor="let si of mount.getSlungItems()">
-        <mat-card-content>
-          <mat-list>
-            <h2>{{ si.name }}</h2>
-            <item-list [items]="si.contents"></item-list>
-          </mat-list>
-        </mat-card-content>
-      </mat-card>
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  }
+                </div>
+              </mat-list>
+            }
+            @if (editing==i) {
+              <mat-list class="editing">
+                <h2>Edit {{ mount.name }}</h2>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Name:</mat-label>
+                    <input matInput [(ngModel)]="mount.name"/>
+                  </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Morale:</mat-label>
+                    <input type="number" matInput [(ngModel)]="mount.morale"/>
+                  </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Current HP:</mat-label>
+                    <input type="number" matInput [(ngModel)]="mount.current_hp"/>
+                  </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Total HP:</mat-label>
+                    <input type="number" matInput [(ngModel)]="mount.total_hp"/>
+                  </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Hit Dice:</mat-label>
+                    <input type="number" matInput [(ngModel)]="mount.hit_dice"/>
+                  </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Armor Class:</mat-label>
+                    <input type="number" matInput [(ngModel)]="mount.armor_class"/>
+                  </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Max Carry:</mat-label>
+                    <input type="number" matInput [(ngModel)]="mount.max_carry"/>
+                  </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Max Pull:</mat-label>
+                    <input type="number" matInput [(ngModel)]="mount.max_pull"/>
+                  </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Base Movement:</mat-label>
+                    <input type="number" matInput [(ngModel)]="mount.base_movement"/>
+                  </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Alignment:</mat-label>
+                    <input matInput [(ngModel)]="mount.alignment"/>
+                  </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Species:</mat-label>
+                    <input matInput [(ngModel)]="mount.species"/>
+                  </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Intelligence:</mat-label>
+                    <input type="number" matInput [(ngModel)]="mount.intelligence"/>
+                  </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-checkbox [(ngModel)]="mount.barding">Barding</mat-checkbox>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-checkbox [(ngModel)]="mount.saddle">Saddle</mat-checkbox>
+                </mat-list-item>
+                <mat-list-item>
+                  <button mat-raised-button color="primary" (click)="stopEditing()">Done</button>
+                </mat-list-item>
+              </mat-list>
+            }
+          </mat-card-content>
+        </mat-card>
+        <mat-card appearance="outlined">
+          <mat-card-content>
+            <mat-list>
+              <h2>Inventory</h2>
+              <item-list [items]="mount.inventory"></item-list>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+        @for (si of mount.getSlungItems(); track si) {
+          <mat-card appearance="outlined">
+            <mat-card-content>
+              <mat-list>
+                <h2>{{ si.name }}</h2>
+                <item-list [items]="si.contents"></item-list>
+              </mat-list>
+            </mat-card-content>
+          </mat-card>
+        }
+      </div>
+      <mat-divider></mat-divider>
     </div>
-    <mat-divider></mat-divider>
-  </div>
+  }
   <button class="add-mount-button" mat-mini-fab color="primary" (click)="createMount()">
     <mat-icon>add</mat-icon>
   </button>

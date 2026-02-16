@@ -3,12 +3,19 @@ import {Title} from "@angular/platform-browser";
 import {GameService} from "./game.service";
 import {saveAs} from 'file-saver'
 import {Game} from "./game";
-import {Router} from "@angular/router";
+import { Router, RouterLink, RouterOutlet } from "@angular/router";
+import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
+import { LinksComponent } from './links/links.component';
+import { MatButton, MatIconButton, MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatToolbar } from '@angular/material/toolbar';
+
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.sass'],
+    imports: [MatSidenavContainer, MatSidenav, LinksComponent, MatButton, MatIcon, MatIconButton, RouterLink, MatSidenavContent, MatToolbar, RouterOutlet, MatMiniFabButton]
 })
 export class AppComponent {
   year = new Date().getFullYear();

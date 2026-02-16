@@ -1,0 +1,352 @@
+[
+  {
+    "level": 1,
+    "name": "Detect Magic",
+    "description": "A spell to determine if there has been some enchantment laid on a person, place or thing. It has a limited range and short duration. It is useful, for example, to discover if some item is magical, a door has been \"held\" or \"wizard locked,\" etc."
+  },
+  {
+    "level": 1,
+    "name": "Hold Portal",
+    "description": "A spell to hold a door, gate or the like. It is similar to a locking spell but it is not permanent. Roll two dice to determine the duration of the spell in turns. Dispel Magic will immediately negate it, a strong anti-magical creature will shatter it and a Knock will open it."
+  },
+  {
+    "level": 1,
+    "name": "Read Magic",
+    "description": "The means by which the incantations on an item or scroll are read. Without such a spell or similar device magic is unintelligible to even a Magic-User. The spell is of short duration (one or two readings being the usual limit)."
+  },
+  {
+    "level": 1,
+    "name": "Read Languages",
+    "description": "The means by which directions and the like are read, particularly on treasure maps. It is otherwise like the Read Magic spell above."
+  },
+  {
+    "level": 1,
+    "name": "Protection from Evil",
+    "description": "This spell hedges the conjurer round with a magic circle to keep out attacks from enchanted monsters. It also serves as an \"armor\" from various evil attacks, adding a +1 to all saving throws and taking a -1 from hit dice of evil opponents. (Note that this spell is not cumulative in effect with magic armor and rings, although it will continue to keep out enchanted monsters.) Duration: 6 turns."
+  },
+  {
+    "level": 1,
+    "name": "Light",
+    "description": "A spell to cast light in a circle 3\" in diameter, not equal to full daylight. It lasts for a number of turns equal to 6 + the number of levels of the user; thus, a 7th-level Magic-User would cast the spell for 13 turns. This spell is reversible."
+  },
+  {
+    "level": 1,
+    "name": "Charm Person",
+    "description": "This spell applies to all two-legged, generally mammalian figures near to or less than man-size, excluding all monsters in the \"Undead\" class but including Sprites, Pixies, Nixies, Kobolds, Goblins, Orcs, Hobgoblins and Gnolls. If the spell is successful it will cause the charmed entity to come completely under the influence of the Magic-User until such time as the \"charm\" is dispelled (Dispel Magic). Range: 12\"."
+  },
+  {
+    "level": 1,
+    "name": "Sleep",
+    "description": "A Sleep spell affects from 2-16 1st-level types (hit dice of up to 1 + 1), from 2-12 2nd-level types (hit dice of up to 2 + 1), from 1-6 3rd-level types, and but 1 4th-level type (up to 4 + 1 hit dice). The spell always affects up to the number of creatures determined by the dice. If more than the number rolled could be affected, determine which \"sleep\" by random selection. Range: 24\"."
+  },
+  {
+    "level": 2,
+    "name": "Detect Invisible",
+    "description": "A spell to find secreted treasure hidden by an Invisibility spell. It will also locate invisible creatures. Duration: 6 turns. Range: 1\" x the level of the Magic-User casting it, i.e. a \"Wizard\" would have a range of 11\", more if he was above the base value."
+  },
+  {
+    "level": 2,
+    "name": "Levitate",
+    "description": "This spell lifts the caster, all motion being in the vertical plane; however, the user could, for example, levitate to the ceiling, and move horizontally by use of his hands. Duration: 6 turns + the level of the user. Range (of levitation): 2\"/level of Magic-User, with upwards motion at 6\"/turn."
+  },
+  {
+    "level": 2,
+    "name": "Phantasmal Forces",
+    "description": "The creation of vivid illusions of nearly anything the user envisions (a projected mental image so to speak). As long as the caster concentrates on the spell, the illusion will continue unless touched by some living creature, so there is no limit on duration, per se. Damage caused to viewers of a Phantasmal Force will be real if the illusion is believed to be real. Range: 24\"."
+  },
+  {
+    "level": 2,
+    "name": "Locate Object",
+    "description": "In order for this spell to be effective it must be cast with certain knowledge of what is to be located. Thus, the exact nature, dimensions, coloring, etc. of some magical item would have to be known in order for the spell to work. Well known objects such as a flight of stairs leading upwards can be detected with this spell however. The spell gives the user the direction of the object desired but not the distance. The desired object must be within range. Range: 6\" + 1\"/level of the Magic-User employing the spell."
+  },
+  {
+    "level": 2,
+    "name": "Invisibility",
+    "description": "A spell which lasts until it is broken by the user or by some outside force (remember that as in CHAINMAIL, a character cannot remain invisible and attack). It affects only the person or thing upon whom or which it is cast. Range: 24\"."
+  },
+  {
+    "level": 2,
+    "name": "Wizard Lock",
+    "description": "Similar to a Hold Portal, this spell lasts indefinitely. It can be opened by a Knock without breaking the spell. A Wizard Lock can be passed through without a spell of any kind by a Magic-User three levels above the one who placed the spell."
+  },
+  {
+    "level": 2,
+    "name": "Detect Evil",
+    "description": "A spell to detect evil thought or intent in any creature or evilly enchanted object. Note that poison, for example, is neither good nor evil. Duration: 2 turns. Range: 6\"."
+  },
+  {
+    "level": 2,
+    "name": "ESP",
+    "description": "A spell which allows the user to detect the thoughts (if any) of whatever lurks behind doors or in the darkness. It can penetrate solid rock up to about 2' in thickness, but a thin coating of lead will prevent its penetration. Duration: 12 turns. Range: 6\"."
+  },
+  {
+    "level": 2,
+    "name": "Continual Light",
+    "description": "This spell creates a light wherever the caster desires. It sheds a circle of illumination 24\" in diameter, but does not equal full daylight. It continues to shed light until dispelled. Range: 12\". This spell is reversible."
+  },
+  {
+    "level": 2,
+    "name": "Knock",
+    "description": "A spell which opens secret doors, held portals, doors locked by magic, barred or otherwise secured gates, etc. Range: 6\"."
+  },
+  {
+    "level": 3,
+    "name": "Fly",
+    "description": "By means of this spell the user is able to fly at a speed of up to 12\"/turn. The spell lasts for the number of turns equal to the level of the Magic-User plus the number of pips on a six-sided die which is secretly determined by the referee."
+  },
+  {
+    "level": 3,
+    "name": "Hold Person",
+    "description": "A spell similar to a Charm Person, but which is of both limited duration and greater effect. It will affect from 1-4 persons. If it is cast at only a single person it has the effect of reducing the target's saving throw against magic by -2. Duration: 6 turns + level of the caster. Range: 12\"."
+  },
+  {
+    "level": 3,
+    "name": "Dispel Magic",
+    "description": "Unless countered, this spell will be effective in dispelling enchantments of most kinds (referee's option), except those on magical items and the like. The success of a Dispel Magic spell is a ratio of the dispeller over the original spell caster, so if a 5th-level Magic-User attempts to dispel the spell of a 10th-level Magic-User there is a 50% chance of success. Duration: 1 turn. Range: 12\"."
+  },
+  {
+    "level": 3,
+    "name": "Clairvoyance",
+    "description": "Same as ESP spell except the spell user can visualize rather than merely pick up thoughts."
+  },
+  {
+    "level": 3,
+    "name": "Clairaudience",
+    "description": "Same as Clairvoyance except it allows hearing rather than visualization. This is one of the few spells which can be cast through a Crystal Ball."
+  },
+  {
+    "level": 3,
+    "name": "Fire Ball",
+    "description": "A missile which springs from the finger of the Magic-User. It explodes with a burst radius of 2\" (slightly larger than specified in CHAINMAIL). In a confined space the Fire Ball will generally conform to the shape of the space (elongate or whatever). The damage caused by the missile will be in proportion to the level of its user. A 6th-level Magic-User throws a 6-die missile, a 7th a 7-die missile, and so on. Duration: 1 turn. Range: 24\"."
+  },
+  {
+    "level": 3,
+    "name": "Lightning Bolt",
+    "description": "Utterance of this spell generates a lightning bolt 6\" long and up to 3/4\" wide. If the space is not long enough to allow its full extension, the missile will double back to attain 6\", possibly striking its creator. It is otherwise similar to a Fire Ball, but as stated in CHAINMAIL the head of the missile may never extend beyond the 24\" range."
+  },
+  {
+    "level": 3,
+    "name": "Protection from Evil 10' Radius",
+    "description": "A Protection from Evil spell which extends to include a circle around the Magic-User and also lasts for 12 rather than 6 turns. This spell is reversible."
+  },
+  {
+    "level": 3,
+    "name": "Invisibility 10' Radius",
+    "description": "An Invisibility spell with an extended projection but otherwise no different from the former spell."
+  },
+  {
+    "level": 3,
+    "name": "Infravision",
+    "description": "This spell allows the recipient to see infrared light waves, thus enabling him to see in total darkness. Duration: 1 day. Range of infravision: 40-60'."
+  },
+  {
+    "level": 3,
+    "name": "Slow",
+    "description": "A broad-area spell which affects up to 24 creatures in a maximum area of 6\" x 12\". Duration: 3 turns. Range: 24\"."
+  },
+  {
+    "level": 3,
+    "name": "Haste",
+    "description": "This is exactly the opposite of a Slow Spell in effect, but otherwise like it. Note that it will counter its opposite and vice-versa."
+  },
+  {
+    "level": 3,
+    "name": "Protection from Normal Missiles",
+    "description": "The recipient of this charm becomes impervious to normal missiles. This implies only those missiles projected by normal (not above normal) men and/or weapons. Duration: 12 turns. Range: 3\"."
+  },
+  {
+    "level": 3,
+    "name": "Water Breathing",
+    "description": "A spell whereby it is possible to breathe underwater without harm or difficulty. Duration: 12 turns. Range 3\"."
+  },
+  {
+    "level": 4,
+    "name": "Polymorph Self",
+    "description": "A spell allowing the user to take the shape of anything he desires, but he will not thereby acquire the combat abilities of the thing he has polymorphed himself to resemble. That is, while the user may turn himself into a dragon of some type, he will not gain the ability to fight and breathe, but he will be able to fly. Duration: 6 turns + the level of the Magic-User employing it."
+  },
+  {
+    "level": 4,
+    "name": "Polymorph Others",
+    "description": "Unlike the spell to Polymorph Self, this spell lasts until it is dispelled. The spell gives all characteristics of the form of the creature, so a creature polymorphed into a dragon acquires all of the dragon's ability - not necessarily mentality, however. Likewise, a troll polymorphed into a snail would have innate resistance to being stepped on and crushed by a normal man. Range: 6\"."
+  },
+  {
+    "level": 4,
+    "name": "Remove Curse",
+    "description": "A spell to remove any one curse or evil sending. Note that using this spell on a \"cursed sword,\" for example, would make the weapon an ordinary sword, not some form of enchanted blade. Range: Adjacent to the object. This spell is reversible."
+  },
+  {
+    "level": 4,
+    "name": "Wall of Fire",
+    "description": "The spell will create a wall of fire which lasts until the Magic-User no longer concentrates to maintain it. The fire wall is opaque. It prevents creatures with under four hit dice from entering/passing through. Undead will take two dice of damage (2-12) and other creatures one die (1-6) when breaking through the fire. The shape of the wall can be either a plane of up to 6\" width and 2\" in height, or it can be cast in a circle of 3\" diameter and 2\" in height. Range: 6\"."
+  },
+  {
+    "level": 4,
+    "name": "Wall of Ice",
+    "description": "A spell to create a wall of ice six inches thick, in dimensions like that of a Wall of Fire. It negates the effects of creatures employing fire and/or fire spells. It may be broken through by creatures with four or more hit dice, with damage equal to one die (1-6) for non-fire employing creatures and double that for fire-users. Range: 12\"."
+  },
+  {
+    "level": 4,
+    "name": "Confusion",
+    "description": "This spell will immediately affect creatures with two or fewer hit-dice. For creatures above two hit dice the following formula is used to determine when the spell takes effect: score of a twelve-sided die roll less the level of the Magic-User casting the spell = delay in effect, i.e. a positive difference means a turn delay, while a zero or negative difference means immediate effect. Creatures with four or more hit dice will have saving throws against magic. The spell will affect as many creatures as indicated by the score rolled on two six-sided dice with the addition of +1 for each level above the 8th that the Magic-User casting the spell has attained. Duration: 12 turns. Range: 12\"."
+  },
+  {
+    "level": 4,
+    "name": "Charm Monster",
+    "description": "The counterpart of a Charm Person spell which is employable against all creatures. If animals or creatures with three or fewer hit dice are involved determine how many are affected by the spell by rolling three six-sided dice. It is otherwise identical to the Charm Person spell."
+  },
+  {
+    "level": 4,
+    "name": "Growth of Plants",
+    "description": "This spell causes normal brush or woods to become thickly overgrown and entangled with creepers, vines, thorns, briars and so on, so as to make the area virtually impassable. It will affect an area of up to 30 square inches, the dimensions decided by the caster of the spell. Duration: until the spell is negated by a Dispel Magic. Range: 12\"."
+  },
+  {
+    "level": 4,
+    "name": "Dimension Door",
+    "description": "A limited Teleport spell which allows the object to be instantaneously transported up to 36\" in any direction (including up or down). There is no chance of misjudging when using a Dimension Door, so the user always arrives exactly where he calls, i.e. 12\" upwards, 32\" east, etc. Range: 1\"."
+  },
+  {
+    "level": 4,
+    "name": "Wizard Eye",
+    "description": "A spell which allows the user to send a visual sensor up to 24\" away in order to observe the scene without himself moving. The \"eye\" is invisible. It moves 12\"/turn. Duration: 6 turns."
+  },
+  {
+    "level": 4,
+    "name": "Massmorph",
+    "description": "This spell is used to conceal up to 100 men (or creatures of near man size) as a woods or orchards. The concealed figures may be moved through without being detected as anything other than trees, and it will not affect the spell. It will be negated by a command for the caster or by means of a Dispel Magic spell. Range: 24\"."
+  },
+  {
+    "level": 4,
+    "name": "Hallucinatory Terrain",
+    "description": "By means of this spell, terrain features can either be hidden or created - an illusion which affects a large area. Thus a swamp, hill, ridge, woods, or the like can be concealed or made to appear. The spell is broken when the magicked area is contacted by an opponent. Range: 24\"."
+  },
+  {
+    "level": 5,
+    "name": "Teleport",
+    "description": "Instantaneous transportation from place to place, regardless of the distance involved, provided the user knows where he is going (the topography of the arrival area). Without certain knowledge of the destination teleportation is 75% uncertain, so a score of less than 75% of the percentile dice results in death. If the user is aware of the general topography of his destination, but has not carefully studied it, there is an uncertainty factor of 10% low and 10% high. A low score (1-10%) means death if solid material is contacted. A high score (91-100%) indicates a fall of from 10 to 100 feet, also possibly resulting in death. If a careful study of the destination has been previously made, then the Magic-User has only a 1% chance of teleporting low and a 4% chance of coming in high (10-40 feet)."
+  },
+  {
+    "level": 5,
+    "name": "Hold Monster",
+    "description": "Same as Hold Person but applicable to Monsters."
+  },
+  {
+    "level": 5,
+    "name": "Conjure Elemental",
+    "description": "A spell to conjure an Air, Water, Fire or Earth Elemental. Only one of each type can be conjured by a Magic-User during any one day. The Elemental will remain until dispelled, but the Magic-User must concentrate on control or the elemental will turn upon its conjurer and attack him (see CHAINMAIL). Conjured elementals are the strongest, with 16 hit dice. Range: 24\"."
+  },
+  {
+    "level": 5,
+    "name": "Telekinesis",
+    "description": "By means of this spell, objects may be moved by mental force. Weight limits are calculated by multiplying the level of the Magic-User by 200 Gold Pieces weight. Thus, a \"Necromancer\" is able to move a weight equal to 2,000 Gold Pieces. Duration: 6 turns. Range 12\"."
+  },
+  {
+    "level": 5,
+    "name": "Transmute Rock to Mud",
+    "description": "The spell takes effect in one turn, turning earth, sand, and, of course, rock to mud. The area affected is up to 30 square inches. Creatures moving into the mud will become mired, possibly sinking if heavy enough or losing 90% of movement otherwise, unless able to fly or levitate. The spell can only be countered by reversing the incantation (requiring a Transmute Rock to Mud spell) or by normal process of evaporation (3-18 days as determined by rolling three six-sided dice). Range: 12\". This spell is reversible."
+  },
+  {
+    "level": 5,
+    "name": "Wall of Stone",
+    "description": "The creation of a stone wall two feet thick with a maximum length and height equalling 10 square inches. The wall will last until dispelled, broken down or battered through as a usual stone wall. Range: 6\"."
+  },
+  {
+    "level": 5,
+    "name": "Wall of Iron",
+    "description": "Like a Wall of Stone, but the thickness of the wall is three inches and its maximum area 5 square inches. Duration: 12 turns. Range: 6\"."
+  },
+  {
+    "level": 5,
+    "name": "Animate Dead",
+    "description": "The creation of animated skeletons or zombies. It in no way brings a creature back to life. For the number of dead animated simply roll one die for every level above the 8th the Magic-User is, thus a \"Sorcerer\" gets one die or from 1-6 animated dead. Note that the skeletons or dead bodies must be available in order to animate them. The spell lasts until dispelled or the animated dead are done away with."
+  },
+  {
+    "level": 5,
+    "name": "Magic Jar",
+    "description": "By means of this device the Magic-User houses his life force in some inanimate object (even a rock) and attempts to possess the body of any other creature within 12\" of his Magic Jar. The container for his life force must be within 3\" of his body at the time the spell is pronounced. Possession of another body takes place when the creature in question fails to make its saving throw against magic. If the possessed body is destroyed, the spirit of the Magic-User returns to the Magic Jar, and from thence it may attempt another possession or return to the Magic-User's body. Note that if the body of the Magic-User is destroyed the life force must remain in a possessed body or the Magic Jar. If the Magic Jar is destroyed, the Magic-User is totally annihilated."
+  },
+  {
+    "level": 5,
+    "name": "Contact Higher Plane",
+    "description": "This spell allows the magical-type to seek advice and gain knowledge from creatures inhabiting higher planes of existence (the referee). Of course, the higher the plane contacted, the greater the number of questions that can be asked, the greater the chance that the information will be known, and the higher the probability that the question will be answered truthfully. The spell is usable only once every game week (referee's option)."
+  },
+  {
+    "level": 5,
+    "name": "Pass-Wall",
+    "description": "A spell which opens a hole in a solid rock wall, man-sized and up to 10' in length. Duration: 3 turns. Range: 3\"."
+  },
+  {
+    "level": 5,
+    "name": "Cloudkill",
+    "description": "This spell creates a moving, poisonous cloud of vapor which is deadly to all creatures with less than five hit dice. Movement: 6\"/turn according to wind direction, or directly away from the spell caster if there is no wind. Dimensions: 3\" diameter. Duration: 6 turns, but the cloud is dispelled by unusually strong winds or trees. Note that the cloud is heavier than air, so it will sink to the lowest possible level."
+  },
+  {
+    "level": 5,
+    "name": "Feeblemind",
+    "description": "A spell usable only against Magic-Users, it causes the recipient to become feeble-minded until the spell is countered with a Dispel Magic. Because of its specialized nature the Feeblemind spell has a 20% better chance of success, i.e. lowers the Magic-User's saving throw against magic by 4, so that if normally a 12 or better were required to save against magic, a 16 would be required against a Feeblemind. Range: 24\"."
+  },
+  {
+    "level": 5,
+    "name": "Growth of Animals",
+    "description": "A spell which will cause from 1-6 normal-sized animals (not merely mammals) to grow to giant-size with proportionate attack capabilities. Duration: 12 turns. Range 12\"."
+  },
+  {
+    "level": 6,
+    "name": "Stone to Flesh",
+    "description": "This spell turns stone to flesh, and it is reversible, so as to turn flesh to stone. It is particularly useful in reviving characters who have been \"stoned\" by some monster. It is permanent unless a reversed spell is used. Range: 12\". This spell is reversible."
+  },
+  {
+    "level": 6,
+    "name": "Reincarnation",
+    "description": "A spell to bring a dead character back to life in some other form. The form in which the character is Reincarnated is dependent upon his former alignment (Law, Neutrality or Chaos). Use a random determination on the Character Alignment table, and whatever the result is, the reincarnated character is that creature and must play as it. If he comes back as a man, determine which class, and roll a six-sided die to determine which level in that class, and similarly check level for reincarnation as an elf or dwarf."
+  },
+  {
+    "level": 6,
+    "name": "Invisible Stalker",
+    "description": "The conjuration of an extra-dimensional monster which can be controlled with merely a word from the Magic-User who conjured him. The Invisible Stalker will continue on its mission until it is accomplished, regardless of time or distance. They cannot be dispelled once conjured, except through attack."
+  },
+  {
+    "level": 6,
+    "name": "Lower Water",
+    "description": "Utterance of this spell causes the water level in a river or similar body of liquid to drop 50% of its depth for ten turns. Range: 24\". This spell is reversible."
+  },
+  {
+    "level": 6,
+    "name": "Part Water",
+    "description": "A spell which will part water up to 10' deep for a maximum of six turns. Range: 12\"."
+  },
+  {
+    "level": 6,
+    "name": "Projected Image",
+    "description": "By means of this spell the Magic-User projects an image of himself up to 24\" away, and all spells and the like used thereafter appear to originate from the Projected Image. Duration: 6 turns. Range: 24\"."
+  },
+  {
+    "level": 6,
+    "name": "Anti-Magic Shell",
+    "description": "A field which surrounds the Magic-User and makes him totally impervious to all spells. It also prevents any spells from being sent through it by the Magic-User who conjured it. Duration: 12 turns."
+  },
+  {
+    "level": 6,
+    "name": "Death Spell",
+    "description": "An incantation which kills from 2-16 creatures with fewer than seven hit dice. The creatures must be within an area of 6\" x 6\" to come under the spell. Range: 24\"."
+  },
+  {
+    "level": 6,
+    "name": "Geas",
+    "description": "A spell which forces the recipient to perform some task (as desired by the Magic-User casting the Geas). Any attempt to deviate from the performance of the task will result in weakness, and ignoring the Geas entirely brings death. The referee must carefully adjudicate the casting and subsequent performance of the geased individual when this spell is used. Duration: Until the task is completed. Range: 3\"."
+  },
+  {
+    "level": 6,
+    "name": "Disintegrate",
+    "description": "This spell will cause material of any kind - other than that of a magical nature - to Disintegrate. It will blast a tree, dragon (if it fails to make its saving throw against magic), wall section, or whatever. Range: 6\"."
+  },
+  {
+    "level": 6,
+    "name": "Move Earth",
+    "description": "When above ground the Magic-User may utilize this spell to move prominences such as hills or ridges. The spell takes one turn to go into effect. The terrain affected will move at the rate of 6\" per turn. Duration: 6 turns. Range 24\"."
+  },
+  {
+    "level": 6,
+    "name": "Control Weather",
+    "description": "The Magic-User can perform any one of the following weather control operations with this spell: Rain, Stop Rain, Cold Wave, Heat Wave, Tornado, Stop Tornado, Deep Clouds, Clear Sky."
+  }
+]

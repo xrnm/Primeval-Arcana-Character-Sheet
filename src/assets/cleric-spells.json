@@ -2,14 +2,12 @@
   {
     "level": 1,
     "name": "Cure Light Wounds",
-    "description": "During the course of one full turn this spell will remove hits from a wounded character (including elves, dwarves, etc.). A die is rolled, one pip added, and the resultant total subtracted from the hit points the character has taken.Thus from 2–7 hit points of damage can be removed.",
-    "reversible": true
+    "description": "During the course of one full turn this spell will remove hits from a wounded character (including elves, dwarves, etc.). A die is rolled, one pip added, and the resultant total subtracted from the hit points the character has taken.Thus from 2–7 hit points of damage can be removed. This spell is reversible."
   },
   {
     "level": 1,
     "name": "Purify Food & Water",
-    "description": "This spell will make spoiled or poisoned food and water usable. The quantity subject to a single spell is approximately that which would serve a dozen people.",
-    "reversible": true
+    "description": "This spell will make spoiled or poisoned food and water usable. The quantity subject to a single spell is approximately that which would serve a dozen people. This spell is reversible."
   },
   {
     "level": 1,
@@ -19,52 +17,47 @@
   {
     "level": 1,
     "name": "Detect Evil",
-    "description": "A spell to detect evil thought or intent in any creature or evilly enchanted object. Note that poison, for example, is neither good nor evil. Duration: 6 turns, Range: 12\".",
-    "reversible": true
+    "description": "A spell to detect evil thought or intent in any creature or evilly enchanted object. Note that poison, for example, is neither good nor evil. Duration: 6 turns, Range: 12\". This spell is reversible."
   },
   {
     "level": 1,
     "name": "Protection from Evil",
-    "description": "This spell hedges the conjurer round with a magic circle to keep out attacks from enchanted monsters. It also serves as an \"armor\" from various evil attacks, adding a +1 to all saving throws and taking a –1 from hit dice of evil opponents. (Note that this spell is not cumulative in effect with magic armor and rings, although it will continue to keep out enchanted monsters.) Duration: 12 turns",
-    "reversible": true
+    "description": "This spell hedges the conjurer round with a magic circle to keep out attacks from enchanted monsters. It also serves as an \"armor\" from various evil attacks, adding a +1 to all saving throws and taking a –1 from hit dice of evil opponents. (Note that this spell is not cumulative in effect with magic armor and rings, although it will continue to keep out enchanted monsters.) Duration: 12 turns This spell is reversible."
   },
   {
     "level": 1,
     "name": "Light",
-    "description": "A spell to cast light in a circle 3\" in diameter, not equal to full daylight. Duration: 12 turns.",
-    "reversible": true
+    "description": "A spell to cast light in a circle 3\" in diameter, not equal to full daylight. Duration: 12 turns. This spell is reversible."
   },
   {
     "level": 2,
     "name": "Find Traps",
-    "description": "By means of this spell the Cleric will locate any mechanical or magical traps within a radius of 3”. The spell lasts 2 turns"
+    "description": "By means of this spell the Cleric will locate any mechanical or magical traps within a radius of 3\". The spell lasts 2 turns"
   },
   {
     "level": 2,
     "name": "Hold Person",
-    "description": "A spell similar to a Charm Person, but which is of both limited duration and greater effect. It will affect from 1–4 persons. If it is cast at only a single person it has the effect of reducing the target’s saving throw against magic by –2. Duration: 9 turns. Range: 18”"
+    "description": "A spell similar to a Charm Person, but which is of both limited duration and greater effect. It will affect from 1–4 persons. If it is cast at only a single person it has the effect of reducing the target's saving throw against magic by –2. Duration: 9 turns. Range: 18\""
   },
   {
     "level": 2,
     "name": "Bless",
-    "description": "During any turn the prospective recipients of a Bless spell are not in combat the Cleric may give them this benison. A blessing raises morale by +1 and also adds +1 to attack dice. The spell lasts six turns.",
-    "reversible": true
+    "description": "During any turn the prospective recipients of a Bless spell are not in combat the Cleric may give them this benison. A blessing raises morale by +1 and also adds +1 to attack dice. The spell lasts six turns. This spell is reversible."
   },
   {
     "level": 2,
     "name": "Speak with Animals",
-    "description": "This spell allows the Cleric to speak with any form of animal life, understanding what they say in reply. There is a possibility that the animal(s) spoken with will perform services for the Cleric, and they will never attack the party the Cleric is with. (The manner of handling the probabilities of action by animals is discussed in the next volume). Duration: 6 turns. Range: 3”."
+    "description": "This spell allows the Cleric to speak with any form of animal life, understanding what they say in reply. There is a possibility that the animal(s) spoken with will perform services for the Cleric, and they will never attack the party the Cleric is with. (The manner of handling the probabilities of action by animals is discussed in the next volume). Duration: 6 turns. Range: 3\"."
   },
   {
     "level": 3,
     "name": "Remove Curse",
-    "description": "A spell to remove any one curse or evil sending. Note that using this spell on a “cursed sword,” for example, would make the weapon an ordinary sword, not some form of enchanted blade. Range: Adjacent to the object."
+    "description": "A spell to remove any one curse or evil sending. Note that using this spell on a \u201ccursed sword,\u201d for example, would make the weapon an ordinary sword, not some form of enchanted blade. Range: Adjacent to the object."
   },
   {
     "level": 3,
     "name": "Cure Disease",
-    "description": "A spell which cures any form of disease. The spell is the only method to rid a character of a disease from a curse, for example.",
-    "reversible": true
+    "description": "A spell which cures any form of disease. The spell is the only method to rid a character of a disease from a curse, for example. This spell is reversible."
   },
   {
     "level": 3,
@@ -74,8 +67,7 @@
   {
     "level": 3,
     "name": "Continual Light",
-    "description": "This spell creates a light wherever the caster desires. It sheds a circle of illumination 24” in diameter equal to full daylight. It continues to shed light until dispelled. Range: 12”.",
-    "reversible": true
+    "description": "This spell creates a light wherever the caster desires. It sheds a circle of illumination 24\" in diameter equal to full daylight. It continues to shed light until dispelled. Range: 12\". This spell is reversible."
   },
   {
     "level": 4,
@@ -85,24 +77,22 @@
   {
     "level": 4,
     "name": "Cure Serious Wounds",
-    "description": "his spell is like a Light Wound spell, but the effects are double, so two dice are rolled and one pip is added to each die. Therefore, from 4 to 14 hit points will be removed by this spell.",
-    "reversible": true
+    "description": "his spell is like a Light Wound spell, but the effects are double, so two dice are rolled and one pip is added to each die. Therefore, from 4 to 14 hit points will be removed by this spell. This spell is reversible."
   },
   {
     "level": 4,
     "name": "Protection from Evil 10\"",
-    "description": "Protection from Evil spell which extends to include a circle around the Magic-User and also lasts for 12 rather than 6 turns.",
-    "reversible": true
+    "description": "Protection from Evil spell which extends to include a circle around the Magic-User and also lasts for 12 rather than 6 turns. This spell is reversible."
   },
   {
     "level": 4,
     "name": "Turn Stick to Snakes",
-    "description": "Anytime there are sticks nearby a Cleric can turn them into snakes, with a 50% chance that they will be poisonous. From 2–16 snakes can be conjured (roll two eight-sided dice). He can command these conjured snakes to perform as he orders. Duration: 6 turns. Range 12”"
+    "description": "Anytime there are sticks nearby a Cleric can turn them into snakes, with a 50% chance that they will be poisonous. From 2–16 snakes can be conjured (roll two eight-sided dice). He can command these conjured snakes to perform as he orders. Duration: 6 turns. Range 12\""
   },
   {
     "level": 4,
     "name": "Speak with Plants",
-    "description": "This spell allows the Cleric to speak with all forms of plant life, understanding what they say in reply. Plants so spoken to will obey commands of the Cleric, such as part to allow a passage and so on. This spell does not give the Cleric the power to command trees as Treants do. Duration: 6 turns. Range: 3”."
+    "description": "This spell allows the Cleric to speak with all forms of plant life, understanding what they say in reply. Plants so spoken to will obey commands of the Cleric, such as part to allow a passage and so on. This spell does not give the Cleric the power to command trees as Treants do. Duration: 6 turns. Range: 3\"."
   },
   {
     "level": 4,
@@ -112,19 +102,17 @@
   {
     "level": 5,
     "name": "Dispel Evil",
-    "description": "Similar to a Dispel Magic spell, this allows a Cleric to dispel any evil sending or spell within a 3” radius. It functions immediately. Duration: 1 turn",
-    "reversible": true
+    "description": "Similar to a Dispel Magic spell, this allows a Cleric to dispel any evil sending or spell within a 3\" radius. It functions immediately. Duration: 1 turn This spell is reversible."
   },
   {
     "level": 5,
     "name": "Raise Dead",
-    "description": "The Cleric simply points his finger, utters the incantation, and the dead person is raised. This spell works with men, elves, and dwarves only. For each level the Cleric has progressed beyond the 8th, the time limit for resurrection extends another four days. Thus, an 8th-level Cleric can raise a body dead up to four days, a 9th-level Cleric can raise a body dead up to eight days, and so on. Naturally, if the character’s Constitution was weak, the spell will not bring him back to life. In any event raised characters must spend two game weeks’ time recuperating from the ordeal",
-    "reversible": true
+    "description": "The Cleric simply points his finger, utters the incantation, and the dead person is raised. This spell works with men, elves, and dwarves only. For each level the Cleric has progressed beyond the 8th, the time limit for resurrection extends another four days. Thus, an 8th-level Cleric can raise a body dead up to four days, a 9th-level Cleric can raise a body dead up to eight days, and so on. Naturally, if the character's Constitution was weak, the spell will not bring him back to life. In any event raised characters must spend two game weeks' time recuperating from the ordeal This spell is reversible."
   },
   {
     "level": 5,
     "name": "Commune",
-    "description": "A spell which puts the Cleric in touch with the powers “above” and asks for help in the form of answers to three questions. Communing is allowed but once each week maximum (referee’s option as to making less frequent). Veracity and knowledge should be near total. Once per year a special communing should be allowed wherein the Cleric can ask double the number of questions."
+    "description": "A spell which puts the Cleric in touch with the powers \u201cabove\u201d and asks for help in the form of answers to three questions. Communing is allowed but once each week maximum (referee\u2019s option as to making less frequent). Veracity and knowledge should be near total. Once per year a special communing should be allowed wherein the Cleric can ask double the number of questions."
   },
   {
     "level": 5,
@@ -134,7 +122,7 @@
   {
     "level": 5,
     "name": "Insect Plague",
-    "description": "By means of this spell, the Cleric calls to him a vast cloud of in sects and sends them where he will, within the spell range. They will obscure vision and drive creatures with less than three hit dice off in rout. The dimensions of the 33Insect Plague are 36 square inches. Duration: 1 game day. Range: 48”. (Note: This spell is effective only above ground.)"
+    "description": "By means of this spell, the Cleric calls to him a vast cloud of in sects and sends them where he will, within the spell range. They will obscure vision and drive creatures with less than three hit dice off in rout. The dimensions of the 33Insect Plague are 36 square inches. Duration: 1 game day. Range: 48\". (Note: This spell is effective only above ground.)"
   },
   {
     "level": 5,

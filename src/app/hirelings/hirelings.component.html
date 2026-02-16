@@ -3,24 +3,29 @@
     <button class='add-hireling-button' color="primary" mat-mini-fab (click)="addHireling()">
       <mat-icon>add</mat-icon>
     </button>
+    <button class='add-hireling-button' color="primary" mat-mini-fab (click)="generateHireling()">
+      <mat-icon>casino</mat-icon>
+    </button>
     <button class='add-hireling-button' color="primary" mat-mini-fab (click)="uploader.click()">
       <mat-icon>arrow_upwards</mat-icon>
     </button>
     <input type="file" id="upload" #uploader (change)="importHireling($event)"/>
   </div>
   <mat-tab-group>
-    <mat-tab *ngFor="let character of getHirelings()" label="{{bestLabel(character)}}">
-      <button color="warn" class="remove-hireling-button" mat-mini-fab (click)="removeHireling(character)">
-        <mat-icon>delete</mat-icon>
-      </button>
-      <character-overview [character]="character"></character-overview>
-      <character-attributes [character]="character"></character-attributes>
-      <character-spell-book [character]="character"></character-spell-book>
-      <character-experience [character]="character"></character-experience>
-      <character-purse [character]="character"></character-purse>
-      <character-inventory [character]="character"></character-inventory>
-      <adventure-log-experience-blocks [character]="character"></adventure-log-experience-blocks>
-      <character-notes [character]="character"></character-notes>
-    </mat-tab>
+    @for (character of getHirelings(); track character) {
+      <mat-tab label="{{bestLabel(character)}}">
+        <button color="warn" class="remove-hireling-button" mat-mini-fab (click)="removeHireling(character)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <character-overview [character]="character"></character-overview>
+        <character-attributes [character]="character"></character-attributes>
+        <character-spell-book [character]="character"></character-spell-book>
+        <character-experience [character]="character"></character-experience>
+        <character-purse [character]="character"></character-purse>
+        <character-inventory [character]="character"></character-inventory>
+        <adventure-log-experience-blocks [character]="character"></adventure-log-experience-blocks>
+        <character-notes [character]="character"></character-notes>
+      </mat-tab>
+    }
   </mat-tab-group>
 </div>

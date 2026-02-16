@@ -2,9 +2,12 @@
 <div>
   <div>
     <div>
-      <button class="new-character" mat-raised-button color="primary" (click)="newCharacter()">Create New Character
+      <button class="new-character" mat-raised-button color="primary" (click)="newCharacter()">New Blank Character
         <mat-icon>person</mat-icon>
       </button>
+    <button mat-raised-button color="primary" (click)="generateCharacter()">Generate Random Character
+      <mat-icon>casino</mat-icon>
+    </button>
     <button mat-raised-button color="primary" (click)="uploader.click()">Import Existing Character
       <mat-icon>arrow_upwards</mat-icon>
     </button>

@@ -28,41 +28,55 @@
         </button>
       </div>
     </mat-toolbar>
-    <div *ngIf="gameService.getGame()" id="character-summary">
-      <div *ngFor="let character of [gameService.getGame().getCharacter()]">
-        {{character.name}} {{character.getConciseClassLevelString()}}|
-        STR {{character.adjustedAbilityString('strength',true)}} |
-        INT {{character.adjustedAbilityString('intelligence',true)}} |
-        WIS {{character.adjustedAbilityString('wisdom',true)}} |
-        DEX {{character.adjustedAbilityString('dexterity')}} |
-        CON {{character.adjustedAbilityString('constitution')}} |
-        CHA {{character.adjustedAbilityString('charisma')}} |
-        To-Hit +{{character.meleeToHit()}} +{{character.missileToHit()}} |
-        AC {{character.armor_class}}<span *ngIf="character.shield">/{{character.armor_class - 1}}</span>
-      </div>
+    @if (gameService.getGame()) {
+      <div id="character-summary">
+        @for (character of [gameService.getGame().getCharacter()]; track character) {
+          <div>
+            {{character.name}} {{character.getConciseClassLevelString()}}|
+            STR {{character.adjustedAbilityString('strength',true)}} |
+            INT {{character.adjustedAbilityString('intelligence',true)}} |
+            WIS {{character.adjustedAbilityString('wisdom',true)}} |
+            DEX {{character.adjustedAbilityString('dexterity')}} |
+            CON {{character.adjustedAbilityString('constitution')}} |
+            CHA {{character.adjustedAbilityString('charisma')}} |
+            To-Hit +{{character.meleeToHit()}} +{{character.missileToHit()}} |
+            AC {{character.armor_class}}@if (character.shield) {
+            <span>/{{character.armor_class - 1}}</span>
+          }
+        </div>
+      }
     </div>
-    <router-outlet></router-outlet>
-    <button *ngIf="!gameService.lock" (click)='lockPage()' class="lock-icon" mat-mini-fab>
+  }
+  <router-outlet></router-outlet>
+  @if (!gameService.lock) {
+    <button (click)='lockPage()' class="lock-icon" mat-mini-fab>
       <mat-icon>lock</mat-icon>
     </button>
-    <button *ngIf="gameService.lock" (click)='lockPage()' color="warn" class="lock-icon" mat-mini-fab>
+  }
+  @if (gameService.lock) {
+    <button (click)='lockPage()' color="warn" class="lock-icon" mat-mini-fab>
       <mat-icon>vpn_key</mat-icon>
     </button>
-    <div *ngIf="gameService.getGame()" id="character-movement-summary">
-      <div *ngFor="let character of [gameService.getGame().getCharacter()]">
-        HP {{character.current_hp}}/{{character.total_hp}} |
-        1x Pace {{character.movementRating() / 6}} |
-        2x Pace {{character.movementRating() / 3}} |
-        3x Pace {{character.movementRating() / 2}} |
-        Carried Weight {{character.load()}}/{{character.maximumLoad()}}
-      </div>
+  }
+  @if (gameService.getGame()) {
+    <div id="character-movement-summary">
+      @for (character of [gameService.getGame().getCharacter()]; track character) {
+        <div>
+          HP {{character.current_hp}}/{{character.total_hp}} |
+          1x Pace {{character.movementRating() / 6}} |
+          2x Pace {{character.movementRating() / 3}} |
+          3x Pace {{character.movementRating() / 2}} |
+          Carried Weight {{character.load()}}/{{character.maximumLoad()}}
+        </div>
+      }
     </div>
-    <mat-toolbar id="footer">
-      <a routerLink="/">Revived Character Sheet</a>
-      <small id="copyright">Copyright &copy; {{year}} Justin Edwards. All Rights Reserved. (for now)</small>
-      <a id="github-logo" href="https://github.com/xrnm/odnd-character-sheet"><img
-        src="/assets/images/github_logo.png"/>GitHub</a>
-    </mat-toolbar>
-  </mat-sidenav-content>
+  }
+  <mat-toolbar id="footer">
+    <a routerLink="/">Revived Character Sheet</a>
+    <small id="copyright">Copyright &copy; {{year}} Justin Edwards. All Rights Reserved. (for now)</small>
+    <a id="github-logo" href="https://github.com/xrnm/odnd-character-sheet"><img
+    src="/assets/images/github_logo.png"/>GitHub</a>
+  </mat-toolbar>
+</mat-sidenav-content>
 </mat-sidenav-container>
 

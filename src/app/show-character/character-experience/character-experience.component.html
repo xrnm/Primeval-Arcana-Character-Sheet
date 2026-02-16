@@ -5,68 +5,84 @@
   </button>
 </h2>
 <div id="experience" class="container">
-  <mat-card appearance="outlined" *ngFor="let experience of character.getExperience(); let i  = index;">
-    <mat-card-content>
-    <mat-icon class='experience-edit' color="primary" *ngIf="editing!=i" (click)="editing = i">edit</mat-icon>
-    <mat-list dense *ngIf="editing!=i">
-      <h2>Experience Block {{i + 1}}</h2>
-      <mat-list-item><span>Class:&nbsp;</span> {{experience.class}} </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>Prime Requisite:&nbsp; </span> {{experience.prime | titlecase}} </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>Bonus Experience:&nbsp;&nbsp;</span> {{experience.bonus_xp}}%</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item><span>Level:&nbsp; </span> {{experience.currentLevel()}} </mat-list-item>
-      <mat-divider></mat-divider>
-      <div class="progress-bar" *ngIf="experience.currentExperience() > 0">
-        <mat-progress-bar mode="determinate" value="{{experience.levelProgress()*100}}"></mat-progress-bar>
-        {{experience.currentExperience()}} / {{experience.totalExperienceForLevel(experience.currentLevel() + 1)}}
-        <br/>
-        {{experience.levelProgress() | percent:'1.2' }}
-      </div>
-    </mat-list>
-
-    <mat-list dense *ngIf="editing==i" class="editing">
-      <mat-icon class='experience-edit' color="warn" *ngIf="editing==i&&character.getExperience().length>1" (click)="confirmDelete(experience)">delete</mat-icon>
-      <h2>Experience Block {{i + 1}}</h2>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Class:</mat-label>
-          <mat-select [(ngModel)]="experience.class">
-            <mat-option *ngFor="let class of classes" [value]="class">
-              {{class}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-form-field>
-          <mat-label>Prime Requisite:</mat-label>
-          <mat-select [(ngModel)]="experience.prime">
-            <mat-option *ngFor="let prime of abilities" [value]="prime">
-              {{prime}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
-      </mat-list-item>
-
-    </mat-list>
-    </mat-card-content>
-  </mat-card>
-  <mat-card appearance="outlined" class="new-class" *ngIf="canAddClass()">
-    <mat-card-content>
-    <div class="table">
-      <div class="table-cell">
-        <button class="add-experience-block" color="primary" mat-mini-fab (click)="addExperienceBlock()">
-          <mat-icon>add</mat-icon>
-        </button>
-        <h1>Add a class</h1>
-      </div>
-    </div>
-    </mat-card-content>
-  </mat-card>
+  @for (experience of character.getExperience(); track experience; let i = $index) {
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        @if (editing!=i) {
+          <mat-icon class='experience-edit' color="primary" (click)="editing = i">edit</mat-icon>
+        }
+        @if (editing!=i) {
+          <mat-list dense>
+            <h2>Experience Block {{i + 1}}</h2>
+            <mat-list-item><span>Class:&nbsp;</span> {{experience.class}} </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item><span>Prime Requisite:&nbsp; </span> {{experience.prime | titlecase}} </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item><span>Bonus Experience:&nbsp;&nbsp;</span> {{experience.bonus_xp}}%</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item><span>Level:&nbsp; </span> {{experience.currentLevel()}} </mat-list-item>
+            <mat-divider></mat-divider>
+            @if (experience.currentExperience() > 0) {
+              <div class="progress-bar">
+                <mat-progress-bar mode="determinate" value="{{experience.levelProgress()*100}}"></mat-progress-bar>
+                {{experience.currentExperience()}} / {{experience.totalExperienceForLevel(experience.currentLevel() + 1)}}
+                <br/>
+                {{experience.levelProgress() | percent:'1.2' }}
+              </div>
+            }
+          </mat-list>
+        }
+        @if (editing==i) {
+          <mat-list dense class="editing">
+            @if (editing==i&&character.getExperience().length>1) {
+              <mat-icon class='experience-edit' color="warn" (click)="confirmDelete(experience)">delete</mat-icon>
+            }
+            <h2>Experience Block {{i + 1}}</h2>
+            <mat-list-item>
+              <mat-form-field>
+                <mat-label>Class:</mat-label>
+                <mat-select [(ngModel)]="experience.class">
+                  @for (class of classes; track class) {
+                    <mat-option [value]="class">
+                      {{class}}
+                    </mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-form-field>
+                <mat-label>Prime Requisite:</mat-label>
+                <mat-select [(ngModel)]="experience.prime">
+                  @for (prime of abilities; track prime) {
+                    <mat-option [value]="prime">
+                      {{prime}}
+                    </mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
+            </mat-list-item>
+          </mat-list>
+        }
+      </mat-card-content>
+    </mat-card>
+  }
+  @if (canAddClass()) {
+    <mat-card appearance="outlined" class="new-class">
+      <mat-card-content>
+        <div class="table">
+          <div class="table-cell">
+            <button class="add-experience-block" color="primary" mat-mini-fab (click)="addExperienceBlock()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <h1>Add a class</h1>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  }
 </div>
 
