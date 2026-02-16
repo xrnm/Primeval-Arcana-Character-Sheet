@@ -1,12 +1,21 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Container} from '../../../container';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import {EquipmentLoadoutHelper, EquipmentItem} from '../../../equipment-loadout-helper';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { MatAutocompleteTrigger, MatAutocomplete } from '@angular/material/autocomplete';
+
+import { MatOption } from '@angular/material/core';
+import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-container-dialog',
-  templateUrl: './container-dialog.component.html',
-  styleUrls: ['./container-dialog.component.sass']
+    selector: 'app-container-dialog',
+    templateUrl: './container-dialog.component.html',
+    styleUrls: ['./container-dialog.component.sass'],
+    imports: [MatDialogTitle, CdkScrollable, MatDialogContent, MatFormField, MatLabel, MatInput, FormsModule, MatAutocompleteTrigger, MatAutocomplete, MatOption, MatDialogActions, MatButton, MatDialogClose]
 })
 export class ContainerDialogComponent implements OnInit {
   container: Container;

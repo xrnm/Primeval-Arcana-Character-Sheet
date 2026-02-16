@@ -4,23 +4,25 @@
     <mat-icon>add</mat-icon>
   </button>
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let note of notes">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{note.name}}
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-form-field>
-        <mat-label> Title:</mat-label>
-        <input matInput type="text" [(ngModel)]="note.name"/>
-      </mat-form-field>
-      <textarea matInput [(ngModel)]="note.content">{{note.content}}</textarea>
-      <p class="delete-note">
-        <button (click)="deleteNote(note)" mat-mini-fab aria-label="Delete Note" color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </p>
-    </mat-expansion-panel>
+    @for (note of notes; track note) {
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{note.name}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label> Title:</mat-label>
+          <input matInput type="text" [(ngModel)]="note.name"/>
+        </mat-form-field>
+        <textarea matInput [(ngModel)]="note.content">{{note.content}}</textarea>
+        <p class="delete-note">
+          <button (click)="deleteNote(note)" mat-mini-fab aria-label="Delete Note" color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </p>
+      </mat-expansion-panel>
+    }
   </mat-accordion>
 
 </div>

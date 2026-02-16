@@ -1,8 +1,12 @@
 <mat-list dense cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="items">
-  <item *ngFor="let item of items" [item]="item" cdkDrag>{{ item }}</item>
+  @for (item of items; track item) {
+    <item [item]="item" cdkDrag>{{ item }}</item>
+  }
   <div class="add-item">
-    <button *ngIf="this.getItems().length < capacity" mat-mini-fab (click)="openItemDialog(null,items)" color="primary">
-      <mat-icon>add</mat-icon>
-    </button>
+    @if (this.getItems().length < capacity) {
+      <button mat-mini-fab (click)="openItemDialog(null,items)" color="primary">
+        <mat-icon>add</mat-icon>
+      </button>
+    }
   </div>
 </mat-list>

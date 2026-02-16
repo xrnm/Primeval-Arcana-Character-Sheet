@@ -1,15 +1,21 @@
 <h2>Spell Slots</h2>
 <mat-tab-group>
-  <mat-tab *ngFor="let spellGroup of block.getMemorizedSpells()" label="Level {{spellGroup.level}}">
-    <mat-list cdkDropList (cdkDropListDropped)="drop($event, spellGroup)" [cdkDropListData]="spellGroup.spells">
-      <mat-list-item *ngFor="let spell of spellGroup.spells; let j = index" cdkDrag>
-        Slot {{j + 1}}:&nbsp;
-        <div *ngIf="spell" matTooltip="{{spell.description}}">{{spell.name}} (Level {{spell.level}})
-          <button class="use-spell-button" color="warn" mat-mini-fab (click)="removeSpell(spellGroup,j)"><mat-icon>remove</mat-icon></button>
-        </div>
-        <mat-divider></mat-divider>
-      </mat-list-item>
-    </mat-list>
-  </mat-tab>
+  @for (spellGroup of block.getMemorizedSpells(); track spellGroup) {
+    <mat-tab label="Level {{spellGroup.level}}">
+      <mat-list cdkDropList (cdkDropListDropped)="drop($event, spellGroup)" [cdkDropListData]="spellGroup.spells">
+        @for (spell of spellGroup.spells; track spell; let j = $index) {
+          <mat-list-item cdkDrag>
+            Slot {{j + 1}}:&nbsp;
+            @if (spell) {
+              <div matTooltip="{{spell.description}}">{{spell.name}} (Level {{spell.level}})
+                <button class="use-spell-button" color="warn" mat-mini-fab (click)="removeSpell(spellGroup,j)"><mat-icon>remove</mat-icon></button>
+              </div>
+            }
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        }
+      </mat-list>
+    </mat-tab>
+  }
 </mat-tab-group>
 

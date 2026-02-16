@@ -1,13 +1,15 @@
 <h2 mat-dialog-title>{{container.inventoryString()}}</h2>
 <mat-dialog-content class="mat-typography">
   <mat-form-field>
-    <mat-label>Template</mat-label>
+    <mat-label>Search equipment list</mat-label>
     <input matInput [(ngModel)]="templateFilter" (ngModelChange)="filterTemplates()"
-           [matAutocomplete]="templateAuto">
+      [matAutocomplete]="templateAuto">
     <mat-autocomplete #templateAuto="matAutocomplete" (optionSelected)="onTemplateSelect($event)">
-      <mat-option *ngFor="let e of filteredEquipment" [value]="e.name">
-        {{e.name}} ({{formatGp(e.price)}}, {{e.weight}}cn)
-      </mat-option>
+      @for (e of filteredEquipment; track e) {
+        <mat-option [value]="e.name">
+          {{e.name}} ({{formatGp(e.price)}}, {{e.weight}}cn)
+        </mat-option>
+      }
     </mat-autocomplete>
   </mat-form-field>
   <br/>
@@ -33,7 +35,9 @@
   <br/>
 
   <mat-dialog-actions align="end">
-    <button mat-button *ngIf="this.slung_items" [mat-dialog-close]="">Cancel</button>
+    @if (this.slung_items) {
+      <button mat-button [mat-dialog-close]="">Cancel</button>
+    }
     <button mat-button (click)="upsertContainer()" [mat-dialog-close]="" cdkFocusInitial>Done</button>
   </mat-dialog-actions>
 

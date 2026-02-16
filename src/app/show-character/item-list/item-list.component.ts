@@ -1,14 +1,20 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Item} from "../../item";
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
+import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList, CdkDrag } from "@angular/cdk/drag-drop";
 import {MatDialog} from "@angular/material/dialog";
 import {ItemDialogComponent} from "./item-dialog/item-dialog.component";
 import {GameService} from "../../game.service";
+import { MatList } from '@angular/material/list';
+
+import { ItemComponent } from './item/item.component';
+import { MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'item-list',
-  templateUrl: './item-list.component.html',
-  styleUrls: ['./item-list.component.sass']
+    selector: 'item-list',
+    templateUrl: './item-list.component.html',
+    styleUrls: ['./item-list.component.sass'],
+    imports: [MatList, CdkDropList, ItemComponent, CdkDrag, MatMiniFabButton, MatIcon]
 })
 export class ItemListComponent implements OnInit {
   @Input() items: Item[];

@@ -4,14 +4,18 @@ import {GameService} from "../game.service";
 import {Router} from "@angular/router";
 import {ExperienceBlock} from "../experience-block";
 import {Character} from "../character";
+import { NotesComponent } from './notes/notes.component';
+import { SessionsComponent } from './sessions/sessions.component';
+import { ExperienceBlocksComponent } from './experience-blocks/experience-blocks.component';
 
 class Note {
 }
 
 @Component({
-  selector: 'adventure-log',
-  templateUrl: './adventure-log.component.html',
-  styleUrls: ['./adventure-log.component.sass']
+    selector: 'adventure-log',
+    templateUrl: './adventure-log.component.html',
+    styleUrls: ['./adventure-log.component.sass'],
+    imports: [NotesComponent, SessionsComponent, ExperienceBlocksComponent]
 })
 export class AdventureLogComponent implements OnInit {
   sessions: Session[];

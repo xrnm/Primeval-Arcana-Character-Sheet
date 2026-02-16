@@ -6,10 +6,25 @@ import {AttributeTablesHelper} from '../attribute-tables-helper';
 import {NameGeneratorHelper} from '../name-generator-helper';
 import {Character} from '../character';
 import {SpellSlotHelper} from '../spell-slot-helper';
-import {MatDialogRef} from '@angular/material/dialog';
+import { MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import {Item} from '../item';
 import {Container} from '../container';
 import {EquipmentLoadoutHelper, EquipmentItem, LoadoutDefinition} from '../equipment-loadout-helper';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatStepper, MatStep, MatStepperNext, MatStepperPrevious } from '@angular/material/stepper';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+
+import { MatOption } from '@angular/material/core';
+import { MatInput } from '@angular/material/input';
+import { MatButton, MatIconButton, MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatTabGroup, MatTab } from '@angular/material/tabs';
+import { MatList, MatListItem } from '@angular/material/list';
+import { MatDivider } from '@angular/material/divider';
 
 interface SpellEntry {
   level: number;
@@ -17,9 +32,10 @@ interface SpellEntry {
 }
 
 @Component({
-  selector: 'app-generate-character-dialog',
-  templateUrl: './generate-character-dialog.component.html',
-  styleUrls: ['./generate-character-dialog.component.sass']
+    selector: 'app-generate-character-dialog',
+    templateUrl: './generate-character-dialog.component.html',
+    styleUrls: ['./generate-character-dialog.component.sass'],
+    imports: [MatDialogTitle, CdkScrollable, MatDialogContent, MatStepper, MatStep, MatFormField, MatLabel, MatSelect, FormsModule, MatOption, MatInput, MatButton, MatIcon, MatIconButton, MatTooltip, MatCheckbox, MatStepperNext, MatStepperPrevious, MatTabGroup, MatTab, MatList, MatListItem, MatMiniFabButton, MatDivider, MatDialogActions, MatDialogClose]
 })
 export class GenerateCharacterDialogComponent implements OnInit {
   // Step 1: Class & Level

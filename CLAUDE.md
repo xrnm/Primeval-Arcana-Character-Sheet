@@ -50,8 +50,10 @@ src/app/
 
 ## Tech Stack
 
-- Angular 18 + TypeScript + Angular Material
+- Angular 19 + TypeScript 5.8 + Angular Material 19
+- Standalone components (no NgModules), `@if`/`@for` control flow
+- RxJS 7.8, zone.js 0.15
+- ESLint via angular-eslint (flat config: `eslint.config.js`)
 - SASS (prebuilt theme: deeppurple-amber)
-- Karma + Jasmine (configured but unused)
 - Yarn package manager
 - Angular CLI for build/serve (`ng serve` on localhost:4200)

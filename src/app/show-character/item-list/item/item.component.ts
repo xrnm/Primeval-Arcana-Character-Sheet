@@ -4,10 +4,17 @@ import {MatDialog} from "@angular/material/dialog";
 import {ItemDialogComponent} from "../item-dialog/item-dialog.component";
 import {GameService} from "../../../game.service";
 
+import { MatListItem } from '@angular/material/list';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import { MatMiniFabButton } from '@angular/material/button';
+import { MatDivider } from '@angular/material/divider';
+
 @Component({
-  selector: 'item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.sass']
+    selector: 'item',
+    templateUrl: './item.component.html',
+    styleUrls: ['./item.component.sass'],
+    imports: [MatListItem, MatTooltip, MatIcon, MatMiniFabButton, MatDivider]
 })
 export class ItemComponent implements OnInit {
   @Input() item: Item;

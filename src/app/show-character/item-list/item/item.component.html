@@ -1,15 +1,17 @@
-<mat-list-item *ngIf="!item.deleted">
-  <div [class.empty]="item.quantity==0||item.unequipped" matTooltip="{{item.description}}">
-    {{item.inventoryString()}}
-  </div>
-  <div class="mat-list-actions">
-    <mat-icon [color]="item.unequipped ? 'primary' : 'warn'" class="unequip-icon" [class.unequipped]="item.unequipped" (click)="item.unequipped = !item.unequipped">pan_tool</mat-icon>
-    <button class="edit-item-button" (click)="openItemDialog(item)" mat-mini-fab color="accent" aria-label="Edit Item">
-      <mat-icon>edit</mat-icon>
-    </button>
-    <button mat-mini-fab color="warn" (click)="delete(item)" aria-label="Delete Item">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </div>
-  <mat-divider></mat-divider>
-</mat-list-item>
+@if (!item.deleted) {
+  <mat-list-item>
+    <div [class.empty]="item.quantity==0||item.unequipped" matTooltip="{{item.description}}">
+      {{item.inventoryString()}}
+    </div>
+    <div class="mat-list-actions">
+      <mat-icon [color]="item.unequipped ? 'primary' : 'warn'" class="unequip-icon" [class.unequipped]="item.unequipped" (click)="item.unequipped = !item.unequipped">pan_tool</mat-icon>
+      <button class="edit-item-button" (click)="openItemDialog(item)" mat-mini-fab color="accent" aria-label="Edit Item">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-mini-fab color="warn" (click)="delete(item)" aria-label="Delete Item">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+}

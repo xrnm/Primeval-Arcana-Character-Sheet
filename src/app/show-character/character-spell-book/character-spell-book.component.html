@@ -1,40 +1,47 @@
-<div class="container" id="spells" cdkDropListGroup *ngFor="let block of spellContainingBlocks()">
-  <h2 class="section-subtitle">{{ block.class | titlecase }} Spells</h2>
-  <mat-card appearance="outlined">
-    <mat-card-content>
-      <mat-icon color="primary" class="spell-info-icon"
-                matTooltip="You may drag and drop spells from the spell book into your character's spell slots on the right. You may overcast spells, but you may not load spell into a slot of lower level">
-        info
-      </mat-icon>
-      <h2>Available Spells</h2>
-      <mat-tab-group>
-        <mat-tab *ngFor="let _ of block.spellLevelsIter(); let i = index" label="Level {{i+1}}">
-          <mat-list cdkDropList (cdkDropListDropped)="drop($event)"
-                    [cdkDropListData]="block.spellbook.getSpells(i+1)">
-            <mat-list-item *ngFor="let spell of block.spellbook.getSpells(i+1)" cdkDrag
-                           matTooltip="{{spell.description}}">
-              {{ spell.name }} (Level {{ spell.level }}) <em *ngIf="spell.reversible"
-                                                             matTooltip="This spell is reversible">*</em>
-              <div class="action-buttons">
-                <button mat-mini-fab color="primary" class="spell-memorize-icon" (click)="memorizeSpell(block, spell)">
-                  <mat-icon>save_alt</mat-icon>
-                </button>
-                <button mat-mini-fab color="accent" class="spell-edit-icon"
-                        (click)="openSpellDialog(null, spell, null)">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-mini-fab color="warn" class="spell-delete-icon" (click)="removeSpell(block, spell)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-              <mat-divider></mat-divider>
-            </mat-list-item>
-          </mat-list>
-          <button color="primary" class="add-spell-button" mat-mini-fab
-                  (click)="openSpellDialog(block.spellbook, null, i+1)">
-            <mat-icon>add</mat-icon>
-          </button>
-        </mat-tab>
+@for (block of spellContainingBlocks(); track block) {
+  <div class="container" id="spells" cdkDropListGroup>
+    <h2 class="section-subtitle">{{ block.class | titlecase }} Spells</h2>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <mat-icon color="primary" class="spell-info-icon"
+          matTooltip="You may drag and drop spells from the spell book into your character's spell slots on the right. You may overcast spells, but you may not load spell into a slot of lower level">
+          info
+        </mat-icon>
+        <h2>Available Spells</h2>
+        <mat-tab-group>
+          @for (_ of block.spellLevelsIter(); track _; let i = $index) {
+            <mat-tab label="Level {{i+1}}">
+              <mat-list cdkDropList (cdkDropListDropped)="drop($event)"
+                [cdkDropListData]="block.spellbook.getSpells(i+1)">
+                @for (spell of block.spellbook.getSpells(i+1); track spell) {
+                  <mat-list-item cdkDrag
+                    matTooltip="{{spell.description}}">
+                    {{ spell.name }} (Level {{ spell.level }}) @if (spell.reversible) {
+                    <em
+                    matTooltip="This spell is reversible">*</em>
+                  }
+                  <div class="action-buttons">
+                    <button mat-mini-fab color="primary" class="spell-memorize-icon" (click)="memorizeSpell(block, spell)">
+                      <mat-icon>save_alt</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="accent" class="spell-edit-icon"
+                      (click)="openSpellDialog(null, spell, null)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="warn" class="spell-delete-icon" (click)="removeSpell(block, spell)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                  <mat-divider></mat-divider>
+                </mat-list-item>
+              }
+            </mat-list>
+            <button color="primary" class="add-spell-button" mat-mini-fab
+              (click)="openSpellDialog(block.spellbook, null, i+1)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-tab>
+        }
       </mat-tab-group>
     </mat-card-content>
   </mat-card>
@@ -44,3 +51,4 @@
     </mat-card-content>
   </mat-card>
 </div>
+}

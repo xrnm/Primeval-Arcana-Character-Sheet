@@ -1,12 +1,21 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import {Item} from '../../../item';
 import {EquipmentLoadoutHelper, EquipmentItem} from '../../../equipment-loadout-helper';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { MatAutocompleteTrigger, MatAutocomplete } from '@angular/material/autocomplete';
+
+import { MatOption } from '@angular/material/core';
+import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-item-dialog',
-  templateUrl: './item-dialog.component.html',
-  styleUrls: ['./item-dialog.component.sass']
+    selector: 'app-item-dialog',
+    templateUrl: './item-dialog.component.html',
+    styleUrls: ['./item-dialog.component.sass'],
+    imports: [MatDialogTitle, CdkScrollable, MatDialogContent, MatFormField, MatLabel, MatInput, FormsModule, MatAutocompleteTrigger, MatAutocomplete, MatOption, MatDialogActions, MatButton, MatDialogClose]
 })
 export class ItemDialogComponent implements OnInit {
   list: Item[];

@@ -1,12 +1,19 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Spell} from "../../../spell";
 import {SpellBook} from "../../../spell-book";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from "@angular/material/dialog";
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
+import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-spell-dialog',
-  templateUrl: './spell-dialog.component.html',
-  styleUrls: ['./spell-dialog.component.sass']
+    selector: 'app-spell-dialog',
+    templateUrl: './spell-dialog.component.html',
+    styleUrls: ['./spell-dialog.component.sass'],
+    imports: [MatDialogTitle, CdkScrollable, MatDialogContent, MatFormField, MatLabel, MatInput, FormsModule, MatDialogActions, MatButton, MatDialogClose]
 })
 export class SpellDialogComponent implements OnInit {
   spell: Spell;
