@@ -6,6 +6,7 @@ export class Game {
   character: Character;
   sessions: Session[];
   notes: Note[];
+  theme: string;
 
   getCharacter(): Character {
     return this.character;
@@ -28,5 +29,6 @@ export class Game {
     this.character = new Character(init.character);
     this.sessions = init.sessions.map(item => new Session(item));
     this.notes = init.notes.map(item => new Note(item));
+    this.theme = init.theme || 'dark';
   }
 }

@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+
+$dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: mat.$yellow-palette,
+  ),
+));
+
+$light-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$yellow-palette,
+  ),
+));
+
+html {
+  --mat-app-background-color: var(--bg);
+  --mat-app-text-color: var(--text);
+  @include mat.all-component-themes($dark-theme);
+}
+
+html.light-theme {
+  --mat-app-background-color: var(--bg);
+  --mat-app-text-color: var(--text);
+  @include mat.all-component-colors($light-theme);
+}

@@ -1,4 +1,24 @@
-@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
+\:root
+  --bg: #1a1410
+  --surface: #2a2118
+  --border: #4a3f30
+  --primary: #c9a84c
+  --accent: #d4913a
+  --warn: #a03030
+  --text: #e8dcc8
+  --text-muted: #a89878
+  --divider: #3a3028
+
+.light-theme
+  --bg: #f5efe0
+  --surface: #fffdf5
+  --border: #c8b898
+  --primary: #8b6914
+  --accent: #a06820
+  --warn: #a03030
+  --text: #2a2118
+  --text-muted: #6b5d48
+  --divider: #d8c8a8
 
 /* You can add global styles to this file, and also import other style files */
 @font-face
@@ -14,7 +34,16 @@
 
 body
   margin: 0
-  background-color: #EFEFEF
+  background-color: var(--bg)
+  color: var(--text)
+
+textarea, input:not([type="file"])
+  background: var(--surface)
+  color: var(--text)
+  border: 1px solid var(--border)
+  &:focus
+    outline: 1px solid var(--primary)
+    border-color: var(--primary)
 
 h1,h2,h3,h4,h5, span
   font-family: Cinzel
@@ -22,15 +51,15 @@ h1,h2,h3,h4,h5, span
 mat-toolbar a
   font-family: Cinzel
 
+a
+  color: var(--primary)
 
 .mat-list-actions
   position: absolute
   right: 12px
   bottom: 4px
   .edit-item-button mat-icon
-      color: white
-
-
+    color: var(--text)
 
 h1.section-title
   font-size: 64px
@@ -39,7 +68,8 @@ h1.section-title
   margin-bottom: 3px
   width: 100%
   font-family: Cinzel
-
+  color: var(--primary)
+  letter-spacing: 0.05em
 
 h2.section-subtitle
   font-size: 32px
@@ -47,6 +77,7 @@ h2.section-subtitle
   text-align: center
   width: 100%
   font-family: Cinzel
+  color: var(--text)
 
 .container
   width: 85%
@@ -82,6 +113,95 @@ h2.section-subtitle
         min-height: 65px
         margin: 0
         padding: 0
+
+mat-card
+  background: var(--surface) !important
+  border: 1px solid var(--border)
+  box-shadow: none !important
+  color: var(--text)
+
+mat-toolbar
+  background: var(--surface) !important
+  color: var(--text) !important
+  border-bottom: 1px solid var(--border)
+
+.mat-mdc-dialog-container
+  --mdc-dialog-container-color: var(--surface)
+
+.mat-mdc-dialog-surface
+  background: var(--surface) !important
+  color: var(--text) !important
+
+mat-form-field
+  .mdc-text-field
+    background: transparent !important
+  .mdc-text-field--outlined .mdc-notched-outline > *
+    border-color: var(--border) !important
+  .mat-mdc-input-element
+    color: var(--text) !important
+  .mat-mdc-floating-label
+    color: var(--text-muted) !important
+
+.mat-mdc-tab-group
+  .mdc-tab__text-label
+    color: var(--text-muted) !important
+  .mdc-tab--active .mdc-tab__text-label
+    color: var(--primary) !important
+  .mdc-tab-indicator__content--underline
+    border-color: var(--primary) !important
+
+mat-list, .mat-mdc-list
+  background: transparent !important
+  color: var(--text)
+
+.mat-mdc-list-item
+  color: var(--text) !important
+
+.mat-mdc-raised-button.mat-primary
+  background-color: var(--primary) !important
+  color: var(--bg) !important
+
+.mat-mdc-mini-fab.mat-primary
+  background-color: var(--primary) !important
+  color: var(--bg) !important
+
+.mat-mdc-mini-fab.mat-warn
+  background-color: var(--warn) !important
+
+mat-sidenav
+  background: var(--surface) !important
+  color: var(--text) !important
+  border-right: 1px solid var(--border) !important
+
+mat-sidenav-content
+  background: var(--bg) !important
+
+mat-expansion-panel
+  background: var(--surface) !important
+  color: var(--text) !important
+  border: 1px solid var(--border)
+
+.mat-expansion-panel-header-title
+  color: var(--text) !important
+
+.mat-expansion-panel-header-description
+  color: var(--text-muted) !important
+
+mat-expansion-panel-header
+  .mat-expansion-indicator::after
+    color: var(--text-muted) !important
+
+mat-select
+  color: var(--text) !important
+
+.mat-mdc-select-panel
+  background: var(--surface) !important
+
+.mat-mdc-option
+  color: var(--text) !important
+
+mat-checkbox
+  color: var(--text)
 
 mat-dialog-content
   width: 50vw

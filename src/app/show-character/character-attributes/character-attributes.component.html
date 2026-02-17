@@ -1,121 +1,156 @@
 <h2 class="section-subtitle"> Abilities</h2>
 
-<div id="abilities" class="container">
-  <mat-card appearance="outlined" ngClass="{{character.abilityIsPrime('strength') ? 'prime' : ''}}">
-    <mat-card-content class="mat-subtitle-2">
-      @if (character.hasPositiveAbilityAdjustment('strength')) {
-        <mat-icon color="primary" class="ability-info-icon" matTooltip="Your high strength compels to you an additional +1 damage to melee and thrown attacks">info</mat-icon>
-      }
-      <h4>Strength</h4>
-      <button (click)="changeAbility('strength',-1)" mat-icon-button color="warn">
-        <mat-icon>remove</mat-icon>
-      </button>
-      <strong>{{character.adjustedAbilityString('strength')}}</strong>
-      <button (click)="changeAbility('strength',1)" mat-icon-button color="primary">
-        <mat-icon>add</mat-icon>
-      </button>
-      @if (character.abilityIsPrime('strength')) {
-        <p class="prime-text">Prime</p>
-      }
-    </mat-card-content>
-  </mat-card>
-  <mat-card appearance="outlined" ngClass="{{character.abilityIsPrime('intelligence') ? 'prime' : ''}}">
-    <mat-card-content class="mat-subtitle-2">
-      @if (character.hasPositiveAbilityAdjustment('intelligence')) {
-        <mat-icon color="primary" class="ability-info-icon" matTooltip="Your high intellect compels to you one additional spoken language for each point above 10 ">info</mat-icon>
-      }
-      @if (character.hasNegativeAbilityAdjustment('intelligence')) {
-        <mat-icon color="primary" class="ability-info-icon" matTooltip="Your weak intellect renders you unable to read or write">info</mat-icon>
-      }
-      <h4>Intelligence</h4>
-      <button (click)="changeAbility('intelligence',-1)" mat-icon-button color="warn">
-        <mat-icon>remove</mat-icon>
-      </button>
-      <strong>{{character.adjustedAbilityString('intelligence')}}</strong>
-      <button (click)="changeAbility('intelligence',1)" mat-icon-button color="primary">
-        <mat-icon>add</mat-icon>
-      </button>
-      @if (character.abilityIsPrime('intelligence')) {
-        <p class="prime-text">Prime</p>
-      }
-    </mat-card-content>
-  </mat-card>
-  <mat-card appearance="outlined" ngClass="{{character.abilityIsPrime('wisdom') ? 'prime' : ''}}">
-    <mat-card-content class="mat-subtitle-2">
-      @if (character.hasPositiveAbilityAdjustment('wisdom')) {
-        <mat-icon color="primary" class="ability-info-icon" matTooltip="Your high wisdom compels to you an additional +10% comprehend spoken language for every point above 10">info</mat-icon>
-      }
-      <h4>Wisdom</h4>
-      <button (click)="changeAbility('wisdom',-1)" mat-icon-button color="warn">
-        <mat-icon>remove</mat-icon>
-      </button>
-      <strong>{{character.adjustedAbilityString('wisdom')}}</strong>
-      <button (click)="changeAbility('wisdom',1)" mat-icon-button color="primary">
-        <mat-icon>add</mat-icon>
-      </button>
-      @if (character.abilityIsPrime('wisdom')) {
-        <p class="prime-text">Prime</p>
-      }
-    </mat-card-content>
-  </mat-card>
-  <mat-card appearance="outlined" ngClass="{{character.abilityIsPrime('dexterity') ? 'prime' : ''}}">
-    <mat-card-content class="mat-subtitle-2">
-      @if (character.hasPositiveAbilityAdjustment('dexterity')) {
-        <mat-icon color="primary" class="ability-info-icon" matTooltip="Your high dexterity compels to you an additional +1 damage on missile attacks">info</mat-icon>
-      }
-      <h4>Dexterity</h4>
-      <button (click)="changeAbility('dexterity',-1)" mat-icon-button color="warn">
-        <mat-icon>remove</mat-icon>
-      </button>
-      <strong>{{character.adjustedAbilityString('dexterity')}}</strong>
-      <button (click)="changeAbility('dexterity',1)" mat-icon-button color="primary">
-        <mat-icon>add</mat-icon>
-      </button>
-      @if (character.abilityIsPrime('dexterity')) {
-        <p class="prime-text">Prime</p>
-      }
-    </mat-card-content>
-  </mat-card>
-  <mat-card appearance="outlined" ngClass="{{character.abilityIsPrime('constitution') ? 'prime' : ''}}">
-    <mat-card-content class="mat-subtitle-2">
-      @if (character.hasPositiveAbilityAdjustment('constitution')) {
-        <mat-icon color="primary" class="ability-info-icon" matTooltip="Your high constitution compels to you an additional hit point for per whole hit die">info</mat-icon>
-      }
-      @if (character.hasNegativeAbilityAdjustment('constitution')) {
-        <mat-icon color="primary" class="ability-info-icon" matTooltip="Your low constitution leaves you with a persistent ailment, allergy, infirmity">info</mat-icon>
-      }
-      <h4>Constitution</h4>
-      <button (click)="changeAbility('constitution',-1)" mat-icon-button color="warn">
-        <mat-icon>remove</mat-icon>
-      </button>
-      <strong>{{character.adjustedAbilityString('constitution')}}</strong>
-      <button (click)="changeAbility('constitution',1)" mat-icon-button color="primary">
-        <mat-icon>add</mat-icon>
-      </button>
-      @if (character.abilityIsPrime('constitution')) {
-        <p class="prime-text">Prime</p>
-      }
-    </mat-card-content>
-  </mat-card>
-  <mat-card appearance="outlined" ngClass="{{character.abilityIsPrime('charisma') ? 'prime' : ''}}">
-    <mat-card-content class="mat-subtitle-2">
-      @if (character.hasPositiveAbilityAdjustment('charisma')) {
-        <mat-icon color="primary" class="ability-info-icon" matTooltip="Your high charisma compels to you +1 to loyalty base and reaction checks">info</mat-icon>
-      }
-      @if (character.hasNegativeAbilityAdjustment('charisma')) {
-        <mat-icon color="primary" class="ability-info-icon" matTooltip="Your low charisma leaves you with a mandatory identifying quality">info</mat-icon>
-      }
-      <h4>Charisma</h4>
-      <button (click)="changeAbility('charisma',-1)" mat-icon-button color="warn">
-        <mat-icon>remove</mat-icon>
-      </button>
-      <strong>{{character.adjustedAbilityString('charisma')}}</strong>
-      <button (click)="changeAbility('charisma',1)" mat-icon-button color="primary">
-        <mat-icon>add</mat-icon>
-      </button>
-      @if (character.abilityIsPrime('charisma')) {
-        <p class="prime-text">Prime</p>
-      }
+<div class="container">
+  <mat-card appearance="outlined" class="abilities-card">
+    <mat-card-content>
+      <div class="abilities-grid">
+        <div class="ability-row" [class.prime]="character.abilityIsPrime('strength')">
+          <div class="ability-label">
+            <div class="ability-name-row">
+              <span class="ability-name">Strength</span>
+              @if (character.hasPositiveAbilityAdjustment('strength')) {
+                <mat-icon color="primary" class="ability-info-icon" matTooltip="Your high strength compels to you an additional +1 damage to melee and thrown attacks">info</mat-icon>
+              }
+            </div>
+            @if (character.abilityIsPrime('strength')) {
+              <span class="prime-text">Prime</span>
+            }
+          </div>
+          <div class="ability-value">
+            <button (click)="changeAbility('strength',-1)" mat-icon-button color="warn">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <strong>{{character.adjustedAbilityString('strength')}}</strong>
+            <button (click)="changeAbility('strength',1)" mat-icon-button color="primary">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="ability-row" [class.prime]="character.abilityIsPrime('dexterity')">
+          <div class="ability-label">
+            <div class="ability-name-row">
+              <span class="ability-name">Dexterity</span>
+              @if (character.hasPositiveAbilityAdjustment('dexterity')) {
+                <mat-icon color="primary" class="ability-info-icon" matTooltip="Your high dexterity compels to you an additional +1 damage on missile attacks">info</mat-icon>
+              }
+            </div>
+            @if (character.abilityIsPrime('dexterity')) {
+              <span class="prime-text">Prime</span>
+            }
+          </div>
+          <div class="ability-value">
+            <button (click)="changeAbility('dexterity',-1)" mat-icon-button color="warn">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <strong>{{character.adjustedAbilityString('dexterity')}}</strong>
+            <button (click)="changeAbility('dexterity',1)" mat-icon-button color="primary">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="ability-row" [class.prime]="character.abilityIsPrime('intelligence')">
+          <div class="ability-label">
+            <div class="ability-name-row">
+              <span class="ability-name">Intelligence</span>
+              @if (character.hasPositiveAbilityAdjustment('intelligence')) {
+                <mat-icon color="primary" class="ability-info-icon" matTooltip="Your high intellect compels to you one additional spoken language for each point above 10 ">info</mat-icon>
+              }
+              @if (character.hasNegativeAbilityAdjustment('intelligence')) {
+                <mat-icon color="primary" class="ability-info-icon" matTooltip="Your weak intellect renders you unable to read or write">info</mat-icon>
+              }
+            </div>
+            @if (character.abilityIsPrime('intelligence')) {
+              <span class="prime-text">Prime</span>
+            }
+          </div>
+          <div class="ability-value">
+            <button (click)="changeAbility('intelligence',-1)" mat-icon-button color="warn">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <strong>{{character.adjustedAbilityString('intelligence')}}</strong>
+            <button (click)="changeAbility('intelligence',1)" mat-icon-button color="primary">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="ability-row" [class.prime]="character.abilityIsPrime('constitution')">
+          <div class="ability-label">
+            <div class="ability-name-row">
+              <span class="ability-name">Constitution</span>
+              @if (character.hasPositiveAbilityAdjustment('constitution')) {
+                <mat-icon color="primary" class="ability-info-icon" matTooltip="Your high constitution compels to you an additional hit point for per whole hit die">info</mat-icon>
+              }
+              @if (character.hasNegativeAbilityAdjustment('constitution')) {
+                <mat-icon color="primary" class="ability-info-icon" matTooltip="Your low constitution leaves you with a persistent ailment, allergy, infirmity">info</mat-icon>
+              }
+            </div>
+            @if (character.abilityIsPrime('constitution')) {
+              <span class="prime-text">Prime</span>
+            }
+          </div>
+          <div class="ability-value">
+            <button (click)="changeAbility('constitution',-1)" mat-icon-button color="warn">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <strong>{{character.adjustedAbilityString('constitution')}}</strong>
+            <button (click)="changeAbility('constitution',1)" mat-icon-button color="primary">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="ability-row" [class.prime]="character.abilityIsPrime('wisdom')">
+          <div class="ability-label">
+            <div class="ability-name-row">
+              <span class="ability-name">Wisdom</span>
+              @if (character.hasPositiveAbilityAdjustment('wisdom')) {
+                <mat-icon color="primary" class="ability-info-icon" matTooltip="Your high wisdom compels to you an additional +10% comprehend spoken language for every point above 10">info</mat-icon>
+              }
+            </div>
+            @if (character.abilityIsPrime('wisdom')) {
+              <span class="prime-text">Prime</span>
+            }
+          </div>
+          <div class="ability-value">
+            <button (click)="changeAbility('wisdom',-1)" mat-icon-button color="warn">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <strong>{{character.adjustedAbilityString('wisdom')}}</strong>
+            <button (click)="changeAbility('wisdom',1)" mat-icon-button color="primary">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="ability-row" [class.prime]="character.abilityIsPrime('charisma')">
+          <div class="ability-label">
+            <div class="ability-name-row">
+              <span class="ability-name">Charisma</span>
+              @if (character.hasPositiveAbilityAdjustment('charisma')) {
+                <mat-icon color="primary" class="ability-info-icon" matTooltip="Your high charisma compels to you +1 to loyalty base and reaction checks">info</mat-icon>
+              }
+              @if (character.hasNegativeAbilityAdjustment('charisma')) {
+                <mat-icon color="primary" class="ability-info-icon" matTooltip="Your low charisma leaves you with a mandatory identifying quality">info</mat-icon>
+              }
+            </div>
+            @if (character.abilityIsPrime('charisma')) {
+              <span class="prime-text">Prime</span>
+            }
+          </div>
+          <div class="ability-value">
+            <button (click)="changeAbility('charisma',-1)" mat-icon-button color="warn">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <strong>{{character.adjustedAbilityString('charisma')}}</strong>
+            <button (click)="changeAbility('charisma',1)" mat-icon-button color="primary">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>
@@ -212,5 +247,3 @@
     </div>
   </mat-expansion-panel>
 </div>
-
-

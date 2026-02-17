@@ -23,12 +23,14 @@ export class GameService {
 
     this.game = new Game(JSON.parse(json));
     this.titleService.setTitle(this.game.getName());
+    this.applyTheme();
 
     this.beginCaching();
   }
 
   newGame(){
     this.game = NEW_GAME;
+    this.applyTheme();
     this.beginCaching();
     return this.game;
   }
@@ -43,6 +45,27 @@ export class GameService {
         this.titleService.setTitle(this.game.getName());
       });
   }
+  getTheme(): string {
+    return this.game?.theme || 'dark';
+  }
+
+  toggleTheme() {
+    const newTheme = this.getTheme() === 'dark' ? 'light' : 'dark';
+    if (this.game) {
+      this.game.theme = newTheme;
+    }
+    this.applyTheme();
+  }
+
+  applyTheme() {
+    const theme = this.getTheme();
+    if (theme === 'light') {
+      document.documentElement.classList.add('light-theme');
+    } else {
+      document.documentElement.classList.remove('light-theme');
+    }
+  }
+
   toggleLock(){
     this.lock = !this.lock
   }

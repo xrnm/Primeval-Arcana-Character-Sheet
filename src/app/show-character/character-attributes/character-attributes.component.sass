@@ -1,19 +1,52 @@
-#abilities
-  justify-content: space-evenly
-.prime
-  border: 3px solid #222288
+.abilities-card
+  width: 85%
+  margin: 0 auto
+
+.abilities-grid
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 4px 32px
+
+.ability-row
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 4px 8px
+  &.prime
+    border-left: 3px solid var(--primary)
+    padding-left: 5px
+
+.ability-label
+  display: flex
+  flex-direction: column
+
+.ability-name-row
+  display: flex
+  align-items: center
+  gap: 4px
+
+.ability-name
+  font-family: 'Cinzel', serif
+  color: var(--text)
+
+.ability-info-icon
+  font-size: 16px
+  width: 16px
+  height: 16px
+
 .prime-text
-  color: #222288
+  font-size: 11px
+  color: var(--primary)
 
-mat-card
-  width: 15%
-  .ability-info-icon
-    position: absolute
-    top: 4px
-    right: 4px
-  mat-card-content
+.ability-value
+  display: flex
+  align-items: center
+  gap: 4px
+  strong
+    font-size: 24px
+    font-family: 'Cinzel', serif
+    min-width: 36px
     text-align: center
-
 
 mat-expansion-panel
   width: 75%
@@ -24,20 +57,13 @@ mat-expansion-panel
     div
       width: 45%
 
-
-@media screen and (max-width: 1600px)
-  #abilities
-    mat-card
-      width: 20%
-      margin-bottom: 24px
-
 @media screen and (max-width: 1200px)
   mat-expansion-panel
     width: 100%
     margin-bottom: 24px
 
-@media screen and (max-width: 1024px)
-  #abilities
-    mat-card
-      width: 33%
-      margin-bottom: 24px
+@media screen and (max-width: 820px)
+  .abilities-grid
+    grid-template-columns: 1fr
+  .abilities-card
+    width: 100%
