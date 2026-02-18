@@ -5,6 +5,9 @@
   <strong>You can mess up your character and cause unusual behavior. Please save your character before making changes</strong>
   <textarea [(ngModel)]="raw"></textarea>
   <button mat-raised-button (click)="save()" color="warn"> Save </button>
+  <div class="toggle-row">
+    <mat-slide-toggle [checked]="gameService.getLegacyLayout()" (change)="gameService.toggleLegacyLayout()">Legacy Ability Cards</mat-slide-toggle>
+  </div>
 </div>
 <div class="changelog container">
   <h1>Change Log</h1>

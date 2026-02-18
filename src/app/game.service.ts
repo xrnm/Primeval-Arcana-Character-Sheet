@@ -66,6 +66,16 @@ export class GameService {
     }
   }
 
+  getLegacyLayout(): boolean {
+    return this.game?.legacyLayout || false;
+  }
+
+  toggleLegacyLayout() {
+    if (this.game) {
+      this.game.legacyLayout = !this.game.legacyLayout;
+    }
+  }
+
   toggleLock(){
     this.lock = !this.lock
   }

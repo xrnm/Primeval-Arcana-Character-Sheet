@@ -17,7 +17,7 @@ import { MatDivider } from '@angular/material/divider';
 })
 export class CharacterAttributesComponent implements OnInit {
   @Input() character: Character;
-  constructor(private gameService: GameService) { }
+  constructor(public gameService: GameService) { }
 
   ngOnInit(): void {
   }

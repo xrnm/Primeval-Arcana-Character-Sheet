@@ -7,6 +7,7 @@ export class Game {
   sessions: Session[];
   notes: Note[];
   theme: string;
+  legacyLayout: boolean;
 
   getCharacter(): Character {
     return this.character;
@@ -30,5 +31,6 @@ export class Game {
     this.sessions = init.sessions.map(item => new Session(item));
     this.notes = init.notes.map(item => new Note(item));
     this.theme = init.theme || 'dark';
+    this.legacyLayout = init.legacyLayout || false;
   }
 }
