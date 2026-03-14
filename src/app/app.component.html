@@ -5,6 +5,9 @@
       <mat-icon>arrow_downward</mat-icon>
     </button>
     <br/>
+    <button mat-icon-button (click)="gameService.toggleTheme()">
+      <mat-icon>{{gameService.getTheme() === 'dark' ? 'light_mode' : 'dark_mode'}}</mat-icon>
+    </button>
     <button mat-icon-button color="warn" routerLink="/raw-edit">
       <mat-icon>settings</mat-icon>
     </button>
@@ -22,6 +25,9 @@
         </button>
         <button mat-raised-button color="primary" (click)="exportGame()">Export
           <mat-icon>arrow_downward</mat-icon>
+        </button>
+        <button mat-icon-button (click)="gameService.toggleTheme()">
+          <mat-icon>{{gameService.getTheme() === 'dark' ? 'light_mode' : 'dark_mode'}}</mat-icon>
         </button>
         <button mat-icon-button color="warn" routerLink="/raw-edit">
           <mat-icon>settings</mat-icon>

@@ -2,7 +2,6 @@ import { Component, OnInit, Input} from '@angular/core';
 import {Character} from "../../character";
 import {GameService} from "../../game.service";
 import { MatCard, MatCardContent } from '@angular/material/card';
-import { NgClass } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatIconButton } from '@angular/material/button';
@@ -14,11 +13,11 @@ import { MatDivider } from '@angular/material/divider';
     selector: 'character-attributes',
     templateUrl: './character-attributes.component.html',
     styleUrls: ['./character-attributes.component.sass'],
-    imports: [MatCard, NgClass, MatCardContent, MatIcon, MatTooltip, MatIconButton, MatExpansionPanel, MatExpansionPanelHeader, MatList, MatListItem, MatDivider]
+    imports: [MatCard, MatCardContent, MatIcon, MatTooltip, MatIconButton, MatExpansionPanel, MatExpansionPanelHeader, MatList, MatListItem, MatDivider]
 })
 export class CharacterAttributesComponent implements OnInit {
   @Input() character: Character;
-  constructor(private gameService: GameService) { }
+  constructor(public gameService: GameService) { }
 
   ngOnInit(): void {
   }
