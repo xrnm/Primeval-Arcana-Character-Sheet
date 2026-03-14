@@ -6,7 +6,7 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatList, MatListItem } from '@angular/material/list';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
-import { MatMiniFabButton } from '@angular/material/button';
+import { MatIconButton } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { ItemListComponent } from '../item-list/item-list.component';
 import { DecimalPipe } from '@angular/common';
@@ -15,7 +15,7 @@ import { DecimalPipe } from '@angular/common';
     selector: 'character-purse',
     templateUrl: './character-purse.component.html',
     styleUrls: ['./character-purse.component.sass'],
-    imports: [MatCard, MatCardContent, MatList, MatIcon, MatTooltip, MatListItem, MatMiniFabButton, MatDivider, ItemListComponent, DecimalPipe]
+    imports: [MatCard, MatCardContent, MatList, MatIcon, MatTooltip, MatListItem, MatIconButton, MatDivider, ItemListComponent, DecimalPipe]
 })
 export class CharacterPurseComponent implements OnInit {
   @Input() character: Character;

@@ -8,7 +8,9 @@
             Slot {{j + 1}}:&nbsp;
             @if (spell) {
               <div matTooltip="{{spell.description}}">{{spell.name}} (Level {{spell.level}})
-                <button class="use-spell-button" color="warn" mat-mini-fab (click)="removeSpell(spellGroup,j)"><mat-icon>remove</mat-icon></button>
+                <button mat-icon-button color="warn" class="use-spell-button" (click)="removeSpell(spellGroup,j)" aria-label="Use spell">
+                  <mat-icon>remove</mat-icon>
+                </button>
               </div>
             }
             <mat-divider></mat-divider>

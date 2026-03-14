@@ -40,15 +40,7 @@
                 <mat-divider></mat-divider>
                 @for (si of mount.getSlungItems(); track si) {
                   <div>
-                    <mat-list-item>{{ si.inventoryString() }}
-                      <div class="mat-list-actions">
-                        <button class="edit-item-button" mat-mini-fab color="accent" (click)="openContainerDialog(si, mount)">
-                          <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-mini-fab color="warn" (click)="deleteSlungItem(si)">
-                          <mat-icon>delete</mat-icon>
-                        </button>
-                      </div>
+                    <mat-list-item class="saddle-bag-row" (click)="openContainerDialog(si, mount)">{{ si.inventoryString() }}
                     </mat-list-item>
                   </div>
                 }

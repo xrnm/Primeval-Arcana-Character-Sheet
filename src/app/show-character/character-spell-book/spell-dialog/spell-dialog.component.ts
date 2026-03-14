@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Spell} from '../../../spell';
 import {SpellBook} from '../../../spell-book';
-import {MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose} from '@angular/material/dialog';
 import {CdkScrollable} from '@angular/cdk/scrolling';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
@@ -27,17 +27,24 @@ interface SpellCatalogEntry {
 export class SpellDialogComponent implements OnInit {
   spell: Spell;
   spellbook: SpellBook;
+  isNew: boolean;
   spellCatalog: SpellCatalogEntry[] = [];
   filteredSpells: SpellCatalogEntry[] = [];
   spellFilter: string = '';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data,
+    private dialogRef: MatDialogRef<SpellDialogComponent>
+  ) {
     this.spellbook = data.spellbook;
     let level = data.level ? data.level : 0;
-    if (!data.spell)
+    if (!data.spell) {
       this.spell = new Spell({level: level});
-    else
+      this.isNew = true;
+    } else {
       this.spell = data.spell;
+      this.isNew = false;
+    }
 
     const characterClass = data.characterClass || '';
     if (characterClass === 'Cleric') {
@@ -72,8 +79,15 @@ export class SpellDialogComponent implements OnInit {
     }
   }
 
+  deleteSpell() {
+    if (this.spellbook) {
+      this.spellbook.removeSpell(this.spell);
+      this.dialogRef.close();
+    }
+  }
+
   upsertSpell() {
-    if (this.spellbook)
+    if (this.isNew && this.spellbook)
       this.spellbook.spells.push(this.spell);
   }
 }

@@ -241,6 +241,7 @@
     "weight": 75,
     "sold_in": 1,
     "slingable": true,
+    "capacity": 800,
     "description": "Leather storage pack with a fastening top flap. Holds up to 800cn."
   },
   {
@@ -355,6 +356,8 @@
     "price": 200,
     "weight": 7,
     "sold_in": 1,
+    "slingable": true,
+    "capacity": 800,
     "description": "Canvas cinch-top bag (2ft x 4ft) with 800cn capacity."
   },
   {
@@ -363,6 +366,8 @@
     "price": 100,
     "weight": 2,
     "sold_in": 1,
+    "slingable": true,
+    "capacity": 200,
     "description": "Canvas cinch-top bag (12in x 12in) with 200cn capacity."
   },
   {
@@ -566,7 +571,9 @@
     "price": 1000,
     "weight": 75,
     "sold_in": 1,
-    "description": "Two leather bags with flaps; provides 400cn storage capacity per bag."
+    "slingable": true,
+    "capacity": 800,
+    "description": "Leather, 2 bags with flaps, 400cn capacity per bag."
   },
   {
     "name": "Chain Barding",

@@ -8,6 +8,8 @@
   --text: #e8dcc8
   --text-muted: #a89878
   --divider: #3a3028
+  --mat-dialog-container-max-width: 50vw
+  --mat-dialog-container-min-width: 280px
 
 .light-theme
   --bg: #f5efe0
@@ -166,7 +168,8 @@ mat-list, .mat-mdc-list
   color: var(--bg) !important
 
 .mat-mdc-mini-fab.mat-warn
-  background-color: var(--warn) !important
+  background-color: white !important
+  color: var(--text) !important
 
 mat-sidenav
   background: var(--surface) !important
@@ -204,7 +207,6 @@ mat-checkbox
   color: var(--text)
 
 mat-dialog-content
-  width: 50vw
   text-align: center
   mat-form-field
     width: 60%

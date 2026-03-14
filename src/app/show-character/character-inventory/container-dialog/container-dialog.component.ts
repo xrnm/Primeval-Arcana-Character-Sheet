@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Container} from '../../../container';
-import { MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import {EquipmentLoadoutHelper, EquipmentItem} from '../../../equipment-loadout-helper';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
@@ -24,7 +24,10 @@ export class ContainerDialogComponent implements OnInit {
   filteredEquipment: EquipmentItem[];
   templateFilter: string = '';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data,
+    private dialogRef: MatDialogRef<ContainerDialogComponent>
+  ) {
     this.container = data.container;
     this.slung_items = data.slung_items;
     this.equipmentCatalog = EquipmentLoadoutHelper.getEquipmentCatalog()
@@ -52,6 +55,8 @@ export class ContainerDialogComponent implements OnInit {
     if (selected) {
       this.container.name = selected.name;
       this.container.weight = selected.weight;
+      if (selected.capacity)
+        this.container.capacity = selected.capacity;
     }
   }
 
@@ -63,6 +68,11 @@ export class ContainerDialogComponent implements OnInit {
     if (sp > 0) result += ' ' + sp + 'sp';
     if (cp > 0) result += ' ' + cp + 'cp';
     return result;
+  }
+
+  deleteContainer() {
+    this.container.delete();
+    this.dialogRef.close();
   }
 
   upsertContainer() {

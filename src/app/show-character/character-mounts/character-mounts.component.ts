@@ -70,10 +70,4 @@ export class CharacterMountsComponent implements OnInit {
     });
   }
 
-  deleteSlungItem(slung_item){
-    if(this.gameService.lock)
-      return;
-    slung_item.delete();
-  }
-
 }

@@ -45,9 +45,10 @@ export class CharacterInventoryComponent implements OnInit {
     });
   }
 
-  deleteSlungItem(slung_item){
+  toggleEquip(container, $event) {
     if(this.gameService.lock)
       return;
-    slung_item.delete();
+    $event.stopPropagation();
+    container.unequipped = !container.unequipped;
   }
 }

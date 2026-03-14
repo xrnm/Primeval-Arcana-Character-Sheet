@@ -11,7 +11,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatTabGroup, MatTab } from '@angular/material/tabs';
 import { MatList, MatListItem } from '@angular/material/list';
-import { MatMiniFabButton } from '@angular/material/button';
+import { MatMiniFabButton, MatIconButton } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { CharacterSpellSlotsComponent } from './character-spell-slots/character-spell-slots.component';
 
@@ -19,7 +19,7 @@ import { CharacterSpellSlotsComponent } from './character-spell-slots/character-
     selector: 'character-spell-book',
     templateUrl: './character-spell-book.component.html',
     styleUrls: ['./character-spell-book.component.sass'],
-    imports: [CdkDropListGroup, MatCard, MatCardContent, MatIcon, MatTooltip, MatTabGroup, MatTab, MatList, CdkDropList, MatListItem, CdkDrag, MatMiniFabButton, MatDivider, CharacterSpellSlotsComponent, TitleCasePipe]
+    imports: [CdkDropListGroup, MatCard, MatCardContent, MatIcon, MatTooltip, MatTabGroup, MatTab, MatList, CdkDropList, MatListItem, CdkDrag, MatMiniFabButton, MatIconButton, MatDivider, CharacterSpellSlotsComponent, TitleCasePipe]
 })
 export class CharacterSpellBookComponent implements OnInit {
   @Input() character: Character;
@@ -44,13 +44,13 @@ export class CharacterSpellBookComponent implements OnInit {
     });
   }
 
-  removeSpell(block, spell){
-    block.spellbook.removeSpell(spell);
-  }
-
-  memorizeSpell(block, spell){
+  memorizeSpell(block, spell, $event){
+    if(this.gameService.lock)
+      return;
+    $event.stopPropagation();
     block.spells[spell.level-1].insert(spell);
   }
+
   drop(event: CdkDragDrop<Spell[]>){
     if(this.gameService.lock)
       return;

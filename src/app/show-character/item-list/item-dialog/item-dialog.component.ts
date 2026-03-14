@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import {Item} from '../../../item';
 import {EquipmentLoadoutHelper, EquipmentItem} from '../../../equipment-loadout-helper';
 import { CdkScrollable } from '@angular/cdk/scrolling';
@@ -24,7 +24,10 @@ export class ItemDialogComponent implements OnInit {
   filteredEquipment: EquipmentItem[];
   templateFilter: string = '';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data,
+    private dialogRef: MatDialogRef<ItemDialogComponent>
+  ) {
     this.list = data.list;
     if (!data.item)
       this.item = new Item();
@@ -68,6 +71,11 @@ export class ItemDialogComponent implements OnInit {
     if (sp > 0) result += ' ' + sp + 'sp';
     if (cp > 0) result += ' ' + cp + 'cp';
     return result;
+  }
+
+  deleteItem() {
+    this.item.delete();
+    this.dialogRef.close();
   }
 
   upsertItem() {

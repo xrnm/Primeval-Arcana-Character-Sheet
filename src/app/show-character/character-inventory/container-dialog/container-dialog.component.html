@@ -34,7 +34,11 @@
   </mat-form-field>
   <br/>
 
-  <mat-dialog-actions align="end">
+  <mat-dialog-actions>
+    @if (!this.slung_items) {
+      <button mat-button color="warn" (click)="deleteContainer()">Delete</button>
+    }
+    <span class="spacer"></span>
     @if (this.slung_items) {
       <button mat-button [mat-dialog-close]="">Cancel</button>
     }

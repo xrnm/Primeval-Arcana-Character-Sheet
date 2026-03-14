@@ -8,7 +8,7 @@ import { MatTabGroup, MatTab } from '@angular/material/tabs';
 
 import { MatList, MatListItem } from '@angular/material/list';
 import { MatTooltip } from '@angular/material/tooltip';
-import { MatMiniFabButton } from '@angular/material/button';
+import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatDivider } from '@angular/material/divider';
 
@@ -16,7 +16,7 @@ import { MatDivider } from '@angular/material/divider';
     selector: 'character-spell-slots',
     templateUrl: './character-spell-slots.component.html',
     styleUrls: ['./character-spell-slots.component.sass'],
-    imports: [MatTabGroup, MatTab, MatList, CdkDropList, MatListItem, CdkDrag, MatTooltip, MatMiniFabButton, MatIcon, MatDivider]
+    imports: [MatTabGroup, MatTab, MatList, CdkDropList, MatListItem, CdkDrag, MatTooltip, MatIconButton, MatIcon, MatDivider]
 })
 export class CharacterSpellSlotsComponent implements OnInit {
   @Input() block: ExperienceBlock;

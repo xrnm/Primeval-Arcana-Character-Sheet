@@ -32,7 +32,11 @@
     <mat-label>Description</mat-label>
     <textarea matInput [(ngModel)]="item.description"></textarea>
   </mat-form-field>
-  <mat-dialog-actions align="end">
+  <mat-dialog-actions>
+    @if (!this.list) {
+      <button mat-button color="warn" (click)="deleteItem()">Delete</button>
+    }
+    <span class="spacer"></span>
     @if (this.list) {
       <button mat-button [mat-dialog-close]="">Cancel</button>
     }

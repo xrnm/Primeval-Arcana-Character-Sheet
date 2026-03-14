@@ -7,14 +7,14 @@ import {GameService} from "../../../game.service";
 import { MatListItem } from '@angular/material/list';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatIcon } from '@angular/material/icon';
-import { MatMiniFabButton } from '@angular/material/button';
+import { MatIconButton } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 
 @Component({
     selector: 'item',
     templateUrl: './item.component.html',
     styleUrls: ['./item.component.sass'],
-    imports: [MatListItem, MatTooltip, MatIcon, MatMiniFabButton, MatDivider]
+    imports: [MatListItem, MatTooltip, MatIcon, MatIconButton, MatDivider]
 })
 export class ItemComponent implements OnInit {
   @Input() item: Item;
@@ -22,20 +22,26 @@ export class ItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  delete(item){
-    if(this.gameService.lock)
-      return;
-    item.delete();
-  }
+
   consume(item, $event){
     if(this.gameService.lock)
       return;
-    item.consume($event)
+    $event.stopPropagation();
+    item.consume($event);
   }
+
   collect(item, $event){
     if(this.gameService.lock)
       return;
-    item.collect($event)
+    $event.stopPropagation();
+    item.collect($event);
+  }
+
+  toggleEquip($event) {
+    if(this.gameService.lock)
+      return;
+    $event.stopPropagation();
+    this.item.unequipped = !this.item.unequipped;
   }
 
   openItemDialog(item: Item){

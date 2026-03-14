@@ -22,17 +22,11 @@
         <h2>Slung Items:</h2>
         @for (si of character.getSlungItems(); track si) {
           <div>
-            <mat-list-item [class.overfull]="si.unequipped">{{ si.inventoryString() }}
+            <mat-list-item [class.overfull]="si.unequipped" (click)="openContainerDialog(si)">{{ si.inventoryString() }}
               <div class="mat-list-actions">
-                <mat-icon [color]="si.unequipped ? 'primary' : 'warn'" class="unequip-icon"
-                  [class.unequipped]="si.unequipped" (click)="si.unequipped = !si.unequipped">pan_tool
+                <mat-icon [color]="si.unequipped ? 'primary' : 'warn'" class="equip-icon"
+                  [class.unequipped]="si.unequipped" (click)="toggleEquip(si, $event)">pan_tool
                 </mat-icon>
-                <button class="edit-item-button" mat-mini-fab color="accent" (click)="openContainerDialog(si)">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-mini-fab color="warn" (click)="deleteSlungItem(si)">
-                  <mat-icon>delete</mat-icon>
-                </button>
               </div>
             </mat-list-item>
             <mat-divider></mat-divider>

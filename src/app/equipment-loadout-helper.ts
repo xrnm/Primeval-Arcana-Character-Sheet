@@ -11,6 +11,7 @@ export interface EquipmentItem {
   shield?: boolean;
   helmet?: boolean;
   slingable?: boolean;
+  capacity?: number;
 }
 
 export interface LoadoutItem {

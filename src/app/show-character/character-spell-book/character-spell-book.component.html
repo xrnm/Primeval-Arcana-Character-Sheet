@@ -15,21 +15,15 @@
                 [cdkDropListData]="block.spellbook.getSpells(i+1)">
                 @for (spell of block.spellbook.getSpells(i+1); track spell) {
                   <mat-list-item cdkDrag
-                    matTooltip="{{spell.description}}">
+                    matTooltip="{{spell.description}}"
+                    (click)="openSpellDialog(block.spellbook, spell, null, block.class)">
                     {{ spell.name }} (Level {{ spell.level }}) @if (spell.reversible) {
                     <em
                     matTooltip="This spell is reversible">*</em>
                   }
                   <div class="action-buttons">
-                    <button mat-mini-fab color="primary" class="spell-memorize-icon" (click)="memorizeSpell(block, spell)">
+                    <button mat-icon-button (click)="memorizeSpell(block, spell, $event)" aria-label="Memorize spell">
                       <mat-icon>save_alt</mat-icon>
-                    </button>
-                    <button mat-mini-fab color="accent" class="spell-edit-icon"
-                      (click)="openSpellDialog(null, spell, null, block.class)">
-                      <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-mini-fab color="warn" class="spell-delete-icon" (click)="removeSpell(block, spell)">
-                      <mat-icon>delete</mat-icon>
                     </button>
                   </div>
                   <mat-divider></mat-divider>
