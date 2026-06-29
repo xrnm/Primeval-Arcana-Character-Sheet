@@ -1,6 +1,6 @@
 {
   "name": "odnd",
-  "version": "1.301.0",
+  "version": "1.302.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
