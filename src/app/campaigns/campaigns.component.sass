@@ -1,0 +1,54 @@
+.campaigns
+  max-width: 720px
+  margin: 0 auto
+  padding: 2rem 1rem
+
+.campaigns-title
+  text-align: center
+  color: var(--primary)
+  font-family: Cinzel
+  margin-bottom: 1.5rem
+
+.new-campaign
+  display: flex
+  gap: 0.75rem
+  align-items: center
+  justify-content: center
+  margin-bottom: 2rem
+
+.empty
+  text-align: center
+  color: var(--text-muted)
+  font-style: italic
+  margin-top: 3rem
+
+.campaign-list
+  display: flex
+  flex-direction: column
+  gap: 0.75rem
+
+.campaign-card
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: 0.75rem 1.25rem
+  background: var(--surface)
+  border: 1px solid var(--border)
+  border-radius: 6px
+  cursor: pointer
+
+  &:hover
+    border-color: var(--primary)
+
+.campaign-info
+  display: flex
+  flex-direction: column
+
+.campaign-name
+  font-family: Cinzel
+  font-size: 1.2rem
+  color: var(--text)
+
+.campaign-count
+  font-size: 0.85rem
+  color: var(--text-muted)

@@ -1,34 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import {Session} from "../session";
+import {Note} from "../note";
 import {GameService} from "../game.service";
+import {CampaignService} from "../campaign.service";
 import {Router} from "@angular/router";
-import {ExperienceBlock} from "../experience-block";
-import {Character} from "../character";
 import { NotesComponent } from './notes/notes.component';
 import { SessionsComponent } from './sessions/sessions.component';
-import { ExperienceBlocksComponent } from './experience-blocks/experience-blocks.component';
-
-class Note {
-}
 
 @Component({
     selector: 'adventure-log',
     templateUrl: './adventure-log.component.html',
     styleUrls: ['./adventure-log.component.sass'],
-    imports: [NotesComponent, SessionsComponent, ExperienceBlocksComponent]
+    imports: [NotesComponent, SessionsComponent]
 })
 export class AdventureLogComponent implements OnInit {
   sessions: Session[];
   notes: Note[];
-  character: Character
-  constructor(private gameService: GameService, private router: Router) { }
+  campaignName: string = '';
+  constructor(private gameService: GameService, private campaignService: CampaignService, private router: Router) { }
 
   ngOnInit(): void {
-    if(!this.gameService.getGame())
+    // In account mode the session log + notes belong to the campaign (shared by the party);
+    // anonymously they live on the single character's game.
+    const campaignActive = this.campaignService.hasActive();
+    if(!this.gameService.getGame() && !campaignActive){
       this.router.navigate(['']);
+      return;
+    }
 
-    this.sessions = this.gameService.getGame().getSessions();
-    this.notes = this.gameService.getGame().getNotes();
-    this.character = this.gameService.getGame().getCharacter();
+    this.campaignName = this.campaignService.activeCampaign?.name || '';
+    this.sessions = campaignActive ? this.campaignService.getSessions() : this.gameService.getGame().getSessions();
+    this.notes = campaignActive ? this.campaignService.getNotes() : this.gameService.getGame().getNotes();
   }
 }

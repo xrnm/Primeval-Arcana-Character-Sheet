@@ -10,6 +10,9 @@
           <mat-panel-title>
             {{note.name}}
           </mat-panel-title>
+          @if (note.source) {
+            <mat-panel-description>from {{note.source}}</mat-panel-description>
+          }
         </mat-expansion-panel-header>
         <mat-form-field>
           <mat-label> Title:</mat-label>

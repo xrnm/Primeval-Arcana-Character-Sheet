@@ -1,0 +1,25 @@
+@if (characters.length === 0) {
+  <p class="summary-empty">No characters to show.</p>
+}
+@for (c of characters; track c) {
+  <div class="summary-card">
+    <div class="summary-name">{{ c.name || 'Unnamed' }} <small>{{ c.getConciseClassLevelString() }} {{ c.race }}</small></div>
+    <div class="summary-row">
+      <span>STR {{ c.adjustedAbilityString('strength', true) }}</span>
+      <span>INT {{ c.adjustedAbilityString('intelligence', true) }}</span>
+      <span>WIS {{ c.adjustedAbilityString('wisdom', true) }}</span>
+      <span>DEX {{ c.adjustedAbilityString('dexterity') }}</span>
+      <span>CON {{ c.adjustedAbilityString('constitution') }}</span>
+      <span>CHA {{ c.adjustedAbilityString('charisma') }}</span>
+    </div>
+    <div class="summary-row">
+      <span>AC {{ c.armor_class }}@if (c.shield) {/{{ c.armor_class - 1 }}}</span>
+      <span>To-Hit +{{ c.meleeToHit() }} / +{{ c.missileToHit() }}</span>
+      <span class="hp">HP {{ c.current_hp }}/{{ c.total_hp }}</span>
+    </div>
+    <div class="summary-row">
+      <span>Pace {{ c.movementRating() / 6 }} / {{ c.movementRating() / 3 }} / {{ c.movementRating() / 2 }}</span>
+      <span>Load {{ c.load() }}/{{ c.maximumLoad() }}</span>
+    </div>
+  </div>
+}

@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Character} from "../character";
 import {GameService} from "../game.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AppModeHelper} from "../app-mode-helper";
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { CharacterOverviewComponent } from './character-overview/character-overview.component';
 import { CharacterAttributesComponent } from './character-attributes/character-attributes.component';
@@ -19,14 +23,43 @@ import { CharacterNotesComponent } from './character-notes/character-notes.compo
     styleUrls: ['./show-character.component.sass'],
     imports: [CdkDropListGroup, CharacterOverviewComponent, CharacterAttributesComponent, CharacterClericComponent, CharacterSpellBookComponent, CharacterExperienceComponent, CharacterPurseComponent, CharacterInventoryComponent, CharacterMountsComponent, CharacterNotesComponent]
 })
-export class ShowCharacterComponent implements OnInit {
+export class ShowCharacterComponent implements OnInit, OnDestroy {
   character: Character;
-  constructor(private gameService: GameService, private router: Router) { }
+  private sub?: Subscription;
+  constructor(private gameService: GameService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    if(!this.gameService.getGame())
+    // React to param changes, not just the initial snapshot — switching /c/a -> /c/b reuses this
+    // component, so ngOnInit alone wouldn't reload the character.
+    this.sub = this.route.paramMap.subscribe(params => this.load(params.get('slug')));
+  }
+
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
+  }
+
+  private async load(slug: string | null): Promise<void> {
+    if (slug) {
+      const id = await this.resolveId(slug);
+      if (id && this.gameService.getGame()?.id !== id)
+        await this.gameService.loadCharacter(id);
+    }
+
+    if (!this.gameService.getGame()) {
       this.router.navigate(['']);
+      return;
+    }
     this.character = this.gameService.getGame().getCharacter();
+  }
+
+  // The URL carries the character's name slug for readability; a raw UUID is still accepted
+  // (new/unnamed characters and old links). Resolve the slug back to an id via the account list.
+  private async resolveId(slug: string): Promise<string | null> {
+    if (UUID_RE.test(slug))
+      return slug;
+    const summaries = await this.gameService.getRepository().list();
+    const match = summaries.find(s => AppModeHelper.slug(s.name) === slug.toLowerCase());
+    return match ? match.id : null;
   }
 
 }

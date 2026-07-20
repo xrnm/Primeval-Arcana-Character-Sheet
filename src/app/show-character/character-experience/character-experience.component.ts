@@ -1,6 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import {Character} from "../../character";
 import {GameService} from "../../game.service";
+import {AppModeHelper} from "../../app-mode-helper";
 import {MatDialog} from "@angular/material/dialog";
 import {CharacterExperienceDialogComponent} from "./character-experience-dialog/character-experience-dialog.component";
 import {ExperienceBlock} from "../../experience-block";
@@ -33,6 +34,9 @@ export class CharacterExperienceComponent implements OnInit {
   constructor(public dialog: MatDialog, private gameService: GameService) { }
 
   ngOnInit(): void {
+  }
+  experienceLink(){
+    return ['/experience', AppModeHelper.slug(this.character.name) || this.gameService.getGame()?.id];
   }
   openDialog(){
     if(this.gameService.lock)

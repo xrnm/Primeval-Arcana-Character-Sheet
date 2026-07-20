@@ -1,0 +1,31 @@
+<div class="campaigns">
+  <h1 class="campaigns-title">Campaigns</h1>
+
+  <form class="new-campaign" (ngSubmit)="addCampaign()">
+    <mat-form-field>
+      <mat-label>New campaign</mat-label>
+      <input matInput name="newName" [(ngModel)]="newName">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!newName.trim()">
+      <mat-icon>add</mat-icon> Create
+    </button>
+  </form>
+
+  @if (campaigns.length === 0) {
+    <p class="empty">No campaigns yet. Create one to start adding characters.</p>
+  } @else {
+    <div class="campaign-list">
+      @for (campaign of campaigns; track campaign.id) {
+        <div class="campaign-card" (click)="open(campaign)">
+          <div class="campaign-info">
+            <span class="campaign-name">{{ campaign.name }}</span>
+            <span class="campaign-count">{{ campaign.characterCount }} character{{ campaign.characterCount === 1 ? '' : 's' }}</span>
+          </div>
+          <button mat-icon-button color="warn" (click)="$event.stopPropagation(); remove(campaign)" title="Delete campaign">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+  }
+</div>

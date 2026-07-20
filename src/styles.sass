@@ -141,8 +141,36 @@ mat-form-field
     border-color: var(--border) !important
   .mat-mdc-input-element
     color: var(--text) !important
+    caret-color: var(--primary) !important
   .mat-mdc-floating-label
     color: var(--text-muted) !important
+
+// The Material theme primary is the yellow palette; recolor interactive surfaces to the app gold.
+.mat-mdc-form-field .mdc-line-ripple::after
+  border-bottom-color: var(--primary) !important
+
+.mat-mdc-form-field.mat-focused
+  .mat-mdc-floating-label, .mdc-floating-label
+    color: var(--primary) !important
+
+.mdc-switch--selected:enabled
+  .mdc-switch__track::after
+    background: var(--primary) !important
+  .mdc-switch__handle::after
+    background: var(--primary) !important
+  .mdc-switch__icon
+    fill: var(--bg) !important
+
+.mat-mdc-checkbox.mat-mdc-checkbox-checked
+  .mdc-checkbox__background
+    background-color: var(--primary) !important
+    border-color: var(--primary) !important
+  .mdc-checkbox__checkmark
+    color: var(--bg) !important
+
+.mat-mdc-slider
+  --mdc-slider-handle-color: var(--primary)
+  --mdc-slider-active-track-color: var(--primary)
 
 .mat-mdc-tab-group
   .mdc-tab__text-label

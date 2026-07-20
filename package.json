@@ -1,6 +1,6 @@
 {
   "name": "odnd",
-  "version": "1.302.0",
+  "version": "1.400.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^19.2.18",
     "@angular/platform-browser-dynamic": "^19.2.18",
     "@angular/router": "^19.2.18",
+    "@supabase/supabase-js": "^2.110.7",
     "@types/file-saver": "^2.0.1",
     "file-saver": "^2.0.2",
     "rxjs": "~7.8.1",

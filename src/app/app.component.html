@@ -13,8 +13,9 @@
     </button>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar id="navigation">
-      <a id="site-title" routerLink="/">Primeval Arcana ICS
+    @if (!bareLayout()) {
+    <mat-toolbar id="navigation" [class.top-align]="!showHud()">
+      <a id="site-title" (click)="goHome()">Primeval Arcana ICS
         <span class="version">v{{gameService.version}}</span>
       </a>
 
@@ -32,9 +33,50 @@
         <button mat-icon-button color="warn" routerLink="/raw-edit">
           <mat-icon>settings</mat-icon>
         </button>
+        @if (authService.isAuthenticated()) {
+          @if (canonical) {
+            <button mat-icon-button [matMenuTriggerFor]="charMenu" (menuOpened)="loadCharacters()" title="Switch character">
+              <mat-icon svgIcon="helm"></mat-icon>
+            </button>
+            <mat-menu #charMenu="matMenu">
+              @for (c of characters; track c.id) {
+                <button mat-menu-item class="char-menu-item" (click)="openCharacter(c)">
+                  <mat-icon>{{ isCurrentCharacter(c) ? 'check' : (c.hireling ? 'backpack' : 'person') }}</mat-icon>
+                  <span class="char-menu-name">{{ c.name || 'Unnamed' }} <small>{{ c.classLevel }}</small></span>
+                  <mat-icon class="char-popout" (click)="popOutCharacter(c); $event.stopPropagation()"
+                            title="Open in new tab">open_in_new</mat-icon>
+                </button>
+              } @empty {
+                <button mat-menu-item disabled>No characters in this campaign</button>
+              }
+            </mat-menu>
+          }
+          <button mat-icon-button [matMenuTriggerFor]="accountMenu" title="Account">
+            <mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu #accountMenu="matMenu">
+            <button mat-menu-item (click)="goToCampaigns()">
+              <mat-icon>collections_bookmark</mat-icon>
+              <span>Campaigns</span>
+            </button>
+            <button mat-menu-item (click)="changePassword()">
+              <mat-icon>password</mat-icon>
+              <span>Change password</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Sign out</span>
+            </button>
+          </mat-menu>
+        } @else {
+          <button mat-icon-button (click)="login()" title="Sign in">
+            <mat-icon>shield</mat-icon>
+          </button>
+        }
       </div>
     </mat-toolbar>
-    @if (gameService.getGame()) {
+    }
+    @if (showHud()) {
       <div id="character-summary">
         @for (character of [gameService.getGame().getCharacter()]; track character) {
           <div>
@@ -49,22 +91,36 @@
             AC {{character.armor_class}}@if (character.shield) {
             <span>/{{character.armor_class - 1}}</span>
           }
+          <mat-icon class="hud-popout" (click)="popOutSummary()" title="Pop out stat summary">picture_in_picture_alt</mat-icon>
         </div>
       }
     </div>
   }
+  @if (showAccountsBanner()) {
+    <div class="accounts-banner">
+      <span><strong>New:</strong> Create a free account to back up your characters, sync across devices, and organize them into campaigns.</span>
+      <span class="accounts-banner-actions">
+        <button mat-raised-button color="primary" (click)="login()">Sign in / Sign up</button>
+        <button mat-icon-button (click)="dismissAccountsBanner()" title="Dismiss">
+          <mat-icon>close</mat-icon>
+        </button>
+      </span>
+    </div>
+  }
   <router-outlet></router-outlet>
-  @if (!gameService.lock) {
-    <button (click)='lockPage()' class="lock-icon" mat-mini-fab>
-      <mat-icon>lock</mat-icon>
-    </button>
+  @if (showHud()) {
+    @if (!gameService.lock) {
+      <button (click)='lockPage()' color="primary" class="lock-icon" mat-mini-fab>
+        <mat-icon>lock</mat-icon>
+      </button>
+    }
+    @if (gameService.lock) {
+      <button (click)='lockPage()' color="warn" class="lock-icon" mat-mini-fab>
+        <mat-icon>vpn_key</mat-icon>
+      </button>
+    }
   }
-  @if (gameService.lock) {
-    <button (click)='lockPage()' color="warn" class="lock-icon" mat-mini-fab>
-      <mat-icon>vpn_key</mat-icon>
-    </button>
-  }
-  @if (gameService.getGame()) {
+  @if (showHud()) {
     <div id="character-movement-summary">
       @for (character of [gameService.getGame().getCharacter()]; track character) {
         <div>
@@ -77,12 +133,14 @@
       }
     </div>
   }
-  <mat-toolbar id="footer">
-    <a routerLink="/">Primeval Arcana ICS</a>
-    <small id="copyright">Copyright &copy; {{year}} Justin Edwards. All Rights Reserved. (for now)</small>
-    <a id="github-logo" href="https://github.com/xrnm/odnd-character-sheet"><img
-    src="/assets/images/github_logo.png"/>GitHub</a>
-  </mat-toolbar>
+  @if (!bareLayout()) {
+    <mat-toolbar id="footer" [class.no-hud]="!showHud()">
+      <a routerLink="/">Primeval Arcana ICS</a>
+      <small id="copyright">Copyright &copy; {{year}} Justin Edwards. All Rights Reserved. (for now)</small>
+      <a id="github-logo" href="https://github.com/xrnm/odnd-character-sheet"><img
+      src="/assets/images/github_logo.png"/>GitHub</a>
+    </mat-toolbar>
+  }
 </mat-sidenav-content>
 </mat-sidenav-container>
 

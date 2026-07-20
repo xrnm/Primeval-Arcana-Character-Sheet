@@ -1,0 +1,6 @@
+@if (character) {
+  <div class="experience-page">
+    <h1 class="experience-title">{{ character.name || 'Character' }} — Experience</h1>
+    <adventure-log-experience-blocks [character]="character"></adventure-log-experience-blocks>
+  </div>
+}

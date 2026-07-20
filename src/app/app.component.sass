@@ -2,6 +2,8 @@ mat-toolbar
   position: relative
   z-index: 1
   margin-top: 25px
+  &.top-align
+    margin-top: 0
   div
     position: absolute
     right: 4px
@@ -10,6 +12,35 @@ mat-toolbar
   a
     text-decoration: none
     color: var(--primary)
+  #site-title
+    cursor: pointer
+
+.accounts-banner
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: space-between
+  gap: 0.75rem
+  padding: 0.6rem 1rem
+  margin: 0.5rem 1rem
+  background: var(--surface)
+  border: 1px solid var(--primary)
+  border-radius: 6px
+  color: var(--text)
+
+.accounts-banner-actions
+  display: flex
+  align-items: center
+  gap: 0.5rem
+
+.char-menu-item
+  .char-menu-name
+    flex: 1
+  .char-popout
+    margin-left: 16px
+    opacity: 0.65
+    &:hover
+      opacity: 1
 #github-logo
   position: absolute
   right: 16px
@@ -59,6 +90,13 @@ mat-sidenav-container
   padding: 4px
   span
     font-family: LibreBaskerville
+  .hud-popout
+    cursor: pointer
+    vertical-align: middle
+    font-size: 20px
+    height: 20px
+    width: 20px
+    margin-left: 8px
 
 #character-movement-summary
   position: fixed
@@ -78,6 +116,8 @@ mat-sidenav-container
   margin-bottom: 25px
   background: var(--surface) !important
   border-top: 1px solid var(--border)
+  &.no-hud
+    margin-bottom: 0
   a
     color: var(--primary)
 

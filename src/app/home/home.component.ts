@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Game} from '../game';
 import {MatDialog} from '@angular/material/dialog';
 import {GenerateCharacterDialogComponent} from '../generate-character-dialog/generate-character-dialog.component';
+import {AuthDialogComponent} from '../auth/auth-dialog.component';
 import {Character} from '../character';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -16,9 +17,21 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class HomeComponent implements OnInit {
 
+  // This device has used a cloud account; when logged out we prompt sign-in rather than showing
+  // a local character (which wouldn't be cloud-backed) or the create-new options.
+  hasAccount = false;
+
   constructor(private gameService: GameService, private router: Router, private dialog: MatDialog) { }
   @Output() imported = new EventEmitter<Game>();
   ngOnInit(): void {
+    this.hasAccount = !!localStorage.getItem('odnd-has-account');
+  }
+
+  signIn(){
+    this.dialog.open(AuthDialogComponent, {width: '80vw', maxWidth: '800px'}).afterClosed().subscribe(ok => {
+      if (ok)
+        location.reload();
+    });
   }
   importGame(event){
     let file = event.target.files[0];

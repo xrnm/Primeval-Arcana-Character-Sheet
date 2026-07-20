@@ -1,4 +1,3 @@
-<h2 class="section-subtitle">Experience</h2>
 <div class="add-experience">
   <button class="add-experience-button"mat-mini-fab color="primary" (click)="openDialog()"><mat-icon>add</mat-icon></button>
 </div>
@@ -6,10 +5,33 @@
   @for (block of character.getExperience(); track block; let i = $index) {
     <div>
       <h3>
-        Level {{block.currentLevel()}} {{block.class}}
+        Level {{block.currentLevel()}} {{block.class}} ({{character.getAbilityAbbreviation(block.prime)}})
+        @if (editing !== i) {
+          <button mat-icon-button color="primary" (click)="editing = i" title="Edit class"><mat-icon>edit</mat-icon></button>
+        }
         <br />
         {{block.currentExperience() }} / {{block.totalExperienceForLevel(block.currentLevel() + 1)}}
       </h3>
+      @if (editing === i) {
+        <div class="block-edit">
+          <mat-form-field>
+            <mat-label>Class</mat-label>
+            <mat-select [(ngModel)]="block.class">
+              @for (c of classes; track c) { <mat-option [value]="c">{{c}}</mat-option> }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Prime Requisite</mat-label>
+            <mat-select [(ngModel)]="block.prime">
+              @for (p of abilities; track p) { <mat-option [value]="p">{{p}}</mat-option> }
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
+          @if (character.getExperience().length > 1) {
+            <button mat-icon-button color="warn" (click)="confirmDelete(block)" title="Delete class block"><mat-icon>delete</mat-icon></button>
+          }
+        </div>
+      }
       <mat-accordion>
         @for (experience of block.experiences; track experience; let j = $index) {
           <mat-expansion-panel>
@@ -46,6 +68,13 @@
           </mat-expansion-panel>
         }
       </mat-accordion>
+    </div>
+  }
+  @if (canAddClass()) {
+    <div class="add-class">
+      <button mat-raised-button color="primary" (click)="addExperienceBlock()">
+        <mat-icon>add</mat-icon> Add a class
+      </button>
     </div>
   }
 </div>

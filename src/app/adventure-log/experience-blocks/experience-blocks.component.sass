@@ -5,10 +5,12 @@
     margin: 12px auto
 #blocks-section
   display: flex
+  flex-direction: column
+  width: 100%
   h3
     text-align: center
   > div
-    width: 47%
+    width: 100%
     mat-form-field
       width: 100%
   .add-experience
@@ -17,3 +19,15 @@
       margin: 16px auto
   .description
     width: 50%
+
+.block-edit
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: center
+  gap: 12px
+  margin-bottom: 12px
+
+.add-class
+  text-align: center
+  margin: 16px 0

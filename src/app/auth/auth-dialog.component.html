@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{ mode === 'signin' ? 'Sign In' : (mode === 'signup' ? 'Create Account' : 'Reset Password') }}</h2>
+<mat-dialog-content class="mat-typography">
+  <form (ngSubmit)="submit()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="email" name="email" [(ngModel)]="email" autocomplete="email" required>
+    </mat-form-field>
+
+    @if (mode !== 'reset') {
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" name="password" [(ngModel)]="password"
+               [autocomplete]="mode === 'signin' ? 'current-password' : 'new-password'" required>
+      </mat-form-field>
+    }
+
+    @if (mode === 'signin') {
+      <div>
+        <button mat-button type="button" (click)="forgotPassword()">Forgot password?</button>
+      </div>
+    }
+
+    @if (error) {
+      <p class="auth-error">{{ error }}</p>
+    }
+    @if (notice) {
+      <p class="auth-notice">{{ notice }}</p>
+    }
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  @if (mode === 'reset') {
+    <button mat-button type="button" (click)="backToSignIn()">Back to sign in</button>
+  } @else {
+    <button mat-button type="button" (click)="toggleMode()">
+      {{ mode === 'signin' ? 'Need an account?' : 'Have an account?' }}
+    </button>
+  }
+  <button mat-button type="button" mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" type="button"
+          [disabled]="busy || !email || (mode !== 'reset' && !password)" (click)="submit()">
+    {{ mode === 'reset' ? 'Send reset link' : (mode === 'signin' ? 'Sign In' : 'Sign Up') }}
+  </button>
+</mat-dialog-actions>

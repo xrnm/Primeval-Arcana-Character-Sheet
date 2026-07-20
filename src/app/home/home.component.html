@@ -2,16 +2,23 @@
 <div>
   <div>
     <div>
-      <button class="new-character" mat-raised-button color="primary" (click)="newCharacter()">New Blank Character
-        <mat-icon>person</mat-icon>
-      </button>
-    <button mat-raised-button color="primary" (click)="generateCharacter()">Generate Random Character
-      <mat-icon>casino</mat-icon>
-    </button>
-    <button mat-raised-button color="primary" (click)="uploader.click()">Import Existing Character
-      <mat-icon>arrow_upwards</mat-icon>
-    </button>
-    <input type="file" id="upload" #uploader (change)="importGame($event)"/>
+      @if (hasAccount) {
+        <p class="signin-prompt">You have an account. Sign in to access your characters.</p>
+        <button mat-raised-button color="primary" (click)="signIn()">Sign in
+          <mat-icon>login</mat-icon>
+        </button>
+      } @else {
+        <button class="new-character" mat-raised-button color="primary" (click)="newCharacter()">New Blank Character
+          <mat-icon>person</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" (click)="generateCharacter()">Generate Random Character
+          <mat-icon>casino</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" (click)="uploader.click()">Import Existing Character
+          <mat-icon>arrow_upwards</mat-icon>
+        </button>
+        <input type="file" id="upload" #uploader (change)="importGame($event)"/>
+      }
   </div>
 
 </div>

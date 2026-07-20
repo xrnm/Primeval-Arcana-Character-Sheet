@@ -1,0 +1,95 @@
+.campaign
+  max-width: 720px
+  margin: 0 auto
+  padding: 1.5rem 1rem
+
+.campaign-head
+  display: flex
+  align-items: center
+  gap: 0.5rem
+
+.name-field
+  flex: 1
+
+.campaign-title
+  font-family: Cinzel
+  color: var(--primary)
+  margin: 0
+  font-size: 1.6rem
+
+.head-spacer
+  flex: 1
+
+.campaign-toolbar
+  display: flex
+  align-items: center
+  gap: 0.75rem
+  margin: 0.5rem 0 1.5rem
+
+.toolbar-spacer
+  flex: 1
+
+.claim-banner
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: space-between
+  gap: 0.5rem
+  padding: 0.75rem 1rem
+  margin-bottom: 1rem
+  border: 1px solid rgba(128, 128, 128, 0.4)
+  border-radius: 4px
+
+.claim-actions
+  display: flex
+  gap: 0.5rem
+
+.campaign-empty
+  text-align: center
+  color: var(--text-muted)
+  font-style: italic
+  margin-top: 2rem
+
+.character-list
+  display: flex
+  flex-direction: column
+  gap: 0.75rem
+
+.character-card
+  display: flex
+  align-items: center
+  padding: 0.5rem 0.75rem 0.5rem 1.25rem
+  background: var(--surface)
+  border: 1px solid var(--border)
+  border-radius: 6px
+
+  &.dead
+    opacity: 0.55
+
+.character-open
+  flex: 1
+  display: flex
+  flex-direction: column
+  text-decoration: none
+  color: var(--text)
+  cursor: pointer
+
+  &:hover .character-name
+    color: var(--primary)
+
+.character-name
+  font-family: Cinzel
+  font-size: 1.1rem
+  display: flex
+  align-items: center
+  gap: 4px
+
+  .hireling-badge
+    font-size: 18px
+    height: 18px
+    width: 18px
+    color: var(--text-muted)
+
+.character-meta
+  font-size: 0.85rem
+  color: var(--text-muted)

@@ -33,7 +33,10 @@ export class SessionsComponent implements OnInit {
     if(this.gameService.lock)
       return;
 
-    this.sessions = this.sessions.filter(s => s !== session)
+    // Splice in place so the mutation reaches the shared array (campaign or game), not a local copy.
+    const index = this.sessions.indexOf(session);
+    if(index >= 0)
+      this.sessions.splice(index, 1);
   }
 
 }

@@ -1,0 +1,100 @@
+@if (campaign) {
+  <div class="campaign">
+    <div class="campaign-head">
+      <button mat-icon-button routerLink="/" title="All campaigns">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      @if (editingName) {
+        <mat-form-field class="name-field">
+          <mat-label>Campaign</mat-label>
+          <input matInput [(ngModel)]="campaign.name" (blur)="editingName = false" (keyup.enter)="editingName = false">
+        </mat-form-field>
+      } @else {
+        <h1 class="campaign-title">{{ campaign.name }}</h1>
+        <button mat-icon-button (click)="editingName = true" title="Rename campaign">
+          <mat-icon>edit</mat-icon>
+        </button>
+      }
+      <span class="head-spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="campaignMenu" title="Campaign options">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #campaignMenu="matMenu">
+        <button mat-menu-item (click)="deleteCampaign()">
+          <mat-icon>delete_forever</mat-icon>
+          <span>Delete campaign</span>
+        </button>
+      </mat-menu>
+    </div>
+
+    <div class="campaign-toolbar">
+      <mat-slide-toggle [(ngModel)]="showDead">Show dead</mat-slide-toggle>
+      <span class="toolbar-spacer"></span>
+      <button mat-raised-button color="primary" [matMenuTriggerFor]="addMenu">
+        <mat-icon>add</mat-icon> Add Character
+      </button>
+      <mat-menu #addMenu="matMenu">
+        <button mat-menu-item (click)="newCharacter()">
+          <mat-icon>person_add</mat-icon>
+          <span>New blank</span>
+        </button>
+        <button mat-menu-item (click)="generate()">
+          <mat-icon>casino</mat-icon>
+          <span>Generate random</span>
+        </button>
+        <button mat-menu-item (click)="fileInput.click()">
+          <mat-icon>upload</mat-icon>
+          <span>Import from file</span>
+        </button>
+        <button mat-menu-item (click)="addHireling()">
+          <mat-icon>backpack</mat-icon>
+          <span>New hireling</span>
+        </button>
+      </mat-menu>
+      <input #fileInput type="file" accept="application/json" hidden (change)="importFile($event)">
+    </div>
+
+    @if (claimable) {
+      <div class="claim-banner">
+        <span>Save your local character <strong>{{ claimable.getCharacter().name }}</strong> into this campaign?</span>
+        <span class="claim-actions">
+          <button mat-raised-button color="primary" (click)="claim()">Save to campaign</button>
+          <button mat-button (click)="dismissClaim()">Dismiss</button>
+        </span>
+      </div>
+    }
+
+    @if (visible().length === 0) {
+      <p class="campaign-empty">No characters yet. Use <strong>Add Character</strong> to create one.</p>
+    } @else {
+      <div class="character-list">
+        @for (character of visible(); track character.id) {
+          <div class="character-card" [class.dead]="character.status === 'dead'">
+            <a class="character-open" [routerLink]="['/c', link(character)]">
+              <span class="character-name">
+                @if (character.hireling) {
+                  <mat-icon class="hireling-badge" title="Hireling">backpack</mat-icon>
+                }
+                {{ character.name || 'Unnamed' }}
+              </span>
+              <span class="character-meta">{{ character.classLevel }} {{ character.race }}</span>
+            </a>
+            <a mat-icon-button [routerLink]="['/c', link(character)]" target="_blank" title="Open in new tab">
+              <mat-icon>open_in_new</mat-icon>
+            </a>
+            <button mat-icon-button (click)="toggleStatus(character)"
+                    [attr.title]="character.status === 'dead' ? 'Resurrect' : 'Kill'">
+              <mat-icon fontSet="material-symbols-outlined"
+                        [style.color]="character.status === 'dead' ? 'var(--primary)' : 'var(--warn)'">
+                {{ character.status === 'dead' ? 'church' : 'skull' }}
+              </mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="remove(character)" title="Delete">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </div>
+}

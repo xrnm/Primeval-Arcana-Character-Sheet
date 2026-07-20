@@ -3,6 +3,10 @@ import {Character} from "./character";
 import {Session} from "./session";
 
 export class Game {
+  id: string;
+  campaign: string;
+  status: 'alive' | 'dead';
+  hireling: boolean;
   character: Character;
   sessions: Session[];
   notes: Note[];
@@ -27,6 +31,10 @@ export class Game {
 
   constructor(init?: Partial<Game>) {
     Object.assign(this, init);
+    this.id = init.id || crypto.randomUUID();
+    this.campaign = init.campaign || '';
+    this.status = init.status || 'alive';
+    this.hireling = init.hireling || false;
     this.character = new Character(init.character);
     this.sessions = init.sessions.map(item => new Session(item));
     this.notes = init.notes.map(item => new Note(item));
