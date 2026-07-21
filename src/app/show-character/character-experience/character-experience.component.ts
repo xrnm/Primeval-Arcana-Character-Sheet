@@ -64,6 +64,7 @@ export class CharacterExperienceComponent implements OnInit {
     this.editing = -1;
     this.character.initializeExperienceBonus()
     this.character.initializeInitialSpells();
+    this.gameService.updateTitle();
   }
   confirmDelete(block){
     if(confirm("Are you sure you want to delete this block and all of the experience?")){

@@ -37,6 +37,8 @@ export class CharacterOverviewComponent implements OnInit {
   doneEditing(){
     if(this.gameService.lock)
       return;
+    if(this.editing == 'stats')
+      this.gameService.updateTitle();
     this.editing = null;
   }
   ngOnInit(): void {

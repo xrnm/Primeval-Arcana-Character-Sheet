@@ -19,11 +19,15 @@ import {CampaignService} from "./campaign.service";
 export class GameService {
   game: Game;
   lock: boolean = false;
-  version = '1.400'
+  version = '1.401'
   private saveSub?: Subscription;
 
   getGame(): Game {
     return this.game;
+  }
+
+  updateTitle() {
+    this.titleService.setTitle(this.game.getName());
   }
 
   getRepository(): CharacterRepository {
@@ -35,7 +39,7 @@ export class GameService {
     if (!game)
       return null;
     this.game = game;
-    this.titleService.setTitle(this.game.getName());
+    this.updateTitle();
     this.applyTheme();
     this.startSaveLoop();
     await this.syncActiveCampaign(id);
@@ -140,7 +144,7 @@ export class GameService {
 
   async createAndOpen(game: Game, campaignId?: string): Promise<Game> {
     this.game = await this.getRepository().create(game, campaignId);
-    this.titleService.setTitle(this.game.getName());
+    this.updateTitle();
     this.applyTheme();
     this.startSaveLoop();
     if (campaignId)
@@ -165,7 +169,7 @@ export class GameService {
     }
 
     this.game = new Game(JSON.parse(json));
-    this.titleService.setTitle(this.game.getName());
+    this.updateTitle();
     this.applyTheme();
 
     // Persist immediately so a freshly minted id (legacy blob migration) survives a fast close.
@@ -195,10 +199,7 @@ export class GameService {
         map(() => JSON.stringify(this.game)),
         distinctUntilChanged()
       )
-      .subscribe(() => {
-        this.getRepository().save(this.game);
-        this.titleService.setTitle(this.game.getName());
-      });
+      .subscribe(() => this.getRepository().save(this.game));
   }
 
   private flush(){
