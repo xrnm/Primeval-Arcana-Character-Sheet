@@ -65,6 +65,13 @@ mat-sidenav-container
   left: 0
   right: 0
 
+// Sticky footer: fill the height and let the footer's auto top-margin push it to the bottom on
+// sparse pages, instead of floating mid-viewport.
+mat-sidenav-content
+  display: flex
+  flex-direction: column
+  min-height: 100%
+
 .menu-hamburger
   display: none
 
@@ -113,6 +120,7 @@ mat-sidenav-container
   padding: 4px
 
 #footer
+  margin-top: auto
   margin-bottom: 25px
   background: var(--surface) !important
   border-top: 1px solid var(--border)

@@ -32,7 +32,6 @@ const HELM_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><p
 export class AppComponent {
   year = new Date().getFullYear();
   opened = false;
-  canonical = AppModeHelper.isCanonicalOrigin();
   characters: CharacterSummary[] = [];
   authReady = false;
   accountsBannerDismissed = localStorage.getItem('odnd-accounts-banner-dismissed') === '1';
@@ -49,14 +48,10 @@ export class AppComponent {
     // Gate the accounts banner on a resolved session so it never flashes for logged-in users.
     this.authService.ready().then(() => this.authReady = true);
 
-    if (AppModeHelper.isLegacySubdomain()) {
-      await this.startSubdomain();
-      return;
-    }
-
     await this.authService.ready();
-    // On the canonical origin an authenticated user gets the roster at '' (guarded) or a /c/:slug
-    // deep link; the router handles both, so we don't auto-load a character here.
+    // Every origin (including legacy subdomains) behaves the same: an authenticated user gets the
+    // roster at '' (guarded) or a /c/:slug deep link, plus a one-time conversion of any local
+    // character. The router handles the rest.
     if (this.authService.isAuthenticated()) {
       await this.campaignService.restoreActive();
       // One-time background sweep to migrate every character's legacy nested hirelings.
@@ -131,36 +126,6 @@ export class AppComponent {
 
   goToCampaigns(){
     this.router.navigate(['/']);
-  }
-
-  private async startSubdomain(){
-    await this.authService.ready();
-    if (this.authService.isAuthenticated() && await this.resolveSubdomainCharacter()) {
-      this.router.navigate(['/character']);
-      return;
-    }
-    this.loadLocalAndOpen();
-  }
-
-  // Map the subdomain label to one of the user's account characters so the legacy per-character
-  // URL keeps working (now cloud-backed) instead of dragging them through the roster.
-  private async resolveSubdomainCharacter(): Promise<boolean> {
-    const label = AppModeHelper.subdomainLabel();
-    if (!label)
-      return false;
-
-    const pinnedId = localStorage.getItem('odnd-subdomain-id');
-    if (pinnedId && await this.gameService.loadCharacter(pinnedId))
-      return true;
-
-    const summaries = await this.gameService.getRepository().list();
-    const matches = summaries.filter(s => AppModeHelper.slug(s.name) === label);
-    if (matches.length === 1 && await this.gameService.loadCharacter(matches[0].id)) {
-      // Pin the resolved id so the subdomain survives a later rename.
-      localStorage.setItem('odnd-subdomain-id', matches[0].id);
-      return true;
-    }
-    return false;
   }
 
   private loadLocalAndOpen(){

@@ -103,6 +103,12 @@ export class SupabaseRepository implements CharacterRepository {
     });
   }
 
+  async setCampaign(id: string, campaignId: string): Promise<void> {
+    const {error} = await supabase.from('characters').update({campaign_id: campaignId}).eq('id', id);
+    if (error)
+      throw error;
+  }
+
   async delete(id: string): Promise<void> {
     localStorage.removeItem(CACHE_PREFIX + id);
     const {error} = await supabase.from('characters').delete().eq('id', id);

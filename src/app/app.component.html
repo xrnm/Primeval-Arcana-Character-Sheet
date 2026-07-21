@@ -1,10 +1,12 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="side" [(opened)]="opened">
     <app-links></app-links>
-    <button mat-raised-button color="primary" (click)="exportGame()">Export
-      <mat-icon>arrow_downward</mat-icon>
-    </button>
-    <br/>
+    @if (showHud()) {
+      <button mat-raised-button color="primary" (click)="exportGame()">Export
+        <mat-icon>arrow_downward</mat-icon>
+      </button>
+      <br/>
+    }
     <button mat-icon-button (click)="gameService.toggleTheme()">
       <mat-icon>{{gameService.getTheme() === 'dark' ? 'light_mode' : 'dark_mode'}}</mat-icon>
     </button>
@@ -24,9 +26,11 @@
         <button class="menu-hamburger" mat-icon-button (click)="toggleMenu()">
           <mat-icon>menu</mat-icon>
         </button>
-        <button mat-raised-button color="primary" (click)="exportGame()">Export
-          <mat-icon>arrow_downward</mat-icon>
-        </button>
+        @if (showHud()) {
+          <button mat-raised-button color="primary" (click)="exportGame()">Export
+            <mat-icon>arrow_downward</mat-icon>
+          </button>
+        }
         <button mat-icon-button (click)="gameService.toggleTheme()">
           <mat-icon>{{gameService.getTheme() === 'dark' ? 'light_mode' : 'dark_mode'}}</mat-icon>
         </button>
@@ -34,23 +38,21 @@
           <mat-icon>settings</mat-icon>
         </button>
         @if (authService.isAuthenticated()) {
-          @if (canonical) {
-            <button mat-icon-button [matMenuTriggerFor]="charMenu" (menuOpened)="loadCharacters()" title="Switch character">
-              <mat-icon svgIcon="helm"></mat-icon>
-            </button>
-            <mat-menu #charMenu="matMenu">
-              @for (c of characters; track c.id) {
-                <button mat-menu-item class="char-menu-item" (click)="openCharacter(c)">
-                  <mat-icon>{{ isCurrentCharacter(c) ? 'check' : (c.hireling ? 'backpack' : 'person') }}</mat-icon>
-                  <span class="char-menu-name">{{ c.name || 'Unnamed' }} <small>{{ c.classLevel }}</small></span>
-                  <mat-icon class="char-popout" (click)="popOutCharacter(c); $event.stopPropagation()"
-                            title="Open in new tab">open_in_new</mat-icon>
-                </button>
-              } @empty {
-                <button mat-menu-item disabled>No characters in this campaign</button>
-              }
-            </mat-menu>
-          }
+          <button mat-icon-button [matMenuTriggerFor]="charMenu" (menuOpened)="loadCharacters()" title="Switch character">
+            <mat-icon svgIcon="helm"></mat-icon>
+          </button>
+          <mat-menu #charMenu="matMenu">
+            @for (c of characters; track c.id) {
+              <button mat-menu-item class="char-menu-item" (click)="openCharacter(c)">
+                <mat-icon>{{ isCurrentCharacter(c) ? 'check' : (c.hireling ? 'backpack' : 'person') }}</mat-icon>
+                <span class="char-menu-name">{{ c.name || 'Unnamed' }} <small>{{ c.classLevel }}</small></span>
+                <mat-icon class="char-popout" (click)="popOutCharacter(c); $event.stopPropagation()"
+                          title="Open in new tab">open_in_new</mat-icon>
+              </button>
+            } @empty {
+              <button mat-menu-item disabled>No characters in this campaign</button>
+            }
+          </mat-menu>
           <button mat-icon-button [matMenuTriggerFor]="accountMenu" title="Account">
             <mat-icon>account_circle</mat-icon>
           </button>

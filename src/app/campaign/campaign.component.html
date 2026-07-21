@@ -82,6 +82,10 @@
             <a mat-icon-button [routerLink]="['/c', link(character)]" target="_blank" title="Open in new tab">
               <mat-icon>open_in_new</mat-icon>
             </a>
+            <button mat-icon-button [matMenuTriggerFor]="moveMenu" [matMenuTriggerData]="{character: character}"
+                    title="Move to campaign">
+              <mat-icon>drive_file_move</mat-icon>
+            </button>
             <button mat-icon-button (click)="toggleStatus(character)"
                     [attr.title]="character.status === 'dead' ? 'Resurrect' : 'Kill'">
               <mat-icon fontSet="material-symbols-outlined"
@@ -96,5 +100,15 @@
         }
       </div>
     }
+
+    <mat-menu #moveMenu="matMenu">
+      <ng-template matMenuContent let-character="character">
+        @for (c of otherCampaigns(); track c.id) {
+          <button mat-menu-item (click)="moveCharacter(character, c.id)">{{ c.name }}</button>
+        } @empty {
+          <button mat-menu-item disabled>No other campaigns</button>
+        }
+      </ng-template>
+    </mat-menu>
   </div>
 }

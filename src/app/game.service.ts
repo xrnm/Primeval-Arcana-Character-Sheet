@@ -58,8 +58,13 @@ export class GameService {
       return null;
 
     const originalId = local.id;
-    const campaign = await this.campaignService.create(new Campaign({name: 'My Campaign'}));
-    // Carry the character's personal log into the new campaign (notes tagged with their origin).
+    // Reuse the account's existing campaign if there is one; only create "My Campaign" when there
+    // are none. Prevents a duplicate "My Campaign" being spawned on every subdomain/device login.
+    const existing = await this.campaignService.list();
+    let campaign = existing.length ? await this.campaignService.load(existing[0].id) : null;
+    if (!campaign)
+      campaign = await this.campaignService.create(new Campaign({name: 'My Campaign'}));
+    // Carry the character's personal log into the campaign (notes tagged with their origin).
     const origin = local.character.name || 'Unknown';
     campaign.sessions.push(...local.sessions);
     campaign.notes.push(...local.notes.map(n => new Note({name: n.name, content: n.content, source: n.source || origin})));

@@ -3,7 +3,7 @@ import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
-import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
+import {MatMenu, MatMenuItem, MatMenuTrigger, MatMenuContent} from '@angular/material/menu';
 import {MatSlideToggle} from '@angular/material/slide-toggle';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
@@ -16,6 +16,7 @@ import {Campaign} from '../campaign';
 import {Character} from '../character';
 import {Note} from '../note';
 import {CharacterSummary} from '../persistence/character-summary';
+import {CampaignSummary} from '../persistence/campaign-summary';
 import {AppModeHelper} from '../app-mode-helper';
 import {GenerateCharacterDialogComponent} from '../generate-character-dialog/generate-character-dialog.component';
 
@@ -26,11 +27,12 @@ const CLAIMED_KEY = 'odnd-character-claimed';
     selector: 'app-campaign',
     templateUrl: './campaign.component.html',
     styleUrls: ['./campaign.component.sass'],
-    imports: [RouterLink, MatButton, MatIconButton, MatIcon, MatMenu, MatMenuItem, MatMenuTrigger, MatSlideToggle, MatFormField, MatLabel, MatInput, FormsModule]
+    imports: [RouterLink, MatButton, MatIconButton, MatIcon, MatMenu, MatMenuItem, MatMenuTrigger, MatMenuContent, MatSlideToggle, MatFormField, MatLabel, MatInput, FormsModule]
 })
 export class CampaignComponent implements OnInit {
   campaign: Campaign | null = null;
   characters: CharacterSummary[] = [];
+  campaigns: CampaignSummary[] = [];
   showDead: boolean = false;
   claimable: Game | null = null;
   editingName: boolean = false;
@@ -48,12 +50,23 @@ export class CampaignComponent implements OnInit {
     }
     this.campaignService.setActive(this.campaign);
     this.title.setTitle(this.campaign.name);
+    this.campaigns = await this.campaignService.list();
     await this.refreshCharacters();
     this.checkClaimable();
   }
 
   async refreshCharacters(): Promise<void> {
     this.characters = await this.gameService.getRepository().listByCampaign(this.cid);
+  }
+
+  // Campaigns a character could be moved to (everything except the one we're viewing).
+  otherCampaigns(): CampaignSummary[] {
+    return this.campaigns.filter(c => c.id !== this.cid);
+  }
+
+  async moveCharacter(summary: CharacterSummary, campaignId: string): Promise<void> {
+    await this.gameService.getRepository().setCampaign(summary.id, campaignId);
+    await this.refreshCharacters();
   }
 
   visible(): CharacterSummary[] {

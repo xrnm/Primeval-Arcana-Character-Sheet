@@ -37,6 +37,10 @@ export class LocalStorageRepository implements CharacterRepository {
     this.write(game);
   }
 
+  // Anonymous mode has no campaigns; nothing to move.
+  async setCampaign(id: string, campaignId: string): Promise<void> {
+  }
+
   async delete(id: string): Promise<void> {
     localStorage.removeItem(KEY);
   }
