@@ -158,3 +158,69 @@ create policy campaign_versions_owner_select on public.campaign_versions
         and c.user_id = auth.uid()
     )
   );
+
+-- ---------------------------------------------------------------------------
+-- bestiary images (Supabase Storage)
+-- ---------------------------------------------------------------------------
+-- Bestiary entries live in the campaign blob, but their artwork does not: a base64 image would be
+-- rewritten into campaigns.data on every autosave and snapshotted again into campaign_versions.
+-- The blob stores only the object path; the file lives here.
+--
+-- Objects are keyed <user_id>/<campaign_id>/<uuid>.<ext>, and every write policy checks that first
+-- path segment against auth.uid(), so a signed-in user can only touch their own folder.
+
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('bestiary', 'bestiary', true, 5242880,
+        array['image/png', 'image/jpeg', 'image/gif', 'image/webp', 'image/avif'])
+on conflict (id) do update
+  set public = excluded.public,
+      file_size_limit = excluded.file_size_limit,
+      allowed_mime_types = excluded.allowed_mime_types;
+
+-- No public select policy. The bucket is public, so `/object/public/...` serves images to <img>
+-- tags without one; granting select to everyone instead lets any anonymous caller hit the list API
+-- and enumerate every user id, campaign id, and object path in the bucket.
+drop policy if exists bestiary_public_read on storage.objects;
+
+-- Owners may list their own folder (needed for any future cleanup tooling).
+drop policy if exists bestiary_owner_select on storage.objects;
+create policy bestiary_owner_select on storage.objects
+  for select
+  to authenticated
+  using (
+    bucket_id = 'bestiary'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
+
+drop policy if exists bestiary_owner_insert on storage.objects;
+create policy bestiary_owner_insert on storage.objects
+  for insert
+  to authenticated
+  with check (
+    bucket_id = 'bestiary'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
+
+-- `with check` matters as much as `using` here: without it an owner could rename an object of
+-- theirs into somebody else's folder prefix.
+drop policy if exists bestiary_owner_update on storage.objects;
+create policy bestiary_owner_update on storage.objects
+  for update
+  to authenticated
+  using (
+    bucket_id = 'bestiary'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  )
+  with check (
+    bucket_id = 'bestiary'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
+
+drop policy if exists bestiary_owner_delete on storage.objects;
+create policy bestiary_owner_delete on storage.objects
+  for delete
+  to authenticated
+  using (
+    bucket_id = 'bestiary'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );

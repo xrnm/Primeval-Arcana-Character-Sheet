@@ -17,14 +17,16 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatChip, MatChipGrid, MatChipInput, MatChipInputEvent, MatChipRemove, MatChipRow, MatChipSet } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { PercentPipe } from '@angular/common';
+import { PercentPipe, TitleCasePipe } from '@angular/common';
+import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autocomplete';
+import { OverflowTooltipDirective } from '../../overflow-tooltip.directive';
 
 @Component({
     selector: 'character-overview',
     templateUrl: './character-overview.component.html',
     styleUrls: ['./character-overview.component.sass'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [MatCard, MatCardContent, MatIcon, MatList, MatListItem, MatDivider, MatFormField, MatLabel, MatInput, MatSelect, MatOption, FormsModule, MatButton, MatTooltip, MatMiniFabButton, MatIconButton, MatCheckbox, MatChipSet, MatChip, MatChipGrid, MatChipRow, MatChipRemove, MatChipInput, PercentPipe]
+    imports: [MatCard, MatCardContent, MatIcon, MatList, MatListItem, MatDivider, MatFormField, MatLabel, MatInput, MatSelect, MatOption, FormsModule, MatButton, MatTooltip, MatMiniFabButton, MatIconButton, MatCheckbox, MatChipSet, MatChip, MatChipGrid, MatChipRow, MatChipRemove, MatChipInput, MatAutocomplete, MatAutocompleteTrigger, OverflowTooltipDirective, PercentPipe, TitleCasePipe]
 })
 export class CharacterOverviewComponent implements OnInit {
 
@@ -34,8 +36,11 @@ export class CharacterOverviewComponent implements OnInit {
 
   classes = Character.classes();
   handednessOptions = Character.handedness();
+  weightClasses = Character.weightClasses();
   dentalOptions = [...new Set(AttributeTablesHelper.DENTAL_STATUSES)];
   languageSeparators = [ENTER, COMMA];
+  identifyingQualityOptions = AttributeTablesHelper.IDENTIFYING_QUALITIES;
+  filteredIdentifyingQualities = AttributeTablesHelper.IDENTIFYING_QUALITIES;
 
   editSection(id){
     if(this.gameService.lock)
@@ -52,6 +57,16 @@ export class CharacterOverviewComponent implements OnInit {
     this.editing = null;
   }
   ngOnInit(): void {
+  }
+
+  filterIdentifyingQualities(){
+    const filter = (this.character.identifying_quality || '').toLowerCase();
+    this.filteredIdentifyingQualities = this.identifyingQualityOptions.filter(quality => quality.toLowerCase().includes(filter));
+  }
+
+  professionTooltip(): string {
+    const description = AttributeTablesHelper.PROFESSION_DEFINITIONS[this.character.profession];
+    return description ? this.character.profession + ': ' + description : '';
   }
 
   addLanguage(event: MatChipInputEvent){

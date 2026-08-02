@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>{{ beast.name || 'New Creature' }}</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="beast.name"/>
+  </mat-form-field>
+
+  <div class="beast-image">
+    @if (beast.image_path) {
+      <img [src]="imageUrl()" [alt]="beast.name"/>
+      <button mat-button color="warn" (click)="removeImage()">Remove Image</button>
+    } @else if (canUpload()) {
+      <label class="upload-label">
+        <input type="file" accept="image/*" (change)="selectImage($event)" hidden/>
+        <span class="upload-button">
+          <mat-icon>image</mat-icon>
+          {{ uploading ? 'Uploading...' : 'Add Image' }}
+        </span>
+      </label>
+    } @else {
+      <small class="upload-hint">Sign in to add an image</small>
+    }
+    @if (uploadError) {
+      <small class="upload-error">{{ uploadError }}</small>
+    }
+  </div>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput rows="5" [(ngModel)]="beast.description"></textarea>
+  </mat-form-field>
+
+  <div class="beast-stats">
+    <mat-form-field>
+      <mat-label>Armor Class</mat-label>
+      <input matInput type="number" [(ngModel)]="beast.armor_class"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Hit Dice</mat-label>
+      <input matInput type="number" step="0.5" [(ngModel)]="beast.hit_dice"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Estimated Hit Points</mat-label>
+      <input matInput type="number" [(ngModel)]="beast.hit_points"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Movement Rating</mat-label>
+      <input matInput type="number" [(ngModel)]="beast.movement_rating"/>
+    </mat-form-field>
+  </div>
+
+  <mat-dialog-actions>
+    @if (!isNew) {
+      <button mat-button color="warn" (click)="deleteBeast()">Delete</button>
+    }
+    <span class="spacer"></span>
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

@@ -368,6 +368,7 @@
     "sold_in": 1,
     "slingable": true,
     "capacity": 200,
+    "slots": 5,
     "description": "Canvas cinch-top bag (12in x 12in) with 200cn capacity."
   },
   {

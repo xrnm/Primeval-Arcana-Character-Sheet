@@ -20,9 +20,17 @@ import { MatIcon } from '@angular/material/icon';
 export class ItemListComponent implements OnInit {
   @Input() items: Item[];
   @Input() capacity: number = 500;
+  // Only slot-based containers band; weapon, armor, gem and magic-item lists are plain.
+  @Input() banded: boolean = false;
   constructor(public dialog: MatDialog, private gameService: GameService) { }
 
   ngOnInit(): void {
+  }
+
+  // Slots are banded in fives so a ten-slot pack reads as a lighter top half and a darker bottom
+  // half — what you can reach versus what is buried.
+  isDeepSlot(index: number): boolean {
+    return this.banded && Math.floor(index / 5) % 2 === 1;
   }
 
   drop(event: CdkDragDrop<Item[]>){

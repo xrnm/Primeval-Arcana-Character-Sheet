@@ -4,6 +4,7 @@ import {distinctUntilChanged, map} from "rxjs/operators";
 import {Campaign} from "./campaign";
 import {Session} from "./session";
 import {Note} from "./note";
+import {Beast} from "./beast";
 import {CampaignSummary} from "./persistence/campaign-summary";
 import {SupabaseCampaignRepository} from "./persistence/supabase-campaign.repository";
 
@@ -16,6 +17,7 @@ const ACTIVE_KEY = 'odnd-active-campaign';
 export class CampaignService {
   activeCampaign: Campaign | null = null;
   private saveSub?: Subscription;
+  private restorePromise?: Promise<void>;
 
   constructor(private repo: SupabaseCampaignRepository) {
     document.addEventListener('visibilitychange', () => {
@@ -49,6 +51,7 @@ export class CampaignService {
 
   setActive(campaign: Campaign | null){
     this.activeCampaign = campaign;
+    this.restorePromise = undefined;
     this.saveSub?.unsubscribe();
     if (campaign) {
       localStorage.setItem(ACTIVE_KEY, campaign.id);
@@ -59,9 +62,17 @@ export class CampaignService {
   }
 
   // Restore the last-selected campaign so its context (and shared log) survives navigation/reload.
-  async restoreActive(): Promise<void> {
+  // Cached because app startup and a routed page can both ask on the same refresh; without it they
+  // race and fetch the campaign twice.
+  restoreActive(): Promise<void> {
     if (this.activeCampaign)
-      return;
+      return Promise.resolve();
+    if (!this.restorePromise)
+      this.restorePromise = this.fetchActive();
+    return this.restorePromise;
+  }
+
+  private async fetchActive(): Promise<void> {
     const id = localStorage.getItem(ACTIVE_KEY);
     if (!id)
       return;
@@ -80,6 +91,10 @@ export class CampaignService {
 
   getNotes(): Note[] {
     return this.activeCampaign?.getNotes() || [];
+  }
+
+  getBestiary(): Beast[] {
+    return this.activeCampaign?.getBestiary() || [];
   }
 
   private startSaveLoop(){

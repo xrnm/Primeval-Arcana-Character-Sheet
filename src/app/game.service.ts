@@ -19,7 +19,7 @@ import {CampaignService} from "./campaign.service";
 export class GameService {
   game: Game;
   lock: boolean = false;
-  version = '1.402'
+  version = '1.403'
   private saveSub?: Subscription;
 
   getGame(): Game {

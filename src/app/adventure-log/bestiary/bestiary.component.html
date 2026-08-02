@@ -1,0 +1,29 @@
+<div id="bestiary-section" class="container">
+  <h2 class="section-subtitle">Bestiary</h2>
+  <button (click)="openBeastDialog(null)" id="add-beast-button" mat-mini-fab aria-label="Add Creature Button" color="primary">
+    <mat-icon>add</mat-icon>
+  </button>
+  <div class="bestiary-grid">
+    @for (beast of bestiary; track beast) {
+      <mat-card appearance="outlined" class="beast-card" (click)="openBeastDialog(beast)">
+        <mat-card-content>
+          <h3 class="beast-name">{{ beast.name }}</h3>
+          @if (beast.image_path) {
+            <img class="beast-portrait" [src]="imageUrl(beast)" [alt]="beast.name"/>
+          }
+          @if (beast.description) {
+            <p class="beast-description">{{ beast.description }}</p>
+          }
+          @if (beast.armor_class || beast.hit_dice || beast.hit_points || beast.movement_rating) {
+            <div class="beast-card-stats">
+              @if (beast.armor_class) {<span><small>AC</small> {{ beast.armor_class }}</span>}
+              @if (beast.hit_dice) {<span><small>HD</small> {{ beast.hit_dice }}</span>}
+              @if (beast.hit_points) {<span><small>HP</small> {{ beast.hit_points }}</span>}
+              @if (beast.movement_rating) {<span><small>MV</small> {{ beast.movement_rating }}</span>}
+            </div>
+          }
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+</div>

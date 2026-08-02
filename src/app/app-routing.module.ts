@@ -4,7 +4,6 @@ import {ShowCharacterComponent} from "./show-character/show-character.component"
 import { AdventureLogComponent } from "./adventure-log/adventure-log.component";
 import {HomeComponent} from "./home/home.component";
 import {RawEditComponent} from "./raw-edit/raw-edit.component";
-import {HirelingsComponent} from "./hirelings/hirelings.component";
 import {CampaignsComponent} from "./campaigns/campaigns.component";
 import {CampaignComponent} from "./campaign/campaign.component";
 import {CharacterExperiencePageComponent} from "./character-experience-page/character-experience-page.component";
@@ -21,7 +20,6 @@ const routes: Routes = [
   {path: 'experience/:slug', component: CharacterExperiencePageComponent},
   {path: 'summary', component: SummaryComponent},
   {path: 'adventure-log', component: AdventureLogComponent},
-  {path: 'hirelings', component: HirelingsComponent},
   {path: 'raw-edit', component: RawEditComponent}
   ];
 

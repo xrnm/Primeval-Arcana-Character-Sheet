@@ -58,6 +58,8 @@ export class ContainerDialogComponent implements OnInit {
       this.container.weight = selected.weight;
       if (selected.capacity)
         this.container.capacity = selected.capacity;
+      if (selected.slots)
+        this.container.slots = selected.slots;
     }
   }
 

@@ -33,6 +33,12 @@ export class Container implements Loadable {
       return `${this.name}`;
   }
 
+  // Slot shading is a backpack thing — the bottom of a pack is buried in a way a sack or a saddle
+  // bag isn't. Matched on name because that is all a container keeps from the equipment catalog.
+  isBackpack(): boolean {
+    return (this.name || '').toLowerCase().includes('backpack');
+  }
+
   capacityString() {
     if(!this.capacity)
       return `${this.load()}cn`;
