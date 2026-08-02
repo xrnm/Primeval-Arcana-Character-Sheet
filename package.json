@@ -20,12 +20,12 @@
     "@angular/platform-browser": "^22.1.0",
     "@angular/platform-browser-dynamic": "^22.1.0",
     "@angular/router": "^22.1.0",
-    "@supabase/supabase-js": "^2.110.7",
+    "@supabase/supabase-js": "^2.111.0",
     "@types/file-saver": "^2.0.1",
     "file-saver": "^2.0.2",
     "rxjs": "~7.8.1",
     "tslib": "^2.0.0",
-    "zone.js": "~0.15.1"
+    "zone.js": "~0.16.2"
   },
   "resolutions": {
     "tar": ">=7.5.19",
