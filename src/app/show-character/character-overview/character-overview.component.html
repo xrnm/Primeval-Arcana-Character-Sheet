@@ -22,6 +22,8 @@
           <mat-divider></mat-divider>
           <mat-list-item><span>Race: &nbsp;</span> {{ character.race }}</mat-list-item>
           <mat-divider></mat-divider>
+          <mat-list-item><span>Primary Hand: &nbsp;</span> {{ character.handedness }}</mat-list-item>
+          <mat-divider></mat-divider>
         </mat-list>
       }
       @if (editing=='stats') {
@@ -50,6 +52,16 @@
               <mat-form-field>
                 <mat-label>Race:</mat-label>
                 <input matInput [(ngModel)]="character.race"/>
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-form-field>
+                <mat-label>Primary Hand:</mat-label>
+                <mat-select [(ngModel)]="character.handedness">
+                  @for (hand of handednessOptions; track hand) {
+                    <mat-option [value]="hand">{{ hand }}</mat-option>
+                  }
+                </mat-select>
               </mat-form-field>
             </mat-list-item>
             <mat-list-item>
@@ -86,12 +98,20 @@
           <mat-divider></mat-divider>
           <mat-list-item><span>Profession:&nbsp;</span> {{ character.profession }}</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span>Known Languages:&nbsp;</span>
-          {{ character.known_languages }}
-        </mat-list-item>
-        <mat-divider></mat-divider>
-      </mat-list>
-    }
+        </mat-list>
+        <div class="languages">
+          <span class="languages-label">Known Languages:</span>
+          @if (character.known_languages?.length) {
+            <mat-chip-set>
+              @for (language of character.known_languages; track $index) {
+                <mat-chip [title]="language">{{ language }}</mat-chip>
+              }
+            </mat-chip-set>
+          } @else {
+            <em>None</em>
+          }
+        </div>
+      }
     @if (editing=='background') {
       <mat-list class="editing">
         <h2>Edit Background</h2>
@@ -113,16 +133,26 @@
             <input matInput [(ngModel)]="character.profession"/>
           </mat-form-field>
         </mat-list-item>
-        <mat-list-item>
-          <mat-form-field>
-            <mat-label>Known Languages:</mat-label>
-            <input matInput [(ngModel)]="character.known_languages"/>
-          </mat-form-field>
-        </mat-list-item>
-        <mat-list-item>
-          <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
-        </mat-list-item>
       </mat-list>
+      <div class="languages-edit">
+        <mat-form-field>
+          <mat-label>Known Languages:</mat-label>
+          <mat-chip-grid #languageChips>
+            @for (language of character.known_languages; track $index) {
+              <mat-chip-row (removed)="removeLanguage($index)">
+                {{ language }}
+                <button matChipRemove [attr.aria-label]="'Remove ' + language">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            }
+          </mat-chip-grid>
+          <input placeholder="Add a language..." [matChipInputFor]="languageChips"
+                 [matChipInputSeparatorKeyCodes]="languageSeparators" [matChipInputAddOnBlur]="true"
+                 (matChipInputTokenEnd)="addLanguage($event)"/>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
+      </div>
     }
   </mat-card-content>
 </mat-card>
@@ -150,6 +180,8 @@
     <mat-list-item>
       <span>Skin:&nbsp; </span>{{ character.skin_color }} Skin
     </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><span>Teeth:&nbsp;</span> {{ character.dental_status }}</mat-list-item>
     <mat-divider></mat-divider>
   </mat-list>
 }
@@ -205,6 +237,16 @@
       </mat-form-field>
     </mat-list-item>
     <mat-list-item>
+      <mat-form-field>
+        <mat-label>Dental Status:</mat-label>
+        <mat-select [(ngModel)]="character.dental_status">
+          @for (status of dentalOptions; track status) {
+            <mat-option [value]="status">{{ status }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </mat-list-item>
+    <mat-list-item>
       <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
     </mat-list-item>
   </mat-list>
@@ -221,6 +263,10 @@
     @if (editing!='movement') {
       <mat-list>
         <mat-list-item><span>Base Movement:&nbsp;</span>{{ character.base_movement }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <span>Encumbrance:&nbsp;</span>{{ character.encumbranceLevel() }} ({{ character.encumbrance() | percent }})
+        </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item><span>Movement Rating:&nbsp;</span>{{ character.movementRating() }}</mat-list-item>
         <mat-divider></mat-divider>
