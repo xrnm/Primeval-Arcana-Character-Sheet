@@ -13,10 +13,6 @@
     "importHelpers": true,
     "skipLibCheck": true,
     "target": "ES2022",
-    "lib": [
-      "es2022",
-      "dom"
-    ],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {

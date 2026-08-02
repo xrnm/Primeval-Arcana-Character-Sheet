@@ -1,4 +1,4 @@
-import {enableProdMode, importProvidersFrom} from '@angular/core';
+import {enableProdMode, importProvidersFrom, provideZoneChangeDetection} from '@angular/core';
 
 import {environment} from './environments/environment';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -13,6 +13,7 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
     providers: [
+        provideZoneChangeDetection(),
         importProvidersFrom(BrowserModule, AppRoutingModule, MatNativeDateModule),
         Title,
         provideAnimations()
