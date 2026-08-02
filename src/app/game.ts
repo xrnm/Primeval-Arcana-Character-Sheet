@@ -1,6 +1,7 @@
 import {Note} from "./note";
 import {Character} from "./character";
 import {Session} from "./session";
+import {Beast} from "./beast";
 
 export class Game {
   id: string;
@@ -10,6 +11,7 @@ export class Game {
   character: Character;
   sessions: Session[];
   notes: Note[];
+  bestiary: Beast[];
   theme: string;
   legacyLayout: boolean;
 
@@ -25,6 +27,10 @@ export class Game {
     return this.notes;
   }
 
+  getBestiary(): Beast[] {
+    return this.bestiary;
+  }
+
   getName(): string {
     return `${this.character.name} -- ${this.character.getConciseClassLevelString()} ${this.character.race} `
   }
@@ -38,6 +44,7 @@ export class Game {
     this.character = new Character(init.character);
     this.sessions = init.sessions.map(item => new Session(item));
     this.notes = init.notes.map(item => new Note(item));
+    this.bestiary = (init.bestiary || []).map(item => new Beast(item));
     this.theme = init.theme || 'dark';
     this.legacyLayout = init.legacyLayout || false;
   }

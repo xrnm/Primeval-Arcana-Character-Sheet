@@ -11,6 +11,7 @@ import {Mount} from "./mount";
 import {Experience} from "./experience";
 import {ClericTurningHelper} from "./cleric-turning-helper";
 import {EncumbranceHelper} from "./encumbrance-helper";
+import {PhysicalAttributesHelper} from "./physical-attributes-helper";
 
 export class Character implements Loadable {
   name: string;
@@ -19,11 +20,15 @@ export class Character implements Loadable {
   sex: string;
   handedness: string;
   profession: string;
+  identifying_quality: string;
   origin: string;
   alignment: string;
   height_inch: number;
   height_foot: number;
+  // Legacy: weight is derived from strength, constitution, sex, and weight class. Kept for sheets
+  // saved before that change so their class can be inferred (see the constructor).
   weight: number;
+  weight_class: string = 'average';
   eye_color: string;
   hair_color: string;
   hair_style: string;
@@ -120,6 +125,11 @@ export class Character implements Loadable {
 
     this.initializeExperienceBonus();
 
+
+    // A sheet saved before weight became derived has a hand-entered weight and no class. Adopt the
+    // class that lands closest to the number they already had, so nobody's weight jumps on load.
+    if (!init.weight_class && init.weight > 0)
+      this.weight_class = this.closestWeightClass(init.weight);
 
     this.known_languages = Character.normalizeLanguages(init.known_languages);
     if (!this.known_languages_original && Character.languagesWereRewritten(init.known_languages, this.known_languages))
@@ -292,6 +302,21 @@ export class Character implements Loadable {
 
   maximumLoad() {
     return this.adjustedAbility('strength') * 150
+  }
+
+  calculatedWeight(): number {
+    return PhysicalAttributesHelper.generateWeight(
+      this.abilities.strength, this.abilities.constitution, (this.sex || '').toLowerCase(), this.weight_class || 'average');
+  }
+
+  closestWeightClass(weight: number): string {
+    return Character.weightClasses().reduce((closest, weightClass) => {
+      const candidate = PhysicalAttributesHelper.generateWeight(
+        this.abilities.strength, this.abilities.constitution, (this.sex || '').toLowerCase(), weightClass);
+      const best = PhysicalAttributesHelper.generateWeight(
+        this.abilities.strength, this.abilities.constitution, (this.sex || '').toLowerCase(), closest);
+      return Math.abs(candidate - weight) < Math.abs(best - weight) ? weightClass : closest;
+    }, 'average');
   }
 
   encumbrance(): number {
@@ -487,6 +512,10 @@ export class Character implements Loadable {
     if (!Array.isArray(value))
       return true;
     return value.length !== normalized.length || value.some((language, index) => language !== normalized[index]);
+  }
+
+  static weightClasses() {
+    return ['light', 'average', 'heavy'];
   }
 
   static handedness() {

@@ -155,7 +155,7 @@
             <mat-card-content>
               <mat-list>
                 <h2>{{ si.name }}</h2>
-                <item-list [items]="si.contents"></item-list>
+                <item-list [items]="si.contents" [banded]="si.isBackpack()"></item-list>
               </mat-list>
             </mat-card-content>
           </mat-card>

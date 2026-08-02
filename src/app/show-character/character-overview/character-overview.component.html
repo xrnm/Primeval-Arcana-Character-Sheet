@@ -12,17 +12,17 @@
       @if (editing!='stats') {
         <mat-list>
           <h2>Stats</h2>
-          <mat-list-item><span>Name: &nbsp;</span> {{ character.name }}</mat-list-item>
+          <mat-list-item overflowTooltip><span>Name: &nbsp;</span> {{ character.name }}</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span>Class: &nbsp;</span> {{ character.getConciseClassLevelString() }}</mat-list-item>
+          <mat-list-item overflowTooltip><span>Class: &nbsp;</span> {{ character.getConciseClassLevelString() }}</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span>Age: &nbsp;</span> {{ character.age }}</mat-list-item>
+          <mat-list-item overflowTooltip><span>Age: &nbsp;</span> {{ character.age }}</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span>Sex: &nbsp;</span> {{ character.sex }}</mat-list-item>
+          <mat-list-item overflowTooltip><span>Sex: &nbsp;</span> {{ character.sex }}</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span>Race: &nbsp;</span> {{ character.race }}</mat-list-item>
+          <mat-list-item overflowTooltip><span>Race: &nbsp;</span> {{ character.race }}</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span>Primary Hand: &nbsp;</span> {{ character.handedness }}</mat-list-item>
+          <mat-list-item overflowTooltip><span>Primary Hand: &nbsp;</span> {{ character.handedness }}</mat-list-item>
           <mat-divider></mat-divider>
         </mat-list>
       }
@@ -92,11 +92,14 @@
       @if (editing!='background') {
         <mat-list>
           <h2>Background</h2>
-          <mat-list-item><span>Alignment:&nbsp;</span> {{ character.alignment }}</mat-list-item>
+          <mat-list-item overflowTooltip><span>Alignment:&nbsp;</span> {{ character.alignment }}</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span>Land of Origin:&nbsp;</span> {{ character.origin }}</mat-list-item>
+          <mat-list-item overflowTooltip><span>Land of Origin:&nbsp;</span> {{ character.origin }}</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span>Profession:&nbsp;</span> {{ character.profession }}</mat-list-item>
+          <mat-list-item>
+            <span>Profession:&nbsp;</span>
+            <span class="profession" [matTooltip]="professionTooltip()">{{ character.profession }}</span>
+          </mat-list-item>
           <mat-divider></mat-divider>
         </mat-list>
         <div class="languages">
@@ -165,23 +168,23 @@
     @if (editing!='attributes') {
       <mat-list>
         <h2>Attributes</h2>
-        <mat-list-item><span>Height: &nbsp;</span>{{ character.displayHeight() }}
+        <mat-list-item overflowTooltip>
+        <span>Height / Weight: &nbsp;</span>{{ character.displayHeight() }} / {{ character.calculatedWeight() }}lbs
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><span>Weight: &nbsp;</span> {{ character.weight }}lbs
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
+    <mat-list-item overflowTooltip>
       <span>Hair:&nbsp;</span> {{ character.hair_length }} {{ character.hair_style }} {{ character.hair_color }}
     </mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item><span>Eyes:&nbsp;</span> {{ character.eye_color }} Eyes</mat-list-item>
+    <mat-list-item overflowTooltip><span>Eyes:&nbsp;</span> {{ character.eye_color }} Eyes</mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item>
+    <mat-list-item overflowTooltip>
       <span>Skin:&nbsp; </span>{{ character.skin_color }} Skin
     </mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item><span>Teeth:&nbsp;</span> {{ character.dental_status }}</mat-list-item>
+    <mat-list-item overflowTooltip><span>Teeth:&nbsp;</span> {{ character.dental_status }}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item overflowTooltip><span>Quirk:&nbsp;</span> {{ character.identifying_quality }}</mat-list-item>
     <mat-divider></mat-divider>
   </mat-list>
 }
@@ -202,8 +205,12 @@
     </mat-list-item>
     <mat-list-item>
       <mat-form-field>
-        <mat-label>Weight:</mat-label>
-        <input matInput [(ngModel)]="character.weight" type="number"/>
+        <mat-label>Weight Class:</mat-label>
+        <mat-select [(ngModel)]="character.weight_class">
+          @for (weightClass of weightClasses; track weightClass) {
+            <mat-option [value]="weightClass">{{ weightClass | titlecase }}</mat-option>
+          }
+        </mat-select>
       </mat-form-field>
     </mat-list-item>
     <mat-list-item>
@@ -247,6 +254,18 @@
       </mat-form-field>
     </mat-list-item>
     <mat-list-item>
+      <mat-form-field>
+        <mat-label>Quirk:</mat-label>
+        <input matInput [(ngModel)]="character.identifying_quality" (ngModelChange)="filterIdentifyingQualities()"
+               [matAutocomplete]="qualityAuto"/>
+        <mat-autocomplete #qualityAuto="matAutocomplete">
+          @for (quality of filteredIdentifyingQualities; track quality) {
+            <mat-option [value]="quality">{{ quality }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+    </mat-list-item>
+    <mat-list-item>
       <button mat-raised-button color="primary" (click)="doneEditing()">Done</button>
     </mat-list-item>
   </mat-list>
@@ -262,19 +281,19 @@
     }
     @if (editing!='movement') {
       <mat-list>
-        <mat-list-item><span>Base Movement:&nbsp;</span>{{ character.base_movement }}</mat-list-item>
+        <mat-list-item overflowTooltip><span>Base Movement:&nbsp;</span>{{ character.base_movement }}</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item>
+        <mat-list-item overflowTooltip>
           <span>Encumbrance:&nbsp;</span>{{ character.encumbranceLevel() }} ({{ character.encumbrance() | percent }})
         </mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item><span>Movement Rating:&nbsp;</span>{{ character.movementRating() }}</mat-list-item>
+        <mat-list-item overflowTooltip><span>Movement Rating:&nbsp;</span>{{ character.movementRating() }}</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item><span>1 Pace:&nbsp;</span>{{ character.movementRating() / 6 }}</mat-list-item>
+        <mat-list-item overflowTooltip><span>1 Pace:&nbsp;</span>{{ character.movementRating() / 6 }}</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item><span>2 Pace:&nbsp;</span>{{ character.movementRating() / 3 }}</mat-list-item>
+        <mat-list-item overflowTooltip><span>2 Pace:&nbsp;</span>{{ character.movementRating() / 3 }}</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item><span>3 Pace:&nbsp;</span>{{ character.movementRating() / 2 }}</mat-list-item>
+        <mat-list-item overflowTooltip><span>3 Pace:&nbsp;</span>{{ character.movementRating() / 2 }}</mat-list-item>
         <mat-divider></mat-divider>
       </mat-list>
     }

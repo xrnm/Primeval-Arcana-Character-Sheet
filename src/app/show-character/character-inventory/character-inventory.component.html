@@ -46,11 +46,11 @@
   @for (si of character.getSlottedContainers(); track si) {
     <mat-card appearance="outlined">
       <mat-card-content>
-        <h2>@if (si.unequipped) {
+        <h2 [matTooltip]="si.isBackpack() ? slotShadingTooltip : ''">@if (si.unequipped) {
           <span>Unequipped</span>
         } {{ si.inventoryString(false) }} </h2>
         <h3 [class.overfull]="si.isOverfull()">{{ si.capacityString() }}</h3>
-        <item-list [capacity]="si.slots" [items]="si.contents"></item-list>
+        <item-list [capacity]="si.slots" [items]="si.contents" [banded]="si.isBackpack()"></item-list>
       </mat-card-content>
     </mat-card>
   }

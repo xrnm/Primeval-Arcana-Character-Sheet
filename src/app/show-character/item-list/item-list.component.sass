@@ -5,3 +5,11 @@ mat-list
     margin-top: 16px
   .add-item
     text-align: center
+
+// Banded slot tinting: the shallow band sits slightly lighter than the card, the deep band
+// slightly darker. Overlays rather than fixed colours so both themes keep their contrast.
+item
+  display: block
+  background: rgba(255, 255, 255, 0.04)
+  &.deep-slot
+    background: rgba(0, 0, 0, 0.16)

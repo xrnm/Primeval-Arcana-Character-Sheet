@@ -1,6 +1,6 @@
 <mat-list dense cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="items">
   @for (item of items; track item) {
-    <item [item]="item" cdkDrag>{{ item }}</item>
+    <item [item]="item" [class.deep-slot]="isDeepSlot($index)" cdkDrag>{{ item }}</item>
   }
   <div class="add-item">
     @if (this.getItems().length < capacity) {

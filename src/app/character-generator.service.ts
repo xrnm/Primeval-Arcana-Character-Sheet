@@ -36,7 +36,6 @@ export class CharacterGeneratorService {
     const prime = CharacterGeneratorService.CLASS_PRIMES[charClass];
 
     const bonusXp = this.experienceBoost(abilities[prime], level);
-    const adjustments = this.abilityAdjustments(prime, abilities, level);
 
     // Kept lowercase for the height/weight table lookups; the sheet stores it capitalized.
     const sex = (options.sex || (DiceHelper.roll(2, 1) === 1 ? 'female' : 'male')).toLowerCase();
@@ -44,7 +43,6 @@ export class CharacterGeneratorService {
     const older = options.ageCategory ? options.ageCategory === 'older' : DiceHelper.roll(2, 1) === 1;
 
     const height = PhysicalAttributesHelper.generateHeight(sex);
-    const weight = PhysicalAttributesHelper.generateWeight(abilities.strength, abilities.constitution, sex, weightClass);
     const age = PhysicalAttributesHelper.generateAge(level, older);
     const handedness = PhysicalAttributesHelper.generateHandedness();
 
@@ -56,7 +54,6 @@ export class CharacterGeneratorService {
     const dentalStatus = options.dentalStatus || DiceHelper.pick(AttributeTablesHelper.DENTAL_STATUSES);
     const alignment = options.alignment || DiceHelper.pick(AttributeTablesHelper.ALIGNMENTS);
     const profession = options.profession || DiceHelper.pick(AttributeTablesHelper.PROFESSIONS);
-    const professionDef = AttributeTablesHelper.PROFESSION_DEFINITIONS[profession] || '';
 
     let idQuality: string = null;
     if (options.identifyingQualityText) {
@@ -92,18 +89,6 @@ export class CharacterGeneratorService {
       levelXp = 0;
     }
 
-    // Build appearance text
-    const appearanceParts: string[] = [];
-    if (idQuality) {
-      appearanceParts.push('Identifying Quality: ' + idQuality);
-    }
-    appearanceParts.push(profession + ': ' + professionDef);
-
-    // Ability adjustments
-    if (adjustments.length > 0) {
-      appearanceParts.push('Adjustments: ' + adjustments.join(', '));
-    }
-
     // Cleric-specific
     let deityName: string = null;
     let deityDomain: string = null;
@@ -115,10 +100,6 @@ export class CharacterGeneratorService {
       deityDomain = DiceHelper.pick(AttributeTablesHelper.DOMAINS);
       deityEdict = DiceHelper.pick(AttributeTablesHelper.EDICTS);
       deityAnathema = DiceHelper.pick(AttributeTablesHelper.ANATHEMAS);
-
-      const godStats = 'Deity Name: ' + deityName + ', Domain: ' + deityDomain +
-        ', Edict: ' + deityEdict + ', Anathema: ' + deityAnathema;
-      appearanceParts.push(godStats);
     }
 
     // Magic User starting spell
@@ -147,7 +128,7 @@ export class CharacterGeneratorService {
       alignment: alignment,
       height_foot: height.foot,
       height_inch: height.inch,
-      weight: weight,
+      weight_class: weightClass,
       eye_color: eyeColor,
       hair_color: hairColor,
       hair_style: hairType,
@@ -168,7 +149,7 @@ export class CharacterGeneratorService {
       slung_items: [],
       mounts: [],
       hirelings: [],
-      appearance: appearanceParts.filter(p => p != null).join('\n'),
+      identifying_quality: idQuality,
       deity_name: deityName,
       deity_domain: deityDomain,
       deity_edict: deityEdict,

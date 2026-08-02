@@ -12,15 +12,17 @@ import { ItemListComponent } from '../item-list/item-list.component';
 import { MatIcon } from '@angular/material/icon';
 import { MatMiniFabButton } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
     selector: 'character-inventory',
     templateUrl: './character-inventory.component.html',
     styleUrls: ['./character-inventory.component.sass'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [MatCard, MatCardContent, MatList, ItemListComponent, MatListItem, MatIcon, MatMiniFabButton, MatDivider]
+    imports: [MatCard, MatCardContent, MatList, ItemListComponent, MatListItem, MatIcon, MatMiniFabButton, MatDivider, MatTooltip]
 })
 export class CharacterInventoryComponent implements OnInit {
+  slotShadingTooltip = 'Slots are shaded in fives: the lighter top five are what you can reach, the darker bottom five are buried at the base of the pack.';
   @Input() character: Character;
 
   constructor(public dialog: MatDialog, private gameService: GameService) {
