@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import {Character} from "../../character";
 import {GameService} from "../../game.service";
 import { MatCard, MatCardContent } from '@angular/material/card';
@@ -13,6 +13,7 @@ import { MatDivider } from '@angular/material/divider';
     selector: 'character-attributes',
     templateUrl: './character-attributes.component.html',
     styleUrls: ['./character-attributes.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatCard, MatCardContent, MatIcon, MatTooltip, MatIconButton, MatExpansionPanel, MatExpansionPanelHeader, MatList, MatListItem, MatDivider]
 })
 export class CharacterAttributesComponent implements OnInit {

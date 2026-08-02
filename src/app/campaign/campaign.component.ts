@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {MatButton, MatIconButton} from '@angular/material/button';
@@ -27,6 +27,7 @@ const CLAIMED_KEY = 'odnd-character-claimed';
     selector: 'app-campaign',
     templateUrl: './campaign.component.html',
     styleUrls: ['./campaign.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [RouterLink, MatButton, MatIconButton, MatIcon, MatMenu, MatMenuItem, MatMenuTrigger, MatMenuContent, MatSlideToggle, MatFormField, MatLabel, MatInput, FormsModule]
 })
 export class CampaignComponent implements OnInit {

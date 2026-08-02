@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import {Item} from "../../item";
 import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList, CdkDrag } from "@angular/cdk/drag-drop";
 import {MatDialog} from "@angular/material/dialog";
@@ -14,6 +14,7 @@ import { MatIcon } from '@angular/material/icon';
     selector: 'item-list',
     templateUrl: './item-list.component.html',
     styleUrls: ['./item-list.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatList, CdkDropList, ItemComponent, CdkDrag, MatMiniFabButton, MatIcon]
 })
 export class ItemListComponent implements OnInit {

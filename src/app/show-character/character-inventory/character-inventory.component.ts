@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, ChangeDetectionStrategy} from '@angular/core';
 import {Character} from "../../character";
 import {GameService} from "../../game.service";
 import {MatDialog} from "@angular/material/dialog";
@@ -17,6 +17,7 @@ import { MatDivider } from '@angular/material/divider';
     selector: 'character-inventory',
     templateUrl: './character-inventory.component.html',
     styleUrls: ['./character-inventory.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatCard, MatCardContent, MatList, ItemListComponent, MatListItem, MatIcon, MatMiniFabButton, MatDivider]
 })
 export class CharacterInventoryComponent implements OnInit {

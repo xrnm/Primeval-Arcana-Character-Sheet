@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import {Note} from "../../note";
 import {GameService} from "../../game.service";
 import { MatMiniFabButton } from '@angular/material/button';
@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
     selector: 'adventure-log-notes',
     templateUrl: './notes.component.html',
     styleUrls: ['./notes.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatMiniFabButton, MatIcon, MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription, MatFormField, MatLabel, MatInput, FormsModule]
 })
 export class NotesComponent implements OnInit {

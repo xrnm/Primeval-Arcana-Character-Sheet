@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import {Item} from "../../../item";
 import {MatDialog} from "@angular/material/dialog";
 import {ItemDialogComponent} from "../item-dialog/item-dialog.component";
@@ -14,6 +14,7 @@ import { MatDivider } from '@angular/material/divider';
     selector: 'item',
     templateUrl: './item.component.html',
     styleUrls: ['./item.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatListItem, MatTooltip, MatIcon, MatIconButton, MatDivider]
 })
 export class ItemComponent implements OnInit {

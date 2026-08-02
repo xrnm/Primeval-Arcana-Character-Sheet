@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Character} from "../../character";
 import {GameService} from "../../game.service";
 
@@ -16,6 +16,7 @@ import { MatTooltip } from '@angular/material/tooltip';
     selector: 'character-cleric',
     templateUrl: './character-cleric.component.html',
     styleUrls: ['./character-cleric.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatCard, MatCardContent, MatIcon, MatList, MatListItem, MatDivider, MatMiniFabButton, MatFormField, MatLabel, MatInput, FormsModule, MatButton, MatTooltip]
 })
 export class CharacterClericComponent implements OnInit {

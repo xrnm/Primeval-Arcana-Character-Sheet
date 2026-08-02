@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {CharacterGeneratorService} from '../character-generator.service';
 import {GeneratorOptions} from '../generator-options';
 import {DiceHelper} from '../dice-helper';
@@ -35,6 +35,7 @@ interface SpellEntry {
     selector: 'app-generate-character-dialog',
     templateUrl: './generate-character-dialog.component.html',
     styleUrls: ['./generate-character-dialog.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatDialogTitle, CdkScrollable, MatDialogContent, MatStepper, MatStep, MatFormField, MatLabel, MatSelect, FormsModule, MatOption, MatInput, MatButton, MatIcon, MatIconButton, MatTooltip, MatCheckbox, MatStepperNext, MatStepperPrevious, MatTabGroup, MatTab, MatList, MatListItem, MatMiniFabButton, MatDivider, MatDialogActions, MatDialogClose]
 })
 export class GenerateCharacterDialogComponent implements OnInit {

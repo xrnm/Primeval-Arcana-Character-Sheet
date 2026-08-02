@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import {ExperienceBlock} from "../../experience-block";
 import {Experience} from "../../experience";
 import {GameService} from "../../game.service";
@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     selector: 'adventure-log-experience-blocks',
     templateUrl: './experience-blocks.component.html',
     styleUrls: ['./experience-blocks.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatMiniFabButton, MatButton, MatIconButton, MatIcon, MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription, MatFormField, MatLabel, MatInput, MatSelect, MatOption, MatDatepickerInput, FormsModule, MatDatepickerToggle, MatSuffix, MatDatepicker, SlicePipe, DatePipe]
 })
 export class ExperienceBlocksComponent implements OnInit {

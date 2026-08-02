@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {GameService} from "../game.service";
 import {Router} from "@angular/router";
 import { FormsModule } from '@angular/forms';
@@ -9,6 +9,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
     selector: 'app-raw-edit',
     templateUrl: './raw-edit.component.html',
     styleUrls: ['./raw-edit.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [FormsModule, MatButton, MatSlideToggle]
 })
 export class RawEditComponent implements OnInit {

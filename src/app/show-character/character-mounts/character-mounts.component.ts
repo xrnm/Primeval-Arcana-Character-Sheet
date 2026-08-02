@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Character} from "../../character";
 import {GameService} from "../../game.service";
 import {DefaultSettingsHelper} from "../../default-settings-helper";
@@ -22,6 +22,7 @@ import { ItemListComponent } from '../item-list/item-list.component';
     selector: 'character-mounts',
     templateUrl: './character-mounts.component.html',
     styleUrls: ['./character-mounts.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatDivider, MatCard, MatCardContent, MatIcon, MatList, MatListSubheaderCssMatStyler, MatListItem, MatMiniFabButton, MatFormField, MatLabel, MatInput, FormsModule, MatCheckbox, MatButton, ItemListComponent]
 })
 export class CharacterMountsComponent implements OnInit {

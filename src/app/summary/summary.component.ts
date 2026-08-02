@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
 import {GameService} from '../game.service';
 import {CampaignService} from '../campaign.service';
 import {AuthService} from '../auth/auth.service';
@@ -8,6 +8,7 @@ import {Character} from '../character';
     selector: 'app-summary',
     templateUrl: './summary.component.html',
     styleUrls: ['./summary.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: []
 })
 export class SummaryComponent implements OnInit, OnDestroy {

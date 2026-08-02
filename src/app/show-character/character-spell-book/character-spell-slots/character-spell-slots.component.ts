@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Character} from "../../../character";
 import {Spell} from "../../../spell";
 import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList, CdkDrag } from "@angular/cdk/drag-drop";
@@ -16,6 +16,7 @@ import { MatDivider } from '@angular/material/divider';
     selector: 'character-spell-slots',
     templateUrl: './character-spell-slots.component.html',
     styleUrls: ['./character-spell-slots.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatTabGroup, MatTab, MatList, CdkDropList, MatListItem, CdkDrag, MatTooltip, MatIconButton, MatIcon, MatDivider]
 })
 export class CharacterSpellSlotsComponent implements OnInit {

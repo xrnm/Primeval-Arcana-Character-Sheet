@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Character} from "../../character";
 import {GameService} from "../../game.service";
 import {AttributeTablesHelper} from "../../attribute-tables-helper";
@@ -23,6 +23,7 @@ import { PercentPipe } from '@angular/common';
     selector: 'character-overview',
     templateUrl: './character-overview.component.html',
     styleUrls: ['./character-overview.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatCard, MatCardContent, MatIcon, MatList, MatListItem, MatDivider, MatFormField, MatLabel, MatInput, MatSelect, MatOption, FormsModule, MatButton, MatTooltip, MatMiniFabButton, MatIconButton, MatCheckbox, MatChipSet, MatChip, MatChipGrid, MatChipRow, MatChipRemove, MatChipInput, PercentPipe]
 })
 export class CharacterOverviewComponent implements OnInit {

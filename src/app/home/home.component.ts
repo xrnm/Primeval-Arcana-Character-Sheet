@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ChangeDetectionStrategy} from '@angular/core';
 import {GameService} from '../game.service';
 import {Router} from '@angular/router';
 import {Game} from '../game';
@@ -13,6 +13,7 @@ import { MatIcon } from '@angular/material/icon';
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatButton, MatIcon]
 })
 export class HomeComponent implements OnInit {

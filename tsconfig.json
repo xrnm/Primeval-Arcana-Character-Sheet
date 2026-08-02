@@ -1,8 +1,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    // TypeScript 6 enables strict by default. This codebase predates that and has never compiled
+    // under it, so keep it off here rather than folding a large refactor into a dependency upgrade.
+    "strict": false,
     "sourceMap": true,
     "esModuleInterop": true,
     "declaration": false,

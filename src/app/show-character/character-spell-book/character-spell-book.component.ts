@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Character} from "../../character";
 import {Spell} from "../../spell";
 import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropListGroup, CdkDropList, CdkDrag } from "@angular/cdk/drag-drop";
@@ -19,6 +19,7 @@ import { CharacterSpellSlotsComponent } from './character-spell-slots/character-
     selector: 'character-spell-book',
     templateUrl: './character-spell-book.component.html',
     styleUrls: ['./character-spell-book.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [CdkDropListGroup, MatCard, MatCardContent, MatIcon, MatTooltip, MatTabGroup, MatTab, MatList, CdkDropList, MatListItem, CdkDrag, MatMiniFabButton, MatIconButton, MatDivider, CharacterSpellSlotsComponent, TitleCasePipe]
 })
 export class CharacterSpellBookComponent implements OnInit {

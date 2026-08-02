@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Character} from "../character";
 import {GameService} from "../game.service";
@@ -21,6 +21,7 @@ import { CharacterNotesComponent } from './character-notes/character-notes.compo
     selector: 'app-show-character',
     templateUrl: './show-character.component.html',
     styleUrls: ['./show-character.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [CdkDropListGroup, CharacterOverviewComponent, CharacterAttributesComponent, CharacterClericComponent, CharacterSpellBookComponent, CharacterExperienceComponent, CharacterPurseComponent, CharacterInventoryComponent, CharacterMountsComponent, CharacterNotesComponent]
 })
 export class ShowCharacterComponent implements OnInit, OnDestroy {
