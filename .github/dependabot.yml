@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      # Angular packages have to move together — a PR that bumps core without cli, material, and
+      # build-angular cannot build.
+      angular:
+        patterns:
+          - "@angular/*"
+          - "@angular-devkit/*"
+          - "@angular-eslint/*"
+          - "angular-eslint"
+      lint-and-types:
+        patterns:
+          - "eslint"
+          - "typescript"
+          - "typescript-eslint"
+          - "@types/*"
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"

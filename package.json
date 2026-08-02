@@ -28,23 +28,25 @@
     "zone.js": "~0.15.1"
   },
   "resolutions": {
-    "tar": ">=7.5.7",
-    "ajv": ">=8.18.0"
+    "tar": ">=7.5.19",
+    "postcss": ">=8.5.18",
+    "ws": ">=8.21.0",
+    "websocket-driver": ">=0.7.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^21.2.19",
-    "@angular-eslint/builder": "19.8.1",
-    "@angular-eslint/eslint-plugin": "19.8.1",
-    "@angular-eslint/eslint-plugin-template": "19.8.1",
-    "@angular-eslint/schematics": "19.8.1",
-    "@angular-eslint/template-parser": "19.8.1",
+    "@angular-eslint/builder": "21.4.0",
+    "@angular-eslint/eslint-plugin": "21.4.0",
+    "@angular-eslint/eslint-plugin-template": "21.4.0",
+    "@angular-eslint/schematics": "21.4.0",
+    "@angular-eslint/template-parser": "21.4.0",
     "@angular/cli": "^21.2.19",
     "@angular/compiler-cli": "^21.2.19",
     "@angular/language-service": "^21.2.19",
     "@types/node": "^22.0.0",
-    "angular-eslint": "19",
-    "eslint": "^9.0.0",
+    "angular-eslint": "21.4.0",
+    "eslint": "^9.28.0",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.55.0"
+    "typescript-eslint": "^8.33.1"
   }
 }
