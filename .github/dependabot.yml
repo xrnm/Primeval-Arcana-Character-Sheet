@@ -14,13 +14,23 @@ updates:
           - "@angular-devkit/*"
           - "@angular-eslint/*"
           - "angular-eslint"
+      # Majors here are not interchangeable the way the Angular ones are, so keep them out of the
+      # group and let each arrive as its own reviewable PR.
       lint-and-types:
         patterns:
           - "eslint"
           - "typescript"
           - "typescript-eslint"
           - "@types/*"
+        update-types:
+          - "minor"
+          - "patch"
       minor-and-patch:
         update-types:
           - "minor"
           - "patch"
+    ignore:
+      # @angular/compiler-cli pins typescript to ">=6.0 <6.1", so a major TypeScript bump cannot
+      # build until Angular itself supports it. Drop this once Angular allows TypeScript 7.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
