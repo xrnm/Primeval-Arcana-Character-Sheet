@@ -34,3 +34,7 @@ updates:
       # build until Angular itself supports it. Drop this once Angular allows TypeScript 7.
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
+      # @types/node should track the Node we actually run (see .nvmrc), not the newest release, or
+      # the build type-checks against APIs that are not there at runtime.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
