@@ -57,6 +57,11 @@
             <mat-icon>account_circle</mat-icon>
           </button>
           <mat-menu #accountMenu="matMenu">
+            <div class="account-menu-email">
+              <mat-icon>account_circle</mat-icon>
+              <span>{{ authService.getUser()?.email }}</span>
+            </div>
+            <mat-divider></mat-divider>
             <button mat-menu-item (click)="goToCampaigns()">
               <mat-icon>collections_bookmark</mat-icon>
               <span>Campaigns</span>

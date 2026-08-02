@@ -10,12 +10,14 @@ import {SavingThrowsHelper} from "./saving-throws-helper";
 import {Mount} from "./mount";
 import {Experience} from "./experience";
 import {ClericTurningHelper} from "./cleric-turning-helper";
+import {EncumbranceHelper} from "./encumbrance-helper";
 
 export class Character implements Loadable {
   name: string;
   race: string;
   age: number;
   sex: string;
+  handedness: string;
   profession: string;
   origin: string;
   alignment: string;
@@ -27,6 +29,7 @@ export class Character implements Loadable {
   hair_style: string;
   hair_length: string;
   skin_color: string;
+  dental_status: string;
   base_movement: number;
   current_hp: number;
   total_hp: number;
@@ -66,7 +69,10 @@ export class Character implements Loadable {
   experience: ExperienceBlock[] = [new ExperienceBlock({class: 'Fighter', prime: 'strength', experiences: []})];
   purse: Purse = new Purse();
   magic_items: Item[] = [];
-  known_languages: String[] = [];
+  known_languages: string[] = [];
+  // Written once, only for a sheet whose languages had to be rewritten into a list, so the original
+  // text stays recoverable from raw edit forever. Safe to delete by hand.
+  known_languages_original: string;
   weapons: Item[] = [];
   armor: Item[] = [];
   slung_items: Container[] = [];
@@ -114,6 +120,10 @@ export class Character implements Loadable {
 
     this.initializeExperienceBonus();
 
+
+    this.known_languages = Character.normalizeLanguages(init.known_languages);
+    if (!this.known_languages_original && Character.languagesWereRewritten(init.known_languages, this.known_languages))
+      this.known_languages_original = JSON.stringify(init.known_languages);
 
     if (init.purse)
       this.purse = new Purse(init.purse);
@@ -284,20 +294,17 @@ export class Character implements Loadable {
     return this.adjustedAbility('strength') * 150
   }
 
+  encumbrance(): number {
+    const maximum = this.maximumLoad();
+    return maximum > 0 ? this.load() / maximum : 0;
+  }
+
+  encumbranceLevel(): string {
+    return EncumbranceHelper.getLevel(this.encumbrance()).name;
+  }
+
   movementRating() {
-    const encumbrance = this.load() / this.maximumLoad();
-    if (encumbrance <= 0.25)
-      return this.base_movement * 2;
-    else if (encumbrance <= 0.333)
-      return this.base_movement * 1.5;
-    else if (encumbrance <= 0.50)
-      return this.base_movement;
-    else if (encumbrance <= 1)
-      return this.base_movement / 2;
-    else if (encumbrance <= 2)
-      return this.base_movement / 4;
-    else
-      return 0
+    return this.base_movement * EncumbranceHelper.getLevel(this.encumbrance()).movement;
   }
 
   toHit(): number {
@@ -449,6 +456,41 @@ export class Character implements Loadable {
 
   static classes() {
     return ['Fighter', 'Cleric', 'Magic User'];
+  }
+
+  // Sheets saved before languages became chips bound a plain text input straight to the array, so a
+  // stored value can be anything a user typed (or pasted into raw edit): a delimited string, a bare
+  // value, an array-shaped object. Everything they wrote survives as chip text; only the delimiters,
+  // blanks, and exact duplicates are dropped.
+  static normalizeLanguages(value: unknown): string[] {
+    if (value === null || value === undefined)
+      return [];
+
+    let languages: unknown[];
+    if (Array.isArray(value))
+      languages = value;
+    else if (typeof value === 'object')
+      languages = Object.values(value);
+    else
+      languages = ('' + value).split(/[,;\n]/);
+
+    return languages
+      .filter(language => language !== null && language !== undefined)
+      .map(language => (typeof language === 'object' ? JSON.stringify(language) : '' + language).trim())
+      .filter(language => language.length > 0)
+      .filter((language, index, all) => all.indexOf(language) === index);
+  }
+
+  static languagesWereRewritten(value: unknown, normalized: string[]): boolean {
+    if (value === null || value === undefined || value === '')
+      return false;
+    if (!Array.isArray(value))
+      return true;
+    return value.length !== normalized.length || value.some((language, index) => language !== normalized[index]);
+  }
+
+  static handedness() {
+    return ['Left Handed', 'Right Handed', 'Ambidextrous'];
   }
 
   static abilities() {

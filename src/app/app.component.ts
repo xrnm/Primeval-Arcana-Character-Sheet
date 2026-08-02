@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { MatDivider } from '@angular/material/divider';
 import { AuthService } from './auth/auth.service';
 import { AuthDialogComponent } from './auth/auth-dialog.component';
 import { SetPasswordDialogComponent } from './auth/set-password-dialog.component';
@@ -27,7 +28,7 @@ const HELM_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><p
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.sass'],
-    imports: [MatSidenavContainer, MatSidenav, LinksComponent, MatButton, MatIcon, MatIconButton, RouterLink, MatSidenavContent, MatToolbar, RouterOutlet, MatMiniFabButton, MatMenu, MatMenuItem, MatMenuTrigger]
+    imports: [MatSidenavContainer, MatSidenav, LinksComponent, MatButton, MatIcon, MatIconButton, RouterLink, MatSidenavContent, MatToolbar, RouterOutlet, MatMiniFabButton, MatMenu, MatMenuItem, MatMenuTrigger, MatDivider]
 })
 export class AppComponent {
   year = new Date().getFullYear();

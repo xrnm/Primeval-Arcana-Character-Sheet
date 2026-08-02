@@ -38,7 +38,8 @@ export class CharacterGeneratorService {
     const bonusXp = this.experienceBoost(abilities[prime], level);
     const adjustments = this.abilityAdjustments(prime, abilities, level);
 
-    const sex = options.sex || (DiceHelper.roll(2, 1) === 1 ? 'female' : 'male');
+    // Kept lowercase for the height/weight table lookups; the sheet stores it capitalized.
+    const sex = (options.sex || (DiceHelper.roll(2, 1) === 1 ? 'female' : 'male')).toLowerCase();
     const weightClass = options.weightClass || DiceHelper.pick(['light', 'average', 'heavy']);
     const older = options.ageCategory ? options.ageCategory === 'older' : DiceHelper.roll(2, 1) === 1;
 
@@ -92,18 +93,15 @@ export class CharacterGeneratorService {
     }
 
     // Build appearance text
-    const appearanceParts: string[] = [
-      'Dental status: ' + dentalStatus,
-      '\n' + handedness,
-    ];
+    const appearanceParts: string[] = [];
     if (idQuality) {
-      appearanceParts.push('\n' + 'Identifying Quality: ' + idQuality);
+      appearanceParts.push('Identifying Quality: ' + idQuality);
     }
-    appearanceParts.push('\n' + profession + ': ' + professionDef);
+    appearanceParts.push(profession + ': ' + professionDef);
 
     // Ability adjustments
     if (adjustments.length > 0) {
-      appearanceParts.push('\n' + 'Adjustments: ' + adjustments.join(', '));
+      appearanceParts.push('Adjustments: ' + adjustments.join(', '));
     }
 
     // Cleric-specific
@@ -118,7 +116,7 @@ export class CharacterGeneratorService {
       deityEdict = DiceHelper.pick(AttributeTablesHelper.EDICTS);
       deityAnathema = DiceHelper.pick(AttributeTablesHelper.ANATHEMAS);
 
-      const godStats = '\nDeity Name: ' + deityName + ', Domain: ' + deityDomain +
+      const godStats = 'Deity Name: ' + deityName + ', Domain: ' + deityDomain +
         ', Edict: ' + deityEdict + ', Anathema: ' + deityAnathema;
       appearanceParts.push(godStats);
     }
@@ -143,7 +141,8 @@ export class CharacterGeneratorService {
       name: name,
       race: 'Human',
       age: age,
-      sex: sex,
+      sex: this.capitalize(sex),
+      handedness: handedness,
       profession: profession,
       alignment: alignment,
       height_foot: height.foot,
@@ -154,6 +153,7 @@ export class CharacterGeneratorService {
       hair_style: hairType,
       hair_length: hairLength,
       skin_color: skinColor,
+      dental_status: dentalStatus,
       base_movement: 60,
       current_hp: hp,
       total_hp: hp,
@@ -168,7 +168,7 @@ export class CharacterGeneratorService {
       slung_items: [],
       mounts: [],
       hirelings: [],
-      appearance: appearanceParts.filter(p => p != null).join(''),
+      appearance: appearanceParts.filter(p => p != null).join('\n'),
       deity_name: deityName,
       deity_domain: deityDomain,
       deity_edict: deityEdict,
@@ -189,6 +189,12 @@ export class CharacterGeneratorService {
       constitution: o.constitution || DiceHelper.roll(6, 3),
       charisma: o.charisma || DiceHelper.roll(6, 3),
     };
+  }
+
+  capitalize(value: string): string {
+    if (!value)
+      return value;
+    return value.charAt(0).toUpperCase() + value.slice(1);
   }
 
   randomClass(): string {
