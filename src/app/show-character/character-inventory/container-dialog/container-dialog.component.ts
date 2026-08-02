@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Container} from '../../../container';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import {EquipmentLoadoutHelper, EquipmentItem} from '../../../equipment-loadout-helper';
@@ -15,6 +15,7 @@ import { MatButton } from '@angular/material/button';
     selector: 'app-container-dialog',
     templateUrl: './container-dialog.component.html',
     styleUrls: ['./container-dialog.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatDialogTitle, CdkScrollable, MatDialogContent, MatFormField, MatLabel, MatInput, FormsModule, MatAutocompleteTrigger, MatAutocomplete, MatOption, MatDialogActions, MatButton, MatDialogClose]
 })
 export class ContainerDialogComponent implements OnInit {

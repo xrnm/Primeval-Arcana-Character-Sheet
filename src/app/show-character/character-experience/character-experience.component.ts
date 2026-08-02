@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import {Character} from "../../character";
 import {GameService} from "../../game.service";
 import {AppModeHelper} from "../../app-mode-helper";
@@ -24,6 +24,7 @@ import { MatOption } from '@angular/material/core';
     selector: 'character-experience',
     templateUrl: './character-experience.component.html',
     styleUrls: ['./character-experience.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [RouterLink, MatMiniFabButton, MatIcon, MatCard, MatCardContent, MatList, MatListItem, MatDivider, MatProgressBar, MatFormField, MatLabel, MatSelect, FormsModule, MatOption, MatButton, PercentPipe, TitleCasePipe]
 })
 export class CharacterExperienceComponent implements OnInit {

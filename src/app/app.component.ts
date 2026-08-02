@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {GameService} from "./game.service";
 import {saveAs} from 'file-saver'
@@ -28,6 +28,7 @@ const HELM_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><p
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatSidenavContainer, MatSidenav, LinksComponent, MatButton, MatIcon, MatIconButton, RouterLink, MatSidenavContent, MatToolbar, RouterOutlet, MatMiniFabButton, MatMenu, MatMenuItem, MatMenuTrigger, MatDivider]
 })
 export class AppComponent {

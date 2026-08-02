@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import {Character} from "../../character";
 import {GameService} from "../../game.service";
 import {Game} from "../../game";
@@ -15,6 +15,7 @@ import { DecimalPipe } from '@angular/common';
     selector: 'character-purse',
     templateUrl: './character-purse.component.html',
     styleUrls: ['./character-purse.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatCard, MatCardContent, MatList, MatIcon, MatTooltip, MatListItem, MatIconButton, MatDivider, ItemListComponent, DecimalPipe]
 })
 export class CharacterPurseComponent implements OnInit {

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose} from '@angular/material/dialog';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
@@ -10,6 +10,7 @@ import {AuthService} from './auth.service';
     selector: 'app-auth-dialog',
     templateUrl: './auth-dialog.component.html',
     styleUrls: ['./auth-dialog.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatFormField, MatLabel, MatInput, MatButton, FormsModule]
 })
 export class AuthDialogComponent {

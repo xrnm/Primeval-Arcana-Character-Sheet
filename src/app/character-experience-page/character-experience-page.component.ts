@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GameService} from '../game.service';
 import {Character} from '../character';
@@ -11,6 +11,7 @@ const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
     selector: 'app-character-experience-page',
     templateUrl: './character-experience-page.component.html',
     styleUrls: ['./character-experience-page.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [ExperienceBlocksComponent]
 })
 export class CharacterExperiencePageComponent implements OnInit {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {MatButton, MatIconButton} from '@angular/material/button';
@@ -14,6 +14,7 @@ import {CampaignSummary} from '../persistence/campaign-summary';
     selector: 'app-campaigns',
     templateUrl: './campaigns.component.html',
     styleUrls: ['./campaigns.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatButton, MatIconButton, MatIcon, MatFormField, MatLabel, MatInput, FormsModule]
 })
 export class CampaignsComponent implements OnInit {

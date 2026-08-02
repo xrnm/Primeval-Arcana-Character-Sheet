@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Character} from '../character';
 import {GameService} from '../game.service';
 import {NewCharacter} from '../new-character';
@@ -22,6 +22,7 @@ import { CharacterNotesComponent } from '../show-character/character-notes/chara
     selector: 'app-hirelings',
     templateUrl: './hirelings.component.html',
     styleUrls: ['./hirelings.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatMiniFabButton, MatIcon, MatTabGroup, MatTab, CharacterOverviewComponent, CharacterAttributesComponent, CharacterSpellBookComponent, CharacterExperienceComponent, CharacterPurseComponent, CharacterInventoryComponent, ExperienceBlocksComponent, CharacterNotesComponent]
 })
 export class HirelingsComponent implements OnInit {

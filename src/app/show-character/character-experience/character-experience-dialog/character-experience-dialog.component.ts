@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from "@angular/material/dialog";
 import {ExperienceBlock} from "../../../experience-block";
 import {Experience} from "../../../experience";
@@ -16,6 +16,7 @@ import { MatButton } from '@angular/material/button';
     selector: 'app-character-experience-dialog',
     templateUrl: './character-experience-dialog.component.html',
     styleUrls: ['./character-experience-dialog.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatDialogTitle, CdkScrollable, MatDialogContent, MatFormField, MatLabel, MatInput, MatDatepickerInput, FormsModule, MatDatepickerToggle, MatSuffix, MatDatepicker, MatDialogActions, MatButton, MatDialogClose]
 })
 export class CharacterExperienceDialogComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {Session} from "../session";
 import {Note} from "../note";
 import {GameService} from "../game.service";
@@ -11,6 +11,7 @@ import { SessionsComponent } from './sessions/sessions.component';
     selector: 'adventure-log',
     templateUrl: './adventure-log.component.html',
     styleUrls: ['./adventure-log.component.sass'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [NotesComponent, SessionsComponent]
 })
 export class AdventureLogComponent implements OnInit {
