@@ -35,7 +35,7 @@ export class CharacterGeneratorService {
     const level = options.level !== undefined ? options.level : 0;
     const prime = CharacterGeneratorService.CLASS_PRIMES[charClass];
 
-    const bonusXp = this.experienceBoost(abilities[prime], level);
+    const bonusXp = this.experienceBoost(abilities[prime]);
 
     // Kept lowercase for the height/weight table lookups; the sheet stores it capitalized.
     const sex = (options.sex || (DiceHelper.roll(2, 1) === 1 ? 'female' : 'male')).toLowerCase();
@@ -185,10 +185,10 @@ export class CharacterGeneratorService {
     return 'Magic User';
   }
 
-  experienceBoost(primeScore: number, level: number): number {
-    const adjusted = primeScore + level;
-    if (adjusted >= 15) return 10;
-    if (adjusted >= 13) return 5;
+  experienceBoost(primeScore: number): number {
+    if (primeScore >= 18) return 15;
+    if (primeScore >= 15) return 10;
+    if (primeScore >= 13) return 5;
     return 0;
   }
 

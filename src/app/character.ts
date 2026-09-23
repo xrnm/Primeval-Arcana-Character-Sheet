@@ -161,7 +161,9 @@ export class Character implements Loadable {
     this.experience = this.experience.map((experience) => {
       const primeScore = this.abilities[experience.prime];
 
-      if (primeScore > 14)
+      if (primeScore > 17)
+        experience.bonus_xp = 15;
+      else if (primeScore > 14)
         experience.bonus_xp = 10;
       else if (primeScore > 12)
         experience.bonus_xp = 5;
