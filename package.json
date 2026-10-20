@@ -19,7 +19,7 @@
     "@angular/material": "^22.1.0",
     "@angular/platform-browser": "^22.1.0",
     "@angular/platform-browser-dynamic": "^22.1.0",
-    "@angular/router": "^22.1.0",
+    "@angular/router": "^22.2.1",
     "@supabase/supabase-js": "^2.111.0",
     "@types/file-saver": "^2.0.1",
     "file-saver": "^2.0.2",
